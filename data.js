@@ -88,7 +88,7 @@ const DUCK_I18N = {
     ch:'Construyamos<br><em>algo épico</em>',cs:'Disponible para producciones, remixes, beats exclusivos y alianzas estratégicas.'
   },
   en:{
-    n1:'About',n2:'Studio',n3:'Portfolio',n4:'Services',n5:'Contact',
+    n1:'About',n2:'Studio',n4:'Portfolio',n5:'Services',n6:'Contact',
     cta1:'Hire',cta2:'See Projects →',
     sp1:'I\'m Duck, music producer, beatmaker, and sound engineer from Aracaju, Sergipe. There\'s something that happens to me since I was a kid. When I hear a sound, my brain starts breaking it down on its own. I see the layers: the frequencies that overlap, the harmonics that talk to each other, the textures that give body to emotion. It\'s not something I learned. It\'s like my brain was built for it. I started at 12 with no resources, just wanting to understand why certain sounds made me feel things other people didn\'t notice. At 14 I entered the Sergipe Music Conservatory and that\'s when I confirmed: I don\'t hear music like everyone else. I process it in a different way.',
     sp2:'I work with artists at national and international scale. From Brazilian Trap to Pop that crosses borders. From the Brazilian national team to international stages. My specialty is interpreting what the artist wants to communicate and transforming it into sound engineering. I don\'t produce generic beats. Every project starts with a diagnosis: the brain maps frequencies, identifies resonances, predicts how each element will converse. When an artist brings me an idea, I see the whole song. The structure, the timbres, the air it needs to breathe.',

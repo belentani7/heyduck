@@ -13,25 +13,25 @@ const DUCK_SINGLES = [
 ];
 
 const DUCK_TRACKS = [
-  {a:'Luiz Cinnamon',t:'Posturadona',g:'pop',r:['Instrumental','Gravação','Mixagem','Masterização']},
-  {a:'Leones',t:'Tititi',g:'pop',r:['Produção','Mixagem']},
-  {a:'Leones',t:'De Fininho',g:'pop',r:['Produção']},
-  {a:'Belentani',t:'I Wrote a Song',g:'pop',r:['Instrumental','Mixagem','Masterização']},
-  {a:'Leones ft. Chrislops',t:'Cheguei Tão Longe',g:'pop',r:['Produção','Mixagem']},
-  {a:'Belentani',t:'Lento',g:'pop',r:['Produção','Masterização']},
-  {a:'Dayo',t:'Ouro Rosê',g:'trap',r:['Beat','Produção']},
-  {a:'Dlok',t:'Money Way',g:'trap',r:['Beat']},
-  {a:'Kvyn MC',t:'Yakuza',g:'trap',r:['Beat','Mixagem']},
-  {a:'NK ft. Duck',t:'Telefone',g:'trap',r:['Produção','Feature']},
-  {a:'Waave ft. Duck',t:'Mohamed',g:'trap',r:['Beat','Feature']},
-  {a:'Duck',t:'EP Veneno',g:'trap',r:['Direção Musical']},
-  {a:'Big Murdda ft. Duck4x',t:'Cold',g:'trap',r:['Feature']},
-  {a:'Skimode Ap ft. Naeedy, Duck4x',t:'Slip N Slide',g:'trap',r:['Feature']},
-  {a:'Duck4x ft. Luh0ne, Hotboy Loeski',t:'Odor',g:'trap',r:['Produção','Feature']},
-  {a:'Duck4x ft. Maal4km',t:'Whats going on',g:'pop',r:['Produção','Feature']},
-  {a:'Duck4x',t:'Bougie Hoes Remix',g:'pop',r:['Produção']},
-  {a:'Duck4x ft. Maal4km',t:'F**k em',g:'trap',r:['Produção','Feature']},
-  {a:'Duck4x',t:'F**k the opps',g:'trap',r:['Produção']},
+  {a:'Luiz Cinnamon',t:'Posturadona',g:'pop',r:['Instrumental','Gravação','Mixagem','Masterização'],cover:'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a1/c5/1c/a1c51ccb-f74b-2887-f10a-2551da6336c6/1963622331596_cover.jpg/600x600bb.jpg'},
+  {a:'Leones',t:'Tititi',g:'pop',r:['Produção','Mixagem'],cover:'images/covers/track_intro.jpg'},
+  {a:'Leones',t:'De Fininho',g:'pop',r:['Produção'],cover:'images/covers/track_wtf.jpg'},
+  {a:'Belentani',t:'I Wrote a Song',g:'pop',r:['Instrumental','Mixagem','Masterização'],cover:'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ec/e3/ef/ece3ef64-26d2-f66d-e97b-414126194445/artwork.jpg/600x600bb.jpg'},
+  {a:'Leones ft. Chrislops',t:'Cheguei Tão Longe',g:'pop',r:['Produção','Mixagem'],cover:'images/covers/track_no-hook.jpg'},
+  {a:'Belentani',t:'Lento',g:'pop',r:['Produção','Masterização'],cover:'images/covers/track_last-warning.jpg'},
+  {a:'Dayo',t:'Ouro Rosê',g:'trap',r:['Beat','Produção'],cover:'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/30/46/fe/3046fedd-dafb-c61c-eb60-6387049f0170/0.jpg/600x600bb.jpg'},
+  {a:'Dlok',t:'Money Way',g:'trap',r:['Beat'],cover:'images/covers/track_motion-outro.jpg'},
+  {a:'Kvyn MC',t:'Yakuza',g:'trap',r:['Beat','Mixagem'],cover:'images/covers/track_skilla-baby-flow.jpg'},
+  {a:'NK ft. Duck',t:'Telefone',g:'trap',r:['Produção','Feature'],cover:'images/covers/track_intro.jpg'},
+  {a:'Waave ft. Duck',t:'Mohamed',g:'trap',r:['Beat','Feature'],cover:'images/covers/track_wtf.jpg'},
+  {a:'Duck',t:'EP Veneno',g:'trap',r:['Direção Musical'],cover:'images/covers/track_no-hook.jpg'},
+  {a:'Big Murdda ft. Duck4x',t:'Cold',g:'trap',r:['Feature'],cover:'images/covers/cold-feat-duck4x.jpg'},
+  {a:'Skimode Ap ft. Naeedy, Duck4x',t:'Slip N Slide',g:'trap',r:['Feature'],cover:'images/covers/track_slip-n-slide.jpg'},
+  {a:'Duck4x ft. Luh0ne, Hotboy Loeski',t:'Odor',g:'trap',r:['Produção','Feature'],cover:'images/covers/odor-feat-luh0ne.jpg'},
+  {a:'Duck4x ft. Maal4km',t:'Whats going on',g:'pop',r:['Produção','Feature'],cover:'images/covers/whats-going-on.jpg'},
+  {a:'Duck4x',t:'Bougie Hoes Remix',g:'pop',r:['Produção'],cover:'images/covers/bougie-hoes-remix.jpg'},
+  {a:'Duck4x ft. Maal4km',t:'F**k em',g:'trap',r:['Produção','Feature'],cover:'images/covers/f-k-em-feat-maal4km.jpg'},
+  {a:'Duck4x',t:'F**k the opps',g:'trap',r:['Produção'],cover:'images/covers/f-k-the-opps.jpg'},
 ];
 
 const DUCK_IMAGES = {
@@ -130,7 +130,8 @@ function renderTracks(containerId, filter) {
   const f = filter || 'all';
   const list = f === 'all' ? DUCK_TRACKS : DUCK_TRACKS.filter(x => x.g === f);
   g.innerHTML = list.map(x => `
-    <div class="tc">
+    <div class="tc rv">
+      ${x.cover ? `<div class="tc-cover"><img src="${x.cover}" loading="lazy" alt="${x.t}"></div>` : ''}
       <span class="tc-g">${x.g.toUpperCase()}</span>
       <div class="tc-a">${x.a}</div>
       <div class="tc-t">${x.t}</div>

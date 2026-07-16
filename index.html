@@ -335,7 +335,13 @@ function initAll(){
       b.style.animationDelay=(i*.04)+'s';wf.appendChild(b);
     });
 
-    // Reveal
+    // Render content (MUST be before reveal observer)
+    renderGallery('gallery-grid');
+    renderSingles('singles-grid');
+    renderTracks('tracks-grid','all');
+    initFilters('.fb','tracks-grid');
+
+    // Reveal (AFTER render so dynamic elements get observed)
     const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}});},{threshold:.08});
     document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
@@ -350,12 +356,6 @@ function initAll(){
         gsap.to({v:0},{v:t,duration:2.2,ease:'power2.out',onUpdate:function(){el.textContent=Math.round(this.targets()[0].v).toLocaleString()+(t>=1000?'+':'M+');}});
       }});
     });
-
-    // Render content
-    renderGallery('gallery-grid');
-    renderSingles('singles-grid');
-    renderTracks('tracks-grid','all');
-    initFilters('.fb','tracks-grid');
 
     // Re-attach cursor events to newly rendered elements
     if(cur){

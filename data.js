@@ -2,11 +2,6 @@
 
 const DUCK_SINGLES = [
   {name:"For Reaper's Only",type:"EP",url:"https://music.apple.com/us/album/for-reapers-only-ep/1768570067",cover:"images/covers/for-reapers-only-ep.jpg",ft:"Duck4x"},
-  {name:"F**k the opps",type:"SINGLE",url:"https://music.apple.com/us/album/f-k-the-opps-single/1764623513",cover:"images/covers/f-k-the-opps.jpg",ft:"Duck4x"},
-  {name:"F**k em",type:"SINGLE",url:"https://music.apple.com/us/album/f-k-em-feat-maal4km-single/1819255100",cover:"images/covers/f-k-em-feat-maal4km.jpg",ft:"feat. Maal4km"},
-  {name:"Bougie Hoes Remix",type:"SINGLE",url:"https://music.apple.com/us/album/bougie-hoes-remix-feat-naeedy-skimode-ap-single/1825713190",cover:"images/covers/bougie-hoes-remix.jpg",ft:"feat. Naeedy & Skimode"},
-  {name:"Odor",type:"SINGLE",url:"https://music.apple.com/us/album/odor-feat-luh0ne-hotboy-loeski/1774636647",cover:"images/covers/odor-feat-luh0ne.jpg",ft:"feat. Luh0ne & Hotboy Loeski"},
-  {name:"Whats going on",type:"SINGLE",url:"https://music.apple.com/us/album/whats-going-on-feat-maal4km/1783908680",cover:"images/covers/whats-going-on.jpg",ft:"feat. Maal4km"},
   {name:"Cold",type:"SINGLE",url:"https://music.apple.com/us/album/cold-feat-duck4x/1895058889",cover:"images/covers/cold-feat-duck4x.jpg",ft:"feat. Big Murdda"},
   {name:"Slip N Slide",type:"SINGLE",url:"https://music.apple.com/us/album/slip-n-slide/1747165417",cover:"images/covers/track_slip-n-slide.jpg",ft:"Duck4x, Naeedy, Luh One, Maal4km"},
 ];

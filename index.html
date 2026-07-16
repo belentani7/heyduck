@@ -188,9 +188,23 @@ footer{background:var(--bg);border-top:1px solid rgba(154,203,107,.04);padding:1
 .rv{opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.23,1,.32,1),transform .8s cubic-bezier(.23,1,.32,1);}
 .rv.vis{opacity:1;transform:none;}
 
+/* EASTER EGG */
+.easter-egg{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg);}
+.ee-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(154,203,107,.08) 0%,transparent 70%);opacity:0;transition:opacity 1s;}
+.easter-egg.active .ee-bg{opacity:1;}
+.ee-content{text-align:center;z-index:2;opacity:0;transform:translateY(60px);transition:all 1.2s cubic-bezier(.23,1,.32,1);}
+.easter-egg.active .ee-content{opacity:1;transform:none;}
+.ee-waves{display:flex;justify-content:center;gap:3px;height:120px;margin-bottom:3rem;align-items:center;}
+.ee-wave-bar{width:4px;background:var(--a);border-radius:2px;transition:height .3s ease;opacity:.7;}
+.ee-title{font-family:var(--f);font-size:clamp(6rem,20vw,20rem);font-weight:800;color:var(--a);letter-spacing:-.05em;line-height:1;opacity:.15;text-transform:uppercase;}
+.ee-sub{font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(239,231,208,.2);margin-top:1rem;}
+.ee-freq{display:flex;align-items:center;gap:2rem;justify-content:center;margin-top:3rem;}
+.ee-freq span{font-size:.45rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,231,208,.15);font-family:var(--f);}
+.ee-bar{width:80px;height:1px;background:var(--a);opacity:.3;}
+
 /* RESPONSIVE */
-@media(max-width:1024px){.about-g{grid-template-columns:1fr;gap:3rem;}.tracks-g,.singles-g{grid-template-columns:repeat(2,1fr);}.svc-g{grid-template-columns:1fr;}.proc-g{grid-template-columns:repeat(2,1fr);}.proc-g::before{display:none;}.gal-g{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:768px){.nav-links{display:none;}.sec{padding:4.5rem 5%;}.stats{grid-template-columns:1fr;}.stat:not(:last-child)::after{display:none;}.tracks-g,.singles-g{grid-template-columns:1fr 1fr;}.gal-g{grid-template-columns:1fr;}.hero{padding:0 5% 3.5rem;}.hero-h{font-size:clamp(3.5rem,20vw,7rem);}footer{flex-direction:column;gap:.5rem;text-align:center;}.proc-g{grid-template-columns:1fr;}}
+@media(max-width:1024px){.about-g{grid-template-columns:1fr;gap:3rem;}.tracks-g{grid-template-columns:repeat(2,1fr);}.svc-g{grid-template-columns:1fr;}.proc-g{grid-template-columns:repeat(2,1fr);}.proc-g::before{display:none;}.gal-g{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.nav-links{display:none;}.sec{padding:4.5rem 5%;}.stats{grid-template-columns:1fr;}.stat:not(:last-child)::after{display:none;}.tracks-g{grid-template-columns:1fr 1fr;}.gal-g{grid-template-columns:1fr;}.hero{padding:0 5% 3.5rem;}.hero-h{font-size:clamp(3.5rem,20vw,7rem);}footer{flex-direction:column;gap:.5rem;text-align:center;}.proc-g{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -295,6 +309,21 @@ footer{background:var(--bg);border-top:1px solid rgba(154,203,107,.04);padding:1
   <p class="cnt-loc rv">Aracaju · Sergipe · Brasil</p>
 </div></section>
 
+<!-- EASTER EGG: Sound Wave Parallax -->
+<section class="easter-egg" id="easter-egg">
+  <div class="ee-bg"></div>
+  <div class="ee-content">
+    <div class="ee-waves" id="ee-waves"></div>
+    <h2 class="ee-title">DUCK</h2>
+    <p class="ee-sub">Configuração Neurocognitiva</p>
+    <div class="ee-freq">
+      <span>432Hz</span>
+      <div class="ee-bar"></div>
+      <span>HARMONIC RESONANCE</span>
+    </div>
+  </div>
+</section>
+
 <footer><div class="f-brand">DUCK Produção Musical</div><div class="f-copy">© 2026 — Todos os direitos reservados</div></footer>
 
 <script>
@@ -332,6 +361,39 @@ function initAll(){
       b.style.setProperty('--h',h+'px');b.style.setProperty('--d',(0.6+Math.random()*.8)+'s');
       b.style.animationDelay=(i*.04)+'s';wf.appendChild(b);
     });
+
+    // Easter Egg: Sound Wave Parallax
+    const eeWaves=document.getElementById('ee-waves');
+    if(eeWaves){
+      for(let i=0;i<40;i++){
+        const bar=document.createElement('div');bar.className='ee-wave-bar';
+        bar.style.height=(5+Math.random()*80)+'px';
+        eeWaves.appendChild(bar);
+      }
+      const ee=document.getElementById('easter-egg');
+      const eeObs=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            ee.classList.add('active');
+            animateEEWaves();
+          }
+        });
+      },{threshold:.3});
+      if(ee)eeObs.observe(ee);
+
+      function animateEEWaves(){
+        const bars=eeWaves.querySelectorAll('.ee-wave-bar');
+        function pulse(){
+          bars.forEach(b=>{
+            const h=5+Math.random()*100;
+            b.style.height=h+'px';
+            b.style.opacity=h/120+.2;
+          });
+          if(ee.classList.contains('active'))requestAnimationFrame(()=>setTimeout(pulse,150));
+        }
+        pulse();
+      }
+    }
 
     // Render content (MUST be before reveal observer)
     renderGallery('gallery-grid');

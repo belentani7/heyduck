@@ -1,37 +1,37 @@
 // DUCK — Datos compartidos para todas las versiones
-// Singles/EPs + Portfolio + Info
 
 const DUCK_SINGLES = [
-  {name:"For Reaper's Only",type:"EP",url:"https://music.apple.com/us/album/for-reapers-only-ep/1768570067",cover:"images/covers/for-reapers-only-ep.jpg",tracks:"WTF · Intro · No Hook · Last Warning · Skilla Baby Flow · Motion",ft:"Duck4x"},
-  {name:"F**k the opps",type:"SINGLE",url:"https://music.apple.com/us/album/f-k-the-opps-single/1764623513",cover:"images/covers/f-k-the-opps.jpg",tracks:"Single",ft:"Duck4x"},
-  {name:"F**k em",type:"SINGLE",url:"https://music.apple.com/us/album/f-k-em-feat-maal4km-single/1819255100",cover:"images/covers/f-k-em-feat-maal4km.jpg",tracks:"Single",ft:"feat. Maal4km"},
-  {name:"Bougie Hoes Remix",type:"SINGLE",url:"https://music.apple.com/us/album/bougie-hoes-remix-feat-naeedy-skimode-ap-single/1825713190",cover:"images/covers/bougie-hoes-remix.jpg",tracks:"Single",ft:"feat. Naeedy & Skimode ap"},
-  {name:"Odor",type:"SINGLE",url:"https://music.apple.com/us/album/odor-feat-luh0ne-hotboy-loeski/1774636647",cover:"images/covers/odor-feat-luh0ne.jpg",tracks:"Single",ft:"feat. Luh0ne & Hotboy Loeski"},
-  {name:"Whats going on",type:"SINGLE",url:"https://music.apple.com/us/album/whats-going-on-feat-maal4km/1783908680",cover:"images/covers/whats-going-on.jpg",tracks:"Single",ft:"feat. Maal4km"},
-  {name:"Cold",type:"SINGLE",url:"https://music.apple.com/us/album/cold-feat-duck4x/1895058889",cover:"images/covers/cold-feat-duck4x.jpg",tracks:"Single",ft:"feat. Duck4x · by Big Murdda"},
-  {name:"Slip N Slide",type:"SINGLE",url:"https://music.apple.com/us/album/slip-n-slide/1747165417",cover:"images/covers/track_slip-n-slide.jpg",tracks:"Single",ft:"Skimode Ap, Naeedy, Luh One, Duck4x, Maal4km"},
+  {name:"For Reaper's Only",type:"EP",url:"https://music.apple.com/us/album/for-reapers-only-ep/1768570067",cover:"images/covers/for-reapers-only-ep.jpg",ft:"Duck4x"},
+  {name:"F**k the opps",type:"SINGLE",url:"https://music.apple.com/us/album/f-k-the-opps-single/1764623513",cover:"images/covers/f-k-the-opps.jpg",ft:"Duck4x"},
+  {name:"F**k em",type:"SINGLE",url:"https://music.apple.com/us/album/f-k-em-feat-maal4km-single/1819255100",cover:"images/covers/f-k-em-feat-maal4km.jpg",ft:"feat. Maal4km"},
+  {name:"Bougie Hoes Remix",type:"SINGLE",url:"https://music.apple.com/us/album/bougie-hoes-remix-feat-naeedy-skimode-ap-single/1825713190",cover:"images/covers/bougie-hoes-remix.jpg",ft:"feat. Naeedy & Skimode"},
+  {name:"Odor",type:"SINGLE",url:"https://music.apple.com/us/album/odor-feat-luh0ne-hotboy-loeski/1774636647",cover:"images/covers/odor-feat-luh0ne.jpg",ft:"feat. Luh0ne & Hotboy Loeski"},
+  {name:"Whats going on",type:"SINGLE",url:"https://music.apple.com/us/album/whats-going-on-feat-maal4km/1783908680",cover:"images/covers/whats-going-on.jpg",ft:"feat. Maal4km"},
+  {name:"Cold",type:"SINGLE",url:"https://music.apple.com/us/album/cold-feat-duck4x/1895058889",cover:"images/covers/cold-feat-duck4x.jpg",ft:"feat. Big Murdda"},
+  {name:"Slip N Slide",type:"SINGLE",url:"https://music.apple.com/us/album/slip-n-slide/1747165417",cover:"images/covers/track_slip-n-slide.jpg",ft:"Duck4x, Naeedy, Luh One, Maal4km"},
 ];
 
 const DUCK_TRACKS = [
-  {a:'Luiz Cinnamon',t:'Posturadona',g:'pop',r:['Instrumental','Gravação','Mixagem','Masterização'],cover:'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a1/c5/1c/a1c51ccb-f74b-2887-f10a-2551da6336c6/1963622331596_cover.jpg/600x600bb.jpg'},
-  {a:'Leones',t:'Tititi',g:'pop',r:['Produção','Mixagem'],cover:'images/covers/track_intro.jpg'},
-  {a:'Leones',t:'De Fininho',g:'pop',r:['Produção'],cover:'images/covers/track_wtf.jpg'},
-  {a:'Belentani',t:'I Wrote a Song',g:'pop',r:['Instrumental','Mixagem','Masterização'],cover:'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ec/e3/ef/ece3ef64-26d2-f66d-e97b-414126194445/artwork.jpg/600x600bb.jpg'},
-  {a:'Leones ft. Chrislops',t:'Cheguei Tão Longe',g:'pop',r:['Produção','Mixagem'],cover:'images/covers/track_no-hook.jpg'},
-  {a:'Belentani',t:'Lento',g:'pop',r:['Produção','Masterização'],cover:'images/covers/track_last-warning.jpg'},
-  {a:'Dayo',t:'Ouro Rosê',g:'trap',r:['Beat','Produção'],cover:'https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/30/46/fe/3046fedd-dafb-c61c-eb60-6387049f0170/0.jpg/600x600bb.jpg'},
-  {a:'Dlok',t:'Money Way',g:'trap',r:['Beat'],cover:'images/covers/track_motion-outro.jpg'},
-  {a:'Kvyn MC',t:'Yakuza',g:'trap',r:['Beat','Mixagem'],cover:'images/covers/track_skilla-baby-flow.jpg'},
-  {a:'NK ft. Duck',t:'Telefone',g:'trap',r:['Produção','Feature'],cover:'images/covers/track_intro.jpg'},
-  {a:'Waave ft. Duck',t:'Mohamed',g:'trap',r:['Beat','Feature'],cover:'images/covers/track_wtf.jpg'},
-  {a:'Duck',t:'EP Veneno',g:'trap',r:['Direção Musical'],cover:'images/covers/track_no-hook.jpg'},
-  {a:'Big Murdda ft. Duck4x',t:'Cold',g:'trap',r:['Feature'],cover:'images/covers/cold-feat-duck4x.jpg'},
-  {a:'Skimode Ap ft. Naeedy, Duck4x',t:'Slip N Slide',g:'trap',r:['Feature'],cover:'images/covers/track_slip-n-slide.jpg'},
-  {a:'Duck4x ft. Luh0ne, Hotboy Loeski',t:'Odor',g:'trap',r:['Produção','Feature'],cover:'images/covers/odor-feat-luh0ne.jpg'},
-  {a:'Duck4x ft. Maal4km',t:'Whats going on',g:'pop',r:['Produção','Feature'],cover:'images/covers/whats-going-on.jpg'},
-  {a:'Duck4x',t:'Bougie Hoes Remix',g:'pop',r:['Produção'],cover:'images/covers/bougie-hoes-remix.jpg'},
-  {a:'Duck4x ft. Maal4km',t:'F**k em',g:'trap',r:['Produção','Feature'],cover:'images/covers/f-k-em-feat-maal4km.jpg'},
-  {a:'Duck4x',t:'F**k the opps',g:'trap',r:['Produção'],cover:'images/covers/f-k-the-opps.jpg'},
+  {a:'Luiz Cinnamon',t:'Posturadona',g:'pop',r:['Instrumental','Mixagem','Masterização'],cover:'images/covers/posturadona-256x255.png',yt:'https://www.youtube.com/watch?v=cIraeWrxjVI'},
+  {a:'Leones',t:'Tititi',g:'pop',r:['Produção','Mixagem'],cover:'images/covers/tititi-254x256.png',yt:'https://www.youtube.com/watch?v=a0T1AJj2VyI'},
+  {a:'Leones',t:'De Fininho',g:'pop',r:['Produção'],cover:'images/covers/leones-254x256.png',yt:'https://www.youtube.com/watch?v=oQzE1EG-74g'},
+  {a:'Leones',t:'Cheguei Tão Longe',g:'pop',r:['Mixagem'],cover:'images/covers/cheguei-256x255.png',yt:'https://www.youtube.com/watch?v=ShCWOG62aV0'},
+  {a:'Belentani',t:'I Wrote a Song',g:'pop',r:['Instrumental','Mixagem','Masterização'],cover:'images/covers/whrote-256x255.png',yt:'https://www.youtube.com/watch?v=2iaAAzN0__Y'},
+  {a:'Belentani',t:'Lento',g:'pop',r:['Produção','Masterização'],cover:'images/covers/lento-256x256.jpg',yt:'https://www.youtube.com/watch?v=5MClO2y0OLM'},
+  {a:'Belentani',t:'Sleep Talking',g:'pop',r:['Beat'],cover:'images/covers/sleep-talking-256x255.jpg',yt:'https://www.youtube.com/watch?v=vmZjzGkZzag'},
+  {a:'Belentani',t:'Heart Breaking',g:'pop',r:['Beat'],cover:'images/covers/heart-256x255.png',yt:'https://www.youtube.com/watch?v=4Hsy6TKp6ys'},
+  {a:'Belentani',t:'Therapist',g:'pop',r:['Beat'],cover:'images/covers/therapist-256x256.jpg',yt:'https://www.youtube.com/watch?v=SEqmcrkl-QQ'},
+  {a:'Dayo',t:'Ouro Rosê',g:'trap',r:['Beat','Produção'],cover:'images/covers/ouro-rose-256x256.jpg',yt:'https://www.youtube.com/watch?v=eO5MjxLAcQM'},
+  {a:'Dlok',t:'Money Way',g:'trap',r:['Beat'],cover:'images/covers/money-way-256x144.jpg',yt:'https://www.youtube.com/watch?v=DraF8ww2kgU'},
+  {a:'Kvyn MC',t:'Yakuza',g:'trap',r:['Beat','Mixagem'],cover:'images/covers/yakuza-2-256x144.jpg',yt:'https://www.youtube.com/watch?v=6WgxE4o0J1E'},
+  {a:'NK ft. Duck',t:'Telefone',g:'trap',r:['Produção','Feature'],cover:'images/covers/telefone-256x256.jpg',yt:'https://www.youtube.com/watch?v=9BqVvldx2-s'},
+  {a:'Waave ft. Duck',t:'Mohamed',g:'trap',r:['Beat','Feature'],cover:'images/covers/outra.jpg',yt:'https://www.youtube.com/watch?v=1kjwszuYRt8'},
+  {a:'Jullya Murvack',t:'Track',g:'pop',r:['Gravação','Mixagem'],cover:'images/covers/julya-256x241.png',yt:'https://www.youtube.com/watch?v=8WbLyUPDGVE'},
+  {a:'Duck4x ft. Luh0ne',t:'Odor',g:'trap',r:['Produção','Feature'],cover:'images/covers/odor-feat-luh0ne.jpg',yt:'https://www.youtube.com/watch?v=UodtnociJQ4'},
+  {a:'Duck4x ft. Maal4km',t:'Whats going on',g:'pop',r:['Produção','Feature'],cover:'images/covers/whats-going-on.jpg',yt:'https://www.youtube.com/watch?v=b8RM4ro2uik'},
+  {a:'Duck4x',t:'Bougie Hoes Remix',g:'pop',r:['Produção'],cover:'images/covers/bougie-hoes-remix.jpg',yt:'https://www.youtube.com/watch?v=SwD7EGmOYQs'},
+  {a:'Duck4x ft. Maal4km',t:'F**k em',g:'trap',r:['Produção','Feature'],cover:'images/covers/f-k-em-feat-maal4km.jpg',yt:'https://www.youtube.com/watch?v=9hbB47ckn-c'},
+  {a:'Duck4x',t:'F**k the opps',g:'trap',r:['Produção'],cover:'images/covers/f-k-the-opps.jpg',yt:'https://www.youtube.com/watch?v=dmruk8j3IsQ'},
 ];
 
 const DUCK_IMAGES = {
@@ -104,39 +104,35 @@ const DUCK_I18N = {
     p2t:'Production & Arrangement',p2d:'Within 72 hours you receive the first complete draft. Every layer is intentional: the kick that hits the chest, the synth that creates atmosphere, the bass that moves the body.',
     p3t:'Mixing & Revision',p3d:'This is where sound engineering enters. I treat each stem with dynamic EQ, parallel compression, panning automation, and spatial reverb. Up to 3 revision rounds to refine every detail.',
     p4t:'Mastering & Delivery',p4d:'The final process that ensures consistent loudness for Spotify, Apple Music, and all platforms. Multiband limiters, stereo imaging, and harmonics for a file ready for the world.',
-    ch:"Let's build<br><em>something epic</em>",cs:'Available for productions, remixes, exclusive beats, and strategic partnerships. If you have a vision, I have the sonic tools to materialize it.'
+    ch:"Let's build<br><em>something epic</em>",cs:'Available for productions, remixes, exclusive beats, and strategic partnerships.'
   }
 };
 
-// Helper: render singles grid
+// Helper: render singles
 function renderSingles(containerId) {
   const g = document.getElementById(containerId);
   if (!g) return;
   g.innerHTML = DUCK_SINGLES.map(s => `
     <a href="${s.url}" target="_blank" class="s-card rv">
       <div class="s-cover"><img src="${s.cover}" loading="lazy" alt="${s.name}"></div>
-      <div class="s-info">
-        <span class="s-type">${s.type}</span>
-        <div class="s-name">${s.name}</div>
-        <div class="s-ft">${s.ft}</div>
-      </div>
+      <div class="s-info"><span class="s-type">${s.type}</span><div class="s-name">${s.name}</div><div class="s-ft">${s.ft}</div></div>
     </a>`).join('');
 }
 
-// Helper: render tracks grid
+// Helper: render tracks with covers and YouTube links
 function renderTracks(containerId, filter) {
   const g = document.getElementById(containerId);
   if (!g) return;
   const f = filter || 'all';
   const list = f === 'all' ? DUCK_TRACKS : DUCK_TRACKS.filter(x => x.g === f);
   g.innerHTML = list.map(x => `
-    <div class="tc rv">
-      ${x.cover ? `<div class="tc-cover"><img src="${x.cover}" loading="lazy" alt="${x.t}"></div>` : ''}
+    <a href="${x.yt}" target="_blank" class="tc rv">
+      <div class="tc-cover"><img src="${x.cover}" loading="lazy" alt="${x.t}"><div class="tc-play">▶</div></div>
       <span class="tc-g">${x.g.toUpperCase()}</span>
       <div class="tc-a">${x.a}</div>
       <div class="tc-t">${x.t}</div>
       <div class="tc-r">${x.r.map(r => `<span class="tc-rt">${r}</span>`).join('')}</div>
-    </div>`).join('');
+    </a>`).join('');
 }
 
 // Helper: render gallery
@@ -144,10 +140,7 @@ function renderGallery(containerId) {
   const g = document.getElementById(containerId);
   if (!g) return;
   g.innerHTML = DUCK_IMAGES.studio.map((img, i) => `
-    <div class="gal-i rv">
-      <img src="${img}" loading="lazy" alt="${DUCK_IMAGES.studioLabels[i]}">
-      <div class="gal-cap">${DUCK_IMAGES.studioLabels[i]}</div>
-    </div>`).join('');
+    <div class="gal-i rv"><img src="${img}" loading="lazy" alt="${DUCK_IMAGES.studioLabels[i]}"><div class="gal-cap">${DUCK_IMAGES.studioLabels[i]}</div></div>`).join('');
 }
 
 // Helper: set language
@@ -157,44 +150,8 @@ function setDuckLang(lang) {
   if (btn) btn.classList.add('on');
   const d = DUCK_I18N[lang];
   if (!d) return;
-  document.querySelectorAll('[data-k]').forEach(el => {
-    const v = d[el.dataset.k];
-    if (v !== undefined) el.innerHTML = v;
-  });
+  document.querySelectorAll('[data-k]').forEach(el => { const v = d[el.dataset.k]; if (v !== undefined) el.innerHTML = v; });
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
-}
-
-// Helper: animate counters
-function animateCounters() {
-  document.querySelectorAll('.stat-n').forEach(el => {
-    const t = parseInt(el.dataset.c);
-    if (isNaN(t)) return;
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.create({
-        trigger: el, start: 'top 85%', once: true,
-        onEnter: () => {
-          gsap.to({ v: 0 }, {
-            v: t, duration: 2, ease: 'power2.out',
-            onUpdate: function () {
-              el.textContent = Math.round(this.targets()[0].v).toLocaleString() + (t >= 1000 ? '+' : 'M+');
-            }
-          });
-        }
-      });
-    } else {
-      el.textContent = t.toLocaleString() + (t >= 1000 ? '+' : 'M+');
-    }
-  });
-}
-
-// Helper: reveal on scroll
-function initReveals() {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 }
 
 // Helper: init filters
@@ -207,64 +164,3 @@ function initFilters(btnSelector, containerId) {
     });
   });
 }
-
-// Helper: nav active state
-function initNavActive() {
-  const secs = [...document.querySelectorAll('section[id]')];
-  window.addEventListener('scroll', () => {
-    secs.forEach(s => {
-      const top = s.offsetTop - 200;
-      const lk = document.querySelector(`.nav-links a[href="#${s.id}"]`);
-      if (lk) lk.style.color = scrollY >= top && scrollY < top + s.offsetHeight ? 'var(--a)' : '';
-    });
-  }, { passive: true });
-}
-
-// Helper: sticky nav
-function initStickyNav() {
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('stuck', scrollY > 80);
-  }, { passive: true });
-}
-
-// Helper: ticker
-function initTicker() {
-  const items = ['Produção Musical','Aracaju · Sergipe','POP · TRAP · MPB · HipHop','Beatmaker','Mixagem & Masterização','36M+ Streams','40+ Lançamentos','duck-beats@hotmail.com','@duck4s'];
-  const tk = document.getElementById('tk');
-  if (!tk) return;
-  [...items, ...items].forEach(t => {
-    const s = document.createElement('span');
-    s.className = 'ti';
-    s.textContent = t;
-    tk.appendChild(s);
-  });
-}
-
-// Helper: waveform
-function initWaveform() {
-  const wf = document.getElementById('wf');
-  if (!wf) return;
-  [6,11,22,32,40,28,36,20,34,16,38,24,30,14,26,32,18,28,22,36].forEach((h, i) => {
-    const b = document.createElement('div');
-    b.className = 'wb';
-    b.style.setProperty('--h', h + 'px');
-    b.style.setProperty('--d', (0.6 + Math.random() * 0.8) + 's');
-    b.style.animationDelay = (i * 0.04) + 's';
-    wf.appendChild(b);
-  });
-}
-
-// Helper: custom cursor
-function initCursor() {
-  const cur = document.getElementById('cur');
-  if (!cur) return;
-  document.addEventListener('mousemove', e => {
-    if (typeof gsap !== 'undefined') gsap.to(cur, { x: e.clientX - 10, y: e.clientY - 10, duration: 0.1 });
-  });
-  document.querySelectorAll('a,button,.gal-i,.s-card,.tc').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('on'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('on'));
-  });
-}
-
-console.log('DUCK data.js loaded — ' + DUCK_SINGLES.length + ' singles, ' + DUCK_TRACKS.length + ' tracks, ' + DUCK_I18N.pt.n1 + ' / ' + DUCK_I18N.es.n1 + ' / ' + DUCK_I18N.en.n1);

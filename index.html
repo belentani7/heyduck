@@ -208,7 +208,6 @@ footer{background:var(--bg);border-top:1px solid rgba(154,203,107,.04);padding:1
   <ul class="nav-links">
     <li><a href="#about" data-k="n1">Sobre</a></li>
     <li><a href="#gallery" data-k="n2">Estúdio</a></li>
-    <li><a href="#singles" data-k="n3">Singles</a></li>
     <li><a href="#portfolio" data-k="n4">Portfolio</a></li>
     <li><a href="#services" data-k="n5">Serviços</a></li>
     <li><a href="#contact" data-k="n6">Contato</a></li>
@@ -251,13 +250,6 @@ footer{background:var(--bg);border-top:1px solid rgba(154,203,107,.04);padding:1
   <p class="sec-lbl rv">// 002 — Estúdio</p>
   <h2 class="sec-h rv" data-k="gh"></h2>
   <div class="gal-g" id="gallery-grid"></div>
-</div></section>
-
-<section class="sec" id="singles"><div class="sec-w">
-  <p class="sec-lbl rv">// 003 — Singles & EPs</p>
-  <h2 class="sec-h rv" data-k="sh"></h2>
-  <div class="singles-g" id="singles-grid"></div>
-  <div class="singles-cta rv"><a href="https://music.apple.com/us/artist/duck4x/1764302106" target="_blank" class="btn-p"><span data-k="sct"></span></a><a href="https://open.spotify.com/search/duck4x" target="_blank" class="btn-s" data-k="ssp"></a></div>
 </div></section>
 
 <div class="quote-s"><div class="quote-bg" id="quote-bg"></div><div class="quote-ov"></div><p class="quote-t rv">"Duck que beat é esse?" — <span>@check_match</span></p></div>
@@ -326,8 +318,8 @@ function initAll(){
     const cur=document.getElementById('cursor');
     if(cur){
       document.addEventListener('mousemove',e=>{gsap.to(cur,{x:e.clientX,y:e.clientY,duration:.08,ease:'power2.out'});});
-      document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.gal-i,.s-card,.tc,.singles-g'))cur.classList.add('on');});
-      document.addEventListener('mouseout',e=>{if(e.target.closest('a,button,.gal-i,.s-card,.tc,.singles-g'))cur.classList.remove('on');});
+      document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.gal-i,.s-card,.tc'))cur.classList.add('on');});
+      document.addEventListener('mouseout',e=>{if(e.target.closest('a,button,.gal-i,.s-card,.tc'))cur.classList.remove('on');});
     }
 
     // Sticky nav
@@ -343,7 +335,6 @@ function initAll(){
 
     // Render content (MUST be before reveal observer)
     renderGallery('gallery-grid');
-    renderSingles('singles-grid');
     renderTracks('tracks-grid','all');
     initFilters('.fb','tracks-grid');
 

@@ -35,20 +35,14 @@ const DUCK_TRACKS = [
 ];
 
 const DUCK_IMAGES = {
-  hero:"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&q=80",
-  heroAlt:"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1440&q=80",
-  quote:"https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1920&q=80",
+  hero:"images/capa-1920x1080.jpg",
+  heroAlt:"images/capa-1440x810.jpg",
+  quote:"images/capa-4-1920x1080.jpg",
   logo:"images/logo-768x768.png",
   logoSm:"images/logo-256x256.png",
-  studio:["https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1440&q=80","https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1440&q=80","https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1440&q=80","https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1440&q=80","https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1440&q=80","https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1440&q=80"],
-  studioLabels:["Studio","Mixer","Microphone","Waves","Headphones","Production"],
-  aboutImg:"https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1920&q=80",
-  // Imágenes libres de stocks (Unsplash)
-  stockStudio:"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&q=80",
-  stockMic:"https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1920&q=80",
-  stockWaves:"https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1920&q=80",
-  stockHeadphones:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1920&q=80",
-  stockMixer:"https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1920&q=80",
+  studio:["images/setup-2-1440x960.jpg","images/setup-3-1440x960.jpg","images/setup-4-1440x960.jpg","images/setup-5-1440x960.jpg","images/mix-3-1440x960.jpg","images/mix-6-1440x960.jpg"],
+  studioLabels:["Home Studio","Mix Station","Production","Recording","Mixing","Mastering"],
+  aboutImg:"images/setup-2-1920x1280.jpg",
 };
 
 const DUCK_I18N = {

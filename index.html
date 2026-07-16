@@ -435,6 +435,97 @@ function initAll(){
     gsap.to('#hero-bg',{yPercent:25,ease:'none',scrollTrigger:{trigger:'.hero',scrub:true}});
     gsap.to('#quote-bg',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.quote-s',scrub:true}});
 
+    // Section headings stagger
+    document.querySelectorAll('.sec-h').forEach(h=>{
+      gsap.from(h,{opacity:0,y:40,duration:1,ease:'power3.out',scrollTrigger:{trigger:h,start:'top 85%'}});
+    });
+
+    // Section labels slide in
+    document.querySelectorAll('.sec-lbl').forEach(l=>{
+      gsap.from(l,{opacity:0,x:-30,duration:.8,ease:'power3.out',scrollTrigger:{trigger:l,start:'top 88%'}});
+    });
+
+    // Stats bounce in
+    document.querySelectorAll('.stat').forEach((s,i)=>{
+      gsap.from(s,{opacity:0,y:50,scale:.9,duration:.7,delay:i*.15,ease:'back.out(1.5)',scrollTrigger:{trigger:s,start:'top 90%'}});
+    });
+
+    // Gallery images stagger
+    setTimeout(()=>{
+      document.querySelectorAll('.gal-i').forEach((g,i)=>{
+        gsap.from(g,{opacity:0,scale:.85,rotation:gsap.utils.random(-3,3),duration:.8,delay:i*.1,ease:'power3.out',scrollTrigger:{trigger:g,start:'top 88%'}});
+      });
+    },500);
+
+    // Track cards stagger
+    setTimeout(()=>{
+      document.querySelectorAll('.tc').forEach((c,i)=>{
+        gsap.from(c,{opacity:0,y:60,duration:.6,delay:(i%4)*.1,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%'}});
+      });
+    },500);
+
+    // Process dots pulse
+    document.querySelectorAll('.proc-dot').forEach((d,i)=>{
+      gsap.from(d,{scale:0,opacity:0,duration:.5,delay:i*.2,ease:'back.out(2)',scrollTrigger:{trigger:d,start:'top 85%'}});
+    });
+
+    // Services slide in
+    document.querySelectorAll('.svc-c').forEach((s,i)=>{
+      gsap.from(s,{opacity:0,x:i%2===0?-40:40,duration:.7,delay:i*.1,ease:'power3.out',scrollTrigger:{trigger:s,start:'top 88%'}});
+    });
+
+    // Contact links stagger
+    document.querySelectorAll('.cnt-link').forEach((l,i)=>{
+      gsap.from(l,{opacity:0,y:20,duration:.5,delay:i*.12,ease:'power2.out',scrollTrigger:{trigger:l,start:'top 90%'}});
+    });
+
+    // Quote text reveal
+    gsap.from('.quote-t',{opacity:0,scale:.9,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.quote-s',start:'top 70%'}});
+
+    // About image parallax
+    gsap.to('.about-img img',{yPercent:-15,ease:'none',scrollTrigger:{trigger:'.about-img',start:'top bottom',end:'bottom top',scrub:true}});
+
+    // Smooth scroll nav links
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t)gsap.to(window,{duration:1,scrollTo:{y:t,autoKill:true},ease:'power3.inOut'});
+      });
+    });
+
+    // Ticker hover pause
+    const tkInner=document.querySelector('.ticker-inner');
+    if(tkInner){
+      tkInner.parentElement.addEventListener('mouseenter',()=>tkInner.style.animationPlayState='paused');
+      tkInner.parentElement.addEventListener('mouseleave',()=>tkInner.style.animationPlayState='running');
+    }
+
+    // Gallery caption slide
+    document.querySelectorAll('.gal-i').forEach(g=>{
+      g.addEventListener('mouseenter',()=>{
+        gsap.to(g.querySelector('.gal-cap'),{opacity:1,y:0,duration:.4,ease:'power2.out'});
+        gsap.to(g.querySelector('img'),{scale:1.08,filter:'brightness(.82) saturate(.65) hue-rotate(60deg)',duration:.5});
+      });
+      g.addEventListener('mouseleave',()=>{
+        gsap.to(g.querySelector('.gal-cap'),{opacity:0,y:8,duration:.3});
+        gsap.to(g.querySelector('img'),{scale:1,filter:'brightness(.58) saturate(.4) hue-rotate(60deg)',duration:.5});
+      });
+    });
+
+    // Track card tilt on mouse
+    document.querySelectorAll('.tc').forEach(c=>{
+      c.addEventListener('mousemove',e=>{
+        const r=c.getBoundingClientRect();
+        const x=(e.clientX-r.left-r.width/2)/r.width*8;
+        const y=(e.clientY-r.top-r.height/2)/r.height*8;
+        gsap.to(c,{rotationY:x,rotationX:-y,transformPerspective:500,duration:.3,ease:'power2.out'});
+      });
+      c.addEventListener('mouseleave',()=>{
+        gsap.to(c,{rotationY:0,rotationX:0,duration:.5,ease:'power2.out'});
+      });
+    });
+
   } catch(e) { console.error('initAll error:', e); }
 }
 </script>

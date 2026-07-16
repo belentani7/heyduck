@@ -1,0 +1,41 @@
+# Duck - Musical Producer Website
+# Git Ignore
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Node modules (if using any build tools)
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Env files
+.env
+.env.local
+
+# Large media files (keep in separate storage)
+*.mp4
+*.mp3
+*.wav
+*.flac
+
+# Instagram saved page (too large)
+Instagram*.html

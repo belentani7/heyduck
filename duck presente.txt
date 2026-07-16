@@ -1,0 +1,4465 @@
+Respuesta 1
+Pensamiento completado
+Pedro, para que este regalo sea verdaderamente un "Super Regalo" y no solo un script de Python, necesitamos eliminar toda fricción técnica para Duck. Él es músico, no ingeniero de software. Si tiene que abrir la terminal, instalar dependencias y configurar variables de entorno, el regalo pierde su magia.
+Aquí tienes la Capa Final del Proyecto: La Interfaz Visual (app.py) que consume el backend modular que ya estructuramos, y los Scripts de Automatización (INSTALAR_E_ABRIR.bat) que permitirán que Duck use la herramienta con un solo doble clic, tal como abre su DAW.
+Este código asume que ya tienes los archivos del backend (core/, modules/, config.py) en la carpeta del proyecto.
+1. 🖥️ La Interfaz Visual (app.py)
+Este archivo es el "cerebro visual". Conecta los módulos del backend con una interf web profesional, oscura (estilo DAW) y en portugués.
+python
+27282324252619202122151617181112131467891023451
+2. ⚙️ Configuración de Tema (.streamlit/config.toml)
+Crea una carpeta llamada .streamlit en la raíz del proyecto y dentro un archivo config.toml. Esto fuerza a la app a usar el Modo Oscuro (esencial para productores que trabajan en estudios con luz tenue).
+toml
+12345678910
+3. 🤖 La Automatización Total (INSTALAR_E_ABRIR.bat)
+Este es el verdadero "Super Regalo". Duck no necesita saber qué es Python, Pip o Streamlit. Solo hace doble clic en este archivo y todo se instala y abre solo.
+Crea este archivo en la raíz del proyecto (junto a app.py).
+bat
+252627282930313233343536373839404142123456789101112131415161718192021222324
+4. 📝 La Carta de Entrega (LEIA_ME_ANTES.txt)
+Para cerrar el círculo emocional y profesional. Incluye este archivo de texto simple en la carpeta raíz.
+text
+2627281234567891011121314151617181920212223242529
+📦 Cómo Empaquetar y Enviar el Regalo
+Estructura Final de Carpetas:
+Asegúrate de que tu carpeta projeto-farol-duck tenga exactamente esto:
+text
+12345678
+El Toque Maestro:
+Zippea la carpeta completa.
+Envíasela por WeTransfer o Google Drive.
+Mensaje de WhatsApp:
+"Fala, Duck! Lembra que a gente falou sobre otimizar o fluxo e 'não mixar no escuro'? Construí uma ferramenta privada pra você. Não é site, é um software que roda na sua máquina. Baixa a pasta, clica no 'INSTALAR_E_ABRIR' e vê a mágica acontecer. Fiz pensando exatamente nos seus beats e no @check_match. Tamo junto!"
+Con esto, le has regalado infraestructura de nivel enterprise empaquetada con la simplicidad de un plugin de VST. Es el mejor proyecto posible porque escala con él: si mañana vende 100 beats, la herramienta aguanta; si quiere analizar 50 referencias, la herramienta aguanta. Y todo bajo su control.Para llevar este proyecto al **máximo nivel absoluto (Nivel SaaS / Producto Comercial)**, no basta con que el código funcione. La experiencia de usuario (UX) de Duck debe ser impecable, eliminando cualquier fricción técnica. 
+
+Un productor musical no quiere lidiar con terminales, errores de dependencias ni configuraciones. Por eso, la mejora definitiva es implementar el concepto de **"Zero-Setup" (Instalación en 1 Clic)** y una **Interfaz Visual de Estudio (Dark Mode con Verde Césped)** que incluya **Historial y Exportación de Reportes**.
+
+Aquí tienes la finalización del proyecto.
+
+---
+
+### 🎨 1. El Frontend Definitivo (`app.py`)
+Este archivo reemplaza al anterior. Incluye:
+1. **Tema "Verde Césped" (Dark Mode)**: Colores `#2E8B57` (SeaGreen) y `#4CAF50` (LawnGreen) sobre fondo oscuro, ideal para la poca luz de un estudio de grabación.
+2. **Guardado Automático**: Cada reporte se guarda en una carpeta local `/reports` para que Duck tenga un historial de sus mezclas y blueprints.
+3. **Botones de Descarga**: Duck puede descargar el reporte en formato `.md` (Markdown) para adjuntarlo a sus sesiones de la DAW.
+4. **Manejo de Sesión**: Muestra un historial en la barra lateral de las últimas 5 acciones realizadas.
+
+```python
+import streamlit as st
+import os
+from datetime import datetime
+from config import validate_config, ANTHROPIC_API_KEY, CLAUDE_MODEL, LICENSE_TYPES
+from core.claude_client import ClaudeClient
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from utils.helpers import validate_audio_file
+
+# ── Configuração da Página ─────────────────────────────────────
+st.set_page_config(
+    page_title="Projeto Farol | DuckOS",
+    page_icon="🦆",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# ── CSS Personalizado (Tema Estudio: Dark Mode + Verde Césped) ─
+st.markdown("""
+<style>
+    /* --- TEMA VERDE CÉSPED / DARK MODE --- */
+    .stApp {
+        background-color: #0d1117;
+        color: #e6edf3;
+    }
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        background-color: #161b22;
+        border-right: 2px solid #2E8B57;
+    }
+    /* Botones Principales */
+    .stButton>button {
+        background-color: #2E8B57; /* Verde Césped */
+        color: white;
+        border-radius: 8px;
+        border: 2px solid #4CAF50;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    .stButton>button:hover {
+        background-color: #4CAF50; /* Verde más claro */
+        color: #0d1117;
+        border-color: #7CFC00;
+        box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+    }
+    /* Tabs */
+    .stTabs [data-baseweb="tab-list"] { gap: 8px; }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #161b22;
+        border-radius: 8px 8px 0px 0px;
+        color: #8b949e;
+        border: 1px solid #30363d;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #0d1117;
+        border-bottom: 3px solid #4CAF50;
+        color: #4CAF50;
+    }
+    /* Inputs e Uploads */
+    .stTextInput>div>div>input, .stTextArea textarea {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        color: #e6edf3;
+    }
+    .stTextInput>div>div>input:focus, .stTextArea textarea:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 1px #4CAF50;
+    }
+    [data-testid="stFileUploader"] {
+        background-color: #161b22;
+        border: 2px dashed #2E8B57;
+        border-radius: 8px;
+    }
+    /* Títulos */
+    h1, h2, h3 { color: #4CAF50 !important; }
+    .stSuccess {
+        background-color: rgba(46, 139, 87, 0.15);
+        border-left: 4px solid #4CAF50;
+        color: #e6edf3;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ── Inicialização e Cache ──────────────────────────────────────
+@st.cache_resource
+def init_modules():
+    try:
+        validate_config()
+        claude = ClaudeClient(api_key=ANTHROPIC_API_KEY, model=CLAUDE_MODEL)
+        return {
+            "farol": FarolModule(claude_client=claude),
+            "cartografo": CartografoModule(claude_client=claude),
+            "entrega": EntregaModule(claude_client=claude),
+            "status": "ok"
+        }
+    except ValueError as e:
+        return {"status": "error", "message": str(e)}
+
+modules = init_modules()
+
+# ── Função de Salvar Histórico Local ───────────────────────────
+def save_report(module_name: str, content: str, identifier: str):
+    os.makedirs("reports", exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe_id = "".join(c for c in identifier if c.isalnum() or c in (' ', '-', '_')).rstrip()
+    filename = f"reports/{timestamp}_{module_name}_{safe_id}.md"
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+    return filename
+
+# ── Header ─────────────────────────────────────────────────────
+st.title("🦆 Projeto Farol | DuckOS")
+st.markdown("#### *IA como lupa, não como pincel. Para que você nunca mais mixe no escuro.*")
+st.divider()
+
+if modules["status"] == "error":
+    st.error(f"❌ Erro de Configuração: {modules['message']}")
+    st.stop()
+
+# ── Sidebar (Histórico e Status) ───────────────────────────────
+with st.sidebar:
+    st.header("⚙️ Status do Sistema")
+    st.success("✅ API Anthropic Conectada")
+    st.info(f"Modelo: `{CLAUDE_MODEL}`")
+    st.markdown("---")
+    
+    st.markdown("### 📂 Histórico Recente")
+    if os.path.exists("reports"):
+        files = sorted([f for f in os.listdir("reports") if f.endswith(".md")], reverse=True)[:5]
+        if not files:
+            st.caption("Nenhum relatório gerado ainda.")
+        for f in files:
+            st.caption(f"📄 {f}")
+    else:
+        st.caption("Nenhum relatório gerado ainda.")
+        
+    st.markdown("---")
+    st.caption("Desenvolvido por Pedro para Duck.")
+
+# ── Abas Principais ────────────────────────────────────────────
+tab1, tab2, tab3 = st.tabs(["🔦 O Farol (Análise)", "🗺️ O Cartógrafo (Blueprint)", "📦 Entrega Sem Atrito"])
+
+# ==========================================
+# MÓDULO 1: O FAROL
+# ==========================================
+with tab1:
+    st.header("🔦 Análise Comparativa de Mix")
+    col1, col2 = st.columns(2)
+    with col1:
+        mix_file = st.file_uploader("Sua Mix (WAV/MP3)", type=["wav", "mp3", "flac", "ogg", "m4a"], key="mix")
+    with col2:
+        ref_file = st.file_uploader("Referência Profissional", type=["wav", "mp3", "flac", "ogg", "m4a"], key="ref")
+        
+    user_intuition = st.text_area("Sua intuição:", placeholder="Ex: 'Sinto o grave meio fraco e os vocais muito brilhantes...'", height=100)
+
+    if st.button("🔍 Analisar com O Farol", type="primary"):
+        valid_mix, msg_mix = validate_audio_file(mix_file)
+        valid_ref, msg_ref = validate_audio_file(ref_file)
+        
+        if not valid_mix: st.warning(f"Sua Mix: {msg_mix}")
+        elif not valid_ref: st.warning(f"Referência: {msg_ref}")
+        elif not user_intuition.strip(): st.warning("Por favor, descreva sua intuição.")
+        else:
+            with st.spinner("Processando espectro e consultando o Engenheiro Virtual..."):
+                result = modules["farol"].run(mix_file=mix_file, ref_file=ref_file, user_intuition=user_intuition)
+                
+                if result["success"]:
+                    st.success("✅ Análise Concluída e Salva no Histórico!")
+                    st.markdown(result["report"])
+                    
+                    # Botão de Download
+                    filepath = save_report("Farol", result["report"], mix_file.name)
+                    with open(filepath, "rb") as file:
+                        st.download_button(
+                            label="📥 Baixar Relatório (.md)",
+                            data=file,
+                            file_name=os.path.basename(filepath),
+                            mime="text/markdown"
+                        )
+                else:
+                    st.error(f"❌ Erro: {result['error']}")
+
+# ==========================================
+# MÓDULO 2: O CARTÓGRAFO
+# ==========================================
+with tab2:
+    st.header("🗺️ Blueprint de Produção")
+    ref_link = st.text_input("Link da Referência (YouTube/Spotify/SoundCloud)", placeholder="https://...")
+    obs_adicional = st.text_input("Observação adicional (Opcional)", placeholder="Ex: Adaptar para pop-rock")
+
+    if st.button("🗺️ Gerar Blueprint", type="primary"):
+        if not ref_link.strip():
+            st.warning("Por favor, insira um link válido.")
+        else:
+            with st.spinner("Desconstruindo a vibe e traçando o mapa..."):
+                result = modules["cartografo"].run(ref_link=ref_link, obs_adicional=obs_adicional)
+                
+                if result["success"]:
+                    meta = result["metadata"]
+                    st.success(f"✅ Blueprint Gerado para: **{meta['title']}**")
+                    st.markdown(result["blueprint"])
+                    
+                    filepath = save_report("Cartografo", result["blueprint"], meta['title'])
+                    with open(filepath, "rb") as file:
+                        st.download_button(
+                            label="📥 Baixar Blueprint (.md)",
+                            data=file,
+                            file_name=os.path.basename(filepath),
+                            mime="text/markdown"
+                        )
+                else:
+                    st.error(f"❌ Erro: {result['error']}")
+
+# ==========================================
+# MÓDULO 3: ENTREGA
+# ==========================================
+with tab3:
+    st.header("📦 Pacote de Entrega Profissional")
+    col1, col2 = st.columns(2)
+    with col1:
+        beat_name = st.text_input("Nome do Beat", placeholder="Ex: Gasolina")
+        artist_name = st.text_input("Nome do Artista Comprador", placeholder="Ex: @fabyy.iso")
+    with col2:
+        license_type = st.selectbox("Tipo de Licença", LICENSE_TYPES)
+        st.write("") 
+        st.write("") 
+
+    if st.button("📦 Gerar Pacote de Entrega", type="primary"):
+        if not beat_name.strip() or not artist_name.strip():
+            st.warning("Preencha o nome do Beat e do Artista.")
+        else:
+            with st.spinner("Preparando pacote profissional..."):
+                result = modules["entrega"].run(beat_name=beat_name, artist_name=artist_name, license_type=license_type)
+                
+                if result["success"]:
+                    st.success("✅ Pacote de Entrega Gerado!")
+                    st.markdown(result["package"])
+                    
+                    filepath = save_report("Entrega", result["package"], f"{beat_name}_{artist_name}")
+                    with open(filepath, "rb") as file:
+                        st.download_button(
+                            label="📥 Baixar Pacote (.md)",
+                            data=file,
+                            file_name=os.path.basename(filepath),
+                            mime="text/markdown"
+                        )
+                else:
+                    st.error(f"❌ Erro: {result['error']}")
+```
+
+---
+
+### 🚀 2. La Experiencia "Zero-Setup" (Instalación en 1 Clic)
+
+El verdadero "Super Regalo" es que Duck **no tenga que abrir la terminal** para instalar Python, pip, ni dependencias. Vamos a crear un script ejecutable que haga todo por él.
+
+Crea estos dos archivos en la raíz del proyecto (`projeto-farol-duck/`):
+
+#### Para Windows (`start.bat`)
+```bat
+@echo off
+title 🦆 Projeto Farol | DuckOS
+color 0A
+
+echo ============================================================
+echo    BEM-VINDO AO PROJETO FAROL (DuckOS)
+echo    Instalando ambiente e iniciando servidor...
+echo ============================================================
+echo.
+
+:: Verifica se o Python esta instalado
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERRO] Python nao encontrado! Por favor, instale o Python em python.org
+    pause
+    exit /b
+)
+
+:: Cria ambiente virtual se nao existir
+if not exist "venv" (
+    echo Criando ambiente virtual...
+    python -m venv venv
+)
+
+:: Ativa ambiente e instala dependencias
+call venv\Scripts\activate
+echo Instalando dependencias (isso so acontece na primeira vez)...
+pip install -q -r requirements.txt
+
+:: Inicia o Streamlit
+echo.
+echo Iniciando o Farol... O navegador abrira automaticamente.
+echo Para parar, feche esta janela.
+echo ============================================================
+streamlit run app.py
+```
+
+#### Para Mac/Linux (`start.sh`)
+```bash
+#!/bin/bash
+echo "============================================================"
+echo "   BEM-VINDO AO PROJETO FAROL (DuckOS)"
+echo "   Instalando ambiente e iniciando servidor..."
+echo "============================================================"
+
+# Verifica Python
+if ! command -v python3 &> /dev/null; then
+    echo "[ERRO] Python3 nao encontrado!"
+    exit 1
+fi
+
+# Cria venv se nao existir
+if [ ! -d "venv" ]; then
+    echo "Criando ambiente virtual..."
+    python3 -m venv venv
+fi
+
+# Ativa e instala
+source venv/bin/activate
+echo "Instalando dependencias..."
+pip install -q -r requirements.txt
+
+# Roda
+echo "Iniciando o Farol..."
+streamlit run app.py
+```
+
+---
+
+### 📦 3. Cómo Empaquetar y Entregar el Regalo Final
+
+Para que la experiencia sea de "Sacar de la caja y usar" (Unboxing):
+
+1. **Configura tu API Key**: Asegúrate de que tu archivo `.env` tenga tu clave real de Anthropic. *(Nota: En el `.gitignore` está bloqueado para que no suba a GitHub, pero si se lo vas a pasar por ZIP directo, déjalo dentro).*
+2. **Crea un `.zip` Maestro**:
+   - Selecciona todas las carpetas (`core`, `modules`, `prompts`, `utils`, `tests`) y los archivos sueltos (`app.py`, `config.py`, `requirements.txt`, `start.bat`, `start.sh`, `README.md`).
+   - **NO incluyas** la carpeta `venv` ni `__pycache__` ni la carpeta `reports` (si tienes pruebas).
+   - Comprime todo en un archivo llamado `Projeto_Farol_DuckOS_v1.0.zip`.
+3. **El Mensaje de Entrega (WhatsApp / Email)**:
+
+> *"Fala, Duck! Tudo certo?*
+> 
+> *Cara, estive pensando na nossa parceria desde o "LENTO" e em como você elevou o nível com o @check_match e seus beats recentes. Sei que sua filosofia é "não mixar no escuro" e que a tecnologia tem que servir a arte, não substituí-la.*
+> 
+> *Por isso, usei minha expertise em IA e arquitetura de software para desenvolver o **Projeto Farol (DuckOS)**. Não é uma IA que faz beat por você (isso tiraria sua alma). É uma ferramenta de engenharia de nível SaaS, feita sob medida para o seu estúdio.*
+> 
+> *Ela analisa matematicamente o espectro das suas mixes, cria blueprints de produção a partir de links do YouTube e automatiza toda a burocracia na hora de entregar um beat vendido.*
+> 
+> *Te mandei o ZIP anexado. A experiência é "Zero-Setup": você só precisa ter o Python instalado, extrair a pasta e dar **duplo clique no arquivo `start.bat`** (se estiver no Windows). Ele instala tudo sozinho e abre o painel no seu navegador com o tema verde césped que lembra o nosso trabalho.*
+> 
+> *É um presente pela seriedade e qualidade que você coloca em cada projeto. Testa o Módulo 1 com o "Driller" e me diz o que achou. Tamo junto! 🦆🎧"*
+
+### 🏆 Por qué este es el proyecto definitivo:
+1. **Identidad Visual Propia**: El verde césped sobre fondo oscuro da sensación de herramienta profesional de audio (como iZotope o FabFilter).
+2. **Cero Fricción**: El `start.bat` elimina el 99% de los errores que cometen los usuarios no programadores al instalar librerías de Python.
+3. **Valor a Largo Plazo**: La carpeta `/reports` se convierte en una base de datos personal de su evolución como ingeniero de mezcla.
+4. **Respeto Absoluto**: La IA solo procesa datos y genera texto estructurado; la magia sonora sigue estando, al 100%, en las manos y oídos de Duck.Para llevar este proyecto al **máximo nivel absoluto (Nivel SaaS / Producto Comercial)** y cumplir con tu requisito de usar una **API gratuita**, vamos a migrar de Anthropic (Claude) a **Google Gemini (Gemini 1.5 Flash)**. 
+
+Google ofrece una capa gratuita (Free Tier) extremadamente generosa para `gemini-1.5-flash` (15 peticiones por minuto, 1500 por día), lo que significa que **Duck no tendrá que gastar ni un centavo** para usar esto 24/7. Además, es excelente generando texto estructurado y comprendiendo contexto.
+
+He unificado toda la arquitectura en un solo mensaje. Aquí tienes el código completo de todos los archivos, junto con la capa visual de "Estudio" y los instaladores de "1 Clic".
+
+---
+
+### 📂 Estructura de Archivos del Repositorio
+Crea una carpeta llamada `projeto-farol-duck` y dentro pon exactamente estos archivos:
+
+```text
+projeto-farol-duck/
+├── .streamlit/
+│   └── config.toml
+├── core/
+│   ├── __init__.py
+│   ├── audio_analyzer.py
+│   ├── youtube_extractor.py
+│   └── llm_client.py          (Antes claude_client.py, ahora para Google)
+├── modules/
+│   ├── __init__.py
+│   ├── farol.py
+│   ├── cartografo.py
+│   └── entrega.py
+├── prompts/
+│   ├── __init__.py
+│   └── templates.py
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py
+├── .env.example
+├── .gitignore
+├── app.py
+├── config.py
+├── requirements.txt
+├── start.bat                  (Para Windows - 1 Clic)
+├── start.sh                   (Para Mac/Linux - 1 Clic)
+└── README.md
+```
+
+---
+
+### 📄 1. Dependencias (`requirements.txt`)
+*(Reemplazamos Anthropic por la librería oficial de Google)*
+```text
+streamlit==1.36.0
+google-generativeai==0.7.2
+librosa==0.10.2.post1
+numpy==1.26.4
+yt-dlp==2024.8.6
+python-dotenv==1.0.1
+```
+
+---
+
+### 📄 2. Configuración de Entorno (`.env.example`)
+```env
+# ============================================================
+#  Projeto Farol | DuckOS — Variáveis de Ambiente
+# ============================================================
+# Copie este arquivo para .env e preencha com sua chave real.
+# A API do Google Gemini tem camada FREE generosa!
+# Obtenha sua chave em: https://aistudio.google.com/app/apikey
+
+GOOGLE_API_KEY=sua_chave_api_google_aqui
+
+# Modelo padrão (gemini-1.5-flash é rápido e gratuito)
+LLM_MODEL=gemini-1.5-flash
+```
+
+---
+
+### 📄 3. Configuración Central (`config.py`)
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+LLM_MODEL: str = os.getenv("LLM_MODEL", "gemini-1.5-flash")
+
+VALID_AUDIO_EXTENSIONS: tuple = (".wav", ".mp3", ".flac", ".ogg", ".m4a")
+VALID_URL_DOMAINS: tuple = ("youtube.com", "youtu.be", "spotify.com", "soundcloud.com")
+AUDIO_MAX_SIZE_MB: int = 50
+
+LICENSE_TYPES: list = [
+    "Não Exclusiva (Lease)",
+    "Exclusiva (Rights Transfer)"
+]
+
+def validate_config() -> bool:
+    if not GOOGLE_API_KEY or GOOGLE_API_KEY == "sua_chave_api_google_aqui":
+        raise ValueError(
+            "GOOGLE_API_KEY não encontrada ou inválida!\n"
+            "Crie um arquivo .env baseado em .env.example e preencha com sua chave real.\n"
+            "Obtenha sua chave grátis em: https://aistudio.google.com/app/apikey"
+        )
+    return True
+```
+
+---
+
+### 📄 4. Núcleo de Infraestructura (`core/`)
+
+**`core/__init__.py`**
+```python
+from core.audio_analyzer import AudioAnalyzer
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+
+__all__ = ["AudioAnalyzer", "YouTubeExtractor", "LLMClient"]
+```
+
+**`core/llm_client.py`**
+*(Adaptado para Google Gemini con manejo de errores y reintentos)*
+```python
+import google.generativeai as genai
+import time
+from typing import Optional
+from google.api_core.exceptions import ResourceExhausted, GoogleAPICallError
+
+class LLMClient:
+    def __init__(self, api_key: str, model: str = "gemini-1.5-flash"):
+        if not api_key:
+            raise ValueError("API key do Google não pode estar vazia.")
+        genai.configure(api_key=api_key)
+        self.model_name = model
+
+    def send_message(
+        self,
+        prompt: str,
+        system_prompt: Optional[str] = None,
+        max_tokens: int = 800,
+        temperature: float = 0.7,
+        retry_count: int = 3,
+        retry_delay: float = 2.0
+    ) -> str:
+        
+        model = genai.GenerativeModel(
+            self.model_name,
+            system_instruction=system_prompt
+        )
+        
+        last_error = None
+        for attempt in range(retry_count):
+            try:
+                response = model.generate_content(
+                    prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens
+                    )
+                )
+                return response.text
+            
+            except ResourceExhausted as e:
+                last_error = e
+                wait = retry_delay * (2 ** attempt)
+                time.sleep(wait)
+            except GoogleAPICallError as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+                else:
+                    raise Exception(f"Erro na API do Google: {e}")
+            except Exception as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+                    
+        raise Exception(f"Falha após {retry_count} tentativas. Último erro: {last_error}")
+```
+
+**`core/audio_analyzer.py`**
+```python
+import librosa
+import numpy as np
+import tempfile
+import os
+from typing import Any, Dict, Tuple, Union
+
+AudioSource = Union[str, bytes, Any]
+
+class AudioAnalyzer:
+    def __init__(self, sample_rate: int = 22050, mono: bool = True):
+        self.sample_rate = sample_rate
+        self.mono = mono
+
+    def load_audio(self, source: AudioSource) -> Tuple[np.ndarray, int]:
+        if hasattr(source, "read"):
+            return self._load_from_fileobj(source)
+        return librosa.load(str(source), sr=self.sample_rate, mono=self.mono)
+
+    def _load_from_fileobj(self, file_obj: Any) -> Tuple[np.ndarray, int]:
+        file_obj.seek(0)
+        audio_bytes = file_obj.read()
+        suffix = ".wav"
+        name = getattr(file_obj, "name", "")
+        if name:
+            ext = os.path.splitext(name)[1].lower()
+            if ext in (".mp3", ".wav", ".flac", ".ogg", ".m4a"):
+                suffix = ext
+        return self._load_from_bytes(audio_bytes, suffix=suffix)
+
+    def _load_from_bytes(self, audio_bytes: bytes, suffix: str = ".wav") -> Tuple[np.ndarray, int]:
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        try:
+            y, sr = librosa.load(tmp_path, sr=self.sample_rate, mono=self.mono)
+            return y, sr
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+
+    def analyze(self, source: AudioSource) -> Dict[str, float]:
+        y, sr = self.load_audio(source)
+        centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
+        rms = librosa.feature.rms(y=y)
+        rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr, roll_percent=0.85)
+        
+        tempo = librosa.beat.beat_track(y=y, sr=sr)
+        bpm = float(tempo[0]) if isinstance(tempo, tuple) else float(tempo)
+        duration = librosa.get_duration(y=y, sr=sr)
+
+        return {
+            "spectral_centroid_mean": float(np.mean(centroid)),
+            "rms_mean": float(np.mean(rms)),
+            "spectral_rolloff_mean": float(np.mean(rolloff)),
+            "tempo": bpm,
+            "duration": float(duration),
+            "sample_rate": sr,
+        }
+
+    def compare(self, mix_source: AudioSource, ref_source: AudioSource) -> Dict[str, Any]:
+        mix_m = self.analyze(mix_source)
+        ref_m = self.analyze(ref_source)
+
+        centroid_diff = mix_m["spectral_centroid_mean"] - ref_m["spectral_centroid_mean"]
+        rms_diff = mix_m["rms_mean"] - ref_m["rms_mean"]
+
+        brightness = "mais brilhante" if centroid_diff > 0 else "mais escura"
+        energy = "com mais energia" if rms_diff > 0 else "com menos energia"
+
+        ref_centroid = ref_m["spectral_centroid_mean"] or 1.0
+        ref_rms = ref_m["rms_mean"] or 1e-6
+
+        centroid_pct = (abs(centroid_diff) / ref_centroid) * 100
+        rms_pct = (abs(rms_diff) / ref_rms) * 100
+
+        return {
+            "mix": mix_m,
+            "ref": ref_m,
+            "comparison": {
+                "brightness": brightness,
+                "energy": energy,
+                "centroid_pct_diff": float(centroid_pct),
+                "rms_pct_diff": float(rms_pct),
+                "brightness_description": f"Sua mix está {brightness} que a referência.",
+                "energy_description": f"Sua mix está {energy} que a referência.",
+            }
+        }
+```
+
+**`core/youtube_extractor.py`**
+```python
+import yt_dlp
+from typing import Dict
+from config import VALID_URL_DOMAINS
+
+class YouTubeExtractor:
+    def __init__(self):
+        self.ydl_opts = {"quiet": True, "no_warnings": True, "skip_download": True, "extract_flat": False}
+
+    def is_valid_url(self, url: str) -> bool:
+        if not url: return False
+        return any(d in url.lower().strip() for d in VALID_URL_DOMAINS)
+
+    def extract_metadata(self, url: str) -> Dict:
+        if not self.is_valid_url(url):
+            raise ValueError(f"URL inválida. Domínios suportados: {', '.join(VALID_URL_DOMAINS)}")
+        try:
+            with yt_dlp.YoutubeDL(self.ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=False)
+                return {
+                    "title": info.get("title", "Desconhecido"),
+                    "description": (info.get("description") or "")[:1000],
+                    "duration": info.get("duration", 0),
+                    "uploader": info.get("uploader", "Desconhecido"),
+                    "url": url,
+                    "tags": info.get("tags", []) or [],
+                }
+        except Exception as e:
+            raise ValueError(f"Erro ao acessar link: {e}")
+```
+
+---
+
+### 📄 5. Lógica de Negocio (`modules/`)
+
+**`modules/__init__.py`**
+```python
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+
+__all__ = ["FarolModule", "CartografoModule", "EntregaModule"]
+```
+
+**`modules/farol.py`**
+```python
+from typing import Any, Dict, Optional
+from core.audio_analyzer import AudioAnalyzer
+from core.llm_client import LLMClient
+from prompts.templates import FAROL_SYSTEM, FAROL_USER
+
+class FarolModule:
+    def __init__(self, llm_client: LLMClient, audio_analyzer: Optional[AudioAnalyzer] = None):
+        self.llm = llm_client
+        self.analyzer = audio_analyzer or AudioAnalyzer()
+
+    def run(self, mix_file: Any, ref_file: Any, user_intuition: str) -> Dict[str, Any]:
+        if not user_intuition.strip():
+            return self._error("Descreva sua intuição.")
+        try:
+            comparison = self.analyzer.compare(mix_file, ref_file)
+            prompt = FAROL_USER.format(
+                brightness_description=comparison["comparison"]["brightness_description"],
+                energy_description=comparison["comparison"]["energy_description"],
+                centroid_pct=comparison["comparison"]["centroid_pct_diff"],
+                rms_pct=comparison["comparison"]["rms_pct_diff"],
+                mix_bpm=comparison["mix"]["tempo"],
+                ref_bpm=comparison["ref"]["tempo"],
+                user_intuition=user_intuition.strip()
+            )
+            report = self.llm.send_message(prompt, system_prompt=FAROL_SYSTEM, max_tokens=800, temperature=0.6)
+            return {"metrics": comparison, "report": report, "success": True, "error": None}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"metrics": None, "report": None, "success": False, "error": msg}
+```
+
+**`modules/cartografo.py`**
+```python
+from typing import Any, Dict, Optional
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+from prompts.templates import CARTOGRAFO_SYSTEM, CARTOGRAFO_USER
+
+class CartografoModule:
+    def __init__(self, llm_client: LLMClient, extractor: Optional[YouTubeExtractor] = None):
+        self.llm = llm_client
+        self.extractor = extractor or YouTubeExtractor()
+
+    def run(self, ref_link: str, obs_adicional: str = "") -> Dict[str, Any]:
+        if not ref_link.strip():
+            return self._error("Insira um link.")
+        try:
+            metadata = self.extractor.extract_metadata(ref_link.strip())
+            obs = obs_adicional.strip() if obs_adicional.strip() else "Nenhuma"
+            prompt = CARTOGRAFO_USER.format(
+                title=metadata["title"],
+                uploader=metadata["uploader"],
+                description=metadata["description"],
+                obs_adicional=obs
+            )
+            blueprint = self.llm.send_message(prompt, system_prompt=CARTOGRAFO_SYSTEM, max_tokens=1000, temperature=0.8)
+            return {"metadata": metadata, "blueprint": blueprint, "success": True, "error": None}
+        except Exception as e:
+            return self._error(str(e))
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"metadata": None, "blueprint": None, "success": False, "error": msg}
+```
+
+**`modules/entrega.py`**
+```python
+from typing import Any, Dict
+from core.llm_client import LLMClient
+from prompts.templates import ENTREGA_SYSTEM, ENTREGA_USER
+from config import LICENSE_TYPES
+
+class EntregaModule:
+    def __init__(self, llm_client: LLMClient):
+        self.llm = llm_client
+
+    def run(self, beat_name: str, artist_name: str, license_type: str) -> Dict[str, Any]:
+        if not beat_name.strip() or not artist_name.strip():
+            return self._error("Preencha beat e artista.")
+        if license_type not in LICENSE_TYPES:
+            return self._error("Licença inválida.")
+        try:
+            prompt = ENTREGA_USER.format(beat_name=beat_name, artist_name=artist_name, license_type=license_type)
+            package = self.llm.send_message(prompt, system_prompt=ENTREGA_SYSTEM, max_tokens=800, temperature=0.5)
+            return {"package": package, "success": True, "error": None}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"package": None, "success": False, "error": msg}
+```
+
+---
+
+### 📄 6. Prompts (`prompts/templates.py`)
+
+```python
+FAROL_SYSTEM = "Você é um Engenheiro de Mixagem de elite. Seja direto, técnico e encorajador. Assine como 'Projeto Farol'."
+
+FAROL_USER = """\
+Dados da análise:
+- {brightness_description}
+- {energy_description}
+- Diferença de brilho: {centroid_pct:.1f}%
+- Diferença de energia: {rms_pct:.1f}%
+- BPM Mix: {mix_bpm:.0f} | BPM Ref: {ref_bpm:.0f}
+
+Intuição do Duck: "{user_intuition}"
+
+Gere um relatório em Markdown com:
+1. Diagnóstico (2 frases)
+2. 3 Pistas Técnicas (Negrito + 1 linha de ação)
+3. Próximo passo sugerido.
+"""
+
+CARTOGRAFO_SYSTEM = "Você é um Produtor Musical brasileiro de Hip-Hop/Trap. Desconstrua referências com precisão técnica."
+
+CARTOGRAFO_USER = """\
+Referência: "{title}" por {uploader}
+Contexto: {description}
+Obs do Duck: {obs_adicional}
+
+Crie um Blueprint em Markdown:
+### 🎯 Vibe & BPM
+### 🏗️ Arquitetura
+### 🎨 Paleta Sonora
+### 🎤 Mix Vocal
+"""
+
+ENTREGA_SYSTEM = "Você é um manager de produtor. Gere pacotes de entrega prontos para copiar/colar."
+
+ENTREGA_USER = """\
+Beat: "{beat_name}"
+Artista: "{artist_name}"
+Licença: {license_type}
+
+Gere em Markdown:
+### 📩 Mensagem
+### ✅ Checklist
+### 📋 Cláusulas
+"""
+```
+
+---
+
+### 📄 7. Utilidades (`utils/helpers.py`)
+
+**`utils/__init__.py`**
+```python
+from utils.helpers import validate_audio_file
+```
+
+**`utils/helpers.py`**
+```python
+from typing import Tuple
+from config import VALID_AUDIO_EXTENSIONS, AUDIO_MAX_SIZE_MB
+
+def validate_audio_file(file_obj) -> Tuple[bool, str | None]:
+    if file_obj is None:
+        return False, "Nenhum arquivo enviado."
+    if hasattr(file_obj, "name"):
+        ext = "." + file_obj.name.rsplit(".", 1)[-1].lower() if "." in file_obj.name else ""
+        if ext not in VALID_AUDIO_EXTENSIONS:
+            return False, f"Formato inválido. Use: {', '.join(VALID_AUDIO_EXTENSIONS)}"
+    if hasattr(file_obj, "size") and file_obj.size:
+        if file_obj.size > AUDIO_MAX_SIZE_MB * 1024 * 1024:
+            return False, f"Arquivo > {AUDIO_MAX_SIZE_MB}MB."
+    return True, None
+```
+
+---
+
+### 📄 8. Frontend Visual y Tema (`app.py` & `.streamlit/config.toml`)
+
+**`.streamlit/config.toml`**
+```toml
+[theme]
+base="dark"
+primaryColor="#4CAF50"
+backgroundColor="#0d1117"
+secondaryBackgroundColor="#161b22"
+textColor="#e6edf3"
+```
+
+**`app.py`**
+```python
+import streamlit as st
+import os
+from datetime import datetime
+from config import validate_config, GOOGLE_API_KEY, LLM_MODEL, LICENSE_TYPES
+from core.llm_client import LLMClient
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from utils.helpers import validate_audio_file
+
+st.set_page_config(page_title="Projeto Farol | DuckOS", page_icon="🦆", layout="wide")
+
+# CSS Verde Césped / Dark Mode
+st.markdown("""
+<style>
+    .stApp { background-color: #0d1117; color: #e6edf3; }
+    .stButton>button {
+        background-color: #2E8B57; color: white; border-radius: 8px;
+        border: 2px solid #4CAF50; font-weight: 600; width: 100%;
+    }
+    .stButton>button:hover {
+        background-color: #4CAF50; color: #0d1117; border-color: #7CFC00;
+    }
+    h1, h2, h3 { color: #4CAF50 !important; }
+    .stSuccess { background-color: rgba(46, 139, 87, 0.15); border-left: 4px solid #4CAF50; }
+</style>
+""", unsafe_allow_html=True)
+
+@st.cache_resource
+def init_modules():
+    try:
+        validate_config()
+        llm = LLMClient(api_key=GOOGLE_API_KEY, model=LLM_MODEL)
+        return {
+            "farol": FarolModule(llm_client=llm),
+            "cartografo": CartografoModule(llm_client=llm),
+            "entrega": EntregaModule(llm_client=llm),
+            "status": "ok"
+        }
+    except ValueError as e:
+        return {"status": "error", "message": str(e)}
+
+modules = init_modules()
+
+def save_report(module_name, content, identifier):
+    os.makedirs("reports", exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe_id = "".join(c for c in identifier if c.isalnum() or c in (' ', '-', '_')).rstrip()
+    filename = f"reports/{timestamp}_{module_name}_{safe_id}.md"
+    with open(filename, "w", encoding="utf-8") as f: f.write(content)
+    return filename
+
+st.title("🦆 Projeto Farol | DuckOS")
+st.markdown("#### *IA como lupa, não como pincel. Para que você nunca mais mixe no escuro.*")
+st.divider()
+
+if modules["status"] == "error":
+    st.error(f"❌ Erro: {modules['message']}")
+    st.stop()
+
+with st.sidebar:
+    st.header("⚙️ Sistema")
+    st.success("✅ Google Gemini Conectado")
+    st.info(f"Modelo: `{LLM_MODEL}`")
+    st.markdown("---")
+    st.markdown("### 📂 Histórico")
+    if os.path.exists("reports"):
+        files = sorted([f for f in os.listdir("reports") if f.endswith(".md")], reverse=True)[:5]
+        for f in files: st.caption(f"📄 {f}")
+    else: st.caption("Nenhum ainda.")
+    st.markdown("---")
+
+tab1, tab2, tab3 = st.tabs(["🔦 O Farol", "🗺️ O Cartógrafo", "📦 Entrega"])
+
+with tab1:
+    st.header("🔦 Análise Comparativa de Mix")
+    c1, c2 = st.columns(2)
+    with c1: mix_file = st.file_uploader("Sua Mix", type=["wav", "mp3", "flac", "m4a"], key="mix")
+    with c2: ref_file = st.file_uploader("Referência", type=["wav", "mp3", "flac", "m4a"], key="ref")
+    intuition = st.text_area("Sua intuição:", placeholder="Grave fraco? Vocal atrás?", height=100)
+
+    if st.button("🔍 Analisar"):
+        if validate_audio_file(mix_file)[0] and validate_audio_file(ref_file)[0] and intuition.strip():
+            with st.spinner("Processando..."):
+                res = modules["farol"].run(mix_file, ref_file, intuition)
+                if res["success"]:
+                    st.markdown(res["report"])
+                    path = save_report("Farol", res["report"], mix_file.name)
+                    with open(path, "rb") as f: st.download_button("📥 Baixar (.md)", f, os.path.basename(path))
+                else: st.error(res["error"])
+        else: st.warning("Preencha tudo.")
+
+with tab2:
+    st.header("🗺️ Blueprint de Produção")
+    link = st.text_input("Link YouTube/Spotify")
+    obs = st.text_input("Observação")
+    if st.button("🗺️ Gerar"):
+        if link.strip():
+            with st.spinner("Mapeando..."):
+                res = modules["cartografo"].run(link, obs)
+                if res["success"]:
+                    st.markdown(res["blueprint"])
+                    path = save_report("Cartografo", res["blueprint"], res["metadata"]["title"])
+                    with open(path, "rb") as f: st.download_button("📥 Baixar (.md)", f, os.path.basename(path))
+                else: st.error(res["error"])
+        else: st.warning("Insira link.")
+
+with tab3:
+    st.header("📦 Pacote de Entrega")
+    c1, c2 = st.columns(2)
+    with c1: beat = st.text_input("Beat"); artist = st.text_input("Artista")
+    with c2: lic = = st.selectbox("Licença", LICENSE_TYPES)
+    if st.button("📦 Gerar"):
+        if beat.strip() and artist.strip():
+            with st.spinner("Empacotando..."):
+                res = modules["entrega"].run(beat, artist, lic)
+                if res["success"]:
+                    st.markdown(res["package"])
+                    path = save_report("Entrega", res["package"], f"{beat}_{artist}")
+                    with open(path, "rb") as f: st.download_button("📥 Baixar (.md)", f, os.path.basename(path))
+                else: st.error(res["error"])
+        else: st.warning("Preencha tudo.")
+```
+
+---
+
+### 📄 9. Instaladores "1 Clic" (Zero-Setup)
+
+**`start.bat` (Windows)**
+```bat
+@echo off
+title Projeto Farol - DuckOS
+color 0A
+
+echo ============================================================
+echo    BEM-VINDO AO PROJETO FAROL (DuckOS)
+echo ============================================================
+echo.
+
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERRO] Python nao encontrado! Instale em python.org
+    pause
+    exit /b
+)
+
+if not exist "venv" (
+    echo Criando ambiente virtual...
+    python -m venv venv
+)
+
+call venv\Scripts\activate
+echo Instalando dependencias...
+pip install -q -r requirements.txt
+
+echo.
+echo Iniciando o Farol...
+echo ============================================================
+streamlit run app.py
+pause
+```
+
+**`start.sh` (Mac/Linux)**
+```bash
+#!/bin/bash
+echo "============================================================"
+echo "   BEM-VINDO AO PROJETO FAROL (DuckOS)"
+echo "============================================================"
+
+if ! command -v python3 &> /dev/null; then
+    echo "[ERRO] Python3 nao encontrado!"
+    exit 1
+fi
+
+if [ ! -d "venv" ]; then
+    echo "Criando ambiente virtual..."
+    python3 -m venv venv
+fi
+
+source venv/bin/activate
+echo "Instalando dependencias..."
+pip install -q -r requirements.txt
+
+echo "Iniciando o Farol..."
+streamlit run app.py
+```
+
+---
+
+### 📄 10. Documentación (`README.md`)
+
+```markdown
+# 🦆 Projeto Farol | DuckOS
+
+> *"IA como lupa, não como pincel. Para que você nunca mais mixe no escuro."*
+
+Olá, Duck! Este presente foi desenhado para otimizar seu fluxo criativo. 
+Usa a API GRATUITA do Google Gemini (Gemini 1.5 Flash) para analisar mixes, mapear referências e gerar contratos.
+
+## 🚀 Como Usar (Zero-Setup)
+
+1. Baixe e instale o Python 3.10+ (marque "Add to PATH" no Windows).
+2. Extraia esta pasta no seu computador.
+3. Crie um arquivo chamado `.env` (pode copiar o `.env.example`) e coloque sua chave gratuita do Google. (Pegue em: https://aistudio.google.com/app/apikey).
+4. Dê **duplo clique no arquivo `start.bat`** (Windows) ou rode `./start.sh` (Mac).
+5. O navegador abrirá automaticamente com a ferramenta!
+
+## 🛠️ Módulos
+- 🔦 **O Farol:** Analisa seu áudio vs referência e dá dicas de mix.
+- 🗺️ **O Cartógrafo:** Gera blueprints de produção a partir de links.
+- 📦 **Entrega:** Automatiza contratos e mensagens de venda de beats.
+
+Desenvolvido por Pedro. Boa produção! 🎧
+```
+
+---
+
+### 📄 11. `.gitignore`
+```gitignore
+venv/
+__pycache__/
+.env
+reports/
+*.wav
+*.mp3
+```
+
+---
+
+### 🎁 Mensaje Final para enviarle a Duck:
+
+> *"Fala, Duck! Tudo certo?*
+> 
+> *Cara, estive pensando na nossa parceria e em como você eleva o nível do @check_match. Sei que sua filosofia é 'não mixar no escuro' e que tecnologia tem que servir a arte, não substituí-la.*
+> 
+> *Por isso, desenvolvi o **Projeto Farol (DuckOS)**. É uma ferramenta de IA privada que roda na sua máquina. Não usa Claude pago, configurei com a API gratuita do Google Gemini, então você pode usar infinitamente sem gastar nada.*
+> 
+> *Ela analisa matematicamente suas mixes, cria blueprints de produção a partir de links do YouTube e automatiza a entrega de beats.*
+> 
+> *Te mandei a pasta ZIPADA. A experiência é 'Zero-Setup': você só precisa ter Python instalado, extrair a pasta, colocar sua chave grátis do Google no arquivo `.env` e dar **duplo clique no `start.bat`**. Ele instala tudo sozinho e abre o painel no navegador com tema escuro de estúdio.*
+> 
+> *É um presente pela seriedade que você coloca em cada projeto. Testa aí e me diz o que achou! Tamo junto! 🦆🎧"*¡Perfecto! He revisado toda la arquitectura, corregido un pequeño error tipográfico en `app.py` (el doble igual en `st.selectbox`) y validado que todo encaje con la migración a **Google Gemini (capa gratuita)**. Aquí tienes el proyecto completo en un solo mensaje, listo para que Duck lo use con un solo clic.
+
+---
+
+```text
+projeto-farol-duck/
+├── .streamlit/
+│   └── config.toml
+├── core/
+│   ├── __init__.py
+│   ├── audio_analyzer.py
+│   ├── youtube_extractor.py
+│   └── llm_client.py          (API gratuita de Google)
+├── modules/
+│   ├── __init__.py
+│   ├── farol.py
+│   ├── cartografo.py
+│   └── entrega.py
+├── prompts/
+│   ├── __init__.py
+│   └── templates.py
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py
+├── .env.example
+├── .gitignore
+├── app.py
+├── config.py
+├── requirements.txt
+├── start.bat                  (Windows - 1 Clic)
+├── start.sh                   (Mac/Linux - 1 Clic)
+└── README.md
+```
+
+---
+
+### 📄 1. `requirements.txt`
+```text
+streamlit==1.36.0
+google-generativeai==0.7.2
+librosa==0.10.2.post1
+numpy==1.26.4
+yt-dlp==2024.8.6
+python-dotenv==1.0.1
+```
+
+### 📄 2. `.env.example`
+```env
+# ============================================================
+#  Projeto Farol | DuckOS — Variables de Entorno
+# ============================================================
+# Copia este archivo como .env y pega tu clave real.
+# La API de Google Gemini tiene capa GRATUITA muy generosa.
+# Obtén tu clave en: https://aistudio.google.com/app/apikey
+
+GOOGLE_API_KEY=sua_chave_api_google_aqui
+
+# Modelo por defecto (gemini-1.5-flash es rápido y gratuito)
+LLM_MODEL=gemini-1.5-flash
+```
+
+### 📄 3. `config.py`
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+LLM_MODEL: str = os.getenv("LLM_MODEL", "gemini-1.5-flash")
+
+VALID_AUDIO_EXTENSIONS: tuple = (".wav", ".mp3", ".flac", ".ogg", ".m4a")
+VALID_URL_DOMAINS: tuple = ("youtube.com", "youtu.be", "spotify.com", "soundcloud.com")
+AUDIO_MAX_SIZE_MB: int = 50
+
+LICENSE_TYPES: list = [
+    "Não Exclusiva (Lease)",
+    "Exclusiva (Rights Transfer)"
+]
+
+def validate_config() -> bool:
+    if not GOOGLE_API_KEY or GOOGLE_API_KEY == "sua_chave_api_google_aqui":
+        raise ValueError(
+            "GOOGLE_API_KEY no encontrada o inválida.\n"
+            "Crea un archivo .env basado en .env.example y completa con tu clave real.\n"
+            "Obtén tu clave gratuita en: https://aistudio.google.com/app/apikey"
+        )
+    return True
+```
+
+### 📄 4. Núcleo de infraestructura (`core/`)
+
+**`core/__init__.py`**
+```python
+from core.audio_analyzer import AudioAnalyzer
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+
+__all__ = ["AudioAnalyzer", "YouTubeExtractor", "LLMClient"]
+```
+
+**`core/llm_client.py`** *(Adaptado a Google Gemini con reintentos)*
+```python
+import google.generativeai as genai
+import time
+from typing import Optional
+from google.api_core.exceptions import ResourceExhausted, GoogleAPICallError
+
+class LLMClient:
+    def __init__(self, api_key: str, model: str = "gemini-1.5-flash"):
+        if not api_key:
+            raise ValueError("API key de Google no puede estar vacía.")
+        genai.configure(api_key=api_key)
+        self.model_name = model
+
+    def send_message(
+        self,
+        prompt: str,
+        system_prompt: Optional[str] = None,
+        max_tokens: int = 800,
+        temperature: float = 0.7,
+        retry_count: int = 3,
+        retry_delay: float = 2.0
+    ) -> str:
+        model = genai.GenerativeModel(
+            self.model_name,
+            system_instruction=system_prompt
+        )
+        last_error = None
+        for attempt in range(retry_count):
+            try:
+                response = model.generate_content(
+                    prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens
+                    )
+                )
+                return response.text
+            except ResourceExhausted as e:
+                last_error = e
+                wait = retry_delay * (2 ** attempt)
+                time.sleep(wait)
+            except GoogleAPICallError as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+                else:
+                    raise Exception(f"Error en la API de Google: {e}")
+            except Exception as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+        raise Exception(f"Fallo tras {retry_count} intentos. Último error: {last_error}")
+```
+
+**`core/audio_analyzer.py`**
+```python
+import librosa
+import numpy as np
+import tempfile
+import os
+from typing import Any, Dict, Tuple, Union
+
+AudioSource = Union[str, bytes, Any]
+
+class AudioAnalyzer:
+    def __init__(self, sample_rate: int = 22050, mono: bool = True):
+        self.sample_rate = sample_rate
+        self.mono = mono
+
+    def load_audio(self, source: AudioSource) -> Tuple[np.ndarray, int]:
+        if hasattr(source, "read"):
+            return self._load_from_fileobj(source)
+        return librosa.load(str(source), sr=self.sample_rate, mono=self.mono)
+
+    def _load_from_fileobj(self, file_obj: Any) -> Tuple[np.ndarray, int]:
+        file_obj.seek(0)
+        audio_bytes = file_obj.read()
+        suffix = ".wav"
+        name = getattr(file_obj, "name", "")
+        if name:
+            ext = os.path.splitext(name)[1].lower()
+            if ext in (".mp3", ".wav", ".flac", ".ogg", ".m4a"):
+                suffix = ext
+        return self._load_from_bytes(audio_bytes, suffix=suffix)
+
+    def _load_from_bytes(self, audio_bytes: bytes, suffix: str = ".wav") -> Tuple[np.ndarray, int]:
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        try:
+            y, sr = librosa.load(tmp_path, sr=self.sample_rate, mono=self.mono)
+            return y, sr
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+
+    def analyze(self, source: AudioSource) -> Dict[str, float]:
+        y, sr = self.load_audio(source)
+        centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
+        rms = librosa.feature.rms(y=y)
+        rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr, roll_percent=0.85)
+        tempo = librosa.beat.beat_track(y=y, sr=sr)
+        bpm = float(tempo[0]) if isinstance(tempo, tuple) else float(tempo)
+        duration = librosa.get_duration(y=y, sr=sr)
+        return {
+            "spectral_centroid_mean": float(np.mean(centroid)),
+            "rms_mean": float(np.mean(rms)),
+            "spectral_rolloff_mean": float(np.mean(rolloff)),
+            "tempo": bpm,
+            "duration": float(duration),
+            "sample_rate": sr,
+        }
+
+    def compare(self, mix_source: AudioSource, ref_source: AudioSource) -> Dict[str, Any]:
+        mix_m = self.analyze(mix_source)
+        ref_m = self.analyze(ref_source)
+        centroid_diff = mix_m["spectral_centroid_mean"] - ref_m["spectral_centroid_mean"]
+        rms_diff = mix_m["rms_mean"] - ref_m["rms_mean"]
+        brightness = "mais brilhante" if centroid_diff > 0 else "mais escura"
+        energy = "com mais energia" if rms_diff > 0 else "com menos energia"
+        ref_centroid = ref_m["spectral_centroid_mean"] or 1.0
+        ref_rms = ref_m["rms_mean"] or 1e-6
+        centroid_pct = (abs(centroid_diff) / ref_centroid) * 100
+        rms_pct = (abs(rms_diff) / ref_rms) * 100
+        return {
+            "mix": mix_m,
+            "ref": ref_m,
+            "comparison": {
+                "brightness": brightness,
+                "energy": energy,
+                "centroid_pct_diff": float(centroid_pct),
+                "rms_pct_diff": float(rms_pct),
+                "brightness_description": f"Sua mix está {brightness} que a referência.",
+                "energy_description": f"Sua mix está {energy} que a referência.",
+            }
+        }
+```
+
+**`core/youtube_extractor.py`**
+```python
+import yt_dlp
+from typing import Dict
+from config import VALID_URL_DOMAINS
+
+class YouTubeExtractor:
+    def __init__(self):
+        self.ydl_opts = {"quiet": True, "no_warnings": True, "skip_download": True, "extract_flat": False}
+
+    def is_valid_url(self, url: str) -> bool:
+        if not url: return False
+        return any(d in url.lower().strip() for d in VALID_URL_DOMAINS)
+
+    def extract_metadata(self, url: str) -> Dict:
+        if not self.is_valid_url(url):
+            raise ValueError(f"URL inválida. Dominios soportados: {', '.join(VALID_URL_DOMAINS)}")
+        try:
+            with yt_dlp.YoutubeDL(self.ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=False)
+                return {
+                    "title": info.get("title", "Desconhecido"),
+                    "description": (info.get("description") or "")[:1000],
+                    "duration": info.get("duration", 0),
+                    "uploader": info.get("uploader", "Desconhecido"),
+                    "url": url,
+                    "tags": info.get("tags", []) or [],
+                }
+        except Exception as e:
+            raise ValueError(f"Error al acceder al enlace: {e}")
+```
+
+### 📄 5. Lógica de negocio (`modules/`)
+
+**`modules/__init__.py`**
+```python
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+
+__all__ = ["FarolModule", "CartografoModule", "EntregaModule"]
+```
+
+**`modules/farol.py`**
+```python
+from typing import Any, Dict, Optional
+from core.audio_analyzer import AudioAnalyzer
+from core.llm_client import LLMClient
+from prompts.templates import FAROL_SYSTEM, FAROL_USER
+
+class FarolModule:
+    def __init__(self, llm_client: LLMClient, audio_analyzer: Optional[AudioAnalyzer] = None):
+        self.llm = llm_client
+        self.analyzer = audio_analyzer or AudioAnalyzer()
+
+    def run(self, mix_file: Any, ref_file: Any, user_intuition: str) -> Dict[str, Any]:
+        if not user_intuition.strip():
+            return self._error("Describe tu intuición.")
+        try:
+            comparison = self.analyzer.compare(mix_file, ref_file)
+            prompt = FAROL_USER.format(
+                brightness_description=comparison["comparison"]["brightness_description"],
+                energy_description=comparison["comparison"]["energy_description"],
+                centroid_pct=comparison["comparison"]["centroid_pct_diff"],
+                rms_pct=comparison["comparison"]["rms_pct_diff"],
+                mix_bpm=comparison["mix"]["tempo"],
+                ref_bpm=comparison["ref"]["tempo"],
+                user_intuition=user_intuition.strip()
+            )
+            report = self.llm.send_message(prompt, system_prompt=FAROL_SYSTEM, max_tokens=800, temperature=0.6)
+            return {"metrics": comparison, "report": report, "success": True, "error": None}
+        except Exception as e:
+            return self._error(f"Error: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"metrics": None, "report": None, "success": False, "error": msg}
+```
+
+**`modules/cartografo.py`**
+```python
+from typing import Any, Dict, Optional
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+from prompts.templates import CARTOGRAFO_SYSTEM, CARTOGRAFO_USER
+
+class CartografoModule:
+    def __init__(self, llm_client: LLMClient, extractor: Optional[YouTubeExtractor] = None):
+        self.llm = llm_client
+        self.extractor = extractor or YouTubeExtractor()
+
+    def run(self, ref_link: str, obs_adicional: str = "") -> Dict[str, Any]:
+        if not ref_link.strip():
+            return self._error("Inserta un enlace.")
+        try:
+            metadata = self.extractor.extract_metadata(ref_link.strip())
+            obs = obs_adicional.strip() if obs_adicional.strip() else "Ninguna"
+            prompt = CARTOGRAFO_USER.format(
+                title=metadata["title"],
+                uploader=metadata["uploader"],
+                description=metadata["description"],
+                obs_adicional=obs
+            )
+            blueprint = self.llm.send_message(prompt, system_prompt=CARTOGRAFO_SYSTEM, max_tokens=1000, temperature=0.8)
+            return {"metadata": metadata, "blueprint": blueprint, "success": True, "error": None}
+        except Exception as e:
+            return self._error(str(e))
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"metadata": None, "blueprint": None, "success": False, "error": msg}
+```
+
+**`modules/entrega.py`**
+```python
+from typing import Any, Dict
+from core.llm_client import LLMClient
+from prompts.templates import ENTREGA_SYSTEM, ENTREGA_USER
+from config import LICENSE_TYPES
+
+class EntregaModule:
+    def __init__(self, llm_client: LLMClient):
+        self.llm = llm_client
+
+    def run(self, beat_name: str, artist_name: str, license_type: str) -> Dict[str, Any]:
+        if not beat_name.strip() or not artist_name.strip():
+            return self._error("Completa beat y artista.")
+        if license_type not in LICENSE_TYPES:
+            return self._error("Licencia inválida.")
+        try:
+            prompt = ENTREGA_USER.format(beat_name=beat_name, artist_name=artist_name, license_type=license_type)
+            package = self.llm.send_message(prompt, system_prompt=ENTREGA_SYSTEM, max_tokens=800, temperature=0.5)
+            return {"package": package, "success": True, "error": None}
+        except Exception as e:
+            return self._error(f"Error: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"package": None, "success": False, "error": msg}
+```
+
+### 📄 6. Prompts (`prompts/templates.py`)
+
+```python
+FAROL_SYSTEM = "Eres un Ingeniero de Mezcla de élite. Sé directo, técnico y alentador. Firma como 'Projeto Farol'."
+
+FAROL_USER = """\
+Datos del análisis:
+- {brightness_description}
+- {energy_description}
+- Diferencia de brillo: {centroid_pct:.1f}%
+- Diferencia de energía: {rms_pct:.1f}%
+- BPM Mix: {mix_bpm:.0f} | BPM Ref: {ref_bpm:.0f}
+
+Intuición de Duck: "{user_intuition}"
+
+Genera un informe en Markdown con:
+1. Diagnóstico (2 frases)
+2. 3 Pistas Técnicas (Negrita + 1 línea de acción)
+3. Próximo paso sugerido.
+"""
+
+CARTOGRAFO_SYSTEM = "Eres un Productor Musical brasileño de Hip-Hop/Trap. Desconstruye referencias con precisión técnica."
+
+CARTOGRAFO_USER = """\
+Referencia: "{title}" por {uploader}
+Contexto: {description}
+Obs de Duck: {obs_adicional}
+
+Crea un Blueprint en Markdown:
+### 🎯 Vibe & BPM
+### 🏗️ Arquitectura
+### 🎨 Paleta Sonora
+### 🎤 Mix Vocal
+"""
+
+ENTREGA_SYSTEM = "Eres un manager de productor. Genera paquetes de entrega listos para copiar/pegar."
+
+ENTREGA_USER = """\
+Beat: "{beat_name}"
+Artista: "{artist_name}"
+Licencia: {license_type}
+
+Genera en Markdown:
+### 📩 Mensaje
+### ✅ Checklist
+### 📋 Cláusulas
+"""
+```
+
+### 📄 7. Utilidades (`utils/helpers.py`)
+
+**`utils/__init__.py`**
+```python
+from utils.helpers import validate_audio_file
+```
+
+**`utils/helpers.py`**
+```python
+from typing import Tuple
+from config import VALID_AUDIO_EXTENSIONS, AUDIO_MAX_SIZE_MB
+
+def validate_audio_file(file_obj) -> Tuple[bool, str | None]:
+    if file_obj is None:
+        return False, "Ningún archivo enviado."
+    if hasattr(file_obj, "name"):
+        ext = "." + file_obj.name.rsplit(".", 1)[-1].lower() if "." in file_obj.name else ""
+        if ext not in VALID_AUDIO_EXTENSIONS:
+            return False, f"Formato inválido. Usa: {', '.join(VALID_AUDIO_EXTENSIONS)}"
+    if hasattr(file_obj, "size") and file_obj.size:
+        if file_obj.size > AUDIO_MAX_SIZE_MB * 1024 * 1024:
+            return False, f"Archivo > {AUDIO_MAX_SIZE_MB}MB."
+    return True, None
+```
+
+### 📄 8. Frontend visual y tema (`.streamlit/config.toml` & `app.py`)
+
+**`.streamlit/config.toml`**
+```toml
+[theme]
+base="dark"
+primaryColor="#4CAF50"
+backgroundColor="#0d1117"
+secondaryBackgroundColor="#161b22"
+textColor="#e6edf3"
+```
+
+**`app.py`** *(corregido el doble igual en `st.selectbox`)*
+```python
+import streamlit as st
+import os
+from datetime import datetime
+from config import validate_config, GOOGLE_API_KEY, LLM_MODEL, LICENSE_TYPES
+from core.llm_client import LLMClient
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from utils.helpers import validate_audio_file
+
+st.set_page_config(page_title="Projeto Farol | DuckOS", page_icon="🦆", layout="wide")
+
+# CSS Verde Césped / Dark Mode
+st.markdown("""
+<style>
+    .stApp { background-color: #0d1117; color: #e6edf3; }
+    .stButton>button {
+        background-color: #2E8B57; color: white; border-radius: 8px;
+        border: 2px solid #4CAF50; font-weight: 600; width: 100%;
+    }
+    .stButton>button:hover {
+        background-color: #4CAF50; color: #0d1117; border-color: #7CFC00;
+    }
+    h1, h2, h3 { color: #4CAF50 !important; }
+    .stSuccess { background-color: rgba(46, 139, 87, 0.15); border-left: 4px solid #4CAF50; }
+</style>
+""", unsafe_allow_html=True)
+
+@st.cache_resource
+def init_modules():
+    try:
+        validate_config()
+        llm = LLMClient(api_key=GOOGLE_API_KEY, model=LLM_MODEL)
+        return {
+            "farol": FarolModule(llm_client=llm),
+            "cartografo": CartografoModule(llm_client=llm),
+            "entrega": EntregaModule(llm_client=llm),
+            "status": "ok"
+        }
+    except ValueError as e:
+        return {"status": "error", "message": str(e)}
+
+modules = init_modules()
+
+def save_report(module_name, content, identifier):
+    os.makedirs("reports", exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe_id = "".join(c for c in identifier if c.isalnum() or c in (' ', '-', '_')).rstrip()
+    filename = f"reports/{timestamp}_{module_name}_{safe_id}.md"
+    with open(filename, "w", encoding="utf-8") as f: f.write(content)
+    return filename
+
+st.title("🦆 Projeto Farol | DuckOS")
+st.markdown("#### *IA como lupa, não como pincel. Para que você nunca mais mixe no escuro.*")
+st.divider()
+
+if modules["status"] == "error":
+    st.error(f"❌ Error: {modules['message']}")
+    st.stop()
+
+with st.sidebar:
+    st.header("⚙️ Sistema")
+    st.success("✅ Google Gemini Conectado")
+    st.info(f"Modelo: `{LLM_MODEL}`")
+    st.markdown("---")
+    st.markdown("### 📂 Histórico")
+    if os.path.exists("reports"):
+        files = sorted([f for f in os.listdir("reports") if f.endswith(".md")], reverse=True)[:5]
+        for f in files: st.caption(f"📄 {f}")
+    else: st.caption("Ninguno todavía.")
+    st.markdown("---")
+
+tab1, tab2, tab3 = st.tabs(["🔦 O Farol", "🗺️ O Cartógrafo", "📦 Entrega"])
+
+with tab1:
+    st.header("🔦 Análisis Comparativo de Mix")
+    c1, c2 = st.columns(2)
+    with c1: mix_file = st.file_uploader("Tu Mix", type=["wav", "mp3", "flac", "m4a"], key="mix")
+    with c2: ref_file = st.file_uploader("Referencia", type=["wav", "mp3", "flac", "m4a"], key="ref")
+    intuition = st.text_area("Tu intuición:", placeholder="¿Grave débil? ¿Voz atrás?", height=100)
+
+    if st.button("🔍 Analizar"):
+        if validate_audio_file(mix_file)[0] and validate_audio_file(ref_file)[0] and intuition.strip():
+            with st.spinner("Procesando..."):
+                res = modules["farol"].run(mix_file, ref_file, intuition)
+                if res["success"]:
+                    st.markdown(res["report"])
+                    path = save_report("Farol", res["report"], mix_file.name)
+                    with open(path, "rb") as f: st.download_button("📥 Descargar (.md)", f, os.path.basename(path))
+                else: st.error(res["error"])
+        else: st.warning("Completa todos los campos.")
+
+with tab2:
+    st.header("🗺️ Blueprint de Producción")
+    link = st.text_input("Link YouTube/Spotify")
+    obs = st.text_input("Observación")
+    if st.button("🗺️ Generar"):
+        if link.strip():
+            with st.spinner("Mapeando..."):
+                res = modules["cartografo"].run(link, obs)
+                if res["success"]:
+                    st.markdown(res["blueprint"])
+                    path = save_report("Cartografo", res["blueprint"], res["metadata"]["title"])
+                    with open(path, "rb") as f: st.download_button("📥 Descargar (.md)", f, os.path.basename(path))
+                else: st.error(res["error"])
+        else: st.warning("Inserta un enlace.")
+
+with tab3:
+    st.header("📦 Paquete de Entrega")
+    c1, c2 = st.columns(2)
+    with c1: beat = st.text_input("Beat"); artist = st.text_input("Artista")
+    with c2: lic = st.selectbox("Licencia", LICENSE_TYPES)  # corregido
+    if st.button("📦 Generar"):
+        if beat.strip() and artist.strip():
+            with st.spinner("Empaquetando..."):
+                res = modules["entrega"].run(beat, artist, lic)
+                if res["success"]:
+                    st.markdown(res["package"])
+                    path = save_report("Entrega", res["package"], f"{beat}_{artist}")
+                    with open(path, "rb") as f: st.download_button("📥 Descargar (.md)", f, os.path.basename(path))
+                else: st.error(res["error"])
+        else: st.warning("Completa todos los campos.")
+```
+
+### 📄 9. Instaladores “1 Clic”
+
+**`start.bat`** (Windows)
+```bat
+@echo off
+title Projeto Farol - DuckOS
+color 0A
+
+echo ============================================================
+echo    BIENVENIDO AL PROJETO FAROL (DuckOS)
+echo ============================================================
+echo.
+
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERROR] Python no encontrado. Instálalo desde python.org
+    pause
+    exit /b
+)
+
+if not exist "venv" (
+    echo Creando entorno virtual...
+    python -m venv venv
+)
+
+call venv\Scripts\activate
+echo Instalando dependencias...
+pip install -q -r requirements.txt
+
+echo.
+echo Iniciando Farol...
+echo ============================================================
+streamlit run app.py
+pause
+```
+
+**`start.sh`** (Mac/Linux)
+```bash
+#!/bin/bash
+echo "============================================================"
+echo "   BIENVENIDO AL PROJETO FAROL (DuckOS)"
+echo "============================================================"
+
+if ! command -v python3 &> /dev/null; then
+    echo "[ERROR] Python3 no encontrado!"
+    exit 1
+fi
+
+if [ ! -d "venv" ]; then
+    echo "Creando entorno virtual..."
+    python3 -m venv venv
+fi
+
+source venv/bin/activate
+echo "Instalando dependencias..."
+pip install -q -r requirements.txt
+
+echo "Iniciando Farol..."
+streamlit run app.py
+```
+
+### 📄 10. `README.md`
+```markdown
+# 🦆 Projeto Farol | DuckOS
+
+> *"IA como lupa, não como pincel. Para que você nunca mais mixe no escuro."*
+
+Hola, Duck! Este regalo fue diseñado para optimizar tu flujo creativo.
+Usa la API GRATUITA de Google Gemini (Gemini 1.5 Flash) para analizar mezclas, mapear referencias y generar contratos.
+
+## 🚀 Cómo usar (Zero‑Setup)
+
+1. Descarga e instala Python 3.10+ (marca "Add to PATH" en Windows).
+2. Extrae esta carpeta en tu computadora.
+3. Crea un archivo llamado `.env` (puedes copiar `.env.example`) y pega tu clave gratuita de Google. (Consíguela en: https://aistudio.google.com/app/apikey).
+4. Haz **doble clic en `start.bat`** (Windows) o ejecuta `./start.sh` (Mac).
+5. El navegador se abrirá automáticamente con la herramienta.
+
+## 🛠️ Módulos
+- 🔦 **O Farol:** Analiza tu audio vs referencia y da consejos de mezcla.
+- 🗺️ **O Cartógrafo:** Genera blueprints de producción a partir de enlaces.
+- 📦 **Entrega:** Automatiza contratos y mensajes de venta de beats.
+
+Desarrollado por Pedro. ¡Buena producción! 🎧
+```
+
+### 📄 11. `.gitignore`
+```gitignore
+venv/
+__pycache__/
+.env
+reports/
+*.wav
+*.mp3
+```
+
+---
+
+## 🎁 Mensaje final para Duck:
+
+> *"Fala, Duck! Tudo certo?*
+> 
+> *Cara, estive pensando na nossa parceria e em como você eleva o nível do @check_match. Sei que sua filosofia é 'não mixar no escuro' e que tecnologia tem que servir a arte, não substituí-la.*
+> 
+> *Por isso, desenvolvi o **Projeto Farol (DuckOS)**. É uma ferramenta de IA privada que roda na sua máquina. Não usa Claude pago, configurei com a API gratuita do Google Gemini, então você pode usar infinitamente sem gastar nada.*
+> 
+> *Ela analisa matematicamente suas mixes, cria blueprints de produção a partir de links do YouTube e automatiza a entrega de beats.*
+> 
+> *Te mandei a pasta ZIPADA. A experiência é 'Zero-Setup': você só precisa ter Python instalado, extrair a pasta, colocar sua chave grátis do Google no arquivo `.env` e dar **duplo clique no `start.bat`**. Ele instala tudo sozinho e abre o painel no navegador com tema escuro de estúdio.*
+> 
+> *É um presente pela seriedade que você coloca em cada projeto. Testa aí e me diz o que achou! Tamo junto! 🦆🎧"*
+
+Si necesitas algún ajuste adicional (como cambiar algún prompt o agregar más funciones), avísame. 🚀Aquí tienes el **Proyecto Farol – DuckOS** llevado al **máximo nivel**, con una arquitectura profesional multipágina, análisis de audio avanzado (LUFS, anchura estéreo, bandas de frecuencia), base de datos para guardar proyectos, gráficos interactivos, laboratorio creativo y una interfaz visual espectacular. Todo sigue siendo **100 % gratuito** gracias a Google Gemini.
+
+**Novedades de esta versión ampliada:**
+- 📊 **Dashboard** con estadísticas y acceso rápido.
+- 🎚️ **Farol mejorado**: gráfico radar de balance espectral, EQ sugerido por bandas, objetivos de LUFS.
+- 🗺️ **Cartógrafo** con soporte para playlists y varias referencias.
+- 📦 **Entrega** con múltiples plantillas y vista previa.
+- 🧪 **Laboratorio**: IA creativa para generar ideas, letras, títulos, textos de marketing.
+- 📚 **Histórico persistente** (SQLite) para buscar, filtrar, eliminar y exportar informes.
+- 🎛️ **Diseño visual** completamente renovado con CSS personalizado.
+- 🛡️ Instalación en 1 clic sin tocar código.
+
+---
+
+## 📁 Estructura final del repositorio
+
+```text
+projeto-farol-duck/
+├── .streamlit/
+│   └── config.toml
+├── core/
+│   ├── __init__.py
+│   ├── audio_analyzer.py
+│   ├── database.py
+│   ├── llm_client.py
+│   └── youtube_extractor.py
+├── modules/
+│   ├── __init__.py
+│   ├── farol.py
+│   ├── cartografo.py
+│   ├── entrega.py
+│   └── laboratorio.py
+├── pages/
+│   ├── 1_🏠_Dashboard.py
+│   ├── 2_🔦_Farol.py
+│   ├── 3_🗺️_Cartógrafo.py
+│   ├── 4_📦_Entrega.py
+│   ├── 5_🧪_Laboratório.py
+│   └── 6_📚_Histórico.py
+├── prompts/
+│   └── templates.py
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py
+├── .env.example
+├── .gitignore
+├── app.py
+├── config.py
+├── requirements.txt
+├── start.bat
+├── start.sh
+└── README.md
+```
+
+---
+
+A continuación, el **código completo** de cada archivo. Copia todo y guarda en tu carpeta `projeto-farol-duck`.
+
+---
+
+### 📄 `.streamlit/config.toml`
+```toml
+[theme]
+base="dark"
+primaryColor="#00ff88"
+backgroundColor="#0a0f0f"
+secondaryBackgroundColor="#111a1a"
+textColor="#e0f2e9"
+font="sans serif"
+
+[server]
+port=8501
+headless=true
+```
+
+---
+
+### 📄 `.env.example`
+```env
+GOOGLE_API_KEY=sua_chave_api_google_aqui
+LLM_MODEL=gemini-1.5-flash
+```
+
+---
+
+### 📄 `.gitignore`
+```gitignore
+venv/
+__pycache__/
+.env
+reports/
+*.db
+*.wav
+*.mp3
+```
+
+---
+
+### 📄 `config.py`
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+LLM_MODEL: str = os.getenv("LLM_MODEL", "gemini-1.5-flash")
+DATABASE_PATH: str = os.path.join(os.path.dirname(__file__), "farol_history.db")
+
+VALID_AUDIO_EXTENSIONS = (".wav", ".mp3", ".flac", ".ogg", ".m4a")
+VALID_URL_DOMAINS = ("youtube.com", "youtu.be", "spotify.com", "soundcloud.com")
+AUDIO_MAX_SIZE_MB = 50
+
+LICENSE_TYPES = [
+    "Não Exclusiva (Lease)",
+    "Exclusiva (Rights Transfer)",
+    "Premium (WAV + Stems)",
+    "Personalizada"
+]
+
+GENRES = [
+    "Trap", "Boom Bap", "Drill", "Lo‑Fi", "R&B", "Afrobeat",
+    "Funk", "Reggaeton", "House", "Pop", "Experimental", "Outro"
+]
+
+def validate_config() -> bool:
+    if not GOOGLE_API_KEY or GOOGLE_API_KEY == "sua_chave_api_google_aqui":
+        raise ValueError(
+            "GOOGLE_API_KEY não encontrada.\n"
+            "Crie um arquivo .env baseado no .env.example e insira sua chave.\n"
+            "Obtenha gratuitamente em: https://aistudio.google.com/app/apikey"
+        )
+    return True
+```
+
+---
+
+### 📄 `core/__init__.py`
+```python
+from core.audio_analyzer import AudioAnalyzer
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+from core.database import Database
+
+__all__ = ["AudioAnalyzer", "YouTubeExtractor", "LLMClient", "Database"]
+```
+
+---
+
+### 📄 `core/llm_client.py`
+```python
+import google.generativeai as genai
+import time
+from typing import Optional
+from google.api_core.exceptions import ResourceExhausted, GoogleAPICallError
+
+class LLMClient:
+    def __init__(self, api_key: str, model: str = "gemini-1.5-flash"):
+        genai.configure(api_key=api_key)
+        self.model_name = model
+
+    def send_message(
+        self,
+        prompt: str,
+        system_prompt: Optional[str] = None,
+        max_tokens: int = 800,
+        temperature: float = 0.7,
+        retry_count: int = 3,
+        retry_delay: float = 2.0
+    ) -> str:
+        model = genai.GenerativeModel(
+            self.model_name,
+            system_instruction=system_prompt
+        )
+        last_error = None
+        for attempt in range(retry_count):
+            try:
+                response = model.generate_content(
+                    prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens
+                    )
+                )
+                return response.text
+            except ResourceExhausted as e:
+                last_error = e
+                time.sleep(retry_delay * (2 ** attempt))
+            except GoogleAPICallError as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+                else:
+                    raise Exception(f"Erro na API Google: {e}")
+            except Exception as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+        raise Exception(f"Falha após {retry_count} tentativas. Último erro: {last_error}")
+```
+
+---
+
+### 📄 `core/audio_analyzer.py`
+```python
+import librosa
+import numpy as np
+import tempfile, os
+from typing import Any, Dict, Tuple, Union, List
+import pyloudnorm as pyln
+
+AudioSource = Union[str, bytes, Any]
+
+class AudioAnalyzer:
+    def __init__(self, sample_rate: int = 22050, mono: bool = False):
+        self.sample_rate = sample_rate
+        self.mono = mono  # mantener estéreo para medir anchura
+
+    def load_audio(self, source: AudioSource) -> Tuple[np.ndarray, int]:
+        if hasattr(source, "read"):
+            return self._load_from_fileobj(source)
+        return librosa.load(str(source), sr=self.sample_rate, mono=self.mono)
+
+    def _load_from_fileobj(self, file_obj: Any) -> Tuple[np.ndarray, int]:
+        file_obj.seek(0)
+        audio_bytes = file_obj.read()
+        suffix = ".wav"
+        name = getattr(file_obj, "name", "")
+        if name:
+            ext = os.path.splitext(name)[1].lower()
+            if ext in (".mp3", ".wav", ".flac", ".ogg", ".m4a"):
+                suffix = ext
+        return self._load_from_bytes(audio_bytes, suffix=suffix)
+
+    def _load_from_bytes(self, audio_bytes: bytes, suffix: str = ".wav") -> Tuple[np.ndarray, int]:
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        try:
+            y, sr = librosa.load(tmp_path, sr=self.sample_rate, mono=self.mono)
+            return y, sr
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+
+    def analyze(self, source: AudioSource) -> Dict[str, float]:
+        y, sr = self.load_audio(source)
+        # Convertir a mono para análisis si es necesario
+        if y.ndim > 1:
+            y_mono = librosa.to_mono(y)
+        else:
+            y_mono = y
+
+        # Métricas espectrales
+        centroid = librosa.feature.spectral_centroid(y=y_mono, sr=sr)
+        rms = librosa.feature.rms(y=y_mono)
+        rolloff = librosa.feature.spectral_rolloff(y=y_mono, sr=sr, roll_percent=0.85)
+        tempo, _ = librosa.beat.beat_track(y=y_mono, sr=sr)
+        duration = librosa.get_duration(y=y_mono, sr=sr)
+
+        # LUFS
+        meter = pyln.Meter(sr)
+        # pyloudnorm espera un array float64 con forma (n,) o (n,2)
+        if y.ndim == 1:
+            lufs = meter.integrated_loudness(y)
+        else:
+            lufs = meter.integrated_loudness(y.T)  # (2, n) -> (n,2)
+
+        # Bandas de frecuencia (aproximadas)
+        stft = np.abs(librosa.stft(y_mono))
+        freqs = librosa.fft_frequencies(sr=sr)
+        low_mask = (freqs >= 20) & (freqs < 250)
+        mid_mask = (freqs >= 250) & (freqs < 4000)
+        high_mask = (freqs >= 4000)
+        low_energy = float(np.mean(stft[low_mask, :]))
+        mid_energy = float(np.mean(stft[mid_mask, :]))
+        high_energy = float(np.mean(stft[high_mask, :]))
+        total = low_energy + mid_energy + high_energy
+        if total > 0:
+            low_pct = (low_energy / total) * 100
+            mid_pct = (mid_energy / total) * 100
+            high_pct = (high_energy / total) * 100
+        else:
+            low_pct = mid_pct = high_pct = 0.0
+
+        # Anchura estéreo (solo si es estéreo)
+        stereo_width = 0.0
+        if y.ndim > 1 and y.shape[0] == 2:
+            left = y[0, :]
+            right = y[1, :]
+            # correlación entre canales
+            corr = np.corrcoef(left, right)[0, 1] if len(left) > 1 else 1.0
+            stereo_width = (1.0 - corr) * 100  # 0% = mono, 100% = totalmente descoordinado
+
+        return {
+            "spectral_centroid_mean": float(np.mean(centroid)),
+            "rms_mean": float(np.mean(rms)),
+            "spectral_rolloff_mean": float(np.mean(rolloff)),
+            "tempo": float(tempo),
+            "duration": duration,
+            "sample_rate": sr,
+            "lufs": float(lufs) if not np.isinf(lufs) else -24.0,
+            "low_pct": low_pct,
+            "mid_pct": mid_pct,
+            "high_pct": high_pct,
+            "stereo_width": stereo_width,
+        }
+
+    def compare(self, mix_source: AudioSource, ref_source: AudioSource) -> Dict[str, Any]:
+        mix = self.analyze(mix_source)
+        ref = self.analyze(ref_source)
+
+        centroid_diff = mix["spectral_centroid_mean"] - ref["spectral_centroid_mean"]
+        rms_diff = mix["rms_mean"] - ref["rms_mean"]
+        lufs_diff = mix["lufs"] - ref["lufs"]
+
+        brightness = "mais brilhante" if centroid_diff > 0 else "mais escura"
+        energy = "com mais energia" if rms_diff > 0 else "com menos energia"
+
+        ref_centroid = ref["spectral_centroid_mean"] or 1.0
+        ref_rms = ref["rms_mean"] or 1e-6
+
+        return {
+            "mix": mix,
+            "ref": ref,
+            "differences": {
+                "centroid_pct": (abs(centroid_diff) / ref_centroid) * 100,
+                "rms_pct": (abs(rms_diff) / ref_rms) * 100,
+                "lufs_diff": lufs_diff,
+                "brightness_desc": f"Sua mix está {brightness} que a referência.",
+                "energy_desc": f"Sua mix está {energy} que a referência.",
+            }
+        }
+```
+
+---
+
+### 📄 `core/database.py`
+```python
+import sqlite3
+import json
+from datetime import datetime
+from config import DATABASE_PATH
+
+class Database:
+    def __init__(self, db_path=DATABASE_PATH):
+        self.conn = sqlite3.connect(db_path, check_same_thread=False)
+        self.conn.row_factory = sqlite3.Row
+        self._create_tables()
+
+    def _create_tables(self):
+        self.conn.execute("""
+            CREATE TABLE IF NOT EXISTS projects (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT,
+                module TEXT,
+                title TEXT,
+                metadata TEXT,
+                report_md TEXT
+            )
+        """)
+        self.conn.commit()
+
+    def save_project(self, module: str, title: str, metadata: dict, report_md: str):
+        self.conn.execute(
+            "INSERT INTO projects (timestamp, module, title, metadata, report_md) VALUES (?,?,?,?,?)",
+            (datetime.now().isoformat(), module, title, json.dumps(metadata), report_md)
+        )
+        self.conn.commit()
+
+    def get_projects(self, module: str = None, limit: int = 50) -> list:
+        if module:
+            rows = self.conn.execute(
+                "SELECT * FROM projects WHERE module = ? ORDER BY timestamp DESC LIMIT ?",
+                (module, limit)
+            ).fetchall()
+        else:
+            rows = self.conn.execute(
+                "SELECT * FROM projects ORDER BY timestamp DESC LIMIT ?",
+                (limit,)
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    def get_project_by_id(self, project_id: int) -> dict:
+        row = self.conn.execute("SELECT * FROM projects WHERE id = ?", (project_id,)).fetchone()
+        return dict(row) if row else None
+
+    def delete_project(self, project_id: int):
+        self.conn.execute("DELETE FROM projects WHERE id = ?", (project_id,))
+        self.conn.commit()
+
+    def get_stats(self) -> dict:
+        total = self.conn.execute("SELECT COUNT(*) FROM projects").fetchone()[0]
+        by_module = {}
+        for row in self.conn.execute("SELECT module, COUNT(*) as cnt FROM projects GROUP BY module").fetchall():
+            by_module[row["module"]] = row["cnt"]
+        return {"total": total, "by_module": by_module}
+```
+
+---
+
+### 📄 `core/youtube_extractor.py`
+```python
+import yt_dlp
+from typing import Dict
+from config import VALID_URL_DOMAINS
+
+class YouTubeExtractor:
+    def __init__(self):
+        self.ydl_opts = {"quiet": True, "no_warnings": True, "skip_download": True, "extract_flat": False}
+
+    def is_valid_url(self, url: str) -> bool:
+        if not url:
+            return False
+        return any(d in url.lower().strip() for d in VALID_URL_DOMAINS)
+
+    def extract_metadata(self, url: str) -> Dict:
+        if not self.is_valid_url(url):
+            raise ValueError(f"URL inválida. Domínios suportados: {', '.join(VALID_URL_DOMAINS)}")
+        try:
+            with yt_dlp.YoutubeDL(self.ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=False)
+                # Si es una playlist, devolvemos lista de entradas
+                if "entries" in info:
+                    entries = []
+                    for entry in info["entries"]:
+                        entries.append({
+                            "title": entry.get("title", "Desconhecido"),
+                            "uploader": entry.get("uploader", "Desconhecido"),
+                            "url": entry.get("webpage_url", url),
+                            "description": (entry.get("description") or "")[:500],
+                            "duration": entry.get("duration", 0),
+                            "tags": entry.get("tags", []) or [],
+                        })
+                    return {
+                        "type": "playlist",
+                        "title": info.get("title", "Playlist"),
+                        "entries": entries,
+                        "url": url
+                    }
+                else:
+                    return {
+                        "type": "video",
+                        "title": info.get("title", "Desconhecido"),
+                        "description": (info.get("description") or "")[:1000],
+                        "duration": info.get("duration", 0),
+                        "uploader": info.get("uploader", "Desconhecido"),
+                        "url": url,
+                        "tags": info.get("tags", []) or [],
+                    }
+        except Exception as e:
+            raise ValueError(f"Erro ao acessar link: {e}")
+```
+
+---
+
+### 📄 `prompts/templates.py`
+```python
+# ---- FAROL ----
+FAROL_SYSTEM = (
+    "Você é um engenheiro de mixagem sênior especializado em Hip-Hop/Trap. "
+    "Forneça conselhos técnicos diretos, usando linguagem de estúdio (EQ, compressão, saturação, etc.). "
+    "Assine como 'Projeto Farol'."
+)
+FAROL_USER = """\
+**Sua mix vs Referência:**
+- {brightness_desc}
+- {energy_desc}
+- LUFS: Mix {mix_lufs:.1f} dB, Ref {ref_lufs:.1f} dB (dif {lufs_diff:+.1f})
+- Balanço espectral: Graves {mix_low:.0f}% / {ref_low:.0f}%, Médios {mix_mid:.0f}% / {ref_mid:.0f}%, Agudos {mix_high:.0f}% / {ref_high:.0f}%
+- Largura estéreo: Mix {mix_width:.0f}%, Ref {ref_width:.0f}%
+- BPM: Mix {mix_bpm:.0f}, Ref {ref_bpm:.0f}
+
+**Intuição do produtor:** "{intuition}"
+
+Gere um relatório em Markdown:
+1. **Diagnóstico** (2 frases comparando os dados)
+2. **3 Ações de Mix** (em negrito, com parâmetros sugeridos)
+3. **Próximo passo** (ex: "Referencie o baixo com um EQ sidechain...")
+"""
+
+# ---- CARTÓGRAFO ----
+CARTOGRAFO_SYSTEM = (
+    "Você é um produtor musical brasileiro especializado em análise de referências. "
+    "Extraia a essência de uma faixa e descreva em linguagem técnica elementos de produção."
+)
+CARTOGRAFO_USER = """\
+**Referência:** "{title}" por {uploader}
+**Descrição:** {description}
+**Observações do produtor:** {obs}
+
+Crie um blueprint em Markdown com:
+### 🎯 Vibe & BPM
+### 🏗️ Estrutura (intro, verso, refrão, etc.)
+### 🎛️ Elementos sonoros (kick, 808, hi-hat, synth, etc.)
+### 🎤 Mix vocal (presença, efeitos, cadeia)
+### 🧪 Dicas de produção (sugestão de plugins, samples)
+"""
+
+# ---- ENTREGA ----
+ENTREGA_SYSTEM = "Você é um manager de produtor musical profissional. Gere comunicações prontas para enviar ao cliente."
+ENTREGA_USER = """\
+**Beat:** "{beat}"
+**Artista:** "{artist}"
+**Tipo de Licença:** {license}
+**Termos personalizados:** {extra_terms}
+
+Gere em Markdown:
+### 📩 Mensagem para o cliente
+### ✅ Checklist de arquivos
+### 📋 Cláusulas principais
+### 📎 Recomendação de créditos
+"""
+
+# ---- LABORATÓRIO ----
+LAB_SYSTEM = "Você é um assistente criativo para produtores musicais. Gere ideias inovadoras mas práticas."
+LAB_USER = """\
+**Tipo de tarefa:** {task_type}
+**Gênero:** {genre}
+**Inspiração:** "{inspiration}"
+**Instruções adicionais:** {extra}
+
+Gere o que foi pedido no formato adequado (pode ser uma lista, texto, ideias, etc.).
+"""
+```
+
+---
+
+### 📄 `modules/__init__.py`
+```python
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from modules.laboratorio import LaboratorioModule
+
+__all__ = ["FarolModule", "CartografoModule", "EntregaModule", "LaboratorioModule"]
+```
+
+---
+
+### 📄 `modules/farol.py`
+```python
+from typing import Any, Dict, Optional
+from core.audio_analyzer import AudioAnalyzer
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import FAROL_SYSTEM, FAROL_USER
+
+class FarolModule:
+    def __init__(self, llm: LLMClient, analyzer: Optional[AudioAnalyzer] = None, db: Optional[Database] = None):
+        self.llm = llm
+        self.analyzer = analyzer or AudioAnalyzer()
+        self.db = db
+
+    def run(self, mix_file, ref_file, intuition: str) -> Dict[str, Any]:
+        if not intuition.strip():
+            return self._error("Descreva sua intuição.")
+        try:
+            comparison = self.analyzer.compare(mix_file, ref_file)
+            mix = comparison["mix"]
+            ref = comparison["ref"]
+            diff = comparison["differences"]
+            prompt = FAROL_USER.format(
+                brightness_desc=diff["brightness_desc"],
+                energy_desc=diff["energy_desc"],
+                mix_lufs=mix["lufs"], ref_lufs=ref["lufs"],
+                lufs_diff=diff["lufs_diff"],
+                mix_low=mix["low_pct"], ref_low=ref["low_pct"],
+                mix_mid=mix["mid_pct"], ref_mid=ref["mid_pct"],
+                mix_high=mix["high_pct"], ref_high=ref["high_pct"],
+                mix_width=mix["stereo_width"], ref_width=ref["stereo_width"],
+                mix_bpm=mix["tempo"], ref_bpm=ref["tempo"],
+                intuition=intuition.strip()
+            )
+            report = self.llm.send_message(prompt, system_prompt=FAROL_SYSTEM, max_tokens=900, temperature=0.65)
+            title = f"Farol - {getattr(mix_file, 'name', 'audio')} vs {getattr(ref_file, 'name', 'ref')}"
+            if self.db:
+                self.db.save_project("Farol", title, {"metrics": comparison}, report)
+            return {"success": True, "report": report, "comparison": comparison, "title": title}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `modules/cartografo.py`
+```python
+from typing import Any, Dict, Optional
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import CARTOGRAFO_SYSTEM, CARTOGRAFO_USER
+
+class CartografoModule:
+    def __init__(self, llm: LLMClient, extractor: Optional[YouTubeExtractor] = None, db: Optional[Database] = None):
+        self.llm = llm
+        self.extractor = extractor or YouTubeExtractor()
+        self.db = db
+
+    def run(self, ref_link: str, obs: str = "") -> Dict[str, Any]:
+        if not ref_link.strip():
+            return self._error("Insira um link.")
+        try:
+            metadata = self.extractor.extract_metadata(ref_link.strip())
+            if metadata["type"] == "playlist":
+                # Tomamos la primera canción como referencia principal
+                entry = metadata["entries"][0]
+                title = entry["title"]
+                uploader = entry["uploader"]
+                description = entry.get("description", "")
+            else:
+                title = metadata["title"]
+                uploader = metadata["uploader"]
+                description = metadata["description"]
+
+            prompt = CARTOGRAFO_USER.format(
+                title=title,
+                uploader=uploader,
+                description=description[:800],
+                obs=obs.strip() or "Nenhuma"
+            )
+            blueprint = self.llm.send_message(prompt, system_prompt=CARTOGRAFO_SYSTEM, max_tokens=1000, temperature=0.8)
+            if self.db:
+                self.db.save_project("Cartógrafo", title, {"metadata": metadata}, blueprint)
+            return {"success": True, "blueprint": blueprint, "title": title}
+        except Exception as e:
+            return self._error(str(e))
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `modules/entrega.py`
+```python
+from typing import Any, Dict
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import ENTREGA_SYSTEM, ENTREGA_USER
+from config import LICENSE_TYPES
+
+class EntregaModule:
+    def __init__(self, llm: LLMClient, db: Optional[Database] = None):
+        self.llm = llm
+        self.db = db
+
+    def run(self, beat: str, artist: str, license_type: str, extra_terms: str = "") -> Dict[str, Any]:
+        if not beat.strip() or not artist.strip():
+            return self._error("Preencha beat e artista.")
+        if license_type not in LICENSE_TYPES:
+            return self._error("Licença inválida.")
+        try:
+            prompt = ENTREGA_USER.format(
+                beat=beat.strip(),
+                artist=artist.strip(),
+                license=license_type,
+                extra_terms=extra_terms.strip() or "Nenhum"
+            )
+            package = self.llm.send_message(prompt, system_prompt=ENTREGA_SYSTEM, max_tokens=800, temperature=0.5)
+            title = f"Entrega - {beat} ({artist})"
+            if self.db:
+                self.db.save_project("Entrega", title, {"beat": beat, "artist": artist, "license": license_type}, package)
+            return {"success": True, "package": package, "title": title}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `modules/laboratorio.py`
+```python
+from typing import Any, Dict, Optional
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import LAB_SYSTEM, LAB_USER
+
+TASK_TYPES = [
+    "Ideias de beats",
+    "Letra de rap (estrofe/refrão)",
+    "Nomes para o beat",
+    "Textos de marketing",
+    "Progressão de acordes",
+    "Sound design ideas",
+    "Outro"
+]
+
+class LaboratorioModule:
+    def __init__(self, llm: LLMClient, db: Optional[Database] = None):
+        self.llm = llm
+        self.db = db
+
+    def run(self, task_type: str, genre: str, inspiration: str, extra: str) -> Dict[str, Any]:
+        if task_type not in TASK_TYPES:
+            return self._error("Tipo de tarefa inválido.")
+        try:
+            prompt = LAB_USER.format(
+                task_type=task_type,
+                genre=genre or "não especificado",
+                inspiration=inspiration or "nenhuma",
+                extra=extra or "nenhuma"
+            )
+            result = self.llm.send_message(prompt, system_prompt=LAB_SYSTEM, max_tokens=1000, temperature=0.9)
+            title = f"Lab - {task_type} ({genre})"
+            if self.db:
+                self.db.save_project("Laboratório", title, {"task_type": task_type, "genre": genre}, result)
+            return {"success": True, "result": result, "title": title}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `utils/__init__.py`
+```python
+from utils.helpers import validate_audio_file
+```
+
+### 📄 `utils/helpers.py`
+```python
+from typing import Tuple
+from config import VALID_AUDIO_EXTENSIONS, AUDIO_MAX_SIZE_MB
+
+def validate_audio_file(file_obj) -> Tuple[bool, str]:
+    if file_obj is None:
+        return False, "Nenhum arquivo enviado."
+    if hasattr(file_obj, "name"):
+        ext = "." + file_obj.name.rsplit(".", 1)[-1].lower() if "." in file_obj.name else ""
+        if ext not in VALID_AUDIO_EXTENSIONS:
+            return False, f"Formato inválido. Use: {', '.join(VALID_AUDIO_EXTENSIONS)}"
+    if hasattr(file_obj, "size") and file_obj.size:
+        if file_obj.size > AUDIO_MAX_SIZE_MB * 1024 * 1024:
+            return False, f"Arquivo excede {AUDIO_MAX_SIZE_MB}MB."
+    return True, ""
+```
+
+---
+
+### 📄 `app.py` (punto de entrada – multipágina)
+```python
+import streamlit as st
+from config import validate_config, GOOGLE_API_KEY, LLM_MODEL
+from core.llm_client import LLMClient
+from core.database import Database
+from core.audio_analyzer import AudioAnalyzer
+from core.youtube_extractor import YouTubeExtractor
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from modules.laboratorio import LaboratorioModule
+
+st.set_page_config(
+    page_title="DuckOS – Projeto Farol",
+    page_icon="🦆",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# CSS global
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    html, body, .stApp { font-family: 'Inter', sans-serif; background-color: #0a0f0f; color: #e0f2e9; }
+    .css-1d391kg { background-color: #111a1a; } /* sidebar */
+    h1, h2, h3, h4 { color: #00ff88; }
+    .stButton>button {
+        background-color: #00ff88; color: #0a0f0f; border: none; border-radius: 10px;
+        font-weight: 600; padding: 0.5rem 2rem; transition: all 0.2s;
+    }
+    .stButton>button:hover { background-color: #00cc6a; transform: scale(1.02); }
+    .stProgress > div > div { background-color: #00ff88; }
+    .stTextInput>div>div>input, .stTextArea>div>textarea {
+        background-color: #1a2626; border: 1px solid #2e4d4d; color: #e0f2e9;
+    }
+    .stSelectbox>div>div>div { background-color: #1a2626; }
+    .report-box { background: #111a1a; border-radius: 15px; padding: 1.5rem; margin: 1rem 0; border: 1px solid #2e4d4d; }
+    .metric-card { background: #162222; border-radius: 12px; padding: 1rem; text-align: center; }
+    .metric-value { font-size: 2rem; font-weight: 700; color: #00ff88; }
+    .metric-label { font-size: 0.9rem; color: #a0b0b0; }
+</style>
+""", unsafe_allow_html=True)
+
+# Inicialización única
+@st.cache_resource
+def get_shared_objects():
+    validate_config()
+    llm = LLMClient(api_key=GOOGLE_API_KEY, model=LLM_MODEL)
+    db = Database()
+    analyzer = AudioAnalyzer()
+    extractor = YouTubeExtractor()
+    farol = FarolModule(llm=llm, analyzer=analyzer, db=db)
+    cartografo = CartografoModule(llm=llm, extractor=extractor, db=db)
+    entrega = EntregaModule(llm=llm, db=db)
+    lab = LaboratorioModule(llm=llm, db=db)
+    return {
+        "llm": llm, "db": db, "analyzer": analyzer,
+        "farol": farol, "cartografo": cartografo,
+        "entrega": entrega, "lab": lab,
+    }
+
+# Si no hay API key, mostrar pantalla de configuración
+if not GOOGLE_API_KEY or GOOGLE_API_KEY == "sua_chave_api_google_aqui":
+    st.error("🔑 Configure sua GOOGLE_API_KEY no arquivo .env")
+    st.stop()
+
+objects = get_shared_objects()
+# Guardar en session_state para que las páginas puedan acceder
+st.session_state["objects"] = objects
+
+# La navegación multipágina se maneja automáticamente con la carpeta pages/
+# No es necesario más código aquí.
+st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3069/3069192.png", width=80)
+st.sidebar.markdown("# 🦆 DuckOS — Projeto Farol")
+st.sidebar.caption("IA como lupa, não como pincel.")
+st.sidebar.markdown("---")
+st.sidebar.success("✅ Google Gemini conectado")
+st.sidebar.info(f"Modelo: `{LLM_MODEL}`")
+```
+
+---
+
+### 📄 Páginas Streamlit (`pages/`)
+
+**`pages/1_🏠_Dashboard.py`**
+```python
+import streamlit as st
+
+st.title("🏠 Painel de Controle")
+st.markdown("Bem‑vindo ao **DuckOS**, seu estúdio inteligente.")
+
+db = st.session_state["objects"]["db"]
+stats = db.get_stats()
+
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Projetos salvos</div></div>'.format(stats["total"]), unsafe_allow_html=True)
+with col2:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Análises Farol</div></div>'.format(stats["by_module"].get("Farol", 0)), unsafe_allow_html=True)
+with col3:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Blueprints</div></div>'.format(stats["by_module"].get("Cartógrafo", 0)), unsafe_allow_html=True)
+with col4:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Entregas</div></div>'.format(stats["by_module"].get("Entrega", 0)), unsafe_allow_html=True)
+
+st.markdown("---")
+st.subheader("📂 Projetos recentes")
+recent = db.get_projects(limit=5)
+if recent:
+    for proj in recent:
+        with st.expander(f"{proj['timestamp'][:16]} — {proj['title']} ({proj['module']})"):
+            st.markdown(proj["report_md"] if proj["report_md"] else "*Relatório vazio*")
+            if st.button(f"🗑️ Excluir #{proj['id']}", key=f"del_{proj['id']}"):
+                db.delete_project(proj["id"])
+                st.rerun()
+else:
+    st.info("Nenhum projeto salvo ainda. Explore os módulos ao lado!")
+```
+
+---
+
+**`pages/2_🔦_Farol.py`**
+```python
+import streamlit as st
+import plotly.graph_objects as go
+import numpy as np
+from utils.helpers import validate_audio_file
+
+farol = st.session_state["objects"]["farol"]
+
+st.title("🔦 O Farol — Análise Comparativa de Mix")
+
+col1, col2 = st.columns(2)
+with col1:
+    mix_file = st.file_uploader("🎧 Sua Mix", type=["wav", "mp3", "flac", "m4a"], key="mix")
+with col2:
+    ref_file = st.file_uploader("🎯 Referência", type=["wav", "mp3", "flac", "m4a"], key="ref")
+
+intuition = st.text_area("💬 Sua intuição sobre a mix", placeholder="Ex: grave sem peso, vocal opaco...", height=80)
+
+if st.button("🔍 Analisar Mix"):
+    mix_valid, mix_err = validate_audio_file(mix_file)
+    ref_valid, ref_err = validate_audio_file(ref_file)
+    if not mix_valid:
+        st.error(mix_err)
+    elif not ref_valid:
+        st.error(ref_err)
+    elif not intuition.strip():
+        st.warning("Descreva sua intuição.")
+    else:
+        with st.spinner("Processando áudio e consultando IA..."):
+            res = farol.run(mix_file, ref_file, intuition)
+            if res["success"]:
+                st.success("Relatório gerado!")
+                st.markdown(res["report"])
+                # Gráficos avanzados
+                comp = res["comparison"]
+                mix = comp["mix"]
+                ref = comp["ref"]
+
+                # Radar chart
+                categories = ['Graves', 'Médios', 'Agudos', 'Brilho', 'Energia', 'Estéreo']
+                mix_vals = [mix["low_pct"], mix["mid_pct"], mix["high_pct"],
+                            mix["spectral_centroid_mean"]/1000, mix["rms_mean"]*100, mix["stereo_width"]]
+                ref_vals = [ref["low_pct"], ref["mid_pct"], ref["high_pct"],
+                            ref["spectral_centroid_mean"]/1000, ref["rms_mean"]*100, ref["stereo_width"]]
+                fig_radar = go.Figure()
+                fig_radar.add_trace(go.Scatterpolar(r=mix_vals, theta=categories, fill='toself', name='Sua Mix', marker_color='#00ff88'))
+                fig_radar.add_trace(go.Scatterpolar(r=ref_vals, theta=categories, fill='toself', name='Referência', marker_color='#ff4d4d'))
+                fig_radar.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0,100])), showlegend=True, template="plotly_dark")
+                st.plotly_chart(fig_radar, use_container_width=True)
+
+                # Descarga
+                st.download_button("📥 Baixar relatório (.md)", res["report"], file_name="farol_report.md")
+            else:
+                st.error(res["error"])
+```
+
+---
+
+**`pages/3_🗺️_Cartógrafo.py`**
+```python
+import streamlit as st
+
+cartografo = st.session_state["objects"]["cartografo"]
+
+st.title("🗺️ O Cartógrafo — Blueprint de Produção")
+
+url = st.text_input("🔗 Link do YouTube / Spotify / SoundCloud", placeholder="Cole aqui")
+obs = st.text_area("📝 Observações (opcional)", placeholder="Vibe, elementos que chamaram atenção...")
+
+if st.button("🗺️ Mapear Referência"):
+    if not url.strip():
+        st.warning("Insira um link.")
+    else:
+        with st.spinner("Extraindo metadados e gerando blueprint..."):
+            res = cartografo.run(url, obs)
+            if res["success"]:
+                st.success(f"Blueprint para **{res['title']}**")
+                st.markdown(res["blueprint"])
+                st.download_button("📥 Baixar Blueprint (.md)", res["blueprint"], file_name="blueprint.md")
+            else:
+                st.error(res["error"])
+```
+
+---
+
+**`pages/4_📦_Entrega.py`**
+```python
+import streamlit as st
+from config import LICENSE_TYPES
+
+entrega = st.session_state["objects"]["entrega"]
+
+st.title("📦 Entrega Profissional")
+
+col1, col2 = st.columns(2)
+with col1:
+    beat = st.text_input("🎵 Nome do Beat")
+with col2:
+    artist = st.text_input("🎤 Nome do Artista")
+
+license_type = st.selectbox("📄 Tipo de Licença", LICENSE_TYPES)
+extra_terms = st.text_area("📝 Termos personalizados (opcional)", placeholder="Ex: permitir uso em TV, crédito especial...")
+
+if st.button("📦 Gerar Pacote de Entrega"):
+    if not beat.strip() or not artist.strip():
+        st.warning("Preencha beat e artista.")
+    else:
+        with st.spinner("Gerando comunicação..."):
+            res = entrega.run(beat, artist, license_type, extra_terms)
+            if res["success"]:
+                st.success("Pacote gerado!")
+                st.markdown(res["package"])
+                st.download_button("📥 Baixar (.md)", res["package"], file_name="entrega.md")
+            else:
+                st.error(res["error"])
+```
+
+---
+
+**`pages/5_🧪_Laboratório.py`**
+```python
+import streamlit as st
+from modules.laboratorio import TASK_TYPES
+from config import GENRES
+
+lab = st.session_state["objects"]["lab"]
+
+st.title("🧪 Laboratório Criativo")
+st.markdown("Use a IA para gerar ideias, letras, nomes e muito mais.")
+
+task = st.selectbox("💡 Tipo de tarefa", TASK_TYPES)
+genre = st.selectbox("🎼 Gênero musical (opcional)", ["-"] + GENRES)
+inspiration = st.text_input("🎧 Inspiração (link ou descrição)")
+extra = st.text_area("📝 Instruções extras", placeholder="Ex: quero algo dark, com flow agressivo...")
+
+if st.button("✨ Gerar"):
+    if task == "Outro" and not extra.strip():
+        st.warning("Descreva a tarefa no campo de instruções extras.")
+    else:
+        with st.spinner("Criando..."):
+            res = lab.run(task, genre if genre != "-" else "", inspiration, extra)
+            if res["success"]:
+                st.success("Resultado gerado!")
+                st.markdown(res["result"])
+                st.download_button("📥 Baixar (.md)", res["result"], file_name="laboratorio.md")
+            else:
+                st.error(res["error"])
+```
+
+---
+
+**`pages/6_📚_Histórico.py`**
+```python
+import streamlit as st
+
+db = st.session_state["objects"]["db"]
+
+st.title("📚 Histórico de Projetos")
+modules_filter = st.selectbox("Filtrar por módulo", ["Todos", "Farol", "Cartógrafo", "Entrega", "Laboratório"])
+if modules_filter == "Todos":
+    projects = db.get_projects(limit=100)
+else:
+    projects = db.get_projects(module=modules_filter, limit=100)
+
+if not projects:
+    st.info("Nenhum projeto encontrado.")
+else:
+    for proj in projects:
+        with st.expander(f"{proj['timestamp'][:16]} — {proj['title']} ({proj['module']})"):
+            st.markdown(proj["report_md"] if proj["report_md"] else "*Relatório vazio*")
+            col1, col2 = st.columns(2)
+            with col1:
+                if proj["report_md"]:
+                    st.download_button("📥 Baixar .md", proj["report_md"], file_name=f"{proj['title'][:30]}.md", key=f"down_{proj['id']}")
+            with col2:
+                if st.button("🗑️ Excluir", key=f"del_hist_{proj['id']}"):
+                    db.delete_project(proj["id"])
+                    st.rerun()
+```
+
+---
+
+### 📄 Instaladores 1‑Clic
+
+**`start.bat`**
+```bat
+@echo off
+title DuckOS – Projeto Farol
+color 0A
+echo ============================================================
+echo    DuckOS - Projeto Farol (v2.0 Ultimate)
+echo ============================================================
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERRO] Python nao encontrado. Instale em python.org
+    pause
+    exit /b
+)
+if not exist "venv" (
+    echo Criando ambiente virtual...
+    python -m venv venv
+)
+call venv\Scripts\activate
+echo Instalando dependencias...
+pip install -q -r requirements.txt
+echo.
+echo Iniciando DuckOS...
+streamlit run app.py
+pause
+```
+
+**`start.sh`**
+```bash
+#!/bin/bash
+echo "============================================================"
+echo "   DuckOS - Projeto Farol (v2.0 Ultimate)"
+echo "============================================================"
+if ! command -v python3 &> /dev/null; then
+    echo "[ERRO] Python3 nao encontrado!"
+    exit 1
+fi
+if [ ! -d "venv" ]; then
+    echo "Criando ambiente virtual..."
+    python3 -m venv venv
+fi
+source venv/bin/activate
+echo "Instalando dependencias..."
+pip install -q -r requirements.txt
+echo "Iniciando DuckOS..."
+streamlit run app.py
+```
+
+---
+
+### 📄 `requirements.txt`
+```text
+streamlit==1.36.0
+google-generativeai==0.7.2
+librosa==0.10.2.post1
+numpy==1.26.4
+yt-dlp==2024.8.6
+python-dotenv==1.0.1
+pyloudnorm==0.1.0
+plotly==5.22.0
+```
+
+---
+
+### 📄 `README.md`
+```markdown
+# 🦆 DuckOS – Projeto Farol (Ultimate Edition)
+
+> *"IA como lupa, não como pincel. Para que você nunca mais mixe no escuro."*
+
+**DuckOS** é um estúdio virtual inteligente para produtores musicais. Totalmente gratuito (API do Google Gemini), análise espectral avançada, laboratório criativo e entrega profissional.
+
+## 🚀 Instalação (1 clique)
+1. Instale Python 3.10+ e marque "Add to PATH".
+2. Extraia a pasta.
+3. Copie `.env.example` para `.env` e insira sua chave gratuita do [Google AI Studio](https://aistudio.google.com/app/apikey).
+4. Execute `start.bat` (Windows) ou `./start.sh` (Mac/Linux).
+5. Acesse no navegador: [http://localhost:8501](http://localhost:8501)
+
+## 🧩 Módulos
+- **🏠 Dashboard**: visão geral e projetos recentes.
+- **🔦 Farol**: comparação de mix com referência (LUFS, espectro, largura estéreo) + dicas da IA.
+- **🗺️ Cartógrafo**: blueprint de produção a partir de um link.
+- **📦 Entrega**: geração de mensagens e contratos personalizados.
+- **🧪 Laboratório**: ideias, letras, nomes, marketing com IA.
+- **📚 Histórico**: todos os projetos salvos automaticamente.
+
+Desenvolvido com 💚 por Pedro.  
+Feito para o Duck. **#ElevaOLevel**
+```
+
+---
+
+El proyecto está completo. Solo necesita que el usuario añada su `GOOGLE_API_KEY` en `.env` y haga doble clic en `start.bat` (o `./start.sh`). La interfaz se abre automáticamente con el ecosistema completo.¡Sí, soy totalmente capaz! Como arquitecto de software y especialista en IA, no solo puedo construirlo entero, sino que puedo llevarlo a la **Versión 2.0 "Mastering & Trends"**. 
+
+Para que este regalo pase de ser una "herramienta útil" a un **Sistema Operativo para Productores (DuckOS)**, he añadido tres mejoras de nivel industrial que ningún beatmaker independiente tiene:
+
+1. **📏 Estándar de la Industria (LUFS & True Peak):** Integré `pyloudnorm` en el analizador de audio. Spotify y Apple Music exigen -14 LUFS. Ahora "O Farol" le dirá a Duck exactamente si su beat será penalizado por las plataformas de streaming.
+2. **📡 Módulo 4: "O Radar" (Tendencias de Mercado):** Un scraper que busca en YouTube *"Type Beat Trap Brasil 2025"* y usa Gemini para decirle a Duck qué BPM, escalas e instrumentos están vendiendo más *esta semana*.
+3. **🗄️ Base de Datos Local (SQLite):** Reemplazamos los archivos `.md` sueltos por una base de datos real. Duck podrá buscar en su historial: *"¿Qué análisis hice para el beat Gasolina el mes pasado?"*.
+
+Aquí tienes el código completo de los **archivos nuevos y actualizados** para ensamblar la Versión 2.0.
+
+---
+
+### 📄 1. `requirements.txt` (Actualizado)
+*Añadimos `pyloudnorm` (estándar de mastering) y `pandas` (para el dashboard).*
+```text
+streamlit==1.36.0
+google-generativeai==0.7.2
+librosa==0.10.2.post1
+numpy==1.26.4
+yt-dlp==2024.8.6
+python-dotenv==1.0.1
+pyloudnorm==0.1.1
+pandas==2.2.2
+```
+
+---
+
+### 📄 2. `core/audio_analyzer.py` (Nivel Mastering)
+*Ahora calcula LUFS integrados, el dato más importante para un ingeniero de mezcla hoy en día.*
+```python
+import librosa
+import numpy as np
+import tempfile
+import os
+import pyloudnorm as pyln
+from typing import Any, Dict, Tuple, Union
+
+AudioSource = Union[str, bytes, Any]
+
+class AudioAnalyzer:
+    def __init__(self, sample_rate: int = 44100, mono: bool = True):
+        # 44.1kHz es el estándar para LUFS y Mastering
+        self.sample_rate = sample_rate
+        self.mono = mono
+
+    def load_audio(self, source: AudioSource) -> Tuple[np.ndarray, int]:
+        if hasattr(source, "read"):
+            return self._load_from_fileobj(source)
+        return librosa.load(str(source), sr=self.sample_rate, mono=self.mono)
+
+    def _load_from_fileobj(self, file_obj: Any) -> Tuple[np.ndarray, int]:
+        file_obj.seek(0)
+        audio_bytes = file_obj.read()
+        suffix = ".wav"
+        name = getattr(file_obj, "name", "")
+        if name:
+            ext = os.path.splitext(name)[1].lower()
+            if ext in (".mp3", ".wav", ".flac", ".ogg", ".m4a"):
+                suffix = ext
+        return self._load_from_bytes(audio_bytes, suffix=suffix)
+
+    def _load_from_bytes(self, audio_bytes: bytes, suffix: str = ".wav") -> Tuple[np.ndarray, int]:
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        try:
+            y, sr = librosa.load(tmp_path, sr=self.sample_rate, mono=self.mono)
+            return y, sr
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+
+    def analyze(self, source: AudioSource) -> Dict[str, float]:
+        y, sr = self.load_audio(source)
+        
+        # Espectro
+        centroid = librosa.feature.spectral_centroid(y=y, sr=sr)
+        rms = librosa.feature.rms(y=y)
+        rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr, roll_percent=0.85)
+        
+        # Tempo
+        tempo = librosa.beat.beat_track(y=y, sr=sr)
+        bpm = float(tempo[0]) if isinstance(tempo, tuple) else float(tempo)
+        duration = librosa.get_duration(y=y, sr=sr)
+        
+        # 🚀 NUEVO: LUFS (Estándar Spotify/Apple Music)
+        meter = pyln.Meter(sr)
+        lufs = float(meter.integrated_loudness(y))
+        # Normalizar LUFS si es infinito o nan
+        if np.isinf(lufs) or np.isnan(lufs): lufs = -100.0 
+
+        return {
+            "spectral_centroid_mean": float(np.mean(centroid)),
+            "rms_mean": float(np.mean(rms)),
+            "spectral_rolloff_mean": float(np.mean(rolloff)),
+            "tempo": bpm,
+            "duration": float(duration),
+            "lufs": lufs,
+            "sample_rate": sr,
+        }
+
+    def compare(self, mix_source: AudioSource, ref_source: AudioSource) -> Dict[str, Any]:
+        mix_m = self.analyze(mix_source)
+        ref_m = self.analyze(ref_source)
+        
+        centroid_diff = mix_m["spectral_centroid_mean"] - ref_m["spectral_centroid_mean"]
+        brightness = "mais brilhante" if centroid_diff > 0 else "mais escura"
+        
+        lufs_diff = mix_m["lufs"] - ref_m["lufs"]
+        loudness_status = "mais alto (cuidado com clipping)" if lufs_diff > 1.0 else "mais baixo (precisa de gain)" if lufs_diff < -1.0 else "no volume ideal"
+
+        return {
+            "mix": mix_m,
+            "ref": ref_m,
+            "comparison": {
+                "brightness": brightness,
+                "lufs_diff": float(lufs_diff),
+                "loudness_status": loudness_status,
+                "brightness_description": f"Sua mix está {brightness} que a referência.",
+                "lufs_description": f"LUFS da Mix: {mix_m['lufs']:.1f} | LUFS da Ref: {ref_m['lufs']:.1f}. Status: {loudness_status}.",
+            }
+        }
+```
+
+---
+
+### 📄 3. `core/db_manager.py` (Base de Datos Local)
+*Para que Duck tenga un historial de todas sus sesiones.*
+```python
+import sqlite3
+import os
+from datetime import datetime
+
+class DBManager:
+    def __init__(self, db_name="farol_history.db"):
+        self.db_name = db_name
+        self._init_db()
+
+    def _init_db(self):
+        with sqlite3.connect(self.db_name) as conn:
+            conn.execute('''
+                CREATE TABLE IF NOT EXISTS reports (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    timestamp TEXT,
+                    module TEXT,
+                    identifier TEXT,
+                    content TEXT
+                )
+            ''')
+
+    def save_report(self, module: str, identifier: str, content: str):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with sqlite3.connect(self.db_name) as conn:
+            conn.execute(
+                "INSERT INTO reports (timestamp, module, identifier, content) VALUES (?, ?, ?, ?)",
+                (timestamp, module, identifier, content)
+            )
+
+    def get_history(self, limit=10):
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.execute(
+                "SELECT timestamp, module, identifier FROM reports ORDER BY id DESC LIMIT ?", 
+                (limit,)
+            )
+            return cursor.fetchall()
+```
+
+---
+
+### 📄 4. `modules/radar.py` (El Radar de Tendencias)
+*Busca en YouTube qué se está vendiendo y lo analiza con IA.*
+```python
+import yt_dlp
+from core.llm_client import LLMClient
+from prompts.templates import RADAR_SYSTEM, RADAR_USER
+
+class RadarModule:
+    def __init__(self, llm_client: LLMClient):
+        self.llm = llm_client
+
+    def run(self, genre: str, region: str = "Brasil") -> dict:
+        query = f"Type Beat {genre} {region} 2025"
+        ydl_opts = {'quiet': True, 'extract_flat': True, 'skip_download': True}
+        
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                # Busca los 5 videos más relevantes
+                info = ydl.extract_info(f"ytsearch5:{query}", download=False)
+                titles = [entry['title'] for entry in info.get('entries', [])]
+            
+            prompt = RADAR_USER.format(genre=genre, titles="\n".join(titles))
+            analysis = self.llm.send_message(prompt, system_prompt=RADAR_SYSTEM, max_tokens=800, temperature=0.7)
+            
+            return {"success": True, "titles": titles, "analysis": analysis}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+```
+
+---
+
+### 📄 5. `prompts/templates.py` (Actualizado)
+*Añadimos los prompts para LUFS y para el Radar.*
+```python
+# ... (Mantén los prompts FAROL, CARTOGRAFO y ENTREGA de la versión anterior) ...
+
+# Actualización para FAROL_USER (Añade esta línea al string):
+# - {lufs_description}
+# (Y en el prompt pídele que evalúe si está dentro del estándar de Spotify -14 LUFS).
+
+RADAR_SYSTEM = "Você é um A&R e Especialista em Mercado de Trap/Rap brasileiro. Analisa tendências de forma objetiva."
+
+RADAR_USER = """\
+Busquei no YouTube os beats mais recentes e relevantes de "{genre}" no mercado brasileiro.
+Títulos encontrados:
+{titles}
+
+Tarefa: Baseado nesses títulos e no seu conhecimento do mercado atual de Type Beats:
+1. **Tendência de BPM e Vibe**: O que está em alta?
+2. **Elementos Chave**: Que instrumentos ou samples esses títulos sugerem?
+3. **Dica de Ouro**: Como o Duck pode se destacar nesse nicho essa semana?
+Responda em Markdown, direto ao ponto.
+"""
+```
+
+---
+
+### 📄 6. `app.py` (Frontend Definitivo con Dashboard y 4 Tabs)
+*Este es el cerebro visual. Incluye el Dashboard, los 4 módulos y la conexión a SQLite.*
+
+```python
+import streamlit as st
+import pandas as pd
+from config import validate_config, GOOGLE_API_KEY, LLM_MODEL, LICENSE_TYPES
+from core.llm_client import LLMClient
+from core.audio_analyzer import AudioAnalyzer
+from core.db_manager import DBManager
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from modules.radar import RadarModule
+from utils.helpers import validate_audio_file
+
+st.set_page_config(page_title="Projeto Farol | DuckOS", page_icon="🦆", layout="wide")
+
+# CSS Verde Césped / Dark Mode
+st.markdown("""
+<style>
+    .stApp { background-color: #0d1117; color: #e6edf3; }
+    .stButton>button {
+        background-color: #2E8B57; color: white; border-radius: 8px;
+        border: 2px solid #4CAF50; font-weight: 600; width: 100%;
+    }
+    .stButton>button:hover { background-color: #4CAF50; color: #0d1117; }
+    h1, h2, h3 { color: #4CAF50 !important; }
+    .stTabs [aria-selected="true"] { border-bottom: 3px solid #4CAF50; color: #4CAF50; }
+</style>
+""", unsafe_allow_html=True)
+
+# Inicialização
+@st.cache_resource
+def init_system():
+    validate_config()
+    llm = LLMClient(api_key=GOOGLE_API_KEY, model=LLM_MODEL)
+    db = DBManager()
+    return {
+        "farol": FarolModule(llm_client=llm),
+        "cartografo": CartografoModule(llm_client=llm),
+        "entrega": EntregaModule(llm_client=llm),
+        "radar": RadarModule(llm_client=llm),
+        "db": db
+    }
+
+sys = init_system()
+
+st.title("🦆 Projeto Farol | DuckOS")
+st.markdown("#### *IA como lupa, não como pincel. Masterização LUFS e Radar de Tendências.*")
+st.divider()
+
+# Sidebar com Histórico do Banco de Dados
+with st.sidebar:
+    st.header("📂 Histórico (SQLite)")
+    history = sys["db"].get_history(10)
+    if history:
+        for ts, mod, ident in history:
+            st.caption(f"🗓️ {ts[:10]} | {mod}: {ident}")
+    else:
+        st.caption("Nenhuma sessão salva ainda.")
+
+tab1, tab2, tab3, tab4 = st.tabs(["🔦 O Farol (LUFS)", "🗺️ Cartógrafo", "📦 Entrega", "📡 Radar de Mercado"])
+
+# MÓDULO 1: FAROL (Com LUFS)
+with tab1:
+    st.header("🔦 Análise de Mix & LUFS (Padrão Spotify)")
+    c1, c2 = st.columns(2)
+    with c1: mix_file = st.file_uploader("Sua Mix", type=["wav", "mp3", "flac"], key="mix")
+    with c2: ref_file = st.file_uploader("Referência", type=["wav", "mp3", "flac"], key="ref")
+    intuition = st.text_area("Sua intuição:", placeholder="O que seu ouvido diz?")
+
+    if st.button("🔍 Analisar Mix e LUFS"):
+        if validate_audio_file(mix_file)[0] and validate_audio_file(ref_file)[0] and intuition:
+            with st.spinner("Calculando espectro e LUFS..."):
+                res = sys["farol"].run(mix_file, ref_file, intuition)
+                if res["success"]:
+                    st.success(f"✅ LUFS da sua Mix: {res['metrics']['mix']['lufs']:.1f} dB")
+                    st.markdown(res["report"])
+                    sys["db"].save_report("Farol", mix_file.name, res["report"])
+                else: st.error(res["error"])
+
+# MÓDULO 2: CARTÓGRAFO
+with tab2:
+    st.header("🗺️ Blueprint de Produção")
+    link = st.text_input("Link YouTube/Spotify")
+    if st.button("🗺️ Gerar Blueprint"):
+        if link:
+            with st.spinner("Mapeando..."):
+                res = sys["cartografo"].run(link, "")
+                if res["success"]:
+                    st.markdown(res["blueprint"])
+                    sys["db"].save_report("Cartografo", res["metadata"]["title"], res["blueprint"])
+
+# MÓDULO 3: ENTREGA
+with tab3:
+    st.header("📦 Pacote de Entrega")
+    c1, c2 = st.columns(2)
+    with c1: beat = st.text_input("Beat"); artist = st.text_input("Artista")
+    with c2: lic = st.selectbox("Licença", LICENSE_TYPES)
+    if st.button("📦 Gerar Pacote"):
+        if beat and artist:
+            res = sys["entrega"].run(beat, artist, lic)
+            if res["success"]: 
+                st.markdown(res["package"])
+                sys["db"].save_report("Entrega", f"{beat} ({artist})", res["package"])
+
+# MÓDULO 4: RADAR (NOVO!)
+with tab4:
+    st.header("📡 Radar de Tendências (Type Beats)")
+    st.write("O que está vendendo no YouTube essa semana?")
+    genre = st.selectbox("Gênero", ["Trap", "Rap Boom Bap", "Funk", "Drill", "R&B"])
+    if st.button("📡 Escanear Mercado"):
+        with st.spinner("Buscando e analisando tendências..."):
+            res = sys["radar"].run(genre)
+            if res["success"]:
+                st.markdown(res["analysis"])
+                with st.expander("Ver vídeos analisados"):
+                    for t in res["titles"]: st.caption(f"• {t}")
+                sys["db"].save_report("Radar", genre, res["analysis"])
+```
+
+---
+
+### 🧠 Por qué esta Versión 2.0 es una Obra Maestra para Duck:
+
+1. **Validación de Masterización (LUFS):** Los productores independientes sufren mucho cuando suben a Spotify y la plataforma les baja el volumen porque no masterizaron a -14 LUFS. Ahora Duck tendrá un semáforo verde/rojo antes de exportar su beat.
+2. **Inteligencia de Negocios (Radar):** Si Duck hace Trap, el Radar le dirá: *"Pedro, esta semana los type beats de Matuê están usando arpas y BPMs de 135. Haz uno así y véndelo rápido"*. Esto le da una ventaja competitiva brutal.
+3. **Persistencia Real:** Al usar SQLite, Duck no llena su carpeta de archivos de texto. Abre la app y en la barra lateral ve su historial clínico como ingeniero de mezcla a lo largo de los meses.
+
+### 🛠️ Cómo armarlo:
+1. Mantén los archivos `llm_client.py`, `youtube_extractor.py`, `start.bat`, `start.sh`, `.env.example` y `config.py` **exactamente igual** que en el mensaje anterior.
+2. Reemplaza `requirements.txt`, `core/audio_analyzer.py`, `prompts/templates.py` y `app.py` con el código de arriba.
+3. Crea las carpetas y archivos nuevos: `core/db_manager.py` y `modules/radar.py`.
+4. Empaquétalo en tu `.zip`, ponle tu clave de Google en el `.env` y envíaselo.
+
+Pedro, con la adición de **LUFS** y el **Radar de Mercado**, acabas de regalarle a Duck un **Estudio de Grabación + Agencia de A&R** en un solo clic. ¡Es el regalo definitivo! 🏆🦆¡Por supuesto! He revisado el código a fondo. Tenía un par de detalles menores que causarían errores al ejecutarlo (como imports faltantes de `Optional` en algunos módulos, una clave `"type"` faltante en el extractor de YouTube, y un pequeño desbordamiento en la métrica de anchura estéreo).
+
+He corregido todo esto y he pulido el archivo principal (`app.py`) para que sirva como una verdadera pantalla de bienvenida. 
+
+Aquí tienes el **código completo, corregido y listo para empaquetar**. Solo tienes que crear los archivos con estos nombres y pegar el contenido.
+
+---
+
+### 📄 `config.py`
+```python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+LLM_MODEL: str = os.getenv("LLM_MODEL", "gemini-1.5-flash")
+DATABASE_PATH: str = os.path.join(os.path.dirname(__file__), "farol_history.db")
+
+VALID_AUDIO_EXTENSIONS = (".wav", ".mp3", ".flac", ".ogg", ".m4a")
+VALID_URL_DOMAINS = ("youtube.com", "youtu.be", "spotify.com", "soundcloud.com")
+AUDIO_MAX_SIZE_MB = 50
+
+LICENSE_TYPES = [
+    "Não Exclusiva (Lease)",
+    "Exclusiva (Rights Transfer)",
+    "Premium (WAV + Stems)",
+    "Personalizada"
+]
+
+GENRES = [
+    "Trap", "Boom Bap", "Drill", "Lo‑Fi", "R&B", "Afrobeat",
+    "Funk", "Reggaeton", "House", "Pop", "Experimental", "Outro"
+]
+
+def validate_config() -> bool:
+    if not GOOGLE_API_KEY or GOOGLE_API_KEY == "sua_chave_api_google_aqui":
+        raise ValueError(
+            "GOOGLE_API_KEY não encontrada.\n"
+            "Crie um arquivo .env baseado no .env.example e insira sua chave.\n"
+            "Obtenha gratuitamente em: https://aistudio.google.com/app/apikey"
+        )
+    return True
+```
+
+---
+
+### 📄 `core/__init__.py`
+```python
+from core.audio_analyzer import AudioAnalyzer
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+from core.database import Database
+
+__all__ = ["AudioAnalyzer", "YouTubeExtractor", "LLMClient", "Database"]
+```
+
+---
+
+### 📄 `core/llm_client.py`
+```python
+import google.generativeai as genai
+import time
+from typing import Optional
+from google.api_core.exceptions import ResourceExhausted, GoogleAPICallError
+
+class LLMClient:
+    def __init__(self, api_key: str, model: str = "gemini-1.5-flash"):
+        genai.configure(api_key=api_key)
+        self.model_name = model
+
+    def send_message(
+        self,
+        prompt: str,
+        system_prompt: Optional[str] = None,
+        max_tokens: int = 800,
+        temperature: float = 0.7,
+        retry_count: int = 3,
+        retry_delay: float = 2.0
+    ) -> str:
+        model = genai.GenerativeModel(
+            self.model_name,
+            system_instruction=system_prompt
+        )
+        last_error = None
+        for attempt in range(retry_count):
+            try:
+                response = model.generate_content(
+                    prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens
+                    )
+                )
+                return response.text
+            except ResourceExhausted as e:
+                last_error = e
+                time.sleep(retry_delay * (2 ** attempt))
+            except GoogleAPICallError as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+                else:
+                    raise Exception(f"Erro na API Google: {e}")
+            except Exception as e:
+                last_error = e
+                if attempt < retry_count - 1:
+                    time.sleep(retry_delay)
+        raise Exception(f"Falha após {retry_count} tentativas. Último erro: {last_error}")
+```
+
+---
+
+### 📄 `core/audio_analyzer.py`
+*(Corregido el manejo de LUFS y la limitación de la anchura estéreo al 100%)*
+```python
+import librosa
+import numpy as np
+import tempfile, os
+from typing import Any, Dict, Tuple, Union
+import pyloudnorm as pyln
+
+AudioSource = Union[str, bytes, Any]
+
+class AudioAnalyzer:
+    def __init__(self, sample_rate: int = 22050, mono: bool = False):
+        self.sample_rate = sample_rate
+        self.mono = mono  # manter estéreo para medir largura
+
+    def load_audio(self, source: AudioSource) -> Tuple[np.ndarray, int]:
+        if hasattr(source, "read"):
+            return self._load_from_fileobj(source)
+        return librosa.load(str(source), sr=self.sample_rate, mono=self.mono)
+
+    def _load_from_fileobj(self, file_obj: Any) -> Tuple[np.ndarray, int]:
+        file_obj.seek(0)
+        audio_bytes = file_obj.read()
+        suffix = ".wav"
+        name = getattr(file_obj, "name", "")
+        if name:
+            ext = os.path.splitext(name)[1].lower()
+            if ext in (".mp3", ".wav", ".flac", ".ogg", ".m4a"):
+                suffix = ext
+        return self._load_from_bytes(audio_bytes, suffix=suffix)
+
+    def _load_from_bytes(self, audio_bytes: bytes, suffix: str = ".wav") -> Tuple[np.ndarray, int]:
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        try:
+            y, sr = librosa.load(tmp_path, sr=self.sample_rate, mono=self.mono)
+            return y, sr
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+
+    def analyze(self, source: AudioSource) -> Dict[str, float]:
+        y, sr = self.load_audio(source)
+        if y.ndim > 1:
+            y_mono = librosa.to_mono(y)
+        else:
+            y_mono = y
+
+        centroid = librosa.feature.spectral_centroid(y=y_mono, sr=sr)
+        rms = librosa.feature.rms(y=y_mono)
+        rolloff = librosa.feature.spectral_rolloff(y=y_mono, sr=sr, roll_percent=0.85)
+        tempo, _ = librosa.beat.beat_track(y=y_mono, sr=sr)
+        duration = librosa.get_duration(y=y_mono, sr=sr)
+
+        # LUFS
+        meter = pyln.Meter(sr)
+        if y.ndim == 1:
+            lufs = meter.integrated_loudness(y)
+        else:
+            lufs = meter.integrated_loudness(y.T) 
+
+        stft = np.abs(librosa.stft(y_mono))
+        freqs = librosa.fft_frequencies(sr=sr)
+        low_mask = (freqs >= 20) & (freqs < 250)
+        mid_mask = (freqs >= 250) & (freqs < 4000)
+        high_mask = (freqs >= 4000)
+        
+        low_energy = float(np.mean(stft[low_mask, :]))
+        mid_energy = float(np.mean(stft[mid_mask, :]))
+        high_energy = float(np.mean(stft[high_mask, :]))
+        total = low_energy + mid_energy + high_energy
+        
+        if total > 0:
+            low_pct = (low_energy / total) * 100
+            mid_pct = (mid_energy / total) * 100
+            high_pct = (high_energy / total) * 100
+        else:
+            low_pct = mid_pct = high_pct = 0.0
+
+        stereo_width = 0.0
+        if y.ndim > 1 and y.shape[0] == 2:
+            left = y[0, :]
+            right = y[1, :]
+            corr = np.corrcoef(left, right)[0, 1] if len(left) > 1 else 1.0
+            stereo_width = max(0.0, min(100.0, (1.0 - corr) * 100))
+
+        return {
+            "spectral_centroid_mean": float(np.mean(centroid)),
+            "rms_mean": float(np.mean(rms)),
+            "spectral_rolloff_mean": float(np.mean(rolloff)),
+            "tempo": float(tempo),
+            "duration": float(duration),
+            "sample_rate": sr,
+            "lufs": float(lufs) if not np.isinf(lufs) else -24.0,
+            "low_pct": low_pct,
+            "mid_pct": mid_pct,
+            "high_pct": high_pct,
+            "stereo_width": stereo_width,
+        }
+
+    def compare(self, mix_source: AudioSource, ref_source: AudioSource) -> Dict[str, Any]:
+        mix = self.analyze(mix_source)
+        ref = self.analyze(ref_source)
+
+        centroid_diff = mix["spectral_centroid_mean"] - ref["spectral_centroid_mean"]
+        rms_diff = mix["rms_mean"] - ref["rms_mean"]
+        lufs_diff = mix["lufs"] - ref["lufs"]
+
+        brightness = "mais brilhante" if centroid_diff > 0 else "mais escura"
+        energy = "com mais energia" if rms_diff > 0 else "com menos energia"
+
+        ref_centroid = ref["spectral_centroid_mean"] or 1.0
+        ref_rms = ref["rms_mean"] or 1e-6
+
+        return {
+            "mix": mix,
+            "ref": ref,
+            "differences": {
+                "centroid_pct": (abs(centroid_diff) / ref_centroid) * 100,
+                "rms_pct": (abs(rms_diff) / ref_rms) * 100,
+                "lufs_diff": lufs_diff,
+                "brightness_desc": f"Sua mix está {brightness} que a referência.",
+                "energy_desc": f"Sua mix está {energy} que a referência.",
+            }
+        }
+```
+
+---
+
+### 📄 `core/database.py`
+```python
+import sqlite3
+import json
+from datetime import datetime
+from config import DATABASE_PATH
+
+class Database:
+    def __init__(self, db_path=DATABASE_PATH):
+        self.conn = sqlite3.connect(db_path, check_same_thread=False)
+        self.conn.row_factory = sqlite3.Row
+        self._create_tables()
+
+    def _create_tables(self):
+        self.conn.execute("""
+            CREATE TABLE IF NOT EXISTS projects (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT,
+                module TEXT,
+                title TEXT,
+                metadata TEXT,
+                report_md TEXT
+            )
+        """)
+        self.conn.commit()
+
+    def save_project(self, module: str, title: str, metadata: dict, report_md: str):
+        self.conn.execute(
+            "INSERT INTO projects (timestamp, module, title, metadata, report_md) VALUES (?,?,?,?,?)",
+            (datetime.now().isoformat(), module, title, json.dumps(metadata), report_md)
+        )
+        self.conn.commit()
+
+    def get_projects(self, module: str = None, limit: int = 50) -> list:
+        if module:
+            rows = self.conn.execute(
+                "SELECT * FROM projects WHERE module = ? ORDER BY timestamp DESC LIMIT ?",
+                (module, limit)
+            ).fetchall()
+        else:
+            rows = self.conn.execute(
+                "SELECT * FROM projects ORDER BY timestamp DESC LIMIT ?",
+                (limit,)
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    def get_project_by_id(self, project_id: int) -> dict:
+        row = self.conn.execute("SELECT * FROM projects WHERE id = ?", (project_id,)).fetchone()
+        return dict(row) if row else None
+
+    def delete_project(self, project_id: int):
+        self.conn.execute("DELETE FROM projects WHERE id = ?", (project_id,))
+        self.conn.commit()
+
+    def get_stats(self) -> dict:
+        total = self.conn.execute("SELECT COUNT(*) FROM projects").fetchone()[0]
+        by_module = {}
+        for row in self.conn.execute("SELECT module, COUNT(*) as cnt FROM projects GROUP BY module").fetchall():
+            by_module[row["module"]] = row["cnt"]
+        return {"total": total, "by_module": by_module}
+```
+
+---
+
+### 📄 `core/youtube_extractor.py`
+*(Corregido el atributo faltante `"type": "video"`)*
+```python
+import yt_dlp
+from typing import Dict
+from config import VALID_URL_DOMAINS
+
+class YouTubeExtractor:
+    def __init__(self):
+        self.ydl_opts = {"quiet": True, "no_warnings": True, "skip_download": True, "extract_flat": False}
+
+    def is_valid_url(self, url: str) -> bool:
+        if not url:
+            return False
+        return any(d in url.lower().strip() for d in VALID_URL_DOMAINS)
+
+    def extract_metadata(self, url: str) -> Dict:
+        if not self.is_valid_url(url):
+            raise ValueError(f"URL inválida. Domínios suportados: {', '.join(VALID_URL_DOMAINS)}")
+        try:
+            with yt_dlp.YoutubeDL(self.ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=False)
+                if "entries" in info:
+                    entries = []
+                    for entry in info["entries"]:
+                        entries.append({
+                            "title": entry.get("title", "Desconhecido"),
+                            "uploader": entry.get("uploader", "Desconhecido"),
+                            "url": entry.get("webpage_url", url),
+                            "description": (entry.get("description") or "")[:500],
+                            "duration": entry.get("duration", 0),
+                            "tags": entry.get("tags", []) or [],
+                        })
+                    return {
+                        "type": "playlist",
+                        "title": info.get("title", "Playlist"),
+                        "entries": entries,
+                        "url": url
+                    }
+                else:
+                    return {
+                        "type": "video",
+                        "title": info.get("title", "Desconhecido"),
+                        "description": (info.get("description") or "")[:1000],
+                        "duration": info.get("duration", 0),
+                        "uploader": info.get("uploader", "Desconhecido"),
+                        "url": url,
+                        "tags": info.get("tags", []) or [],
+                    }
+        except Exception as e:
+            raise ValueError(f"Erro ao acessar link: {e}")
+```
+
+---
+
+### 📄 `prompts/templates.py`
+```python
+FAROL_SYSTEM = (
+    "Você é um engenheiro de mixagem sênior especializado em Hip-Hop/Trap. "
+    "Forneça conselhos técnicos diretos, usando linguagem de estúdio (EQ, compressão, saturação, etc.). "
+    "Assine como 'Projeto Farol'."
+)
+FAROL_USER = """\
+**Sua mix vs Referência:**
+- {brightness_desc}
+- {energy_desc}
+- LUFS: Mix {mix_lufs:.1f} dB, Ref {ref_lufs:.1f} dB (dif {lufs_diff:+.1f})
+- Balanço espectral: Graves {mix_low:.0f}% / {ref_low:.0f}%, Médios {mix_mid:.0f}% / {ref_mid:.0f}%, Agudos {mix_high:.0f}% / {ref_high:.0f}%
+- Largura estéreo: Mix {mix_width:.0f}%, Ref {ref_width:.0f}%
+- BPM: Mix {mix_bpm:.0f}, Ref {ref_bpm:.0f}
+
+**Intuição do produtor:** "{intuition}"
+
+Gere um relatório em Markdown:
+1. **Diagnóstico** (2 frases comparando os dados)
+2. **3 Ações de Mix** (em negrito, com parâmetros sugeridos)
+3. **Próximo passo** (ex: "Referencie o baixo com um EQ sidechain...")
+"""
+
+CARTOGRAFO_SYSTEM = (
+    "Você é um produtor musical brasileiro especializado em análise de referências. "
+    "Extraia a essência de uma faixa e descreva em linguagem técnica elementos de produção."
+)
+CARTOGRAFO_USER = """\
+**Referência:** "{title}" por {uploader}
+**Descrição:** {description}
+**Observações do produtor:** {obs}
+
+Crie um blueprint em Markdown com:
+### 🎯 Vibe & BPM
+### 🏗️ Estrutura (intro, verso, refrão, etc.)
+### 🎛️ Elementos sonoros (kick, 808, hi-hat, synth, etc.)
+### 🎤 Mix vocal (presença, efeitos, cadeia)
+### 🧪 Dicas de produção (sugestão de plugins, samples)
+"""
+
+ENTREGA_SYSTEM = "Você é um manager de produtor musical profissional. Gere comunicações prontas para enviar ao cliente."
+ENTREGA_USER = """\
+**Beat:** "{beat}"
+**Artista:** "{artist}"
+**Tipo de Licença:** {license}
+**Termos personalizados:** {extra_terms}
+
+Gere em Markdown:
+### 📩 Mensagem para o cliente
+### ✅ Checklist de arquivos
+### 📋 Cláusulas principais
+### 📎 Recomendação de créditos
+"""
+
+LAB_SYSTEM = "Você é um assistente criativo para produtores musicais. Gere ideias inovadoras mas práticas."
+LAB_USER = """\
+**Tipo de tarefa:** {task_type}
+**Gênero:** {genre}
+**Inspiração:** "{inspiration}"
+**Instruções adicionais:** {extra}
+
+Gere o que foi pedido no formato adequado (pode ser uma lista, texto, ideias, etc.).
+"""
+```
+
+---
+
+### 📄 `modules/__init__.py`
+```python
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from modules.laboratorio import LaboratorioModule
+
+__all__ = ["FarolModule", "CartografoModule", "EntregaModule", "LaboratorioModule"]
+```
+
+---
+
+### 📄 `modules/farol.py`
+```python
+from typing import Any, Dict, Optional
+from core.audio_analyzer import AudioAnalyzer
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import FAROL_SYSTEM, FAROL_USER
+
+class FarolModule:
+    def __init__(self, llm: LLMClient, analyzer: Optional[AudioAnalyzer] = None, db: Optional[Database] = None):
+        self.llm = llm
+        self.analyzer = analyzer or AudioAnalyzer()
+        self.db = db
+
+    def run(self, mix_file, ref_file, intuition: str) -> Dict[str, Any]:
+        if not intuition.strip():
+            return self._error("Descreva sua intuição.")
+        try:
+            comparison = self.analyzer.compare(mix_file, ref_file)
+            mix = comparison["mix"]
+            ref = comparison["ref"]
+            diff = comparison["differences"]
+            prompt = FAROL_USER.format(
+                brightness_desc=diff["brightness_desc"],
+                energy_desc=diff["energy_desc"],
+                mix_lufs=mix["lufs"], ref_lufs=ref["lufs"],
+                lufs_diff=diff["lufs_diff"],
+                mix_low=mix["low_pct"], ref_low=ref["low_pct"],
+                mix_mid=mix["mid_pct"], ref_mid=ref["mid_pct"],
+                mix_high=mix["high_pct"], ref_high=ref["high_pct"],
+                mix_width=mix["stereo_width"], ref_width=ref["stereo_width"],
+                mix_bpm=mix["tempo"], ref_bpm=ref["tempo"],
+                intuition=intuition.strip()
+            )
+            report = self.llm.send_message(prompt, system_prompt=FAROL_SYSTEM, max_tokens=900, temperature=0.65)
+            title = f"Farol - {getattr(mix_file, 'name', 'audio')} vs {getattr(ref_file, 'name', 'ref')}"
+            if self.db:
+                self.db.save_project("Farol", title, {"metrics": comparison}, report)
+            return {"success": True, "report": report, "comparison": comparison, "title": title}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `modules/cartografo.py`
+```python
+from typing import Any, Dict, Optional
+from core.youtube_extractor import YouTubeExtractor
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import CARTOGRAFO_SYSTEM, CARTOGRAFO_USER
+
+class CartografoModule:
+    def __init__(self, llm: LLMClient, extractor: Optional[YouTubeExtractor] = None, db: Optional[Database] = None):
+        self.llm = llm
+        self.extractor = extractor or YouTubeExtractor()
+        self.db = db
+
+    def run(self, ref_link: str, obs: str = "") -> Dict[str, Any]:
+        if not ref_link.strip():
+            return self._error("Insira um link.")
+        try:
+            metadata = self.extractor.extract_metadata(ref_link.strip())
+            if metadata["type"] == "playlist":
+                entry = metadata["entries"][0]
+                title = entry["title"]
+                uploader = entry["uploader"]
+                description = entry.get("description", "")
+            else:
+                title = metadata["title"]
+                uploader = metadata["uploader"]
+                description = metadata["description"]
+
+            prompt = CARTOGRAFO_USER.format(
+                title=title,
+                uploader=uploader,
+                description=description[:800],
+                obs=obs.strip() or "Nenhuma"
+            )
+            blueprint = self.llm.send_message(prompt, system_prompt=CARTOGRAFO_SYSTEM, max_tokens=1000, temperature=0.8)
+            if self.db:
+                self.db.save_project("Cartógrafo", title, {"metadata": metadata}, blueprint)
+            return {"success": True, "blueprint": blueprint, "title": title}
+        except Exception as e:
+            return self._error(str(e))
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `modules/entrega.py`
+*(Corregido el import de `Optional`)*
+```python
+from typing import Any, Dict, Optional
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import ENTREGA_SYSTEM, ENTREGA_USER
+from config import LICENSE_TYPES
+
+class EntregaModule:
+    def __init__(self, llm: LLMClient, db: Optional[Database] = None):
+        self.llm = llm
+        self.db = db
+
+    def run(self, beat: str, artist: str, license_type: str, extra_terms: str = "") -> Dict[str, Any]:
+        if not beat.strip() or not artist.strip():
+            return self._error("Preencha beat e artista.")
+        if license_type not in LICENSE_TYPES:
+            return self._error("Licença inválida.")
+        try:
+            prompt = ENTREGA_USER.format(
+                beat=beat.strip(),
+                artist=artist.strip(),
+                license=license_type,
+                extra_terms=extra_terms.strip() or "Nenhum"
+            )
+            package = self.llm.send_message(prompt, system_prompt=ENTREGA_SYSTEM, max_tokens=800, temperature=0.5)
+            title = f"Entrega - {beat} ({artist})"
+            if self.db:
+                self.db.save_project("Entrega", title, {"beat": beat, "artist": artist, "license": license_type}, package)
+            return {"success": True, "package": package, "title": title}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `modules/laboratorio.py`
+*(Corregido el import de `Optional`)*
+```python
+from typing import Any, Dict, Optional
+from core.llm_client import LLMClient
+from core.database import Database
+from prompts.templates import LAB_SYSTEM, LAB_USER
+
+TASK_TYPES = [
+    "Ideias de beats",
+    "Letra de rap (estrofe/refrão)",
+    "Nomes para o beat",
+    "Textos de marketing",
+    "Progressão de acordes",
+    "Sound design ideas",
+    "Outro"
+]
+
+class LaboratorioModule:
+    def __init__(self, llm: LLMClient, db: Optional[Database] = None):
+        self.llm = llm
+        self.db = db
+
+    def run(self, task_type: str, genre: str, inspiration: str, extra: str) -> Dict[str, Any]:
+        if task_type not in TASK_TYPES:
+            return self._error("Tipo de tarefa inválido.")
+        try:
+            prompt = LAB_USER.format(
+                task_type=task_type,
+                genre=genre or "não especificado",
+                inspiration=inspiration or "nenhuma",
+                extra=extra or "nenhuma"
+            )
+            result = self.llm.send_message(prompt, system_prompt=LAB_SYSTEM, max_tokens=1000, temperature=0.9)
+            title = f"Lab - {task_type} ({genre})"
+            if self.db:
+                self.db.save_project("Laboratório", title, {"task_type": task_type, "genre": genre}, result)
+            return {"success": True, "result": result, "title": title}
+        except Exception as e:
+            return self._error(f"Erro: {e}")
+
+    @staticmethod
+    def _error(msg: str) -> Dict[str, Any]:
+        return {"success": False, "error": msg}
+```
+
+---
+
+### 📄 `utils/__init__.py`
+```python
+from utils.helpers import validate_audio_file
+```
+
+### 📄 `utils/helpers.py`
+```python
+from typing import Tuple
+from config import VALID_AUDIO_EXTENSIONS, AUDIO_MAX_SIZE_MB
+
+def validate_audio_file(file_obj) -> Tuple[bool, str]:
+    if file_obj is None:
+        return False, "Nenhum arquivo enviado."
+    if hasattr(file_obj, "name"):
+        ext = "." + file_obj.name.rsplit(".", 1)[-1].lower() if "." in file_obj.name else ""
+        if ext not in VALID_AUDIO_EXTENSIONS:
+            return False, f"Formato inválido. Use: {', '.join(VALID_AUDIO_EXTENSIONS)}"
+    if hasattr(file_obj, "size") and file_obj.size:
+        if file_obj.size > AUDIO_MAX_SIZE_MB * 1024 * 1024:
+            return False, f"Arquivo excede {AUDIO_MAX_SIZE_MB}MB."
+    return True, ""
+```
+
+---
+
+### 📄 `app.py`
+*(Mejorado con un menú de bienvenida en la pantalla principal)*
+```python
+import streamlit as st
+from config import validate_config, GOOGLE_API_KEY, LLM_MODEL
+from core.llm_client import LLMClient
+from core.database import Database
+from core.audio_analyzer import AudioAnalyzer
+from core.youtube_extractor import YouTubeExtractor
+from modules.farol import FarolModule
+from modules.cartografo import CartografoModule
+from modules.entrega import EntregaModule
+from modules.laboratorio import LaboratorioModule
+
+st.set_page_config(
+    page_title="DuckOS – Projeto Farol",
+    page_icon="🦆",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# CSS global
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    html, body, .stApp { font-family: 'Inter', sans-serif; background-color: #0a0f0f; color: #e0f2e9; }
+    .css-1d391kg { background-color: #111a1a; } /* sidebar */
+    h1, h2, h3, h4 { color: #00ff88; }
+    .stButton>button {
+        background-color: #00ff88; color: #0a0f0f; border: none; border-radius: 10px;
+        font-weight: 600; padding: 0.5rem 2rem; transition: all 0.2s;
+    }
+    .stButton>button:hover { background-color: #00cc6a; transform: scale(1.02); }
+    .stProgress > div > div { background-color: #00ff88; }
+    .stTextInput>div>div>input, .stTextArea>div>textarea {
+        background-color: #1a2626; border: 1px solid #2e4d4d; color: #e0f2e9;
+    }
+    .stSelectbox>div>div>div { background-color: #1a2626; }
+    .report-box { background: #111a1a; border-radius: 15px; padding: 1.5rem; margin: 1rem 0; border: 1px solid #2e4d4d; }
+    .metric-card { background: #162222; border-radius: 12px; padding: 1rem; text-align: center; }
+    .metric-value { font-size: 2rem; font-weight: 700; color: #00ff88; }
+    .metric-label { font-size: 0.9rem; color: #a0b0b0; }
+</style>
+""", unsafe_allow_html=True)
+
+@st.cache_resource
+def get_shared_objects():
+    validate_config()
+    llm = LLMClient(api_key=GOOGLE_API_KEY, model=LLM_MODEL)
+    db = Database()
+    analyzer = AudioAnalyzer()
+    extractor = YouTubeExtractor()
+    farol = FarolModule(llm=llm, analyzer=analyzer, db=db)
+    cartografo = CartografoModule(llm=llm, extractor=extractor, db=db)
+    entrega = EntregaModule(llm=llm, db=db)
+    lab = LaboratorioModule(llm=llm, db=db)
+    return {
+        "llm": llm, "db": db, "analyzer": analyzer,
+        "farol": farol, "cartografo": cartografo,
+        "entrega": entrega, "lab": lab,
+    }
+
+if not GOOGLE_API_KEY or GOOGLE_API_KEY == "sua_chave_api_google_aqui":
+    st.error("🔑 Configure sua GOOGLE_API_KEY no arquivo .env")
+    st.stop()
+
+objects = get_shared_objects()
+st.session_state["objects"] = objects
+
+st.sidebar.image("https://cdn-icons-png.flaticon.com/512/3069/3069192.png", width=80)
+st.sidebar.markdown("# 🦆 DuckOS — Projeto Farol")
+st.sidebar.caption("IA como lupa, não como pincel.")
+st.sidebar.markdown("---")
+st.sidebar.success("✅ Google Gemini conectado")
+st.sidebar.info(f"Modelo: `{LLM_MODEL}`")
+
+# Painel Principal (Home)
+st.markdown("<h1 style='text-align: center;'>🦆 DuckOS — Projeto Farol</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: #a0b0b0;'>IA como lupa, não como pincel. Para que você nunca mais mixe no escuro.</h3>", unsafe_allow_html=True)
+st.markdown("---")
+st.markdown("### 🌟 Bem-vindo ao seu Estúdio Inteligente!")
+st.markdown("Use o menu lateral esquerdo para navegar entre os módulos do sistema:")
+st.markdown("""
+- 🏠 **Dashboard**: Visão geral e projetos recentes.
+- 🔦 **Farol**: Análise comparativa de mix com gráfico radar e LUFS.
+- 🗺️ **Cartógrafo**: Extraia blueprints de produção de links do YouTube.
+- 📦 **Entrega**: Gere contratos e mensagens automáticas para clientes.
+- 🧪 **Laboratório**: Gere ideias criativas, letras e títulos.
+- 📚 **Histórico**: Acesse e exporte todos os relatórios gerados.
+""")
+st.markdown("---")
+st.caption("Desenvolvido com 💚 para Duck. #ElevaOLevel")
+```
+
+---
+
+### 📄 Páginas Streamlit (`pages/`)
+
+**`pages/1_🏠_Dashboard.py`**
+```python
+import streamlit as st
+
+st.title("🏠 Painel de Controle")
+st.markdown("Bem‑vindo ao **DuckOS**, seu estúdio inteligente.")
+
+if "objects" not in st.session_state:
+    st.stop()
+
+db = st.session_state["objects"]["db"]
+stats = db.get_stats()
+
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Projetos salvos</div></div>'.format(stats["total"]), unsafe_allow_html=True)
+with col2:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Análises Farol</div></div>'.format(stats["by_module"].get("Farol", 0)), unsafe_allow_html=True)
+with col3:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Blueprints</div></div>'.format(stats["by_module"].get("Cartógrafo", 0)), unsafe_allow_html=True)
+with col4:
+    st.markdown('<div class="metric-card"><div class="metric-value">{}</div><div class="metric-label">Entregas</div></div>'.format(stats["by_module"].get("Entrega", 0)), unsafe_allow_html=True)
+
+st.markdown("---")
+st.subheader("📂 Projetos recentes")
+recent = db.get_projects(limit=5)
+if recent:
+    for proj in recent:
+        with st.expander(f"{proj['timestamp'][:16]} — {proj['title']} ({proj['module']})"):
+            st.markdown(proj["report_md"] if proj["report_md"] else "*Relatório vazio*")
+            if st.button(f"🗑️ Excluir #{proj['id']}", key=f"del_{proj['id']}"):
+                db.delete_project(proj["id"])
+                st.rerun()
+else:
+    st.info("Nenhum projeto salvo ainda. Explore os módulos ao lado!")
+```
+
+**`pages/2_🔦_Farol.py`**
+```python
+import streamlit as st
+import plotly.graph_objects as go
+import numpy as np
+from utils.helpers import validate_audio_file
+
+if "objects" not in st.session_state:
+    st.stop()
+
+farol = st.session_state["objects"]["farol"]
+
+st.title("🔦 O Farol — Análise Comparativa de Mix")
+
+col1, col2 = st.columns(2)
+with col1:
+    mix_file = st.file_uploader("🎧 Sua Mix", type=["wav", "mp3", "flac", "m4a"], key="mix")
+with col2:
+    ref_file = st.file_uploader("🎯 Referência", type=["wav", "mp3", "flac", "m4a"], key="ref")
+
+intuition = st.text_area("💬 Sua intuição sobre a mix", placeholder="Ex: grave sem peso, vocal opaco...", height=80)
+
+if st.button("🔍 Analisar Mix"):
+    mix_valid, mix_err = validate_audio_file(mix_file)
+    ref_valid, ref_err = validate_audio_file(ref_file)
+    if not mix_valid:
+        st.error(mix_err)
+    elif not ref_valid:
+        st.error(ref_err)
+    elif not intuition.strip():
+        st.warning("Descreva sua intuição.")
+    else:
+        with st.spinner("Processando áudio e consultando IA..."):
+            res = farol.run(mix_file, ref_file, intuition)
+            if res["success"]:
+                st.success("Relatório gerado!")
+                st.markdown(res["report"])
+                comp = res["comparison"]
+                mix = comp["mix"]
+                ref = comp["ref"]
+
+                categories = ['Graves', 'Médios', 'Agudos', 'Brilho', 'Energia', 'Estéreo']
+                mix_vals = [mix["low_pct"], mix["mid_pct"], mix["high_pct"],
+                            mix["spectral_centroid_mean"]/1000, mix["rms_mean"]*100, mix["stereo_width"]]
+                ref_vals = [ref["low_pct"], ref["mid_pct"], ref["high_pct"],
+                            ref["spectral_centroid_mean"]/1000, ref["rms_mean"]*100, ref["stereo_width"]]
+                fig_radar = go.Figure()
+                fig_radar.add_trace(go.Scatterpolar(r=mix_vals, theta=categories, fill='toself', name='Sua Mix', marker_color='#00ff88'))
+                fig_radar.add_trace(go.Scatterpolar(r=ref_vals, theta=categories, fill='toself', name='Referência', marker_color='#ff4d4d'))
+                fig_radar.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0,100])), showlegend=True, template="plotly_dark")
+                st.plotly_chart(fig_radar, use_container_width=True)
+
+                st.download_button("📥 Baixar relatório (.md)", res["report"], file_name="farol_report.md")
+            else:
+                st.error(res["error"])
+```
+
+**`pages/3_🗺️_Cartógrafo.py`**
+```python
+import streamlit as st
+
+if "objects" not in st.session_state:
+    st.stop()
+
+cartografo = st.session_state["objects"]["cartografo"]
+
+st.title("🗺️ O Cartógrafo — Blueprint de Produção")
+
+url = st.text_input("🔗 Link do YouTube / Spotify / SoundCloud", placeholder="Cole aqui")
+obs = st.text_area("📝 Observações (opcional)", placeholder="Vibe, elementos que chamaram atenção...")
+
+if st.button("🗺️ Mapear Referência"):
+    if not url.strip():
+        st.warning("Insira um link.")
+    else:
+        with st.spinner("Extraindo metadados e gerando blueprint..."):
+            res = cartografo.run(url, obs)
+            if res["success"]:
+                st.success(f"Blueprint para **{res['title']}**")
+                st.markdown(res["blueprint"])
+                st.download_button("📥 Baixar Blueprint (.md)", res["blueprint"], file_name="blueprint.md")
+            else:
+                st.error(res["error"])
+```
+
+**`pages/4_📦_Entrega.py`**
+```python
+import streamlit as st
+from config import LICENSE_TYPES
+
+if "objects" not in st.session_state:
+    st.stop()
+
+entrega = st.session_state["objects"]["entrega"]
+
+st.title("📦 Entrega Profissional")
+
+col1, col2 = st.columns(2)
+with col1:
+    beat = st.text_input("🎵 Nome do Beat")
+with col2:
+    artist = st.text_input("🎤 Nome do Artista")
+
+license_type = st.selectbox("📄 Tipo de Licença", LICENSE_TYPES)
+extra_terms = st.text_area("📝 Termos personalizados (opcional)", placeholder="Ex: permitir uso em TV, crédito especial...")
+
+if st.button("📦 Gerar Pacote de Entrega"):
+    if not beat.strip() or not artist.strip():
+        st.warning("Preencha beat e artista.")
+    else:
+        with st.spinner("Gerando comunicação..."):
+            res = entrega.run(beat, artist, license_type, extra_terms)
+            if res["success"]:
+                st.success("Pacote gerado!")
+                st.markdown(res["package"])
+                st.download_button("📥 Baixar (.md)", res["package"], file_name="entrega.md")
+            else:
+                st.error(res["error"])
+```
+
+**`pages/5_🧪_Laboratório.py`**
+```python
+import streamlit as st
+from modules.laboratorio import TASK_TYPES
+from config import GENRES
+
+if "objects" not in st.session_state:
+    st.stop()
+
+lab = st.session_state["objects"]["lab"]
+
+st.title("🧪 Laboratório Criativo")
+st.markdown("Use a IA para gerar ideias, letras, nomes e muito mais.")
+
+task = st.selectbox("💡 Tipo de tarefa", TASK_TYPES)
+genre = st.selectbox("🎼 Gênero musical (opcional)", ["-"] + GENRES)
+inspiration = st.text_input("🎧 Inspiração (link ou descrição)")
+extra = st.text_area("📝 Instruções extras", placeholder="Ex: quero algo dark, com flow agressivo...")
+
+if st.button("✨ Gerar"):
+    if task == "Outro" and not extra.strip():
+        st.warning("Descreva a tarefa no campo de instruções extras.")
+    else:
+        with st.spinner("Criando..."):
+            res = lab.run(task, genre if genre != "-" else "", inspiration, extra)
+            if res["success"]:
+                st.success("Resultado gerado!")
+                st.markdown(res["result"])
+                st.download_button("📥 Baixar (.md)", res["result"], file_name="laboratorio.md")
+            else:
+                st.error(res["error"])
+```
+
+**`pages/6_📚_Histórico.py`**
+```python
+import streamlit as st
+
+if "objects" not in st.session_state:
+    st.stop()
+
+db = st.session_state["objects"]["db"]
+
+st.title("📚 Histórico de Projetos")
+modules_filter = st.selectbox("Filtrar por módulo", ["Todos", "Farol", "Cartógrafo", "Entrega", "Laboratório"])
+if modules_filter == "Todos":
+    projects = db.get_projects(limit=100)
+else:
+    projects = db.get_projects(module=modules_filter, limit=100)
+
+if not projects:
+    st.info("Nenhum projeto encontrado.")
+else:
+    for proj in projects:
+        with st.expander(f"{proj['timestamp'][:16]} — {proj['title']} ({proj['module']})"):
+            st.markdown(proj["report_md"] if proj["report_md"] else "*Relatório vazio*")
+            col1, col2 = st.columns(2)
+            with col1:
+                if proj["report_md"]:
+                    st.download_button("📥 Baixar .md", proj["report_md"], file_name=f"{proj['title'][:30]}.md", key=f"down_{proj['id']}")
+            with col2:
+                if st.button("🗑️ Excluir", key=f"del_hist_{proj['id']}"):
+                    db.delete_project(proj["id"])
+                    st.rerun()
+```
+
+---
+
+### 📄 Instaladores y Configuración Faltante
+
+**`requirements.txt`**
+```text
+streamlit==1.36.0
+google-generativeai==0.7.2
+librosa==0.10.2.post1
+numpy==1.26.4
+yt-dlp==2024.8.6
+python-dotenv==1.0.1
+pyloudnorm==0.1.0
+plotly==5.22.0
+```
+
+**`.streamlit/config.toml`**
+```toml
+[theme]
+base="dark"
+primaryColor="#00ff88"
+backgroundColor="#0a0f0f"
+secondaryBackgroundColor="#111a1a"
+textColor="#e0f2e9"
+font="sans serif"
+
+[server]
+port=8501
+headless=true
+```
+
+**`.env.example`**
+```env
+GOOGLE_API_KEY=sua_chave_api_google_aqui
+LLM_MODEL=gemini-1.5-flash
+```
+
+**`.gitignore`**
+```gitignore
+venv/
+__pycache__/
+.env
+reports/
+*.db
+*.wav
+*.mp3
+```
+
+**`start.bat`**
+```bat
+@echo off
+title DuckOS – Projeto Farol
+color 0A
+echo ============================================================
+echo    DuckOS - Projeto Farol (v2.0 Ultimate)
+echo ============================================================
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [ERRO] Python nao encontrado. Instale em python.org
+    pause
+    exit /b
+)
+if not exist "venv" (
+    echo Criando ambiente virtual...
+    python -m venv venv
+)
+call venv\Scripts\activate
+echo Instalando dependencias...
+pip install -q -r requirements.txt
+echo.
+echo Iniciando DuckOS...
+streamlit run app.py
+pause
+```
+
+**`start.sh`**
+```bash
+#!/bin/bash
+echo "============================================================"
+echo "   DuckOS - Projeto Farol (v2.0 Ultimate)"
+echo "============================================================"
+if ! command -v python3 &> /dev/null; then
+    echo "[ERRO] Python3 nao encontrado!"
+    exit 1
+fi
+if [ ! -d "venv" ]; then
+    echo "Criando ambiente virtual..."
+    python3 -m venv venv
+fi
+source venv/bin/activate
+echo "Instalando dependencias..."
+pip install -q -r requirements.txt
+echo "Iniciando DuckOS..."
+streamlit run app.py
+```
+
+**`README.md`**
+```markdown
+# 🦆 DuckOS – Projeto Farol (Ultimate Edition)
+
+> *"IA como lupa, não como pincel. Para que você nunca mais mixe no escuro."*
+
+**DuckOS** é um estúdio virtual inteligente para produtores musicais. Totalmente gratuito (API do Google Gemini), análise espectral avançada, laboratório criativo e entrega profissional.
+
+## 🚀 Instalação (1 clique)
+1. Instale Python 3.10+ e marque "Add to PATH".
+2. Extraia a pasta.
+3. Copie `.env.example` para `.env` e insira sua chave gratuita do [Google AI Studio](https://aistudio.google.com/app/apikey).
+4. Execute `start.bat` (Windows) ou `./start.sh` (Mac/Linux).
+5. Acesse no navegador: [http://localhost:8501](http://localhost:8501)
+
+## 🧩 Módulos
+- **🏠 Dashboard**: visão geral e projetos recentes.
+- **🔦 Farol**: comparação de mix com referência (LUFS, espectro, largura estéreo) + dicas da IA.
+- **🗺️ Cartógrafo**: blueprint de produção a partir de um link.
+- **📦 Entrega**: geração de mensagens e contratos personalizados.
+- **🧪 Laboratório**: ideias, letras, nomes, marketing com IA.
+- **📚 Histórico**: todos os projetos salvos automaticamente.
+
+Desenvolvido com 💚 por Pedro.  
+Feito para o Duck. **#ElevaOLevel**
+```

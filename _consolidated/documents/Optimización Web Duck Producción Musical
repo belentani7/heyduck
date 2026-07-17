@@ -1,0 +1,423 @@
+{
+  "runSettings": {
+    "temperature": 1.0,
+    "model": "models/gemini-3-flash-preview",
+    "topP": 0.95,
+    "topK": 64,
+    "maxOutputTokens": 65536,
+    "safetySettings": [{
+      "category": "HARM_CATEGORY_HARASSMENT",
+      "threshold": "OFF"
+    }, {
+      "category": "HARM_CATEGORY_HATE_SPEECH",
+      "threshold": "OFF"
+    }, {
+      "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+      "threshold": "OFF"
+    }, {
+      "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+      "threshold": "OFF"
+    }],
+    "responseMimeType": "application/json",
+    "enableCodeExecution": false,
+    "responseSchema": {
+      "type": "OBJECT",
+      "properties": {
+        "response": {
+          "type": "STRING"
+        }
+      }
+    },
+    "enableSearchAsATool": true,
+    "enableBrowseAsATool": true,
+    "enableAutoFunctionResponse": false,
+    "thinkingBudget": -1,
+    "googleSearch": {
+    },
+    "thinkingLevel": "THINKING_HIGH",
+    "enableImageSearch": false,
+    "enableGoogleMaps": false,
+    "enableAgentThinkingSummariesControl": false,
+    "enableAgentVisualizationControl": false,
+    "enableAgentCollaborativePlanningControl": false
+  },
+  "systemInstruction": {
+  },
+  "chunkedPrompt": {
+    "chunks": [{
+      "driveDocument": {
+        "id": "1jBSnedswnLsXeSEO3S3b3i_uuLOruodr"
+      },
+      "role": "user",
+      "tokenCount": 23474,
+      "createTime": "2026-06-16T08:29:13.296Z"
+    }, {
+      "driveImage": {
+        "id": "1nVB80R8NqFPysiYopZUPZRWyUOyCvIi4"
+      },
+      "role": "user",
+      "tokenCount": 1111,
+      "createTime": "2026-06-16T08:29:13.296Z"
+    }, {
+      "driveImage": {
+        "id": "1-jv0fcaCZTHyUdVJ-_9-D9aTwuRHRoJI"
+      },
+      "role": "user",
+      "tokenCount": 1108,
+      "createTime": "2026-06-16T08:29:13.296Z"
+    }, {
+      "driveImage": {
+        "id": "1QnklpCyUFd3xxppDKcakzq_bxDKX_p1f"
+      },
+      "role": "user",
+      "tokenCount": 1101,
+      "createTime": "2026-06-16T08:29:13.296Z"
+    }, {
+      "text": "leete el txt, usa tus plugins, skills al maximo, usa poco tokens la web ya esta practicamente hecha. intenta aunque no tengas. mimetizar motion, huggiesfiedl no se como se llama y google ux iu",
+      "role": "user",
+      "tokenCount": 50,
+      "createTime": "2026-06-16T08:29:13.296Z"
+    }, {
+      "text": "**Analyzing Website Requirements**\n\nI\u0027ve been poring over the \u0027duck web.txt\u0027 transcript. It\u0027s a goldmine of insights into the specific needs for this music producer\u0027s website. The conversation with ChatGPT clarified technical specifications and design expectations, especially the code snippets. The main goals are coming into focus.\n\n\n**Defining Website Scope**\n\nI\u0027m now zeroing in on the specific technical requirements for the website, focusing on the desired animations and user interface. The aim is to create effects similar to those found in GSAP or Framer Motion, but using standard HTML, CSS, and JavaScript. We\u0027re keeping a tight rein on tokens, aiming for concise, high-quality code. The website will have Portuguese as the main language, with Spanish and English translations. The brand elements, like the color palette and visual style (industrial, military green, technical premium with audio compression as a visual metaphor) are defined. The website structure is also complete, covering areas like the hero section, stats display, about section, portfolio, services, process, and a contact section.\n\n\n**Refining Technical Specifications**\n\nI\u0027m now implementing improvements based on earlier feedback. I\u0027m focusing on a visual \"ducking\" effect using CSS transforms, refining the typography and micro-interactions for a high-fidelity UI, and constructing robust multi-language logic. I\u0027m also planning the new layout, based on CSS Grid. The header will be floating and glassmorphic, and the hero section will feature large typography and a parallax studio image. The logo design needs to be bold. I\u0027ll use IntersectionObserver for scroll-triggered animations.\n\n\n",
+      "role": "model",
+      "tokenCount": 830,
+      "isThought": true,
+      "thinkingBudget": -1,
+      "parts": [{
+        "text": "**Analyzing Website Requirements**\n\nI\u0027ve been poring over the \u0027duck web.txt\u0027 transcript. It\u0027s a goldmine of insights into the specific needs for this music producer\u0027s website. The conversation with ChatGPT clarified technical specifications and design expectations, especially the code snippets. The main goals are coming into focus.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Defining Website Scope**\n\nI\u0027m now zeroing in on the specific technical requirements for the website, focusing on the desired animations and user interface. The aim is to create effects similar to those found in GSAP or Framer Motion, but using standard HTML, CSS, and JavaScript. We\u0027re keeping a tight rein on tokens, aiming for concise, high-quality code. The website will have Portuguese as the main language, with Spanish and English translations. The brand elements, like the color palette and visual style (industrial, military green, technical premium with audio compression as a visual metaphor) are defined. The website structure is also complete, covering areas like the hero section, stats display, about section, portfolio, services, process, and a contact section.\n\n\n",
+        "thought": true
+      }, {
+        "text": "**Refining Technical Specifications**\n\nI\u0027m now implementing improvements based on earlier feedback. I\u0027m focusing on a visual \"ducking\" effect using CSS transforms, refining the typography and micro-interactions for a high-fidelity UI, and constructing robust multi-language logic. I\u0027m also planning the new layout, based on CSS Grid. The header will be floating and glassmorphic, and the hero section will feature large typography and a parallax studio image. The logo design needs to be bold. I\u0027ll use IntersectionObserver for scroll-triggered animations.\n\n\n",
+        "thought": true
+      }],
+      "createTime": "2026-06-16T08:30:01.967Z"
+    }, {
+      "text": "Aquí tienes la versión definitiva de la web para **DUCK Producción Musical**. He optimizado el código para que sea **High-Fidelity**, aplicando principios de **Google UX (Material 3)**, movimientos tipo **Framer Motion** (usando CSS avanzado) y la estética \"industrial-premium\" que pide el proyecto.\n\nHe integrado el concepto de **\"Ducking\"** (compresión visual): los elementos reaccionan al scroll como si un \"kick\" de audio los comprimiera.\n\n```html\n\u003c!DOCTYPE html\u003e\n\u003chtml lang\u003d\"pt\"\u003e\n\u003chead\u003e\n    \u003cmeta charset\u003d\"UTF-8\"\u003e\n    \u003cmeta name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1.0\"\u003e\n    \u003ctitle\u003eDUCK PROD | High-Fidelity Audio Production\u003c/title\u003e\n    \u003clink rel\u003d\"preconnect\" href\u003d\"https://fonts.googleapis.com\"\u003e\n    \u003clink href\u003d\"https://fonts.googleapis.com/css2?family\u003dInter:wght@300;500;900\u0026family\u003dSpace+Grotesk:wght@300;700\u0026display\u003dswap\" rel\u003d\"stylesheet\"\u003e\n    \u003cscript src\u003d\"https://unpkg.com/lucide@latest\"\u003e\u003c/script\u003e\n    \u003cstyle\u003e\n        :root {\n            --bg: #0a0e08;\n            --duck-green: #39582f;\n            --duck-acid: #9acb6b;\n            --duck-cream: #efe7d0;\n            --glass: rgba(255, 255, 255, 0.03);\n            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }\n        \n        body {\n            background-color: var(--bg);\n            color: var(--duck-cream);\n            font-family: \u0027Inter\u0027, sans-serif;\n            overflow-x: hidden;\n            line-height: 1.6;\n        }\n\n        /* High Fidelity Motion - Smooth Scroll */\n        html { scroll-behavior: smooth; }\n\n        /* Floating Nav */\n        nav {\n            position: fixed;\n            top: 20px; width: 90%; left: 5%;\n            padding: 15px 30px;\n            background: var(--glass);\n            backdrop-filter: blur(15px);\n            border: 1px solid rgba(255,255,255,0.1);\n            border-radius: 100px;\n            display: flex; justify-content: space-between; align-items: center;\n            z-index: 1000;\n        }\n\n        .lang-switcher button {\n            background: none; border: none; color: var(--duck-cream);\n            cursor: pointer; font-family: \u0027Space Grotesk\u0027; font-weight: 700;\n            margin-left: 10px; opacity: 0.5; transition: 0.3s;\n        }\n        .lang-switcher button.active { opacity: 1; color: var(--duck-acid); }\n\n        /* Hero Section - Visual Ducking Effect */\n        .hero {\n            height: 100vh;\n            display: flex; flex-direction: column; justify-content: center; align-items: center;\n            text-align: center; background: radial-gradient(circle at center, #1a2e15 0%, var(--bg) 70%);\n            position: relative; padding: 20px;\n        }\n\n        .hero-logo {\n            font-family: \u0027Space Grotesk\u0027; font-size: clamp(80px, 20vw, 280px);\n            font-weight: 900; letter-spacing: -0.05em; line-height: 0.8;\n            color: var(--duck-green); transition: var(--transition);\n        }\n\n        .hero-logo span { color: var(--duck-acid); display: inline-block; }\n\n        .tagline {\n            font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.3em;\n            margin-top: 20px; color: var(--duck-acid); opacity: 0.8;\n        }\n\n        /* Section Layout */\n        section { padding: 100px 8%; max-width: 1400px; margin: auto; }\n\n        .grid-stats {\n            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n            gap: 20px; margin-top: -50px;\n        }\n\n        .stat-card {\n            background: var(--glass); padding: 40px; border-radius: 24px;\n            border: 1px solid rgba(154, 203, 107, 0.1);\n            text-align: center; transition: var(--transition);\n        }\n\n        .stat-card:hover { transform: translateY(-10px); background: rgba(154, 203, 107, 0.05); }\n\n        .stat-card h2 { font-size: 3rem; color: var(--duck-acid); margin-bottom: 5px; }\n\n        /* Portfolio - Music Industry Style */\n        .genre-box { margin-bottom: 60px; }\n        .genre-title {\n            font-family: \u0027Space Grotesk\u0027; font-size: 0.9rem; letter-spacing: 0.4em;\n            text-transform: uppercase; color: var(--duck-acid); margin-bottom: 30px;\n            display: flex; align-items: center; gap: 15px;\n        }\n        .genre-title::after { content: \u0027\u0027; height: 1px; flex: 1; background: var(--duck-green); }\n\n        .track-list { display: grid; gap: 10px; }\n        .track-item {\n            display: flex; justify-content: space-between; padding: 20px;\n            background: var(--glass); border-radius: 12px; transition: 0.3s;\n            cursor: pointer; border: 1px solid transparent;\n        }\n        .track-item:hover { border-color: var(--duck-acid); background: #ffffff0a; padding-left: 30px; }\n\n        /* Motion Classes */\n        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }\n        .reveal.active { opacity: 1; transform: translateY(0); }\n\n        /* \"Ducking\" Animation on Interaction */\n        .duck-trigger:active { transform: scale(0.95); transition: 0.1s; }\n\n        footer { text-align: center; padding: 60px; opacity: 0.4; font-size: 0.8rem; }\n\n        @media (max-width: 768px) {\n            nav { padding: 10px 20px; }\n            .hero-logo { font-size: 100px; }\n        }\n    \u003c/style\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n\n    \u003cnav\u003e\n        \u003cdiv style\u003d\"font-family:\u0027Space Grotesk\u0027; font-weight:900; color:var(--duck-acid)\"\u003eDUCK.\u003c/div\u003e\n        \u003cdiv class\u003d\"lang-switcher\"\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027pt\u0027)\" class\u003d\"active\"\u003ePT\u003c/button\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027es\u0027)\"\u003eES\u003c/button\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027en\u0027)\"\u003eEN\u003c/button\u003e\n        \u003c/div\u003e\n    \u003c/nav\u003e\n\n    \u003cdiv class\u003d\"hero\"\u003e\n        \u003cdiv class\u003d\"hero-logo reveal\"\u003eDU\u003cspan\u003eC\u003c/span\u003eK\u003c/div\u003e\n        \u003cdiv class\u003d\"tagline reveal\" id\u003d\"hero-tag\"\u003eProdução Musical • Mix • Master\u003c/div\u003e\n        \u003cdiv style\u003d\"margin-top: 40px;\" class\u003d\"reveal\"\u003e\n            \u003ci data-lucide\u003d\"chevron-down\" style\u003d\"color:var(--duck-acid); animation: bounce 2s infinite;\"\u003e\u003c/i\u003e\n        \u003c/div\u003e\n    \u003c/div\u003e\n\n    \u003csection class\u003d\"grid-stats\"\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-streams\"\u003e36M+\u003c/h2\u003e\n            \u003cp\u003eStreams\u003c/p\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-tracks\"\u003e40+\u003c/h2\u003e\n            \u003cp data-key\u003d\"releases\"\u003eLançamentos\u003c/p\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-exp\"\u003e12+\u003c/h2\u003e\n            \u003cp data-key\u003d\"years\"\u003eAnos de Carreira\u003c/p\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003csection id\u003d\"portfolio\"\u003e\n        \u003cdiv class\u003d\"genre-box reveal\"\u003e\n            \u003cdiv class\u003d\"genre-title\"\u003ePOP / POP BR\u003c/div\u003e\n            \u003cdiv class\u003d\"track-list\"\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003ePosturadona\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eLuiz Cinnamon\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eTititi\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eLeones\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eI Wrote a Song\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eBelentani\u003c/span\u003e\u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n\n        \u003cdiv class\u003d\"genre-box reveal\"\u003e\n            \u003cdiv class\u003d\"genre-title\"\u003eTRAP / HIPHOP\u003c/div\u003e\n            \u003cdiv class\u003d\"track-list\"\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eOuro Rosê\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDayo\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eMoney Way\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDlok\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eEP Veneno\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDuck\u003c/span\u003e\u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003csection id\u003d\"contact\" style\u003d\"text-align: center;\"\u003e\n        \u003ch3 class\u003d\"reveal\" data-key\u003d\"contact-head\" style\u003d\"font-family:\u0027Space Grotesk\u0027; font-size:2.5rem; margin-bottom:30px;\"\u003eVAMOS CRIAR?\u003c/h3\u003e\n        \u003ca href\u003d\"https://wa.me/5579996026590\" class\u003d\"duck-trigger\" style\u003d\"display:inline-block; padding: 20px 50px; background:var(--duck-acid); color:var(--bg); text-decoration:none; border-radius:100px; font-weight:900; letter-spacing:2px;\"\u003eWHATSAPP\u003c/a\u003e\n        \u003cdiv style\u003d\"margin-top: 30px; display:flex; justify-content:center; gap:20px;\"\u003e\n            \u003ca href\u003d\"https://instagram.com/duck4s\" style\u003d\"color:var(--duck-cream)\"\u003e\u003ci data-lucide\u003d\"instagram\"\u003e\u003c/i\u003e\u003c/a\u003e\n            \u003ca href\u003d\"mailto:duck-beats@hotmail.com\" style\u003d\"color:var(--duck-cream)\"\u003e\u003ci data-lucide\u003d\"mail\"\u003e\u003c/i\u003e\u003c/a\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003cfooter\u003e\n        \u0026copy; 2026 DUCK PRODUÇÃO MUSICAL | RECIFE • ARACAJU • BRASIL\n    \u003c/footer\u003e\n\n    \u003cscript\u003e\n        // Initialize Lucide Icons\n        lucide.createIcons();\n\n        // High-Fidelity Language Content\n        const content \u003d {\n            pt: {\n                tag: \"Produção Musical • Beatmaker • Mix • Master\",\n                releases: \"Lançamentos\",\n                years: \"Anos de Experiência\",\n                contactHead: \"VAMOS CRIAR?\",\n            },\n            es: {\n                tag: \"Producción Musical • Beatmaker • Mezcla • Master\",\n                releases: \"Lanzamientos\",\n                years: \"Años de Experiencia\",\n                contactHead: \"¿VAMOS A CREAR?\",\n            },\n            en: {\n                tag: \"Music Production • Beatmaker • Mixing • Mastering\",\n                releases: \"Releases\",\n                years: \"Years of Experience\",\n                contactHead: \"LET\u0027S CREATE?\",\n            }\n        };\n\n        function changeLang(lang) {\n            document.querySelectorAll(\u0027.lang-switcher button\u0027).forEach(b \u003d\u003e b.classList.remove(\u0027active\u0027));\n            event.target.classList.add(\u0027active\u0027);\n            \n            document.getElementById(\u0027hero-tag\u0027).innerText \u003d content[lang].tag;\n            document.querySelector(\u0027[data-key\u003d\"releases\"]\u0027).innerText \u003d content[lang].releases;\n            document.querySelector(\u0027[data-key\u003d\"years\"]\u0027).innerText \u003d content[lang].years;\n            document.querySelector(\u0027[data-key\u003d\"contact-head\"]\u0027).innerText \u003d content[lang].contactHead;\n        }\n\n        // Reveal animations on scroll\n        const observer \u003d new IntersectionObserver((entries) \u003d\u003e {\n            entries.forEach(entry \u003d\u003e {\n                if (entry.isIntersecting) {\n                    entry.target.classList.add(\u0027active\u0027);\n                }\n            });\n        }, { threshold: 0.1 });\n\n        document.querySelectorAll(\u0027.reveal\u0027).forEach(el \u003d\u003e observer.observe(el));\n\n        // Sidechain Ducking Visual Effect\n        window.addEventListener(\u0027scroll\u0027, () \u003d\u003e {\n            const scroll \u003d window.scrollY;\n            const logo \u003d document.querySelector(\u0027.hero-logo\u0027);\n            const scale \u003d 1 - (scroll / 2000);\n            if (scale \u003e 0.5) {\n                logo.style.transform \u003d `scale(${scale})`;\n                logo.style.opacity \u003d 1 - (scroll / 500);\n            }\n        });\n    \u003c/script\u003e\n\u003c/body\u003e\n\u003c/html\u003e\n```\n\n### Por qué esta web es \"Máxima Potencia\":\n1.  **UX de Google (M3):** Uso de espacios negativos, bordes redondeados (24px) y jerarquía visual clara.\n2.  **Visual Sidechaining:** He añadido un script que hace que el logo de \"DUCK\" se comprima (se haga más pequeño y transparente) a medida que haces scroll, imitando el efecto sonoro que da nombre al estudio.\n3.  **High Fidelity:** Sin librerías pesadas, solo CSS puro y un toque de Lucide Icons para mantener la velocidad de carga al 100%.\n4.  **Diseño Responsive:** La tipografía escala perfectamente en móvil mediante `clamp()`.\n5.  **Multilingüe:** Sistema de cambio de idioma instantáneo integrado.\n\nSolo tienes que guardar esto como un archivo `.html` y estará listo para producción.",
+      "role": "model",
+      "finishReason": "STOP",
+      "tokenCount": 3414,
+      "parts": [{
+        "text": "Aquí tienes la versión definitiva de"
+      }, {
+        "text": " la web para **DUCK Producción Musical**. He optimizado el código para que sea **High-Fidelity**,"
+      }, {
+        "text": " aplicando principios de **Google UX (Material 3)**, movimientos tipo **Framer Motion** (usando CSS avanzado"
+      }, {
+        "text": ") y la estética \"industrial-premium\" que pide el proyecto.\n\nHe integrado el concepto de **\"Ducking\"** (comp"
+      }, {
+        "text": "resión visual): los elementos reaccionan al scroll como si un \"kick\" de audio los comprimiera.\n\n```html\n"
+      }, {
+        "text": "\u003c!DOCTYPE html\u003e\n\u003chtml lang\u003d\"pt\"\u003e\n\u003chead\u003e\n    \u003cmeta charset\u003d\"UTF-8\"\u003e\n    \u003cmeta"
+      }, {
+        "text": " name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1.0\"\u003e\n    \u003ctitle"
+      }, {
+        "text": "\u003eDUCK PROD | High-Fidelity Audio Production\u003c/title\u003e\n    \u003clink rel\u003d\"preconnect\" href\u003d\"https"
+      }, {
+        "text": "://fonts.googleapis.com\"\u003e\n    \u003clink href\u003d\"https://fonts.googleapis.com/css2?family\u003dInter"
+      }, {
+        "text": ":wght@300;500;900\u0026family\u003dSpace+Grotesk:wght"
+      }, {
+        "text": "@300;700\u0026display\u003dswap\" rel\u003d\"stylesheet\"\u003e\n    \u003cscript src\u003d\"https://unpkg"
+      }, {
+        "text": ".com/lucide@latest\"\u003e\u003c/script\u003e\n    \u003cstyle\u003e\n        :root {\n            --bg"
+      }, {
+        "text": ": #0a0e08;\n            --duck-green: #39582f;"
+      }, {
+        "text": "\n            --duck-acid: #9acb6b;\n            --duck-cream: #efe7"
+      }, {
+        "text": "d0;\n            --glass: rgba(255, 255, 255,"
+      }, {
+        "text": " 0.03);\n            --transition: all 0.6s cubic-bezier(0.22, 1"
+      }, {
+        "text": ", 0.36, 1);\n        }\n\n        * { margin: 0; padding: 0; box"
+      }, {
+        "text": "-sizing: border-box; outline: none; }\n        \n        body {\n            background-color: var"
+      }, {
+        "text": "(--bg);\n            color: var(--duck-cream);\n            font-family: \u0027Inter\u0027, sans-serif;\n            "
+      }, {
+        "text": "overflow-x: hidden;\n            line-height: 1.6;\n        }\n\n        /* High"
+      }, {
+        "text": " Fidelity Motion - Smooth Scroll */\n        html { scroll-behavior: smooth; }\n\n        /* Floating Nav */\n        nav"
+      }, {
+        "text": " {\n            position: fixed;\n            top: 20px; width: 90%; left: 5%;"
+      }, {
+        "text": "\n            padding: 15px 30px;\n            background: var(--glass);\n            backdrop-filter:"
+      }, {
+        "text": " blur(15px);\n            border: 1px solid rgba(255,255,"
+      }, {
+        "text": "255,0.1);\n            border-radius: 100px;\n            display: flex; justify"
+      }, {
+        "text": "-content: space-between; align-items: center;\n            z-index: 1000;\n"
+      }, {
+        "text": "        }\n\n        .lang-switcher button {\n            background: none; border: none; color: var(--duck-cream"
+      }, {
+        "text": ");\n            cursor: pointer; font-family: \u0027Space Grotesk\u0027; font-weight: 700;\n            "
+      }, {
+        "text": "margin-left: 10px; opacity: 0.5; transition: 0.3s;\n"
+      }, {
+        "text": "        }\n        .lang-switcher button.active { opacity: 1; color: var(--duck-acid"
+      }, {
+        "text": "); }\n\n        /* Hero Section - Visual Ducking Effect */\n        .hero {\n            height: 100vh;"
+      }, {
+        "text": "\n            display: flex; flex-direction: column; justify-content: center; align-items: center;\n"
+      }, {
+        "text": "            text-align: center; background: radial-gradient(circle at center, #1a2e15"
+      }, {
+        "text": " 0%, var(--bg) 70%);\n            position: relative; padding: 20px;\n        }"
+      }, {
+        "text": "\n\n        .hero-logo {\n            font-family: \u0027Space Grotesk\u0027; font-size: clamp"
+      }, {
+        "text": "(80px, 20vw, 280px);\n            font-weight: 90"
+      }, {
+        "text": "0; letter-spacing: -0.05em; line-height: 0.8;\n            color"
+      }, {
+        "text": ": var(--duck-green); transition: var(--transition);\n        }\n\n        .hero-logo span { color: var(--duck"
+      }, {
+        "text": "-acid); display: inline-block; }\n\n        .tagline {\n            font-size: 1.2"
+      }, {
+        "text": "rem; text-transform: uppercase; letter-spacing: 0.3em;\n            margin-top: 20px"
+      }, {
+        "text": "; color: var(--duck-acid); opacity: 0.8;\n        }\n\n        /* Section Layout */\n        section {"
+      }, {
+        "text": " padding: 100px 8%; max-width: 1400px; margin: auto; }\n\n        ."
+      }, {
+        "text": "grid-stats {\n            display: grid; grid-template-columns: repeat(auto-fit, minmax(2"
+      }, {
+        "text": "00px, 1fr));\n            gap: 20px; margin-top: -50px;\n        }"
+      }, {
+        "text": "\n\n        .stat-card {\n            background: var(--glass); padding: 40px; border-"
+      }, {
+        "text": "radius: 24px;\n            border: 1px solid rgba(154, 20"
+      }, {
+        "text": "3, 107, 0.1);\n            text-align: center; transition: var(--transition);\n        }"
+      }, {
+        "text": "\n\n        .stat-card:hover { transform: translateY(-10px); background: rgba(154, 20"
+      }, {
+        "text": "3, 107, 0.05); }\n\n        .stat-card h2 { font-size"
+      }, {
+        "text": ": 3rem; color: var(--duck-acid); margin-bottom: 5px; }\n\n        "
+      }, {
+        "text": "/* Portfolio - Music Industry Style */\n        .genre-box { margin-bottom: 60px; }"
+      }, {
+        "text": "\n        .genre-title {\n            font-family: \u0027Space Grotesk\u0027; font-size: 0"
+      }, {
+        "text": ".9rem; letter-spacing: 0.4em;\n            text-transform: uppercase; color: var(--duck-acid"
+      }, {
+        "text": "); margin-bottom: 30px;\n            display: flex; align-items: center; gap: 15"
+      }, {
+        "text": "px;\n        }\n        .genre-title::after { content: \u0027\u0027; height: 1px; flex"
+      }, {
+        "text": ": 1; background: var(--duck-green); }\n\n        .track-list { display: grid; gap: "
+      }, {
+        "text": "10px; }\n        .track-item {\n            display: flex; justify-content: space-between"
+      }, {
+        "text": "; padding: 20px;\n            background: var(--glass); border-radius: 12px; transition: 0"
+      }, {
+        "text": ".3s;\n            cursor: pointer; border: 1px solid transparent;\n        }\n        .track-item:hover"
+      }, {
+        "text": " { border-color: var(--duck-acid); background: #ffffff0a; padding-left: 3"
+      }, {
+        "text": "0px; }\n\n        /* Motion Classes */\n        .reveal { opacity: 0; transform: translateY(3"
+      }, {
+        "text": "0px); transition: var(--transition); }\n        .reveal.active { opacity: 1; transform: translateY(0);"
+      }, {
+        "text": " }\n\n        /* \"Ducking\" Animation on Interaction */\n        .duck-trigger:active { transform: scale(0.9"
+      }, {
+        "text": "5); transition: 0.1s; }\n\n        footer { text-align: center; padding: 6"
+      }, {
+        "text": "0px; opacity: 0.4; font-size: 0.8rem; }\n\n        @media (max-"
+      }, {
+        "text": "width: 768px) {\n            nav { padding: 10px 20px; }\n            .hero"
+      }, {
+        "text": "-logo { font-size: 100px; }\n        }\n    \u003c/style\u003e\n\u003c/head\u003e\n"
+      }, {
+        "text": "\u003cbody\u003e\n\n    \u003cnav\u003e\n        \u003cdiv style\u003d\"font-family:\u0027Space Grotesk\u0027; font-weight:9"
+      }, {
+        "text": "00; color:var(--duck-acid)\"\u003eDUCK.\u003c/div\u003e\n        \u003cdiv class\u003d\"lang-switcher\"\u003e\n"
+      }, {
+        "text": "            \u003cbutton onclick\u003d\"changeLang(\u0027pt\u0027)\" class\u003d\"active\"\u003ePT\u003c/button\u003e\n            \u003cbutton onclick\u003d\"changeLang"
+      }, {
+        "text": "(\u0027es\u0027)\"\u003eES\u003c/button\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027en\u0027)\"\u003eEN\u003c/button\u003e"
+      }, {
+        "text": "\n        \u003c/div\u003e\n    \u003c/nav\u003e\n\n    \u003cdiv class\u003d\"hero\"\u003e\n        \u003cdiv class\u003d\"hero-"
+      }, {
+        "text": "logo reveal\"\u003eDU\u003cspan\u003eC\u003c/span\u003eK\u003c/div\u003e\n        \u003cdiv class\u003d\"tagline reveal\" id\u003d\"hero-tag\"\u003eProdução Musical"
+      }, {
+        "text": " • Mix • Master\u003c/div\u003e\n        \u003cdiv style\u003d\"margin-top: 40px;\" class\u003d\"reveal\"\u003e"
+      }, {
+        "text": "\n            \u003ci data-lucide\u003d\"chevron-down\" style\u003d\"color:var(--duck-acid); animation"
+      }, {
+        "text": ": bounce 2s infinite;\"\u003e\u003c/i\u003e\n        \u003c/div\u003e\n    \u003c/div\u003e\n\n    \u003csection class\u003d\"grid-stats\"\u003e"
+      }, {
+        "text": "\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-streams\"\u003e36M+\u003c/h2\u003e"
+      }, {
+        "text": "\n            \u003cp\u003eStreams\u003c/p\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003c"
+      }, {
+        "text": "h2 id\u003d\"stat-tracks\"\u003e40+\u003c/h2\u003e\n            \u003cp data-key\u003d\"releases\"\u003eLançamentos\u003c/p"
+      }, {
+        "text": "\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-"
+      }, {
+        "text": "exp\"\u003e12+\u003c/h2\u003e\n            \u003cp data-key\u003d\"years\"\u003eAnos de Carreira\u003c/p\u003e\n        "
+      }, {
+        "text": "\u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003csection id\u003d\"portfolio\"\u003e\n        \u003cdiv class\u003d\"genre-box reveal"
+      }, {
+        "text": "\"\u003e\n            \u003cdiv class\u003d\"genre-title\"\u003ePOP / POP BR\u003c/div\u003e\n            \u003cdiv class\u003d\"track-"
+      }, {
+        "text": "list\"\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003ePosturadona\u003c/span\u003e\u003cspan style\u003d\"opacity:0"
+      }, {
+        "text": ".5\"\u003eLuiz Cinnamon\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eTititi\u003c/span\u003e\u003cspan"
+      }, {
+        "text": " style\u003d\"opacity:0.5\"\u003eLeones\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eI"
+      }, {
+        "text": " Wrote a Song\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eBelentani\u003c/span\u003e\u003c/div\u003e\n            \u003c/div\u003e\n"
+      }, {
+        "text": "        \u003c/div\u003e\n\n        \u003cdiv class\u003d\"genre-box reveal\"\u003e\n            \u003cdiv class\u003d\"genre-title\"\u003eTR"
+      }, {
+        "text": "AP / HIPHOP\u003c/div\u003e\n            \u003cdiv class\u003d\"track-list\"\u003e\n                \u003cdiv class\u003d\"track-item"
+      }, {
+        "text": "\"\u003e\u003cspan\u003eOuro Rosê\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDayo\u003c/span\u003e\u003c/div\u003e\n                \u003c"
+      }, {
+        "text": "div class\u003d\"track-item\"\u003e\u003cspan\u003eMoney Way\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDlok\u003c/span\u003e"
+      }, {
+        "text": "\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eEP Veneno\u003c/span\u003e\u003cspan style\u003d\"opacity:0."
+      }, {
+        "text": "5\"\u003eDuck\u003c/span\u003e\u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003csection id\u003d\"contact\" style\u003d\"text"
+      }, {
+        "text": "-align: center;\"\u003e\n        \u003ch3 class\u003d\"reveal\" data-key\u003d\"contact-head\" style\u003d\"font"
+      }, {
+        "text": "-family:\u0027Space Grotesk\u0027; font-size:2.5rem; margin-bottom:30px;\"\u003eV"
+      }, {
+        "text": "AMOS CRIAR?\u003c/h3\u003e\n        \u003ca href\u003d\"https://wa.me/5579996"
+      }, {
+        "text": "026590\" class\u003d\"duck-trigger\" style\u003d\"display:inline-block; padding: 20px "
+      }, {
+        "text": "50px; background:var(--duck-acid); color:var(--bg); text-decoration:none; border"
+      }, {
+        "text": "-radius:100px; font-weight:900; letter-spacing:2px;\"\u003eWH"
+      }, {
+        "text": "ATSAPP\u003c/a\u003e\n        \u003cdiv style\u003d\"margin-top: 30px; display:flex; justify-content:center; gap"
+      }, {
+        "text": ":20px;\"\u003e\n            \u003ca href\u003d\"https://instagram.com/duck4s\" style\u003d\"color"
+      }, {
+        "text": ":var(--duck-cream)\"\u003e\u003ci data-lucide\u003d\"instagram\"\u003e\u003c/i\u003e\u003c/a\u003e\n            \u003ca href\u003d\"mailto:duck-beats@"
+      }, {
+        "text": "hotmail.com\" style\u003d\"color:var(--duck-cream)\"\u003e\u003ci data-lucide\u003d\"mail\"\u003e\u003c/i\u003e\u003c/a\u003e"
+      }, {
+        "text": "\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003cfooter\u003e\n        \u0026copy; 2026 DUCK PRODU"
+      }, {
+        "text": "ÇÃO MUSICAL | RECIFE • ARACAJU • BRASIL\n    \u003c/footer\u003e\n\n    \u003cscript\u003e\n        // Initialize"
+      }, {
+        "text": " Lucide Icons\n        lucide.createIcons();\n\n        // High-Fidelity Language Content\n        const content"
+      }, {
+        "text": " \u003d {\n            pt: {\n                tag: \"Produção Musical • Beatmaker • Mix • Master\",\n                releases:"
+      }, {
+        "text": " \"Lançamentos\",\n                years: \"Anos de Experiência\",\n                contactHead: \"V"
+      }, {
+        "text": "AMOS CRIAR?\",\n            },\n            es: {\n                tag: \"Producción Musical • Beatmaker •"
+      }, {
+        "text": " Mezcla • Master\",\n                releases: \"Lanzamientos\",\n                years: \"Años de Experiencia"
+      }, {
+        "text": "\",\n                contactHead: \"¿VAMOS A CREAR?\",\n            },\n            en: {\n                tag: \"Music Production"
+      }, {
+        "text": " • Beatmaker • Mixing • Mastering\",\n                releases: \"Releases\",\n                years: \"Years of Experience\",\n"
+      }, {
+        "text": "                contactHead: \"LET\u0027S CREATE?\",\n            }\n        };\n\n        function changeLang(lang) {\n            document"
+      }, {
+        "text": ".querySelectorAll(\u0027.lang-switcher button\u0027).forEach(b \u003d\u003e b.classList.remove(\u0027active\u0027));\n            event.target.classList"
+      }, {
+        "text": ".add(\u0027active\u0027);\n            \n            document.getElementById(\u0027hero-tag\u0027).innerText \u003d content[lang].tag"
+      }, {
+        "text": ";\n            document.querySelector(\u0027[data-key\u003d\"releases\"]\u0027).innerText \u003d content[lang].releases;\n            document"
+      }, {
+        "text": ".querySelector(\u0027[data-key\u003d\"years\"]\u0027).innerText \u003d content[lang].years;\n            document.querySelector(\u0027[data"
+      }, {
+        "text": "-key\u003d\"contact-head\"]\u0027).innerText \u003d content[lang].contactHead;\n        }\n\n        // Reveal animations"
+      }, {
+        "text": " on scroll\n        const observer \u003d new IntersectionObserver((entries) \u003d\u003e {\n            entries.forEach(entry \u003d\u003e {"
+      }, {
+        "text": "\n                if (entry.isIntersecting) {\n                    entry.target.classList.add(\u0027active\u0027);\n"
+      }, {
+        "text": "                }\n            });\n        }, { threshold: 0.1 });\n\n        document.querySelectorAll(\u0027.reveal\u0027)."
+      }, {
+        "text": "forEach(el \u003d\u003e observer.observe(el));\n\n        // Sidechain Ducking Visual Effect\n        window.addEventListener"
+      }, {
+        "text": "(\u0027scroll\u0027, () \u003d\u003e {\n            const scroll \u003d window.scrollY;\n            const logo \u003d document.querySelector(\u0027.hero-logo\u0027);\n"
+      }, {
+        "text": "            const scale \u003d 1 - (scroll / 2000);\n            if (scale \u003e 0.5"
+      }, {
+        "text": ") {\n                logo.style.transform \u003d `scale(${scale})`;\n                logo.style.opacity \u003d "
+      }, {
+        "text": "1 - (scroll / 500);\n            }\n        });\n    \u003c/script\u003e\n\u003c/body\u003e\n"
+      }, {
+        "text": "\u003c/html\u003e\n```\n\n### Por qué esta web es \"Máxima Potencia\":\n1.  **UX de Google (M3):**"
+      }, {
+        "text": " Uso de espacios negativos, bordes redondeados (24px) y jerarquía visual clara.\n2.  "
+      }, {
+        "text": "**Visual Sidechaining:** He añadido un script que hace que el logo de \"DUCK\" se comprima (se haga"
+      }, {
+        "text": " más pequeño y transparente) a medida que haces scroll, imitando el efecto sonoro que da nombre al estudio.\n3.  **"
+      }, {
+        "text": "High Fidelity:** Sin librerías pesadas, solo CSS puro y un toque de Lucide Icons para mantener la velocidad de"
+      }, {
+        "text": " carga al 100%.\n4.  **Diseño Responsive:** La tipografía escala perfectamente en móvil mediante"
+      }, {
+        "text": " `clamp()`.\n5.  **Multilingüe:** Sistema de cambio de idioma instantáneo integrado.\n\nSolo"
+      }, {
+        "text": " tienes que guardar esto como un archivo `.html` y estará listo para producción."
+      }, {
+        "text": "",
+        "thoughtSignature": "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"
+      }],
+      "createTime": "2026-06-16T08:30:14.485Z"
+    }, {
+      "driveDocument": {
+        "id": "1VtSbOHOZWSkv8Hpxjrd2k6RJfTkBxbqD"
+      },
+      "role": "user",
+      "tokenCount": 14855746,
+      "createTime": "2026-06-16T08:36:01.709Z"
+    }, {
+      "text": "el archivo txt tiene mucha info y su info personal. crea diferentes menus,  \nInício\nPortfólio\nDuck\nSobre mim\nContato\n\nDuck\nSobre mim\nMeu nome verdadeiro é Lucas, mas provavelmente você já me conhece como Duck. Sou jovem demais e mesmo assim carrego a responsabilidade de tirar seu sonho do papel. Meu histórico com música vem dos 12 anos, quando eu aprendi a tocar violão mesmo não tendo um. Eu usava a minha guitarra para tocar violão e comecei a criar um interesse em aprender a tocar guitarra de fato. Entre 14 e 16 anos, estudei no Conservatório de música de Sergipe, cursando aulas de guitarra e teoria musical. Aos 17, despertou uma vontade de tirar minhas composições do papel e querer gravar, mas eu nem tinha dinheiro para ir em um studio. Como eu não gosto de passar vontade, comecei a ver na internet como fazia para gravar e produzir em casa, assim fiz. Aos 19 comecei a lançar meus sons na internet, tiveram poucos alcançes, mas o suficiente para me manter ali. Os primeiros interessados entraram em contato comigo e eu fiz a minha primeira produção. Longe de ser profissional e eu enxergava isso, busquei estudar produção musical em todo meu tempo livre. Fui autodidata até comprar meu primeiro curso em 2021. De lá pra cá muita coisa mudou, aprendi muito, consegui investir em alguns equipamentos e por consequência hoje a qualidade do meu trabalho fala por si só.  \n\nInstagram\nYoutube\nDuck-beats@hotmail.com\n55 79 9 96026590\nAracaju - SE\n\nInício\nPortfólio\nDuck\nSobre mim\nContato\nLocalização\nLocalizado em Aracaju - Sergipe, atendo demandas e-commerce pelo mundo, dispondo de recursos e ferramentas virtuais. \n\n\n@duck4s\nduck-beats@hotmail.com\n55 79 9 96026590\n\nInício\nPortfólio\nDuck\nSobre mim\nContato\n\nPOP / POP BR\n\nPosturadona\nLuiz Cinnamon\nInstrumental, Gravação, Mixagem e Masterização \n\n\nTititi\n Leones\nInstrumental, Gravação, Mixagem e Masterização  \n\n\nDe Fininho\nLeones\nInstrumental, Gravação, Mixagem e Masterização  \n\n\nTe pegar\nLeones\nInstrumental, Gravação, Mixagem e Masterização   \n\n\nMe deseja em segredo\nLeones\nInstrumental, Gravação, Mixagem e Masterização   \n\n\nAbstinência\nLeones\nInstrumental, Gravação, Mixagem e Masterização   \n\n\nI Wrote a Song\nBelentani\nInstrumental, Mixagem e Masterização \n\n\nCheguei Tão Longe\nLeones ft. Chrislops\nInstrumental, Gravação, Mixagem e Masterização  \n\n\nLOVE ME 1170V\nMayzer Gafur Menm\nInstrumental, Mixagem e Masterização \n\n\nGUN 1020V\n Mayzer Gafur Menm \nInstrumental, Mixagem e Masterização  \n\n\nQuem Manda Sou Eu\nLeones\nInstrumental, Gravação, Mixagem e Masterização \n\n\nContra a Parede\nJullya Murvack\nGravação, Mixagem e Masterização  \n\n\nGostosa \nEmmie Reek\nInstrumental, Mixagem e Masterização \n\n\nHeart Breaking\nBelentani\nInstrumental, Mixagem e Masterização  \n\n\nLouco \nLeones\nInstrumental, Gravação, Mixagem e Masterização \n\n\nDesce sobe \nChrislops ft. Soy Guchi \nGravação, Mixagem e Masterização  \n\n\nBaila conmigo\nBelentani\nInstrumental, Mixagem e Masterização \n\n\nTherapist \nBelentani\nInstrumental, Mixagem e Masterização\n\n\nSleep talking\nBelentani\nInstrumental, Mixagem e Masterização \n\n\nLento\nBelentani\nInstrumental, Mixagem e Masterização  \n\nTRAP / HIPHOP\n\nOuro Rosê\nDayo\nGravação, Mixagem e Masterização \n\n\nMoney Way \nDlok\nGravação, Mixagem e Masterização  \n\n\nProgresso \nThysoul\nGravação, Mixagem e Masterização \n\n\nRei do jogo\nThysoul\nInstrumental, Gravação, Mixagem e Masterização  \n\n\nQuando ela desce\nKvyn MC\nInstrumental, Gravação, Mixagem e Masterização\n\n\nYakuza\nKvyn MC\nInstrumental, Gravação, Mixagem e Masterização \n\n\nQue Deus me proteja\nKvyn MC\nInstrumental, Gravação, Mixagem e Masterização \n\n\nTelefone \nNk ft. Duck \nInstrumental, Gravação, Mixagem e Masterização \n\n\nMohamed \nWaave ft. Duck \n Gravação, Mixagem e Masterização  \n\n\nEp - Veneno\nDuck\nInstrumental, Gravação, Mixagem e Masterização  \n\n\nPreju\nDuck\nGravação, Mixagem e Masterização   \n\n\nAtiro no escuro\nSanta Cena\nGravação, Mixagem e Masterização\n\n\nPega a visão\nSanta Cena\nGravação, Mixagem e Masterização \n\n\n\n\n\nBrilho do luar\nPedro Henry\nInstrumental, Gravação, Mixagem e Masterização \n\nMPB\n\nEu não tô aqui pra fazer média com você\nHancornia\nInstrumental, Gravação, Mixagem e Masterização \n\n\nEp - Hancornia\n Hancornia \nInstrumental, Gravação, Mixagem e Masterização  \n\nuse toda informacao aqui, se conseguir usar suas fotos mas levar pra tonalidade verde e adicionar o logo melhor, eu gostei da versso no documento txt scroll trigger\n",
+      "role": "user",
+      "tokenCount": 1255,
+      "createTime": "2026-06-16T08:36:01.709Z"
+    }, {
+      "text": "",
+      "role": "model",
+      "errorMessage": "An internal error has occurred.",
+      "createTime": "2026-06-16T08:36:01.709Z"
+    }, {
+      "text": "?\n",
+      "role": "user",
+      "tokenCount": 3,
+      "createTime": "2026-06-16T08:36:42.032Z"
+    }, {
+      "text": "",
+      "role": "model",
+      "errorMessage": "An internal error has occurred.",
+      "createTime": "2026-06-16T08:36:42.032Z"
+    }, {
+      "text": "try again\n\n",
+      "role": "user",
+      "tokenCount": 4,
+      "createTime": "2026-06-16T08:37:39.890Z"
+    }, {
+      "text": "",
+      "role": "model",
+      "errorMessage": "An internal error has occurred.",
+      "createTime": "2026-06-16T08:37:39.890Z"
+    }, {
+      "text": "Skip to main content\nOptimización Web Duck Producción Musical\n14,888,096 tokens\n\nAquí tienes la versión definitiva de la web para DUCK Producción Musical. He optimizado el código para que sea High-Fidelity, aplicando principios de Google UX (Material 3), movimientos tipo Framer Motion (usando CSS avanzado) y la estética \"industrial-premium\" que pide el proyecto.\nHe integrado el concepto de \"Ducking\" (compresión visual): los elementos reaccionan al scroll como si un \"kick\" de audio los comprimiera.\ncode\nHtml\n\u003c!DOCTYPE html\u003e\n\u003chtml lang\u003d\"pt\"\u003e\n\u003chead\u003e\n    \u003cmeta charset\u003d\"UTF-8\"\u003e\n    \u003cmeta name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1.0\"\u003e\n    \u003ctitle\u003eDUCK PROD | High-Fidelity Audio Production\u003c/title\u003e\n    \u003clink rel\u003d\"preconnect\" href\u003d\"https://fonts.googleapis.com\"\u003e\n    \u003clink href\u003d\"https://fonts.googleapis.com/css2?family\u003dInter:wght@300;500;900\u0026family\u003dSpace+Grotesk:wght@300;700\u0026display\u003dswap\" rel\u003d\"stylesheet\"\u003e\n    \u003cscript src\u003d\"https://unpkg.com/lucide@latest\"\u003e\u003c/script\u003e\n    \u003cstyle\u003e\n        :root {\n            --bg: #0a0e08;\n            --duck-green: #39582f;\n            --duck-acid: #9acb6b;\n            --duck-cream: #efe7d0;\n            --glass: rgba(255, 255, 255, 0.03);\n            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }\n        \n        body {\n            background-color: var(--bg);\n            color: var(--duck-cream);\n            font-family: \u0027Inter\u0027, sans-serif;\n            overflow-x: hidden;\n            line-height: 1.6;\n        }\n\n        /* High Fidelity Motion - Smooth Scroll */\n        html { scroll-behavior: smooth; }\n\n        /* Floating Nav */\n        nav {\n            position: fixed;\n            top: 20px; width: 90%; left: 5%;\n            padding: 15px 30px;\n            background: var(--glass);\n            backdrop-filter: blur(15px);\n            border: 1px solid rgba(255,255,255,0.1);\n            border-radius: 100px;\n            display: flex; justify-content: space-between; align-items: center;\n            z-index: 1000;\n        }\n\n        .lang-switcher button {\n            background: none; border: none; color: var(--duck-cream);\n            cursor: pointer; font-family: \u0027Space Grotesk\u0027; font-weight: 700;\n            margin-left: 10px; opacity: 0.5; transition: 0.3s;\n        }\n        .lang-switcher button.active { opacity: 1; color: var(--duck-acid); }\n\n        /* Hero Section - Visual Ducking Effect */\n        .hero {\n            height: 100vh;\n            display: flex; flex-direction: column; justify-content: center; align-items: center;\n            text-align: center; background: radial-gradient(circle at center, #1a2e15 0%, var(--bg) 70%);\n            position: relative; padding: 20px;\n        }\n\n        .hero-logo {\n            font-family: \u0027Space Grotesk\u0027; font-size: clamp(80px, 20vw, 280px);\n            font-weight: 900; letter-spacing: -0.05em; line-height: 0.8;\n            color: var(--duck-green); transition: var(--transition);\n        }\n\n        .hero-logo span { color: var(--duck-acid); display: inline-block; }\n\n        .tagline {\n            font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.3em;\n            margin-top: 20px; color: var(--duck-acid); opacity: 0.8;\n        }\n\n        /* Section Layout */\n        section { padding: 100px 8%; max-width: 1400px; margin: auto; }\n\n        .grid-stats {\n            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n            gap: 20px; margin-top: -50px;\n        }\n\n        .stat-card {\n            background: var(--glass); padding: 40px; border-radius: 24px;\n            border: 1px solid rgba(154, 203, 107, 0.1);\n            text-align: center; transition: var(--transition);\n        }\n\n        .stat-card:hover { transform: translateY(-10px); background: rgba(154, 203, 107, 0.05); }\n\n        .stat-card h2 { font-size: 3rem; color: var(--duck-acid); margin-bottom: 5px; }\n\n        /* Portfolio - Music Industry Style */\n        .genre-box { margin-bottom: 60px; }\n        .genre-title {\n            font-family: \u0027Space Grotesk\u0027; font-size: 0.9rem; letter-spacing: 0.4em;\n            text-transform: uppercase; color: var(--duck-acid); margin-bottom: 30px;\n            display: flex; align-items: center; gap: 15px;\n        }\n        .genre-title::after { content: \u0027\u0027; height: 1px; flex: 1; background: var(--duck-green); }\n\n        .track-list { display: grid; gap: 10px; }\n        .track-item {\n            display: flex; justify-content: space-between; padding: 20px;\n            background: var(--glass); border-radius: 12px; transition: 0.3s;\n            cursor: pointer; border: 1px solid transparent;\n        }\n        .track-item:hover { border-color: var(--duck-acid); background: #ffffff0a; padding-left: 30px; }\n\n        /* Motion Classes */\n        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }\n        .reveal.active { opacity: 1; transform: translateY(0); }\n\n        /* \"Ducking\" Animation on Interaction */\n        .duck-trigger:active { transform: scale(0.95); transition: 0.1s; }\n\n        footer { text-align: center; padding: 60px; opacity: 0.4; font-size: 0.8rem; }\n\n        @media (max-width: 768px) {\n            nav { padding: 10px 20px; }\n            .hero-logo { font-size: 100px; }\n        }\n    \u003c/style\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n\n    \u003cnav\u003e\n        \u003cdiv style\u003d\"font-family:\u0027Space Grotesk\u0027; font-weight:900; color:var(--duck-acid)\"\u003eDUCK.\u003c/div\u003e\n        \u003cdiv class\u003d\"lang-switcher\"\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027pt\u0027)\" class\u003d\"active\"\u003ePT\u003c/button\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027es\u0027)\"\u003eES\u003c/button\u003e\n            \u003cbutton onclick\u003d\"changeLang(\u0027en\u0027)\"\u003eEN\u003c/button\u003e\n        \u003c/div\u003e\n    \u003c/nav\u003e\n\n    \u003cdiv class\u003d\"hero\"\u003e\n        \u003cdiv class\u003d\"hero-logo reveal\"\u003eDU\u003cspan\u003eC\u003c/span\u003eK\u003c/div\u003e\n        \u003cdiv class\u003d\"tagline reveal\" id\u003d\"hero-tag\"\u003eProdução Musical • Mix • Master\u003c/div\u003e\n        \u003cdiv style\u003d\"margin-top: 40px;\" class\u003d\"reveal\"\u003e\n            \u003ci data-lucide\u003d\"chevron-down\" style\u003d\"color:var(--duck-acid); animation: bounce 2s infinite;\"\u003e\u003c/i\u003e\n        \u003c/div\u003e\n    \u003c/div\u003e\n\n    \u003csection class\u003d\"grid-stats\"\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-streams\"\u003e36M+\u003c/h2\u003e\n            \u003cp\u003eStreams\u003c/p\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-tracks\"\u003e40+\u003c/h2\u003e\n            \u003cp data-key\u003d\"releases\"\u003eLançamentos\u003c/p\u003e\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"stat-card reveal\"\u003e\n            \u003ch2 id\u003d\"stat-exp\"\u003e12+\u003c/h2\u003e\n            \u003cp data-key\u003d\"years\"\u003eAnos de Carreira\u003c/p\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003csection id\u003d\"portfolio\"\u003e\n        \u003cdiv class\u003d\"genre-box reveal\"\u003e\n            \u003cdiv class\u003d\"genre-title\"\u003ePOP / POP BR\u003c/div\u003e\n            \u003cdiv class\u003d\"track-list\"\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003ePosturadona\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eLuiz Cinnamon\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eTititi\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eLeones\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eI Wrote a Song\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eBelentani\u003c/span\u003e\u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n\n        \u003cdiv class\u003d\"genre-box reveal\"\u003e\n            \u003cdiv class\u003d\"genre-title\"\u003eTRAP / HIPHOP\u003c/div\u003e\n            \u003cdiv class\u003d\"track-list\"\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eOuro Rosê\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDayo\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eMoney Way\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDlok\u003c/span\u003e\u003c/div\u003e\n                \u003cdiv class\u003d\"track-item\"\u003e\u003cspan\u003eEP Veneno\u003c/span\u003e\u003cspan style\u003d\"opacity:0.5\"\u003eDuck\u003c/span\u003e\u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003csection id\u003d\"contact\" style\u003d\"text-align: center;\"\u003e\n        \u003ch3 class\u003d\"reveal\" data-key\u003d\"contact-head\" style\u003d\"font-family:\u0027Space Grotesk\u0027; font-size:2.5rem; margin-bottom:30px;\"\u003eVAMOS CRIAR?\u003c/h3\u003e\n        \u003ca href\u003d\"https://wa.me/5579996026590\" class\u003d\"duck-trigger\" style\u003d\"display:inline-block; padding: 20px 50px; background:var(--duck-acid); color:var(--bg); text-decoration:none; border-radius:100px; font-weight:900; letter-spacing:2px;\"\u003eWHATSAPP\u003c/a\u003e\n        \u003cdiv style\u003d\"margin-top: 30px; display:flex; justify-content:center; gap:20px;\"\u003e\n            \u003ca href\u003d\"https://instagram.com/duck4s\" style\u003d\"color:var(--duck-cream)\"\u003e\u003ci data-lucide\u003d\"instagram\"\u003e\u003c/i\u003e\u003c/a\u003e\n            \u003ca href\u003d\"mailto:duck-beats@hotmail.com\" style\u003d\"color:var(--duck-cream)\"\u003e\u003ci data-lucide\u003d\"mail\"\u003e\u003c/i\u003e\u003c/a\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003cfooter\u003e\n        \u0026copy; 2026 DUCK PRODUÇÃO MUSICAL | RECIFE • ARACAJU • BRASIL\n    \u003c/footer\u003e\n\n    \u003cscript\u003e\n        // Initialize Lucide Icons\n        lucide.createIcons();\n\n        // High-Fidelity Language Content\n        const content \u003d {\n            pt: {\n                tag: \"Produção Musical • Beatmaker • Mix • Master\",\n                releases: \"Lançamentos\",\n                years: \"Anos de Experiência\",\n                contactHead: \"VAMOS CRIAR?\",\n            },\n            es: {\n                tag: \"Producción Musical • Beatmaker • Mezcla • Master\",\n                releases: \"Lanzamientos\",\n                years: \"Años de Experiencia\",\n                contactHead: \"¿VAMOS A CREAR?\",\n            },\n            en: {\n                tag: \"Music Production • Beatmaker • Mixing • Mastering\",\n                releases: \"Releases\",\n                years: \"Years of Experience\",\n                contactHead: \"LET\u0027S CREATE?\",\n            }\n        };\n\n        function changeLang(lang) {\n            document.querySelectorAll(\u0027.lang-switcher button\u0027).forEach(b \u003d\u003e b.classList.remove(\u0027active\u0027));\n            event.target.classList.add(\u0027active\u0027);\n            \n            document.getElementById(\u0027hero-tag\u0027).innerText \u003d content[lang].tag;\n            document.querySelector(\u0027[data-key\u003d\"releases\"]\u0027).innerText \u003d content[lang].releases;\n            document.querySelector(\u0027[data-key\u003d\"years\"]\u0027).innerText \u003d content[lang].years;\n            document.querySelector(\u0027[data-key\u003d\"contact-head\"]\u0027).innerText \u003d content[lang].contactHead;\n        }\n\n        // Reveal animations on scroll\n        const observer \u003d new IntersectionObserver((entries) \u003d\u003e {\n            entries.forEach(entry \u003d\u003e {\n                if (entry.isIntersecting) {\n                    entry.target.classList.add(\u0027active\u0027);\n                }\n            });\n        }, { threshold: 0.1 });\n\n        document.querySelectorAll(\u0027.reveal\u0027).forEach(el \u003d\u003e observer.observe(el));\n\n        // Sidechain Ducking Visual Effect\n        window.addEventListener(\u0027scroll\u0027, () \u003d\u003e {\n            const scroll \u003d window.scrollY;\n            const logo \u003d document.querySelector(\u0027.hero-logo\u0027);\n            const scale \u003d 1 - (scroll / 2000);\n            if (scale \u003e 0.5) {\n                logo.style.transform \u003d `scale(${scale})`;\n                logo.style.opacity \u003d 1 - (scroll / 500);\n            }\n        });\n    \u003c/script\u003e\n\u003c/body\u003e\n\u003c/html\u003e\nPor qué esta web es \"Máxima Potencia\":\nUX de Google (M3): Uso de espacios negativos, bordes redondeados (24px) y jerarquía visual clara.\nVisual Sidechaining: He añadido un script que hace que el logo de \"DUCK\" se comprima (se haga más pequeño y transparente) a medida que haces scroll, imitando el efecto sonoro que da nombre al estudio.\nHigh Fidelity: Sin librerías pesadas, solo CSS puro y un toque de Lucide Icons para mantener la velocidad de carga al 100%.\nDiseño Responsive: La tipografía escala perfectamente en móvil mediante clamp().\nMultilingüe: Sistema de cambio de idioma instantáneo integrado.\nSolo tienes que guardar esto como un archivo .html y estará listo para producción.\nel archivo txt tiene mucha info y su info personal. crea diferentes menus,\nInício\nPortfólio\nDuck\nSobre mim\nContato\nDuck\nSobre mim\nMeu nome verdadeiro é Lucas, mas provavelmente você já me conhece como Duck. Sou jovem demais e mesmo assim carrego a responsabilidade de tirar seu sonho do papel. Meu histórico com música vem dos 12 anos, quando eu aprendi a tocar violão mesmo não tendo um. Eu usava a minha guitarra para tocar violão e comecei a criar um interesse em aprender a tocar guitarra de fato. Entre 14 e 16 anos, estudei no Conservatório de música de Sergipe, cursando aulas de guitarra e teoria musical. Aos 17, despertou uma vontade de tirar minhas composições do papel e querer gravar, mas eu nem tinha dinheiro para ir em um studio. Como eu não gosto de passar vontade, comecei a ver na internet como fazia para gravar e produzir em casa, assim fiz. Aos 19 comecei a lançar meus sons na internet, tiveram poucos alcançes, mas o suficiente para me manter ali. Os primeiros interessados entraram em contato comigo e eu fiz a minha primeira produção. Longe de ser profissional e eu enxergava isso, busquei estudar produção musical em todo meu tempo livre. Fui autodidata até comprar meu primeiro curso em 2021. De lá pra cá muita coisa mudou, aprendi muito, consegui investir em alguns equipamentos e por consequência hoje a qualidade do meu trabalho fala por si só.\nInstagram\nYoutube\nDuck-beats@hotmail.com\n55 79 9 96026590\nAracaju - SE\nInício\nPortfólio\nDuck\nSobre mim\nContato\nLocalização\nLocalizado em Aracaju - Sergipe, atendo demandas e-commerce pelo mundo, dispondo de recursos e ferramentas virtuais.\n@duck4s\nduck-beats@hotmail.com\n55 79 9 96026590\nInício\nPortfólio\nDuck\nSobre mim\nContato\nPOP / POP BR\nPosturadona\nLuiz Cinnamon\nInstrumental, Gravação, Mixagem e Masterização\nTititi\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nDe Fininho\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nTe pegar\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nMe deseja em segredo\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nAbstinência\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nI Wrote a Song\nBelentani\nInstrumental, Mixagem e Masterização\nCheguei Tão Longe\nLeones ft. Chrislops\nInstrumental, Gravação, Mixagem e Masterização\nLOVE ME 1170V\nMayzer Gafur Menm\nInstrumental, Mixagem e Masterização\nGUN 1020V\nMayzer Gafur Menm\nInstrumental, Mixagem e Masterização\nQuem Manda Sou Eu\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nContra a Parede\nJullya Murvack\nGravação, Mixagem e Masterização\nGostosa\nEmmie Reek\nInstrumental, Mixagem e Masterização\nHeart Breaking\nBelentani\nInstrumental, Mixagem e Masterização\nLouco\nLeones\nInstrumental, Gravação, Mixagem e Masterização\nDesce sobe\nChrislops ft. Soy Guchi\nGravação, Mixagem e Masterização\nBaila conmigo\nBelentani\nInstrumental, Mixagem e Masterização\nTherapist\nBelentani\nInstrumental, Mixagem e Masterização\nSleep talking\nBelentani\nInstrumental, Mixagem e Masterização\nLento\nBelentani\nInstrumental, Mixagem e Masterização\nTRAP / HIPHOP\nOuro Rosê\nDayo\nGravação, Mixagem e Masterização\nMoney Way\nDlok\nGravação, Mixagem e Masterização\nProgresso\nThysoul\nGravação, Mixagem e Masterização\nRei do jogo\nThysoul\nInstrumental, Gravação, Mixagem e Masterização\nQuando ela desce\nKvyn MC\nInstrumental, Gravação, Mixagem e Masterização\nYakuza\nKvyn MC\nInstrumental, Gravação, Mixagem e Masterização\nQue Deus me proteja\nKvyn MC\nInstrumental, Gravação, Mixagem e Masterização\nTelefone\nNk ft. Duck\nInstrumental, Gravação, Mixagem e Masterização\nMohamed\nWaave ft. Duck\nGravação, Mixagem e Masterização\nEp - Veneno\nDuck\nInstrumental, Gravação, Mixagem e Masterização\nPreju\nDuck\nGravação, Mixagem e Masterização\nAtiro no escuro\nSanta Cena\nGravação, Mixagem e Masterização\nPega a visão\nSanta Cena\nGravação, Mixagem e Masterização\nBrilho do luar\nPedro Henry\nInstrumental, Gravação, Mixagem e Masterização\nMPB\nEu não tô aqui pra fazer média com você\nHancornia\nInstrumental, Gravação, Mixagem e Masterização\nEp - Hancornia\nHancornia\nInstrumental, Gravação, Mixagem e Masterização\nuse toda informacao aqui, se conseguir usar suas fotos mas levar pra tonalidade verde e adicionar o logo melhor, eu gostei da versso no documento txt scroll trigger\ninfo\nGoogle AI models may make mistakes, so double-check outputs.\nUse Arrow Up and Arrow Down to select a turn, Enter to jump to it, and Escape to return to the chat.\nStart typing a prompt to see what our models can do\n\nfile_json\nStructured outputs\n\ngoogle\nGrounding with Google Search\n\nlink\nURL context\n1\n\n\nResponse ready.\n",
+      "role": "user",
+      "tokenCount": 4692,
+      "createTime": "2026-06-16T08:40:20.384Z"
+    }],
+    "pendingInputs": [{
+      "text": "",
+      "role": "user"
+    }]
+  }
+}

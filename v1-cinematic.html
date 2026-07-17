@@ -122,9 +122,9 @@ try {
   gsap.ticker.lagSmoothing(0);
 } catch(e) { console.warn('Lenis not loaded:', e); }
 
-// PRELOADER
-setTimeout(()=>{document.getElementById('preloader').style.display='none';try{setDuckLang('pt');}catch(e){}initAll();},2000);
-}});
+// PRELOADER BAR
+gsap.to('#pf',{scaleX:1,duration:1.8,ease:'power2.inOut'});
+setTimeout(()=>{document.getElementById('pre').style.display='none';try{setDuckLang('pt');}catch(e){}initAll();},2000);
 
 function initAll(){
   try {
@@ -134,7 +134,7 @@ function initAll(){
     if(tk)[...TI,...TI].forEach(t=>{const s=document.createElement('span');s.className='ti';s.textContent=t;tk.appendChild(s);});
 
     // Cursor
-    const cur=document.getElementById('cursor');
+    const cur=document.getElementById('cur');
     if(cur){
       document.addEventListener('mousemove',e=>{gsap.to(cur,{x:e.clientX,y:e.clientY,duration:.08,ease:'power2.out'});});
       document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.gal-i,.s-card,.tc,.singles-g'))cur.classList.add('on');});
@@ -145,7 +145,7 @@ function initAll(){
     window.addEventListener('scroll',()=>{const n=document.getElementById('nav');if(n)n.classList.toggle('stuck',scrollY>80);},{passive:true});
 
     // Waveform
-    const wf=document.getElementById('waveform');
+    const wf=document.getElementById('wf');
     if(wf)[6,11,22,32,40,28,36,20,34,16,38,24,30,14,26,32,18,28,22,36].forEach((h,i)=>{
       const b=document.createElement('div');b.className='wb';
       b.style.setProperty('--h',h+'px');b.style.setProperty('--d',(0.6+Math.random()*.8)+'s');
@@ -169,10 +169,10 @@ function initAll(){
     });
 
     // Render content
-    renderGallery('gallery-grid');
-    renderSingles('singles-grid');
-    renderTracks('tracks-grid','all');
-    initFilters('.fb','tracks-grid');
+    renderGallery('gal-g');
+    renderSingles('singles-g');
+    renderTracks('tg','all');
+    initFilters('.fb','tg');
 
     // Re-attach cursor events to newly rendered elements
     if(cur){

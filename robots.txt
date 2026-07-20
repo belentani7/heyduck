@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /backups/
+Disallow: /archivo-versiones/
+Disallow: /_consolidated/
+
+Sitemap: https://heyduck.dpdns.org/sitemap.xml

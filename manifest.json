@@ -1,0 +1,22 @@
+{
+  "name": "DUCK Produção Musical",
+  "short_name": "DUCK",
+  "description": "Beatmaker, mixagem e masterização para artistas nacionais e internacionais.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080e08",
+  "theme_color": "#39582f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[redirects]]
+  from = "/instagram"
+  to = "https://instagram.com/duck4s"
+  status = 301
+
+[[redirects]]
+  from = "/spotify"
+  to = "https://open.spotify.com/search/Duck"
+  status = 301

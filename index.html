@@ -13,12 +13,7 @@
   <div class="hero-vignette"></div>
   <div class="hero-c">
     <div class="hero-logo-wrap">
-      <div class="hero-logo-3d">
-        <div class="hero-logo-3d-inner">
-          <div class="hero-logo-3d-face front"><img src="images/logo-duck.png" alt="Duck Logo"></div>
-          <div class="hero-logo-3d-face back"><img src="images/logo-duck.png" alt="Duck Logo"></div>
-        </div>
-      </div>
+      <canvas id="hero-3d" width="560" height="280" style="width:clamp(200px,30vw,400px);height:clamp(100px,15vw,200px);display:block;margin:0 auto;"></canvas>
     </div>
     <h1 class="hero-h"><span>DUCK</span></h1>
     <p class="hero-sub" data-i18n="hero_sub">Beatmaker · Mixagem · Masterização · Aracaju · Sergipe · Brasil</p>
@@ -362,9 +357,9 @@
 </section>
 
 <style>
-.inst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
-.inst-card{background:var(--bg);border:1px solid rgba(184,140,255,.08);border-radius:12px;padding:1.5rem;transition:all .3s;}
-.inst-card:hover{border-color:rgba(184,140,255,.2);box-shadow:0 10px 30px rgba(0,0,0,.3);}
+.inst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:2rem;background:rgba(0,0,0,.3);border:1px solid rgba(184,140,255,.1);border-radius:8px;padding:8px;}
+.inst-card{background:var(--gd);border:1px solid rgba(184,140,255,.06);border-radius:6px;padding:1rem;transition:all .3s;}
+.inst-card:hover{border-color:rgba(184,140,255,.15);background:rgba(184,140,255,.03);}
 .inst-header{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem;}
 .inst-icon{font-size:1.5rem;}
 .inst-name{font-family:var(--f);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--a);font-weight:700;}
@@ -650,8 +645,8 @@ document.getElementById('recStartBtn').addEventListener('click',async()=>{
       document.getElementById('recDownloadBtn').disabled=false;
     };
     mediaRec.start();
-    const src=recCtx.createMediaStreamSource(recStream);
-    recAnalyser=recCtx.createAnalyser();
+    const src=audioCtx.createMediaStreamSource(recStream);
+    recAnalyser=audioCtx.createAnalyser();
     src.connect(recAnalyser);
     drawRecWave();
     document.getElementById('recStartBtn').classList.add('recording');
@@ -1030,13 +1025,7 @@ nav.stuck{background:rgba(8,14,8,.92);backdrop-filter:blur(24px);border-bottom:1
 .slime-intro.done{opacity:0;transition:opacity 1.2s ease 3s;pointer-events:none;}
 
 /* 3D LOGO */
-.hero-logo-3d{width:clamp(100px,15vw,180px);height:clamp(100px,15vw,180px);perspective:800px;margin:0 auto 2rem;}
-.hero-logo-3d-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;animation:logo3dSpin 8s linear infinite;}
-@keyframes logo3dSpin{0%{transform:rotateY(0deg) rotateX(10deg);}100%{transform:rotateY(360deg) rotateX(10deg);}}
-.hero-logo-3d-face{position:absolute;inset:0;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;}
-.hero-logo-3d-face img{width:100%;height:100%;object-fit:contain;filter:brightness(1.2) drop-shadow(0 0 30px rgba(184,140,255,.5));}
-.hero-logo-3d-face.back{transform:rotateY(180deg);}
-.hero-logo-3d-face.back img{filter:brightness(1.2) drop-shadow(0 0 30px rgba(199,125,255,.5));}
+.hero-logo-wrap{margin-bottom:1.5rem;opacity:0;transform:scale(.8);}
 
 /* SINGLES GRID */
 .singles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem;}
@@ -2011,6 +2000,82 @@ document.querySelectorAll('.sec').forEach(sec=>{
   gsap.from(sec,{opacity:.7,y:30,ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'top center',scrub:1}});
 });
 
+// ===== 3D METALLIC LOGO =====
+(function(){
+  const canvas=document.getElementById('hero-3d');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  let ang=0;
+
+  function drawMetalLetter(x,y,letter){
+    ctx.save();
+    ctx.translate(x,y);
+    const depth=18;
+    for(let i=depth;i>=0;i--){
+      const t=i/depth;
+      const r=Math.round(80*t+20);
+      const layerX=Math.cos(ang+Math.PI)*i*0.7;
+      const layerY=Math.sin(ang)*i*0.15;
+      ctx.fillStyle=`rgb(${r},${r},${r})`;
+      ctx.font=`bold ${H*0.45}px 'Space Grotesk',sans-serif`;
+      ctx.fillText(letter,layerX,layerY);
+    }
+    const grad=ctx.createLinearGradient(0,-H*0.45,0,H*0.1);
+    grad.addColorStop(0,'#ffffff');
+    grad.addColorStop(0.2,'#e0e0e0');
+    grad.addColorStop(0.5,'#9a9a9a');
+    grad.addColorStop(0.7,'#d8d8d8');
+    grad.addColorStop(1,'#f5f5f5');
+    ctx.fillStyle=grad;
+    ctx.font=`bold ${H*0.45}px 'Space Grotesk',sans-serif`;
+    ctx.fillText(letter,0,0);
+    ctx.restore();
+  }
+
+  function render(){
+    ctx.clearRect(0,0,W,H);
+    ang+=0.008;
+    const baseY=H*0.65;
+    const letterH=H*0.45;
+    const word='DUCK';
+    const totalW=W*0.78;
+    const startX=W*0.11;
+    const spacing=totalW/4;
+
+    ctx.save();
+    word.split('').forEach((ch,i)=>{
+      const x=startX+i*spacing;
+      const yOff=Math.sin(ang+i*0.7)*H*0.02;
+      drawMetalLetter(x,baseY+yOff,ch);
+    });
+
+    // Reflection
+    ctx.save();
+    ctx.scale(1,-1);
+    ctx.translate(0,-H*1.28);
+    ctx.globalAlpha=0.08;
+    word.split('').forEach((ch,i)=>{
+      const x=startX+i*spacing;
+      ctx.font=`bold ${letterH}px 'Space Grotesk',sans-serif`;
+      ctx.fillStyle='#aaa';
+      ctx.fillText(ch,x,baseY);
+    });
+    ctx.restore();
+
+    // Subtitle
+    ctx.font='500 12px "Space Grotesk",sans-serif';
+    ctx.fillStyle='rgba(184,140,255,0.5)';
+    ctx.textAlign='center';
+    ctx.fillText('PRODUÇÃO MUSICAL',W/2,baseY+letterH*0.5);
+    ctx.textAlign='left';
+
+    ctx.restore();
+    requestAnimationFrame(render);
+  }
+  render();
+})();
+
 // Sound wave canvas - enhanced
 (function(){
   const c=document.getElementById('soundWaveCanvas');
@@ -2103,18 +2168,8 @@ document.querySelectorAll('.sec').forEach(sec=>{
   },5000);
 })();
 
-// Logo 3D crossfade: cycle through studio photos
-(function(){
-  const photos=['images/studio/setup-2-1440x960.jpg','images/studio/setup-3-1440x960.jpg','images/studio/setup-4-1440x960.jpg','images/studio/mix-3-1440x960.jpg','images/logo-duck.png'];
-  let idx=0;
-  const faces=document.querySelectorAll('.hero-logo-3d-face img');
-  if(!faces.length)return;
-  setInterval(()=>{
-    idx=(idx+1)%photos.length;
-    faces.forEach(f=>{f.style.transition='opacity .8s ease';f.style.opacity='0';});
-    setTimeout(()=>{faces.forEach(f=>{f.src=photos[idx];f.style.opacity='1';});},400);
-  },3000);
-})();
+// Logo GSAP entrance
+gsap.from('.hero-logo-wrap',{opacity:0,scale:.8,duration:1.5,ease:'power3.out',delay:.5});
 gsap.from('.hero-h',{opacity:0,y:100,duration:1.2,ease:'power3.out',delay:.8});
 gsap.from('.hero-sub',{opacity:0,y:30,duration:1,ease:'power3.out',delay:1.1});
 gsap.from('.hero-btns',{opacity:0,y:30,duration:1,ease:'power3.out',delay:1.3});

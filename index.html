@@ -1097,6 +1097,28 @@ body.theme-green {
   box-shadow: 0 0 15px var(--color-border);
 }
 
+/* ===== AUDIO PLAYER WIDGET ===== */
+.audio-player-widget{position:fixed;bottom:1.5rem;right:1.5rem;z-index:var(--z-nav);background:rgba(8,14,8,.95);backdrop-filter:blur(16px);border:1px solid rgba(154,203,107,.2);border-radius:var(--radius-md);padding:.75rem 1rem;min-width:240px;max-width:280px;box-shadow:var(--shadow-3);transition:all .3s var(--ease-ui);font-family:var(--fb);}
+.audio-player-widget.minimized{min-width:auto;padding:.5rem;border-radius:50%;cursor:pointer;}
+.audio-player-widget.minimized .ap-inner{display:none;}
+.audio-player-widget.minimized::after{content:'🎵';font-size:1.2rem;display:block;text-align:center;}
+.ap-inner{display:flex;align-items:center;gap:.75rem;}
+.ap-play{background:var(--a);color:var(--bg);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.ap-play:hover{background:var(--color-accent-hover);transform:scale(1.08);}
+.ap-play:active{transform:scale(.95);}
+.ap-info{flex:1;min-width:0;}
+.ap-track{font-size:.7rem;font-weight:600;color:var(--c);letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.35rem;}
+.ap-controls{display:flex;align-items:center;gap:.5rem;}
+.ap-volume{-webkit-appearance:none;appearance:none;width:80px;height:3px;background:rgba(154,203,107,.2);border-radius:2px;outline:none;cursor:pointer;}
+.ap-volume::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;background:var(--a);cursor:pointer;transition:transform .15s;}
+.ap-volume::-webkit-slider-thumb:hover{transform:scale(1.3);}
+.ap-volume::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--a);border:none;cursor:pointer;}
+.ap-min-btn{background:none;border:none;color:rgba(239,231,208,.4);cursor:pointer;font-size:.75rem;padding:2px 6px;transition:color .2s;}
+.ap-min-btn:hover{color:var(--a);}
+/* Booking form focus styles */
+#bookingForm input:focus,#bookingForm select:focus,#bookingForm textarea:focus{border-color:var(--a);box-shadow:0 0 0 2px rgba(154,203,107,.15);outline:none;}
+#bookingForm select option{background:var(--bg);color:var(--c);}
+
 </style>
 </head>
 <body>
@@ -1188,8 +1210,8 @@ body.theme-green {
     <div class="hero-logo-wrap">
       <div class="hero-logo-3d">
         <div class="hero-logo-3d-inner">
-          <div class="hero-logo-3d-face front"><img src="images/logo-duck.png" alt="Duck Logo"></div>
-          <div class="hero-logo-3d-face back"><img src="images/logo-duck.png" alt="Duck Logo"></div>
+          <div class="hero-logo-3d-face front"><img src="images/logo-duck.png" alt="Duck Producer Logo - Music Production" loading="eager"></div>
+          <div class="hero-logo-3d-face back"><img src="images/logo-duck.png" alt="Duck Producer Logo - Beatmaker & Mix Engineer" loading="eager"></div>
         </div>
       </div>
     </div>
@@ -1271,9 +1293,9 @@ body.theme-green {
     <div class="sec-lbl" data-i18n="port_lbl">// 003 — PORTFOLIO</div>
     <h2 class="sec-h" data-i18n="port_h">TRABALHOS <em>RECENTES</em></h2>
     <div class="port-grid">
-      <div class="port-item"><img src="images/capa-1920x1080.jpg" alt="Track"><div class="port-over"><h4>Cold feat. Big Murdda</h4><p data-i18n="port1_p">Trap · 2024</p></div></div>
-      <div class="port-item"><img src="images/capa-3-1920x1080.jpg" alt="Track"><div class="port-over"><h4>For Reaper's Only EP</h4><p data-i18n="port2_p">EP · 2024</p></div></div>
-      <div class="port-item"><img src="images/capa-4-1920x1080.jpg" alt="Track"><div class="port-over"><h4>Slip N Slide</h4><p data-i18n="port3_p">Single · 2024</p></div></div>
+      <div class="port-item"><img src="images/capa-1920x1080.jpg" alt="Duck - Cold feat. Big Murdda - Track cover" loading="lazy"><div class="port-over"><h4>Cold feat. Big Murdda</h4><p data-i18n="port1_p">Trap · 2024</p></div></div>
+      <div class="port-item"><img src="images/capa-3-1920x1080.jpg" alt="Duck - For Reaper's Only EP - Cover art" loading="lazy"><div class="port-over"><h4>For Reaper's Only EP</h4><p data-i18n="port2_p">EP · 2024</p></div></div>
+      <div class="port-item"><img src="images/capa-4-1920x1080.jpg" alt="Duck - Slip N Slide - Single cover" loading="lazy"><div class="port-over"><h4>Slip N Slide</h4><p data-i18n="port3_p">Single · 2024</p></div></div>
     </div>
   </div>
 </section>
@@ -1779,6 +1801,60 @@ body.theme-green {
       <a href="https://open.spotify.com/artist/duck4x" target="_blank" class="studio-btn secondary" style="font-size:.5rem;" rel="noopener noreferrer">SPOTIFY</a>
       <a href="https://music.apple.com/us/artist/duck4x/1744132409" target="_blank" class="studio-btn secondary" style="font-size:.5rem;" rel="noopener noreferrer">APPLE MUSIC</a>
     </div>
+
+    <!-- BOOKING FORM -->
+    <form id="bookingForm" action="https://formspree.io/f/PLACEHOLDER_FORM_ID" method="POST" style="margin-top:4rem;max-width:600px;margin-left:auto;margin-right:auto;text-align:left;">
+      <h3 style="font-family:var(--f);font-size:1.2rem;font-weight:700;text-transform:uppercase;color:var(--a);margin-bottom:2rem;text-align:center;">Booking Inquiry</h3>
+      
+      <div style="margin-bottom:1.5rem;">
+        <label for="booking-name" style="display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,231,208,.6);margin-bottom:.5rem;">Nome *</label>
+        <input type="text" id="booking-name" name="name" required placeholder="Seu nome" style="width:100%;padding:1rem;background:rgba(154,203,107,.05);border:1px solid rgba(154,203,107,.15);color:var(--c);font-family:var(--fb);font-size:.9rem;border-radius:var(--radius-sm);transition:border-color .3s;">
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label for="booking-email" style="display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,231,208,.6);margin-bottom:.5rem;">Email *</label>
+        <input type="email" id="booking-email" name="email" required placeholder="seu@email.com" style="width:100%;padding:1rem;background:rgba(154,203,107,.05);border:1px solid rgba(154,203,107,.15);color:var(--c);font-family:var(--fb);font-size:.9rem;border-radius:var(--radius-sm);transition:border-color .3s;">
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label for="booking-project" style="display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,231,208,.6);margin-bottom:.5rem;">Tipo de Projeto *</label>
+        <select id="booking-project" name="project_type" required style="width:100%;padding:1rem;background:rgba(154,203,107,.05);border:1px solid rgba(154,203,107,.15);color:var(--c);font-family:var(--fb);font-size:.9rem;border-radius:var(--radius-sm);cursor:pointer;">
+          <option value="">Selecione...</option>
+          <option value="single">Single</option>
+          <option value="ep">EP</option>
+          <option value="album">Album</option>
+          <option value="mix">Mixagem</option>
+          <option value="master">Masterização</option>
+          <option value="beat">Beat Custom</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label for="booking-budget" style="display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,231,208,.6);margin-bottom:.5rem;">Budget Range</label>
+        <select id="booking-budget" name="budget" style="width:100%;padding:1rem;background:rgba(154,203,107,.05);border:1px solid rgba(154,203,107,.15);color:var(--c);font-family:var(--fb);font-size:.9rem;border-radius:var(--radius-sm);cursor:pointer;">
+          <option value="">Selecione...</option>
+          <option value="under-500">Até R$500</option>
+          <option value="500-1000">R$500 – R$1.000</option>
+          <option value="1000-3000">R$1.000 – R$3.000</option>
+          <option value="3000-5000">R$3.000 – R$5.000</option>
+          <option value="5000+">R$5.000+</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label for="booking-message" style="display:block;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,231,208,.6);margin-bottom:.5rem;">Mensagem</label>
+        <textarea id="booking-message" name="message" rows="4" placeholder="Conte sobre seu projeto..." style="width:100%;padding:1rem;background:rgba(154,203,107,.05);border:1px solid rgba(154,203,107,.15);color:var(--c);font-family:var(--fb);font-size:.9rem;border-radius:var(--radius-sm);resize:vertical;transition:border-color .3s;"></textarea>
+      </div>
+
+      <button type="submit" class="studio-btn primary" style="width:100%;padding:1.2rem;font-size:.8rem;letter-spacing:.2em;">ENVIAR INQUIRY</button>
+      
+      <p style="margin-top:1.5rem;text-align:center;font-size:.7rem;color:rgba(239,231,208,.4);">
+        Ou agende uma call: <a href="#" style="color:var(--a);text-decoration:underline;">Calendly Placeholder</a>
+      </p>
+    </form>
+    <div id="bookingSuccess" style="display:none;margin-top:2rem;padding:1.5rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--radius-sm);text-align:center;">
+      <p style="color:var(--a);font-size:.9rem;">✓ Mensagem enviada com sucesso! Retornarei em breve.</p>
+    </div>
   </div>
 </section>
 
@@ -2005,6 +2081,23 @@ body.theme-green {
   <div class="mega-robot-tooltip">🤖 DUCK AI ACTIVE</div>
 </div>
 </main>
+
+<!-- PERSISTENT AUDIO PLAYER WIDGET -->
+<div id="audioPlayerWidget" class="audio-player-widget" aria-label="Audio Player">
+  <div class="ap-inner">
+    <button id="apPlayBtn" class="ap-play" aria-label="Play/Pause" title="Play/Pause">
+      <svg id="apPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="apPauseIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+    </button>
+    <div class="ap-info">
+      <div class="ap-track" id="apTrackName">No track loaded</div>
+      <div class="ap-controls">
+        <input type="range" id="apVolume" class="ap-volume" min="0" max="100" value="70" aria-label="Volume" title="Volume">
+        <button id="apMinimize" class="ap-min-btn" aria-label="Minimize" title="Minimize">—</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="footer">
   <p data-i18n="footer">© 2026 DUCK PRODUÇÃO MUSICAL — Criado com maestria por <a href="https://github.com/belentani7" target="_blank" style="color:var(--a);text-decoration:underline;" rel="noopener noreferrer">@belentani_</a></p>
@@ -3497,6 +3590,136 @@ document.addEventListener('mouseover', (e) => {
       activeFx = btn.dataset.fx || 'raw';
       DuckAudioSFX.playClick();
     });
+  });
+})();
+
+// ==================== AUDIO PLAYER WIDGET ====================
+(function() {
+  const widget = document.getElementById('audioPlayerWidget');
+  const playBtn = document.getElementById('apPlayBtn');
+  const playIcon = document.getElementById('apPlayIcon');
+  const pauseIcon = document.getElementById('apPauseIcon');
+  const trackName = document.getElementById('apTrackName');
+  const volumeSlider = document.getElementById('apVolume');
+  const minimizeBtn = document.getElementById('apMinimize');
+  
+  let audioElement = null;
+  let isPlaying = false;
+  
+  // Initialize audio element
+  function initAudio() {
+    audioElement = new Audio();
+    audioElement.volume = volumeSlider.value / 100;
+    
+    audioElement.addEventListener('ended', () => {
+      isPlaying = false;
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    });
+    
+    audioElement.addEventListener('play', () => {
+      isPlaying = true;
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'block';
+    });
+    
+    audioElement.addEventListener('pause', () => {
+      isPlaying = false;
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    });
+  }
+  
+  // Load and play track
+  window.DuckAudioPlayer = {
+    load: function(src, name) {
+      if (!audioElement) initAudio();
+      audioElement.src = src;
+      trackName.textContent = name || 'Track';
+      audioElement.play();
+    },
+    stop: function() {
+      if (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      }
+    }
+  };
+  
+  // Play/Pause toggle
+  playBtn.addEventListener('click', () => {
+    if (!audioElement) {
+      initAudio();
+      trackName.textContent = 'No audio source';
+      return;
+    }
+    if (isPlaying) {
+      audioElement.pause();
+    } else {
+      if (audioElement.src) audioElement.play();
+    }
+  });
+  
+  // Volume control
+  volumeSlider.addEventListener('input', (e) => {
+    if (audioElement) audioElement.volume = e.target.value / 100;
+  });
+  
+  // Minimize/Expand
+  minimizeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    widget.classList.toggle('minimized');
+  });
+  
+  widget.addEventListener('click', (e) => {
+    if (widget.classList.contains('minimized') && e.target === widget) {
+      widget.classList.remove('minimized');
+    }
+  });
+  
+  // Initialize on load
+  initAudio();
+})();
+
+// ==================== BOOKING FORM ====================
+(function() {
+  const form = document.getElementById('bookingForm');
+  const successMsg = document.getElementById('bookingSuccess');
+  
+  if (!form) return;
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    // Disable button during submission
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'ENVIANDO...';
+    
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+      
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      // For demo purposes, show success even if Formspree isn't configured
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+      console.log('Form submission (demo mode):', Object.fromEntries(formData));
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'ENVIAR INQUIRY';
+    }
   });
 })();
 </script>

@@ -1,5 +1,7 @@
 // DUCK — Musical Producer Portfolio Data
 // Data.js - All project data for the Duck website (Primary Language: Portuguese pt-BR)
+// Local asset paths are contract-tested against the repository. The Slip N Slide
+// asset is an explicitly marked editorial placeholder, not official cover art.
 
 const DUCK_DATA = {
   // Basic Info
@@ -24,10 +26,10 @@ const DUCK_DATA = {
   
   // Hero Backgrounds
   heroBackgrounds: [
-    "images/VERDE/capa-1920x1080.jpg",
-    "images/VERDE/capa-3-1920x1080.jpg",
-    "images/VERDE/capa-4-1920x1080.jpg",
-    "images/VERDE/setup-2-1920x1280.jpg",
+    "images/studio/setup-2-1920x1280.jpg",
+    "images/studio/setup-3-1920x1280.jpg",
+    "images/studio/setup-4-1920x1280.jpg",
+    "images/studio/setup-2-1920x1280.jpg",
     "images/VERDE/mix-3-1920x1280.jpg"
   ],
 
@@ -100,7 +102,7 @@ const DUCK_DATA = {
       title: "Slip N Slide",
       artist: "Duck4x, Naeedy, Luh One, Maal4km",
       type: "SINGLE",
-      cover: "images/covers/track_slip-n-slide.jpg",
+      cover: "images/covers/slip-n-slide-placeholder.svg",
       link: "https://music.apple.com/us/album/slip-n-slide/1747165417",
       genre: "Trap",
       streams: "1.2M",
@@ -215,28 +217,28 @@ const DUCK_DATA = {
       id: 1,
       name: "HOME STUDIO PRINCIPAL",
       description: "O centro nervoso de criação. Tratamento acústico cirúrgico, acústica balanceada e monitores Genelec.",
-      image: "images/studio/setup-2-1440x960.jpg",
+      image: "images/studio/setup-2-1024x682.webp",
       specs: ["Genelec 8040B", "Universal Audio Apollo Twin X", "Tratamento Acústico Pro"]
     },
     {
       id: 2,
       name: "ESTAÇÃO DE MIXAGEM",
       description: "Engenharia de áudio com cadeia híbrida (digital + outboard analógico). EQ dinâmico e saturação analógica.",
-      image: "images/studio/setup-3-1440x960.jpg",
+      image: "images/studio/setup-3-1024x682.webp",
       specs: ["Yamaha HS8", "Focusrite Scarlett 18i20", "SSL Bus Compressor"]
     },
     {
       id: 3,
       name: "LABORATÓRIO DE SÍNTESE",
       description: "Sintetizadores analógicos, módulos Eurorack e drum machines. Onde timbres inusitados ganham vida.",
-      image: "images/studio/setup-4-1440x960.jpg",
+      image: "images/studio/setup-4-1024x682.webp",
       specs: ["Moog Sub 37", "Elektron Digitakt", "AKAI MPK Mini"]
     },
     {
       id: 4,
       name: "CABINE DE GRAVAÇÃO DE VOZ",
       description: "Isolamento acústico total para captação transparente e calorosa de vozes e instrumentos acústicos.",
-      image: "images/studio/setup-5-1440x960.jpg",
+      image: "images/studio/setup-5-1024x682.webp",
       specs: ["Neumann U87 Ai", "Shure SM7B", "Filtro Anti-reflexo"]
     },
     {
@@ -250,7 +252,7 @@ const DUCK_DATA = {
       id: 6,
       name: "ESTAÇÃO DE MASTERIZAÇÃO FINAL",
       description: "Finalização cirúrgica de loudness, limitação transparente e maximização estéreo para distribuição global.",
-      image: "images/studio/mix-6-1440x960.jpg",
+      image: "images/studio/mix-6-1024x682.webp",
       specs: ["iZotope Ozone 11 Advanced", "Weiss DS1-MK3", "TC Electronic Clarity M"]
     }
   ],

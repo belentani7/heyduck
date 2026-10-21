@@ -34,6 +34,22 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 | Fonts | Space Grotesk + Inter (Google Fonts) |
 | Hosting | GitHub Pages |
 
+## Integridade da mídia e material editorial
+
+- O catálogo estruturado em `data.js` contém capas, fundos, artistas, serviços e estações de trabalho; a integridade das 19 referências de imagem é verificada contra os arquivos realmente presentes por `node --test tests/*.test.cjs`.
+- Os fundos do hero e as fotografias de estúdio foram corrigidos para arquivos existentes, sem remover as estações e seus dados.
+- Para `Slip N Slide`, que não tinha a capa incluída no repositório, usa-se `images/covers/slip-n-slide-placeholder.svg`. O arquivo está **expressamente rotulado como placeholder editorial, não capa oficial**. Substituir somente quando os direitos e a arte original forem confirmados.
+- Alguns lançamentos continuam com `link: "#"` no catálogo estruturado. São **links ainda não verificados**, nunca URLs falsas de streaming; precisam de edição antes de prometer catálogo com todos os botões de escuta funcionais.
+- Os números por faixa, depoimentos, equipamentos e condições comerciais em conteúdo editorial não foram individualmente comprovados neste lote. Validar licenças, autorizações e links com o artista antes de declarar uma publicação integral.
+- O `index.html` histórico tem mais de 1 MB. O gate deste PR garante o catálogo de `data.js` e a existência do entrypoint, **não afirma** que toda referência interna desse HTML foi validada num navegador.
+
+## Testes de contrato
+
+```bash
+node --check data.js
+node --test tests/*.test.cjs
+```
+
 ## Local Development
 
 ```bash
@@ -80,5 +96,6 @@ heyduck/
 
 ## License
 
-© 2026 DUCK Produção Musical. All rights reserved.
-Built with maestria by [@belentani_](https://github.com/belentani7).
+Código do repositório sob a licença **MIT** (ver arquivo `LICENSE`, copyright Pedro Belentani, 2026). Músicas, capas, fotos, logotipos, nomes de artistas e gravações podem ter direitos autorais ou conexos independentes; a licença MIT do código **não** concede automaticamente direitos de exploração comercial desses ativos.
+
+Produção e direção editorial de DUCK. Plataforma desenvolvida por [@belentani_](https://github.com/belentani7).

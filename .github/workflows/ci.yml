@@ -1,30 +1,38 @@
-name: CI
-
+name: DUCK / Static product gates
 on:
   push:
-    branches: [main]
+    branches: [main, "release/**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   static:
-    name: Integridad del sitio estatico
+    name: Media, data and website contract
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v5
-      - name: Existe punto de entrada HTML
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify mandatory public entrypoints
         run: |
-          test -f index.html || test -f public/index.html || test -f docs/index.html \
-            || { echo "No hay index.html en raiz, public/ ni docs/"; exit 1; }
-      - name: Todos los JSON parsean
+          test -s index.html
+          test -s data.js
+          test -s robots.txt
+          test -s sitemap.xml
+      - name: JavaScript syntax and media contracts
         run: |
-          fail=0
-          while IFS= read -r f; do
-            python3 -c "import json,sys; json.load(open(sys.argv[1], encoding='utf-8'))" "$f" \
-              || { echo "JSON invalido: $f"; fail=1; }
+          node --check data.js
+          node --test tests/*.test.cjs
+      - name: Parse all JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r file; do
+            python3 -m json.tool "$file" >/dev/null || {
+              echo "::error file=$file::Invalid JSON"; exit 1;
+            }
           done < <(find . -name '*.json' -not -path './.git/*' -not -path './node_modules/*')
-          exit $fail

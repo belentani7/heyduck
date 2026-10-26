@@ -12,10 +12,9 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 - **Estúdio interativo** com galeria de fotos e estações de trabalho
 - **Sintetizador (Synth Lab)** — Web Audio API synth com oscilador, controle de frequência e volume
 - **Metrónomo** — Tempo ajustável (40–240 BPM) com visualização
-- **Gerador de Letras (AI)** — Geração de letras por gênero (Trap, Pop, MPB, R&B)
 - **Vocal Booth** — Gravação de voz com FX chain (Radio, Robot, Reverb)
 - **Player de áudio persistente** — Widget fixo com play/pause e controle de volume
-- **Formulário de booking** — Contato profissional com Formspree
+- **Formulário de booking** — Envio por e-mail (mailto:)
 - **Smooth scroll** com Lenis
 - **Animações GSAP** com ScrollTrigger
 - **Easter egg** — Seção hidden com parallax de ondas sonoras

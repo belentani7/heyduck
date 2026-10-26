@@ -2,7 +2,7 @@
 
 Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em Aracaju/SE. Beatmaker, mixagem e masterização com 36M+ streams e 40+ lançamentos oficiais.
 
-🔗 **Live:** [belentani7.github.io/heyduck](https://belentani7.github.io/heyduck/)
+🔗 **Live:** sin publicar — GitHub Pages no está activo en repositorios privados.
 
 ## Features
 
@@ -69,7 +69,7 @@ Open `http://localhost:8000` (or the port your server uses).
 
 The site deploys automatically via **GitHub Pages** from the `main` branch.
 
-- URL: `https://belentani7.github.io/heyduck/`
+- URL: sin publicar — GitHub Pages no está activo en repositorios privados.
 - Push to `main` → GitHub Pages rebuilds automatically
 
 ## Project Structure

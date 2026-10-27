@@ -1866,8 +1866,8 @@ body.theme-green {
         Prefere falar direto? Chama no <a href="https://wa.me/5579996026590" target="_blank" rel="noopener noreferrer" style="color:var(--a);text-decoration:underline;">WhatsApp</a> ou <a href="mailto:duck-beats@hotmail.com" style="color:var(--a);text-decoration:underline;">email</a>.
       </p>
     </form>
-    <div id="bookingSuccess" style="display:none;margin-top:2rem;padding:1.5rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--radius-sm);text-align:center;">
-      <p style="color:var(--a);font-size:.9rem;">✓ Mensagem enviada com sucesso! Retornarei em breve.</p>
+    <div id="bookingSuccess" role="status" aria-live="polite" style="display:none;margin-top:2rem;padding:1.5rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:var(--radius-sm);text-align:center;">
+      <p style="color:var(--a);font-size:.9rem;">✓ Rascunho de email preparado. Revise a mensagem e clique em Enviar no seu aplicativo de email. Nenhuma solicitação foi enviada por este site.</p>
     </div>
   </div>
 </section>
@@ -3713,6 +3713,8 @@ document.addEventListener('mouseover', (e) => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // A previous draft notice must not survive a failed resubmission.
+    successMsg.style.display = 'none';
     form.querySelectorAll('.booking-error').forEach(el => el.remove());
 
     const name = form.querySelector('#booking-name').value.trim();
@@ -3760,9 +3762,10 @@ document.addEventListener('mouseover', (e) => {
     mailLink.click();
     mailLink.remove();
 
-    form.style.display = 'none';
+    // A mailto click only requests that the visitor's mail app compose a draft.
+    // We cannot know if the app opened or if the visitor actually sent the email.
+    // Keep the form visible so an unavailable mail client never loses the enquiry.
     successMsg.style.display = 'block';
-    console.log('Booking inquiry (local mode):', { name, email, project, message });
   });
 })();
 </script>

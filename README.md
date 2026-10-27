@@ -2,7 +2,7 @@
 
 Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em Aracaju/SE. Beatmaker, mixagem e masterização com 36M+ streams e 40+ lançamentos oficiais.
 
-🔗 **Live:** sin publicar — GitHub Pages no está activo en repositorios privados.
+🔗 **Live:** publicação não verificada; nenhuma URL de produção foi validada nesta alteração.
 
 ## Features
 
@@ -14,7 +14,7 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 - **Metrónomo** — Tempo ajustável (40–240 BPM) com visualização
 - **Vocal Booth** — Gravação de voz com FX chain (Radio, Robot, Reverb)
 - **Player de áudio persistente** — Widget fixo com play/pause e controle de volume
-- **Formulário de booking** — Envio por e-mail (mailto:)
+- **Formulário de booking** — valida os dados e abre um rascunho `mailto:` no aplicativo de email do visitante. O site **não envia mensagens**; o visitante precisa revisar e clicar em Enviar.
 - **Smooth scroll** com Lenis
 - **Animações GSAP** com ScrollTrigger
 - **Easter egg** — Seção hidden com parallax de ondas sonoras
@@ -66,10 +66,10 @@ Open `http://localhost:8000` (or the port your server uses).
 
 ## Deploy
 
-The site deploys automatically via **GitHub Pages** from the `main` branch.
+Publicação em **GitHub Pages** não confirmada. A existência da branch `main` não comprova que o site esteja acessível.
 
-- URL: sin publicar — GitHub Pages no está activo en repositorios privados.
-- Push to `main` → GitHub Pages rebuilds automatically
+- URL de produção: não verificada nesta alteração.
+- Antes de anunciar publicação, verificar a configuração Pages, o domínio e a resposta HTTP da página.
 
 ## Project Structure
 

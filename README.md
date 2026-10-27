@@ -2,7 +2,7 @@
 
 Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em Aracaju/SE. Beatmaker, mixagem e masterização com 36M+ streams e 40+ lançamentos oficiais.
 
-🔗 **Live:** [belentani7.github.io/heyduck](https://belentani7.github.io/heyduck/)
+🔗 **Live:** publicação não verificada; nenhuma URL de produção foi validada nesta alteração.
 
 ## Features
 
@@ -12,10 +12,9 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 - **Estúdio interativo** com galeria de fotos e estações de trabalho
 - **Sintetizador (Synth Lab)** — Web Audio API synth com oscilador, controle de frequência e volume
 - **Metrónomo** — Tempo ajustável (40–240 BPM) com visualização
-- **Gerador de Letras (AI)** — Geração de letras por gênero (Trap, Pop, MPB, R&B)
 - **Vocal Booth** — Gravação de voz com FX chain (Radio, Robot, Reverb)
 - **Player de áudio persistente** — Widget fixo com play/pause e controle de volume
-- **Formulário de booking** — valida os dados localmente e prepara um rascunho de email com `mailto:`. **Não envia emails pelo site** nem utiliza Formspree. O visitante precisa revisar e enviar a mensagem na sua aplicação de email.
+- **Formulário de booking** — valida os dados e abre um rascunho `mailto:` no aplicativo de email do visitante. O site **não envia mensagens**; o visitante precisa revisar e clicar em Enviar.
 - **Smooth scroll** com Lenis
 - **Animações GSAP** com ScrollTrigger
 - **Easter egg** — Seção hidden com parallax de ondas sonoras
@@ -36,8 +35,7 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 
 ## Integridade da mídia e material editorial
 
-- O catálogo estruturado em `data.js` contém capas, fundos, artistas, serviços e estações de trabalho; a integridade das 19 referências de imagem é verificada contra os arquivos realmente presentes por `node --test tests/*.test.cjs
-# inclui teste do fluxo de booking local, sem backend de email`.
+- O catálogo estruturado em `data.js` contém capas, fundos, artistas, serviços e estações de trabalho; a integridade das 19 referências de imagem é verificada contra os arquivos realmente presentes por `node --test tests/*.test.cjs`.
 - Os fundos do hero e as fotografias de estúdio foram corrigidos para arquivos existentes, sem remover as estações e seus dados.
 - Para `Slip N Slide`, que não tinha a capa incluída no repositório, usa-se `images/covers/slip-n-slide-placeholder.svg`. O arquivo está **expressamente rotulado como placeholder editorial, não capa oficial**. Substituir somente quando os direitos e a arte original forem confirmados.
 - Alguns lançamentos continuam com `link: "#"` no catálogo estruturado. São **links ainda não verificados**, nunca URLs falsas de streaming; precisam de edição antes de prometer catálogo com todos os botões de escuta funcionais.
@@ -68,10 +66,10 @@ Open `http://localhost:8000` (or the port your server uses).
 
 ## Deploy
 
-The site deploys automatically via **GitHub Pages** from the `main` branch.
+Publicação em **GitHub Pages** não confirmada. A existência da branch `main` não comprova que o site esteja acessível.
 
-- URL: `https://belentani7.github.io/heyduck/`
-- Push to `main` → GitHub Pages rebuilds automatically
+- URL de produção: não verificada nesta alteração.
+- Antes de anunciar publicação, verificar a configuração Pages, o domínio e a resposta HTTP da página.
 
 ## Project Structure
 

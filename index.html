@@ -3713,6 +3713,8 @@ document.addEventListener('mouseover', (e) => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // A previous draft notice must not survive a failed resubmission.
+    successMsg.style.display = 'none';
     form.querySelectorAll('.booking-error').forEach(el => el.remove());
 
     const name = form.querySelector('#booking-name').value.trim();

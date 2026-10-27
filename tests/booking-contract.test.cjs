@@ -48,7 +48,7 @@ function runSubmit(overrides = {}) {
   }, {timeout: 700});
   assert.equal(typeof submitted.handler, "function");
   submitted.handler({ preventDefault: () => {} });
-  return { submitted, form, success };
+  return { submitted, form, success, fields };
 }
 
 test("booking never claims email was sent by a website with no sending backend", () => {
@@ -74,4 +74,13 @@ test("invalid booking data cannot trigger an email draft", () => {
     assert.equal(submitted.clicks,0);
     assert.equal(success.style.display,"none");
   }
+});
+
+test("a failed resubmission clears the prior draft status without opening another draft", () => {
+  const { submitted, success, fields } = runSubmit();
+  assert.equal(success.style.display, "block");
+  fields["#booking-name"].value = " ";
+  submitted.handler({ preventDefault: () => {} });
+  assert.equal(success.style.display, "none");
+  assert.equal(submitted.clicks, 1);
 });

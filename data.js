@@ -13,7 +13,7 @@ const DUCK_DATA = {
   coordinates: { lat: -10.9091, lng: -37.0671 },
   node: "ARACAJU-STUDIO-PRIMARY",
   status: "ONLINE / GRAVANDO",
-  bio: "Lucas (Duck) é produtor musical, beatmaker e engenheiro de som com mais de 12 anos de estrada. Com visão sinestésica e foco em arquitetura sonora de alta precisão, soma mais de 36 milhões de streams e 40+ lançamentos oficiais entre Trap, Boom Bap, MPB, Pop e R&B.",
+  bio: "Lucas (Duck) é produtor musical, beatmaker e engenheiro de som com mais de 12 anos de estrada. Com visão sinestésica e foco em arquitetura sonora de alta precisão, soma mais de 36 milhões de streams e 40 lançamentos oficiais entre Trap, Boom Bap, MPB, Pop e R&B.",
   
   // Stats
   stats: {

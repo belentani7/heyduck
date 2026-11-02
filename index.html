@@ -1521,12 +1521,12 @@ body.theme-green {
     <div class="effects-panel">
       <h3 class="effects-title" data-i18n="fx_h">EFEITOS DE VOZ</h3>
       <div class="effects-grid">
-        <div class="effect-card" data-effect="autotune"><div class="effect-icon">🎤</div><div class="effect-name">AUTOTUNE</div><div class="effect-desc" data-i18n="fx1">Correção de tom</div><input type="range" class="effect-slider" min="0" max="100" value="50"><div class="effect-value">50%</div><button class="effect-toggle">OFF</button></div>
-        <div class="effect-card" data-effect="reverb"><div class="effect-icon">🎵</div><div class="effect-name">REVERB</div><div class="effect-desc" data-i18n="fx2">Reverberação</div><input type="range" class="effect-slider" min="0" max="100" value="30"><div class="effect-value">30%</div><button class="effect-toggle">OFF</button></div>
-        <div class="effect-card" data-effect="chipmunk"><div class="effect-icon">🐿️</div><div class="effect-name" data-i18n="fx3_n">VOZ DE ESQUILO</div><div class="effect-desc" data-i18n="fx3">Tom alto e rápido</div><input type="range" class="effect-slider" min="100" max="300" value="180"><div class="effect-value">180%</div><button class="effect-toggle">OFF</button></div>
-        <div class="effect-card" data-effect="deep"><div class="effect-icon">🔊</div><div class="effect-name" data-i18n="fx4_n">VOZ GRAUDA</div><div class="effect-desc" data-i18n="fx4">Tom baixo e profundo</div><input type="range" class="effect-slider" min="30" max="100" value="70"><div class="effect-value">70%</div><button class="effect-toggle">OFF</button></div>
-        <div class="effect-card" data-effect="echo"><div class="effect-icon">🔁</div><div class="effect-name">ECHO</div><div class="effect-desc" data-i18n="fx5">Repetição com decaimento</div><input type="range" class="effect-slider" min="0" max="100" value="40"><div class="effect-value">40%</div><button class="effect-toggle">OFF</button></div>
-        <div class="effect-card" data-effect="robot"><div class="effect-icon">🤖</div><div class="effect-name">ROBÔ</div><div class="effect-desc" data-i18n="fx6">Voz metálica</div><input type="range" class="effect-slider" min="0" max="100" value="60"><div class="effect-value">60%</div><button class="effect-toggle">OFF</button></div>
+        <div class="effect-card" data-effect="autotune"><div class="effect-icon">🎤</div><div class="effect-name">AUTOTUNE</div><div class="effect-desc" data-i18n="fx1">Correção de tom</div><input aria-label="Range" type="range" class="effect-slider" min="0" max="100" value="50"><div class="effect-value">50%</div><button class="effect-toggle">OFF</button></div>
+        <div class="effect-card" data-effect="reverb"><div class="effect-icon">🎵</div><div class="effect-name">REVERB</div><div class="effect-desc" data-i18n="fx2">Reverberação</div><input aria-label="Range" type="range" class="effect-slider" min="0" max="100" value="30"><div class="effect-value">30%</div><button class="effect-toggle">OFF</button></div>
+        <div class="effect-card" data-effect="chipmunk"><div class="effect-icon">🐿️</div><div class="effect-name" data-i18n="fx3_n">VOZ DE ESQUILO</div><div class="effect-desc" data-i18n="fx3">Tom alto e rápido</div><input aria-label="Range" type="range" class="effect-slider" min="100" max="300" value="180"><div class="effect-value">180%</div><button class="effect-toggle">OFF</button></div>
+        <div class="effect-card" data-effect="deep"><div class="effect-icon">🔊</div><div class="effect-name" data-i18n="fx4_n">VOZ GRAUDA</div><div class="effect-desc" data-i18n="fx4">Tom baixo e profundo</div><input aria-label="Range" type="range" class="effect-slider" min="30" max="100" value="70"><div class="effect-value">70%</div><button class="effect-toggle">OFF</button></div>
+        <div class="effect-card" data-effect="echo"><div class="effect-icon">🔁</div><div class="effect-name">ECHO</div><div class="effect-desc" data-i18n="fx5">Repetição com decaimento</div><input aria-label="Range" type="range" class="effect-slider" min="0" max="100" value="40"><div class="effect-value">40%</div><button class="effect-toggle">OFF</button></div>
+        <div class="effect-card" data-effect="robot"><div class="effect-icon">🤖</div><div class="effect-name">ROBÔ</div><div class="effect-desc" data-i18n="fx6">Voz metálica</div><input aria-label="Range" type="range" class="effect-slider" min="0" max="100" value="60"><div class="effect-value">60%</div><button class="effect-toggle">OFF</button></div>
       </div>
       <div class="presets-panel">
         <h4 data-i18n="pre_h">PRESETS</h4>
@@ -1996,22 +1996,22 @@ body.theme-green {
       <div class="mega-console-channels">
         <div class="mega-channel-strip">
           <div class="mega-channel-name">KICK / BASS</div>
-          <input type="range" class="mega-channel-slider" min="0" max="100" value="80">
+          <input aria-label="Range" type="range" class="mega-channel-slider" min="0" max="100" value="80">
           <div class="mega-vu-meter" id="mega-vu1"></div>
         </div>
         <div class="mega-channel-strip">
           <div class="mega-channel-name">SYNTH / PAD</div>
-          <input type="range" class="mega-channel-slider" min="0" max="100" value="65">
+          <input aria-label="Range" type="range" class="mega-channel-slider" min="0" max="100" value="65">
           <div class="mega-vu-meter" id="mega-vu2"></div>
         </div>
         <div class="mega-channel-strip">
           <div class="mega-channel-name">VOCAL BOOTH</div>
-          <input type="range" class="mega-channel-slider" min="0" max="100" value="90">
+          <input aria-label="Range" type="range" class="mega-channel-slider" min="0" max="100" value="90">
           <div class="mega-vu-meter" id="mega-vu3"></div>
         </div>
         <div class="mega-channel-strip">
           <div class="mega-channel-name">MASTER BUS</div>
-          <input type="range" class="mega-channel-slider" min="0" max="100" value="75">
+          <input aria-label="Range" type="range" class="mega-channel-slider" min="0" max="100" value="75">
           <div class="mega-vu-meter" id="mega-vu4"></div>
         </div>
       </div>

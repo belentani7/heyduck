@@ -1,6 +1,17 @@
-# heyduck — instrucciones para agentes
+﻿# AGENTS.md - heyduck
 
-- Antes de cambiar nada, revisa `git status`. No descartes ni sobrescribas cambios sin commit que no hayas hecho tú.
-- No borres carpetas (`node_modules`, `dist`, `.venv`, etc.) ni ficheros de datos sin preguntar.
-- No hagas `git push`, `git reset --hard` ni despliegues sin que el usuario lo pida explícitamente.
-- Haz cambios pequeños y verificables; ejecuta solo las comprobaciones que cubran el cambio.
+## Stack
+- package.json: False
+- Python: False
+- Docker: 
+
+## Comandos
+
+## Reglas
+- Ver .claude/rules/ para reglas por ruta
+- Consultar memoria del proyecto antes de actuar
+- Ejecutar /impeccable audit si hay frontend
+
+## Memoria del Proyecto
+- Incidentes: .agents/memory/incidents.md
+- Patrones: .agents/patterns/

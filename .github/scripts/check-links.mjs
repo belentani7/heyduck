@@ -9,10 +9,14 @@ import { dirname, resolve, relative, join } from "node:path";
 
 function collectHtml(dir) {
   const out = [];
+  const ignoredDirectories = new Set([".git", "legacy", "node_modules"]);
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) {
-      if (entry === "node_modules" || entry.startsWith(".")) continue;
+      // `legacy/` contains archived exports and build artifacts. They are not
+      // part of the published site and intentionally reference their original
+      // project roots, so including them makes this gate report false positives.
+      if (ignoredDirectories.has(entry) || entry.startsWith(".")) continue;
       out.push(...collectHtml(full));
     } else if (entry.endsWith(".html")) {
       out.push(full);

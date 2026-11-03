@@ -47,6 +47,7 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 ```bash
 node --check data.js
 node --test tests/*.test.cjs
+node .github/scripts/check-links.mjs
 ```
 
 ## Local Development

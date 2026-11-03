@@ -27,6 +27,8 @@ jobs:
         run: |
           node --check data.js
           node --test tests/*.test.cjs
+      - name: Verify active HTML links and local assets
+        run: node .github/scripts/check-links.mjs
       - name: Parse all JSON
         shell: bash
         run: |

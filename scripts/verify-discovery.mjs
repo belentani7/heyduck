@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const canonical = "https://belentani7.github.io/heyduck/";
+const canonical = "https://heyduck.vercel.app/";
 const sitemap = readFileSync(resolve(root, "sitemap.xml"), "utf8");
 const robots = readFileSync(resolve(root, "robots.txt"), "utf8");
 const homepageFile = resolve(root, "index.html");

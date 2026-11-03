@@ -2,7 +2,7 @@
 
 Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em Aracaju/SE. Beatmaker, mixagem e masterização com 36M+ streams e 40+ lançamentos oficiais.
 
-🔗 **Live:** sin publicar — GitHub Pages no está activo en repositorios privados.
+🔗 **Live (Vercel):** https://heyduck.vercel.app/ — despliegue de producción. GitHub Pages no es el destino canónico.
 
 ## Features
 
@@ -31,7 +31,7 @@ Portfolio interativo do produtor musical **Duck** (Lucas Belentani), baseado em 
 | Smooth Scroll | Lenis |
 | Audio | Web Audio API (synth, metronome, vocal booth) |
 | Fonts | Space Grotesk + Inter (Google Fonts) |
-| Hosting | GitHub Pages |
+| Hosting | Vercel (producción) |
 
 ## Integridade da mídia e material editorial
 
@@ -66,10 +66,10 @@ Open `http://localhost:8000` (or the port your server uses).
 
 ## Deploy
 
-The site deploys automatically via **GitHub Pages** from the `main` branch.
+The live site is deployed via **Vercel** from the `main` branch. The optional GitHub Pages mirror is not the canonical URL.
 
-- URL: sin publicar — GitHub Pages no está activo en repositorios privados.
-- Push to `main` → GitHub Pages rebuilds automatically
+- Production: https://heyduck.vercel.app/
+- Push to `main` → Vercel builds and promotes the production deployment (confirm READY and correct route content).
 
 ## Project Structure
 
@@ -108,6 +108,6 @@ Produção e direção editorial de DUCK. Plataforma desenvolvida por [@belentan
 | Época de desarrollo | 2026 |
 | Contacto | [belentani7studio@proton.me](mailto:belentani7studio@proton.me) |
 | Código | https://github.com/belentani7/heyduck |
-| Demo desplegada | https://belentani7.github.io/heyduck/ |
+| Demo desplegada | https://heyduck.vercel.app/ |
 
 Quality baseline: CI + Dependabot + CodeQL + reglas de agentes por [premium-factory](https://github.com/belentani7/premium-factory-api).

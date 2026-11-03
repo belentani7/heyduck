@@ -6,8 +6,8 @@
 | Cuenta | `belentani7` |
 | Rama | `main` |
 | Categoría | arte-musica |
-| Link Pages | 404 / no disponible |
-| Link Belentani | https://belentani7.github.io/heyduck/ |
+| Link Pages | secundario; no es el canónico |
+| Link Belentani | https://heyduck.vercel.app/ |
 | Definición | DUCK hub web, apps, música, producción |
 | Estado | `activo` |
 | Red | `belentani-ecosystem` |
@@ -18,7 +18,7 @@
 - Índice maestro: `https://github.com/belentani7/belentani-ecosystem`
 - Estándar de red: `ORGANIZACION_ESTANDAR_RED.md`
 - Dominio Pages: `belentani.es`
-- Dominio Belentani: `belentani7.github.io`
+- Dominio de producción: `heyduck.vercel.app`
 
 ## Reglas de la organización
 

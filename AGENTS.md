@@ -1,4 +1,4 @@
-﻿# AGENTS.md - heyduck
+# AGENTS.md - heyduck
 
 ## Stack
 - package.json: False

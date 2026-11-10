@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BELENTANI // MAGIC SHADER</title>
+<title>Shader mágico interactivo · DUCK · demo WebGL</title>
 <style>
   html, body { margin:0; height:100%; overflow:hidden; background:#05010d; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
   #gl { position:fixed; inset:0; width:100%; height:100%; display:block; }
@@ -23,8 +23,17 @@
     background:rgba(168,85,247,.15); border-radius:2px; transition:.3s; }
   a.cta:hover { background:rgba(168,85,247,.5); box-shadow:0 0 40px rgba(168,85,247,.8); }
 </style>
+<meta name="description" content="BELENTANI Magic Shader.. Información, recursos y contacto en un solo sitio, sin registro.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BELENTANI · DUCK · magic">
+<meta property="og:description" content="BELENTANI Magic Shader.. Información, recursos y contacto en un solo sitio, sin registro.">
+<meta property="og:image" content="brand/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+<main>
+
 <canvas id="gl"></canvas>
 <div class="ui">
   <h1>BELENTANI</h1>
@@ -70,5 +79,8 @@ else {
   (function loop(t){ gl.uniform1f(uT,t/1000); gl.drawArrays(gl.TRIANGLES,0,3); requestAnimationFrame(loop); })(0);
 }
 </script>
+</main>
+<footer><p>© 2026 DUCK · Parte del ecosistema Belentani</p></footer>
+<!-- page-fix:1 -->
 </body>
 </html>

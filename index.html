@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="heyduck - Producto completo con hero shader y animaciones">
-  <title>Heyduck</title>
+  <meta name="description" content="Heyduck Producto completo con home hero, shader WebGL animado, y stack moderno listo para producción.">
+  <title>Heyduck · DUCK · sitio de estudio de producción musical</title>
   <meta name="author" content="belentani7">
   <link rel="canonical" href="https://heyduck.vercel.app/">
   <link rel="theme-color" content="#6366f1">
@@ -177,8 +177,20 @@ footer {
   section { padding: 2rem 1rem; }
 }
 </style>
+
+<!-- repo-forge:head -->
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Heyduck">
+<meta property="og:description" content="Un lugar donde el trabajo se ve terminado, con su relato y sus créditos, no una maqueta que promete.">
+<meta property="og:image" content="brand/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/a11y.css">
 </head>
 <body>
+<main>
+
   <section class="hero">
     <div class="hero-canvas"></div>
     <div class="hero-overlay">
@@ -201,7 +213,8 @@ footer {
       <li>Responsive Design</li>
     </ul>
   </section>
-  <footer><p>© 2026 Heyduck - Parte del ecosistema Belentani</p></footer>
+  </main>
+<footer><p>© 2026 Heyduck - Parte del ecosistema Belentani</p></footer>
 /* Hero Shader WebGL */
 (function() {
   const canvas = document.createElement('canvas');
@@ -243,5 +256,6 @@ footer {
   function render(time) { gl.uniform1f(tl, time * 0.001); gl.uniform2f(ml, mouse.x, mouse.y); gl.drawArrays(gl.TRIANGLES, 0, 6); requestAnimationFrame(render); }
   requestAnimationFrame(render);
 })();
+<!-- page-fix:1 -->
 </body>
 </html>

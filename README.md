@@ -138,3 +138,84 @@ npm run build
 ```
 
 Consulta `package.json` para la lista completa de scripts disponibles.
+
+<!-- repo-forge:readme:inicio -->
+## Qué es
+
+**DUCK** — sitio de estudio de producción musical.
+
+Un lugar donde el trabajo se ve terminado, con su relato y sus créditos, no una maqueta que promete.
+
+## Estado medido
+
+| Dato | Valor |
+|---|---|
+| Lenguajes | JavaScript, HTML, Markdown, CSS, JSON, Python |
+| Archivos / líneas | 241 / 3113 |
+| Páginas HTML | 8 |
+| Tests detectados | 3 |
+| Cumplimiento de reglas | 33/34 (97.1%) |
+
+Todo lo anterior se midió en disco el 2026-11-10; no es una estimación.
+
+## Uso
+
+```bash
+python scripts/doctor.py   # verificación sin dependencias
+```
+
+## Estructura
+
+```
+assets/
+brand/
+data/
+docs/
+images/
+js/
+magic/
+plataforma/
+producto/
+scripts/
+```
+
+## Diseño de plataforma
+
+- Beats
+- Servicios
+- Tarifas
+- Briefing
+
+La ficha completa —máximo potencial, marca, fases de monetización y recursos— vive en
+[`plataforma/FICHA.md`](plataforma/FICHA.md). Los tokens de marca están en
+[`brand/tokens.css`](brand/tokens.css).
+
+## Reglas del proyecto
+
+Este repositorio sigue el catálogo oficial del ecosistema (`GH-*`, `WEB-*`, `ACC-*`,
+`SEO-*`, `COH-*`, `DEV-*`). El gate se ejecuta con:
+
+```bash
+python scripts/doctor.py
+```
+
+## Licencia
+
+MIT. Ver [`LICENSE`](LICENSE).
+<!-- repo-forge:readme:fin -->
+<!-- repo-forge:readme:fin -->
+<!-- repo-forge:readme:fin -->
+<!-- repo-forge:readme:fin -->
+
+## Resumen en español
+
+DUCK — sitio de estudio de producción musical.
+
+estudio con catálogo de beats escuchables, tarifas claras y briefing de proyecto
+
+Este resumen se añadió para que el repositorio se pueda leer en el idioma del ecosistema.
+El contenido técnico completo sigue en el resto del documento.
+
+## Producto
+
+Oferta, precio y cobro: [`producto/OFERTA.md`](producto/OFERTA.md) · [`producto/precios.json`](producto/precios.json) · [`producto/landing.html`](producto/landing.html)

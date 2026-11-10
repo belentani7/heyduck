@@ -1,0 +1,31 @@
+{
+  "nombre": "heyduck",
+  "remoto": "https://github.com/belentani7/heyduck",
+  "tipo": "web-static",
+  "modelo": "sitio de estudio de producción musical",
+  "publico": "artistas que buscan beatmaker o mezcla",
+  "licencia": "MIT",
+  "medido": {
+    "archivos": 241,
+    "lineas": 3113,
+    "bytes": 25861160,
+    "html": 8,
+    "tests": 3
+  },
+  "modulos": [
+    "Beats",
+    "Servicios",
+    "Tarifas",
+    "Briefing"
+  ],
+  "paleta": {
+    "bg": "#0b0a12",
+    "ink": "#f2eefc",
+    "accent": "#9377e6"
+  },
+  "fuente": {
+    "ruta": "repos\\heyduck",
+    "fecha": "2026-11-10"
+  },
+  "generado_por": "repo-forge"
+}

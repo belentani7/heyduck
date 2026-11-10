@@ -1,0 +1,78 @@
+{
+  "esquema": "repo-forge/ficha/1",
+  "nombre": "heyduck",
+  "remoto": "https://github.com/belentani7/heyduck",
+  "arquetipo": "web-static",
+  "stack": "JavaScript",
+  "modelo": "sitio de estudio de producción musical",
+  "publico": "artistas que buscan beatmaker o mezcla",
+  "techo": "estudio con catálogo de beats escuchables, tarifas claras y briefing de proyecto",
+  "modulos": [
+    "Beats",
+    "Servicios",
+    "Tarifas",
+    "Briefing"
+  ],
+  "no_go": "audio sin derechos",
+  "marca": {
+    "nombre": "DUCK",
+    "familia": "creativo",
+    "paleta": {
+      "familia": "creativo",
+      "bg": "#0b0a12",
+      "surface": "#15141c",
+      "ink": "#f2eefc",
+      "muted": "#9a97a3",
+      "accent": "#9377e6",
+      "accent2": "#f472b6",
+      "ok": "#15803d",
+      "warn": "#b45309",
+      "danger": "#b91c1c",
+      "contraste_ink_bg": 17.26,
+      "contraste_accent_bg": 5.65,
+      "accent_sobre_bg_ok": true
+    },
+    "narrativa": "La obra primero"
+  },
+  "paywall": {
+    "principio": "sin muro: el visitante ve precio y resultado antes de dar datos",
+    "fases": 4
+  },
+  "medido": {
+    "archivos": 241,
+    "lineas": 3113,
+    "html": 8,
+    "tests": 3,
+    "bytes": 25861160,
+    "lenguajes": {
+      "JavaScript": 64.3,
+      "HTML": 26.0,
+      "Markdown": 5.8,
+      "CSS": 2.2,
+      "JSON": 1.4,
+      "Python": 0.3
+    },
+    "fecha": "2026-11-10"
+  },
+  "gate": {
+    "pass": 33,
+    "fail": 1,
+    "skip": 15,
+    "cumplimiento": 97.1,
+    "fallos": [
+      "SEO-01"
+    ]
+  },
+  "ajustes": {
+    "total": 61,
+    "aplicados": 50,
+    "ya_estaban": 11,
+    "fallos": 0
+  },
+  "esfuerzo_dias": 41,
+  "doctor": {
+    "ok": true,
+    "detalle": "38/38 comprobaciones en verde"
+  },
+  "huella": "3c9d0af1d812792c"
+}

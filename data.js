@@ -14,7 +14,7 @@ const DUCK_DATA = {
   node: "ARACAJU-STUDIO-PRIMARY",
   status: "ONLINE / GRAVANDO",
   bio: "Lucas (Duck) é produtor musical, beatmaker e engenheiro de som com mais de 12 anos de estrada. Com visão sinestésica e foco em arquitetura sonora de alta precisão, soma mais de 36 milhões de streams e 40 lançamentos oficiais entre Trap, Boom Bap, MPB, Pop e R&B.",
-  
+
   // Stats
   stats: {
     streams: 36000000,
@@ -23,7 +23,7 @@ const DUCK_DATA = {
     yearsActive: 12,
     startYear: 2012
   },
-  
+
   // Hero Backgrounds
   heroBackgrounds: [
     "images/studio/setup-2-1920x1280.jpg",
@@ -54,7 +54,7 @@ const DUCK_DATA = {
       features: ["Posse exclusiva do beat", "Streams ilimitados", "MasterStems + Arquivo de Projeto", "Retirada do catálogo"]
     }
   ],
-  
+
   // Services
   services: [
     {
@@ -94,7 +94,7 @@ const DUCK_DATA = {
       icon: "💡"
     }
   ],
-  
+
   // Singles & Major Releases
   singles: [
     {
@@ -194,7 +194,7 @@ const DUCK_DATA = {
       key: "F Major"
     }
   ],
-  
+
   // Tools/Ecosystem
   tools: [
     { icon: "🎛️", title: "MESA MIDI LAUNCHPAD", description: "AKAI MPK Mini & Launchpad 16-Pads para programação de ritmos e synths em tempo real." },
@@ -210,7 +210,7 @@ const DUCK_DATA = {
     { icon: "🎻", title: "BIBLIOTECAS ORQUESTRAIS", description: "Spitfire Audio Chamber Strings & Hans Zimmer Percussion para arranjos cinematográficos épicos." },
     { icon: "🎛️", title: "SINTETIZADOR MODULAR EURORACK", description: "Módulos Eurorack customizados para síntese de ruídos, modulação caótica e sound design avançado." }
   ],
-  
+
   // Studio Stations
   stations: [
     {
@@ -256,7 +256,7 @@ const DUCK_DATA = {
       specs: ["iZotope Ozone 11 Advanced", "Weiss DS1-MK3", "TC Electronic Clarity M"]
     }
   ],
-  
+
   // Gear Categories
   gear: {
     microphones: [
@@ -276,7 +276,7 @@ const DUCK_DATA = {
       { name: "Universal Audio UAD-2 Custom", type: "Emulações Analógicas Vintage (Neve, SSL, Universal Audio)" }
     ]
   },
-  
+
   // Testimonials
   testimonials: [
     {

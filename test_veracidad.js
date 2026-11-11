@@ -31,20 +31,20 @@ for (const archivo of VIVOS) {
   for (const patron of patronesMarketing) {
     const coincidencias = contenido.match(patron);
     if (coincidencias) {
-      console.log(`R3 FALLO en ${path.basename(archivo)}: ${coincidencias.join(", ")}`);
+      console.debug(`R3 FALLO en ${path.basename(archivo)}: ${coincidencias.join(", ")}`);
       hallazgosArchivo += coincidencias.length;
       totalHallazgos += coincidencias.length;
     }
   }
   if (hallazgosArchivo === 0) {
-    console.log(`R3 OK en ${path.basename(archivo)}: sin cifras de marketing sin fuente`);
+    console.debug(`R3 OK en ${path.basename(archivo)}: sin cifras de marketing sin fuente`);
   }
 }
 
 if (totalHallazgos > 0) {
-  console.log(`\nR3: ${totalHallazgos} cifra(s) de marketing sin fuente pendiente(s)`);
+  console.debug(`\nR3: ${totalHallazgos} cifra(s) de marketing sin fuente pendiente(s)`);
   process.exit(1);
 } else {
-  console.log("\nR3: todas las cifras de marketing tienen fuente o fueron eliminadas");
+  console.debug("\nR3: todas las cifras de marketing tienen fuente o fueron eliminadas");
   process.exit(0);
 }

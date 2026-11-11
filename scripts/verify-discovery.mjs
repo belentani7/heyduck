@@ -35,4 +35,4 @@ assert.match(robots, /^User-agent:\s*\*\s*$/mi);
 assert.match(robots, /^Allow:\s*\/\s*$/mi);
 assert.ok(robots.split(/\r?\n/).some((line) => line.trim() === "Sitemap: " + canonical + "sitemap.xml"),
   "robots.txt must reference the canonical sitemap URL");
-console.log("SEO smoke OK: homepage present, one sitemap URL, consistent robots.txt");
+console.debug("SEO smoke OK: homepage present, one sitemap URL, consistent robots.txt");

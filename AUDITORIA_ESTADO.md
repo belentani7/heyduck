@@ -1,33 +1,19 @@
 # AUDITORIA_ESTADO — heyduck
 
-> Repositorio físico: `belentani-ecosystem/arte-musica/heyduck`
+- Cumplimiento: **92.5%** (37 ok / 3 incumple / 9 no evaluable)
+- Paginas HTML muestreadas: 6
+- Generado: 2026-11-07T18:29:43
 
-## Situación actual
+## Reglas que incumple
 
-| Indicador | Valor |
-|-----------|-------|
-| Categoría | arte-musica |
-| Lenguaje | HTML |
-| Rama | main |
-| package.json | No |
-| Python | No |
-| Docker | No |
-| README | Sí |
-| AGENTS.md | No |
-| Tests | No |
-| CI | Sí |
+| Regla | Detalle |
+|---|---|
+| COH-01 | variantes de marca: ['belentani', 'belentani7', 'belentani_', 'belentani_omega', 'belentaniexperience'] |
+| DEV-06 | sin archivos duplicados/muertos |
+| WEB-06 | 404.html: sin <header> |
 
-## Comentarios
-
-- Hub web del universo DUCK: apps, música y herramientas de producción.
-- Repo curado (categoría creative).
-- Hallazgo veracidad: index.html tiene cifras sin fuente (R3): "1400+ ABONNÉS, 1400+ FOLLOWERS, 1400+ SEGUIDORES".
-
-## Comando para arreglar y elevar
+## Reparacion
 
 ```bash
-# 1. Corregir cifras sin fuente en index.html (añadir fuente o eliminar)
-# 2. HTML estático: copiar archivos al servidor
-# 3. Crear AGENTS.md con reglas del ecosistema belentani7
-# 4. Crear tests básicos (validación HTML, enlaces rotos)
-gitleaks detect --source .
+python _audit/reparar.py --apply --only heyduck
+```

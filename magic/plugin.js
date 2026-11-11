@@ -1,4 +1,3 @@
-import type { Plugin } from "opencode"
 
 /**
  * BELENTANI // MAGIC PLUGIN
@@ -7,7 +6,7 @@ import type { Plugin } from "opencode"
  * Adds an /immersive command that points the user to the magic layer,
  * and a session hook that keeps the signature in mind.
  */
-export const magic: Plugin = async ({ project, hooks }) => {
+export const magic = async ({ project, hooks }) => {
   const repo = project.directory.split(/[\\/]/).pop() ?? "node"
 
   project.command("immersive", {

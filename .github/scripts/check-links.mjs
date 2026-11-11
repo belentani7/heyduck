@@ -80,5 +80,5 @@ for (const page of pages) {
   }
 }
 
-console.log(`\n${checked} referencias comprobadas en ${pages.length} páginas · errores: ${errors}`);
+console.debug(`\n${checked} referencias comprobadas en ${pages.length} páginas · errores: ${errors}`);
 process.exit(errors === 0 ? 0 : 1);

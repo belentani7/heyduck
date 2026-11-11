@@ -1,0 +1,35 @@
+{
+  "repo": "heyduck",
+  "moneda": "EUR",
+  "estado": "publicado_solicitud_manual",
+  "modelo": "herramienta",
+  "quien_paga": "equipos que necesitan soporte, despliegue o consultoría",
+  "que_se_bloquea": "nada del núcleo",
+  "regla_dura": "ninguna capacidad del núcleo se reserva a un plan de pago",
+  "checkout": "solicitud por correo y pago por transferencia SEPA tras factura; sin pasarela web",
+  "planes": [
+    {
+      "nombre": "Base",
+      "precio": 0,
+      "descripcion": "Código abierto bajo licencia MIT y uso gratuito."
+    },
+    {
+      "nombre": "Soporte",
+      "precio": 89,
+      "periodo": "mes",
+      "descripcion": "Asistencia prioritaria; canal, alcance y SLA se acuerdan por escrito."
+    },
+    {
+      "nombre": "Gestionado",
+      "precio": 149,
+      "periodo": "mes",
+      "descripcion": "Despliegue y mantenimiento con entorno y responsabilidades acordados por escrito."
+    },
+    {
+      "nombre": "Consultoría",
+      "precio": 89,
+      "periodo": "hora",
+      "descripcion": "Integración y personalización por horas acordadas."
+    }
+  ]
+}

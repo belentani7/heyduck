@@ -81,7 +81,9 @@ The live site is deployed via **Vercel** from the `main` branch. The optional Gi
 
 ```
 heyduck/
-├── index.html          # Main portfolio (3500+ lines)
+├── index.html          # Product entry page
+├── producto.html       # Commercial plans and contact flow
+├── ecosistema.html     # Music portfolio
 ├── data.js             # Structured data (tracks, services, bio)
 ├── sitemap.xml         # SEO sitemap
 ├── robots.txt          # Crawl directives
@@ -121,20 +123,14 @@ Quality baseline: CI + Dependabot + CodeQL + reglas de agentes por [premium-fact
 
 ## Uso
 
-Instala dependencias y ejecuta el proyecto:
+heyduck es un sitio estático y no requiere instalar dependencias. Para servirlo localmente:
 
 ```powershell
-# Dependencias
-npm install
-
-# Desarrollo
-npm run dev
-
-# Pruebas
-npm test
-
-# Construcción de producción
-npm run build
+python -m http.server 8000
 ```
 
-Consulta `package.json` para la lista completa de scripts disponibles.
+Abre `http://localhost:8000/`. La oferta comercial está en [heyduck.vercel.app/producto](https://heyduck.vercel.app/producto); los planes de pago se solicitan por correo y se confirman con factura. No hay checkout de tarjeta configurado.
+
+
+## Producto
+Página de producto: [`producto.html`](producto.html). Oferta, precios y contratación: [`plataforma/OFERTA.md`](plataforma/OFERTA.md), [`plataforma/precios.json`](plataforma/precios.json) y [`plataforma/COBRO.md`](plataforma/COBRO.md).

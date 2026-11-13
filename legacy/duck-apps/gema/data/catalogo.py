@@ -1,0 +1,2 @@
+REPO = "gema"
+FAMILIA = "educación"

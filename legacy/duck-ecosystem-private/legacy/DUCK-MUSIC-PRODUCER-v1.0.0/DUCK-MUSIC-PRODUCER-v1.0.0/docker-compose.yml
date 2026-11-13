@@ -1,0 +1,26 @@
+services:
+  duck-api:
+    build: .
+    command: ["node", "dist-duck/api-cli.js"]
+    ports:
+      - "4200:4200"
+    environment:
+      DUCK_PORT: 4200
+      MANOS_DATA_DIR: /app/data
+    volumes:
+      - duck-data:/app/data
+    restart: unless-stopped
+
+  duck-worker:
+    build: .
+    command: ["node", "dist-duck/worker.js"]
+    environment:
+      MANOS_DATA_DIR: /app/data
+    volumes:
+      - duck-data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - duck-api
+
+volumes:
+  duck-data:

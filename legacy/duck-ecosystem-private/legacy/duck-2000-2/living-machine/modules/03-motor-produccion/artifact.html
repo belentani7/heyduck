@@ -1,0 +1,149 @@
+<section
+  class="duck-production"
+  data-duck-module="03"
+  data-stage="understand"
+  data-visible="true"
+  aria-labelledby="duck-production-title"
+>
+  <div class="duck-production__shell">
+    <header class="duck-production__header">
+      <div class="duck-production__index" aria-hidden="true">
+        <span>03</span>
+        <i></i>
+        <span>KANT</span>
+      </div>
+
+      <div class="duck-production__heading">
+        <p class="duck-production__eyebrow">Motor de produção</p>
+        <h2 id="duck-production-title">Da intenção à forma.</h2>
+        <p class="duck-production__intro">
+          Quatro decisões ligadas pela mesma corrente: ouvir, localizar,
+          construir e entregar. A máquina não substitui o critério de Duck;
+          torna o processo legível.
+        </p>
+      </div>
+
+      <div class="duck-production__telemetry" aria-label="Sinais recebidos da identidade">
+        <span>ENTRADA</span>
+        <strong data-input-mood>curioso</strong>
+        <small data-input-traits>jovem · tecnológico · humano</small>
+      </div>
+    </header>
+
+    <div class="duck-production__machine" aria-label="Processo de produção em quatro etapas">
+      <div class="duck-production__rail" aria-hidden="true">
+        <span class="duck-production__rail-base"></span>
+        <span class="duck-production__rail-charge" data-rail-charge></span>
+        <span class="duck-production__signal" data-signal></span>
+      </div>
+
+      <ol class="duck-production__stages">
+        <li>
+          <button class="duck-stage is-active" type="button" data-stage-button="understand" aria-pressed="true">
+            <span class="duck-stage__number">01</span>
+            <span class="duck-stage__glyph" aria-hidden="true"><i></i><i></i></span>
+            <span class="duck-stage__copy">
+              <strong>Entender</strong>
+              <small>intenção, contexto, referência</small>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="duck-stage" type="button" data-stage-button="find" aria-pressed="false">
+            <span class="duck-stage__number">02</span>
+            <span class="duck-stage__glyph" aria-hidden="true"><i></i><i></i></span>
+            <span class="duck-stage__copy">
+              <strong>Encontrar</strong>
+              <small>pulso, contraste, espaço</small>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="duck-stage" type="button" data-stage-button="build" aria-pressed="false">
+            <span class="duck-stage__number">03</span>
+            <span class="duck-stage__glyph" aria-hidden="true"><i></i><i></i></span>
+            <span class="duck-stage__copy">
+              <strong>Construir</strong>
+              <small>camadas, percurso, tensão</small>
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="duck-stage" type="button" data-stage-button="deliver" aria-pressed="false">
+            <span class="duck-stage__number">04</span>
+            <span class="duck-stage__glyph" aria-hidden="true"><i></i><i></i></span>
+            <span class="duck-stage__copy">
+              <strong>Entregar</strong>
+              <small>clareza, revisão, continuidade</small>
+            </span>
+          </button>
+        </li>
+      </ol>
+
+      <div class="duck-production__core" aria-hidden="true">
+        <span class="duck-production__orbit duck-production__orbit--outer"></span>
+        <span class="duck-production__orbit duck-production__orbit--inner"></span>
+        <span class="duck-production__core-mark">D</span>
+      </div>
+    </div>
+
+    <div class="duck-production__console">
+      <form class="duck-production__controls" data-controls>
+        <div class="duck-control duck-control--select">
+          <label for="duck-production-intent">Direção</label>
+          <select id="duck-production-intent" data-intent>
+            <option value="intimate">íntima</option>
+            <option value="kinetic" selected>cinética</option>
+            <option value="expansive">expansiva</option>
+          </select>
+        </div>
+
+        <div class="duck-control">
+          <div class="duck-control__label">
+            <label for="duck-production-energy">Energia</label>
+            <output for="duck-production-energy" data-energy-output>64</output>
+          </div>
+          <input id="duck-production-energy" data-energy type="range" min="0" max="100" value="64">
+        </div>
+
+        <div class="duck-control">
+          <div class="duck-control__label">
+            <label for="duck-production-density">Densidade</label>
+            <output for="duck-production-density" data-density-output>46</output>
+          </div>
+          <input id="duck-production-density" data-density type="range" min="0" max="100" value="46">
+        </div>
+      </form>
+
+      <article class="duck-production__readout" aria-live="polite" aria-atomic="true">
+        <div class="duck-production__readout-top">
+          <span data-stage-code>ETAPA 01</span>
+          <i aria-hidden="true"></i>
+          <span>SINAL ESTÁVEL</span>
+        </div>
+        <h3 data-stage-title>Entender antes de produzir</h3>
+        <p data-stage-description>
+          A conversa define intenção, contexto e referências. O primeiro gesto é
+          fazer perguntas melhores, não preencher o silêncio.
+        </p>
+        <p class="duck-production__question" data-stage-question>
+          O que esta música precisa fazer alguém sentir?
+        </p>
+      </article>
+
+      <aside class="duck-production__output" aria-label="Sinal preparado para o laboratório sonoro">
+        <p>SAÍDA PARA 04 · SARTRE</p>
+        <dl>
+          <div><dt>tempoHint</dt><dd data-tempo>108 BPM</dd></div>
+          <div><dt>textureHint</dt><dd data-texture>tátil</dd></div>
+          <div><dt>spaceHint</dt><dd data-space>próximo</dd></div>
+          <div><dt>processStage</dt><dd data-process-stage>understand</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <p class="duck-production__status" data-status role="status">
+      Módulo autónomo ativo. À espera do sinal de identidade de Bohr.
+    </p>
+  </div>
+</section>

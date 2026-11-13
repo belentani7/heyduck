@@ -1,0 +1,2 @@
+REPO = "sequencer"
+FAMILIA = "herramienta"

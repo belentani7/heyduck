@@ -1,0 +1,15 @@
+{
+  "name": "duck-living-machine",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "compose": "node scripts/compose.mjs",
+    "build": "esbuild core/entry.js --bundle --format=iife --target=es2020 --outfile=dist/duck-living-machine.js",
+    "check": "node scripts/check.mjs",
+    "release:local": "npm run compose && npm run build && npm run check"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.9"
+  }
+}

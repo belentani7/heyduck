@@ -1,0 +1,38 @@
+name: DUCK / Static product gates
+on:
+  push:
+    branches: [main, "release/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    name: Media, data and website contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify mandatory public entrypoints
+        run: |
+          test -s index.html
+          test -s data.js
+          test -s robots.txt
+          test -s sitemap.xml
+      - name: JavaScript syntax and media contracts
+        run: |
+          node --check data.js
+          node --test tests/*.test.cjs
+      - name: Parse all JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r file; do
+            python3 -m json.tool "$file" >/dev/null || {
+              echo "::error file=$file::Invalid JSON"; exit 1;
+            }
+          done < <(find . -name '*.json' -not -path './.git/*' -not -path './node_modules/*')

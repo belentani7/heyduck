@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(html|htm|js|json|md\\)$\")",
+      "PowerShell(cd \"C:\\\\Users\\\\USER\\\\Desktop\\\\DUCK-ZION-PREMIUM\" && powershell -ExecutionPolicy Bypass -File \"criar-zip-auditado.ps1\" -RunAsJob 2>&1)",
+      "WebSearch",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\USER\\\\Desktop\" -Directory | ForEach-Object { Get-ChildItem $_.FullName -Directory -Filter \".git\" -ErrorAction SilentlyContinue | Select-Object @{Name=\"Repo\";Expression={$_.Parent.Name}} })",
+      "Skill(fewer-permission-prompts)",
+      "Skill(fewer-permission-prompts:*)",
+      "Bash(gh repo *)",
+      "Bash(cd /c/Users/USER/Desktop && find . -maxdepth 2 -type d -name \".git\" | head -50)",
+      "Bash(ls -la \"/c/Users/USER/Videos/DRIVE/01_PROYECTOS/\" 2>/dev/null | head -30)",
+      "Bash(gh api *)"
+    ]
+  }
+}

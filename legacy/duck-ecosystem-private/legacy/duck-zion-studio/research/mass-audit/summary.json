@@ -1,0 +1,11 @@
+{
+  "root": "/home/ubuntu/DUCK-ZION-UNIFIED",
+  "files": 342,
+  "bytes": 15663779,
+  "binaries_or_databases": 1,
+  "archives": 0,
+  "executables": 1,
+  "secret_signal_count": 14,
+  "manifest_count": 5,
+  "policy": "local-only; findings are signals requiring human review; no binary execution"
+}

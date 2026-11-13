@@ -1,0 +1,2 @@
+REPO = "desktop"
+FAMILIA = "creativo"

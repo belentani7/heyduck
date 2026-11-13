@@ -1,0 +1,14 @@
+# DUCK PROD Code Owners
+# Estes usuários são responsáveis por revisar mudanças nestes paths
+
+# Responsável geral
+* @duck-prod
+
+# CSS
+/css/ @duck-prod
+
+# JavaScript
+/js/ @duck-prod
+
+# Configuração
+/.github/ @duck-prod

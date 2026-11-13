@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/
+*.min.css
+*.min.js
+images/
+coverage/

@@ -1,0 +1,66 @@
+# duck-ecosystem-inspect
+
+## Que contiene
+
+- Lenguaje principal: TypeScript
+- Ficheros versionados: 128
+- Tamano del repositorio: 0.2 MB
+
+## Estructura
+
+
+.gitignore/
+.gitkeep/
+.prettierignore/
+.prettierrc/
+client/
+components.json/
+drizzle/
+drizzle.config.ts/
+package.json/
+patches/
+server/
+shared/
+template.json/
+todo.md/
+tsconfig.json/
+vite.config.ts/
+vitest.config.ts/
+
+
+## Tipos de fichero predominantes
+
+| Extension | Ficheros |
+|---|---|
+| `.tsx` | 68 |
+| `.ts` | 40 |
+| `.json` | 7 |
+| `.gitkeep` | 3 |
+| `.sql` | 2 |
+| `.patch` | 1 |
+| `.css` | 1 |
+| `.md` | 1 |
+
+## Pila tecnologica
+
+@aws-sdk/client-s3, @aws-sdk/s3-request-presigner, @hookform/resolvers, @radix-ui/react-accordion, @radix-ui/react-alert-dialog, @radix-ui/react-aspect-ratio, @radix-ui/react-avatar, @radix-ui/react-checkbox, @radix-ui/react-collapsible, @radix-ui/react-context-menu, @radix-ui/react-dialog, @radix-ui/react-dropdown-menu, @radix-ui/react-hover-card, @radix-ui/react-label, @radix-ui/react-menubar, @radix-ui/react-navigation-menu, @radix-ui/react-popover, @radix-ui/react-progress, @radix-ui/react-radio-group, @radix-ui/react-scroll-area, @radix-ui/react-select, @radix-ui/react-separator, @radix-ui/react-slider, @radix-ui/react-slot, @radix-ui/react-switch
+
+## Scripts
+
+bash
+npm run dev
+npm run build
+npm run start
+npm run check
+npm run format
+npm run test
+npm run db:push
+
+
+---
+
+Documento generado en la auditoria del 2026-09-25.
+
+
+## Producto
+Véase `plataforma/OFERTA.md`.

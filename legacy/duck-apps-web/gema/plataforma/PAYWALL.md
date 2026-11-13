@@ -1,0 +1,2 @@
+# PAYWALL — gema
+Familia: educación

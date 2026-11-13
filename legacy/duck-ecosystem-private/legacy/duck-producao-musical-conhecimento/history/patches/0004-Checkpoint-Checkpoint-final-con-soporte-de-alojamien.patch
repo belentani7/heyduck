@@ -1,0 +1,203 @@
+From 6d895a2b5657f4eacd5d342336aa6e809989fda2 Mon Sep 17 00:00:00 2001
+From: Manus <dev-agent@manus.ai>
+Date: Fri, 21 Aug 2026 02:16:05 +0000
+Subject: [PATCH 4/4] =?UTF-8?q?Checkpoint:=20Checkpoint=20final=20con=20so?=
+ =?UTF-8?q?porte=20de=20alojamiento=20externo=20/=20autohospedado=20("esti?=
+ =?UTF-8?q?lo=20pirata"):=20Dockerfile=20con=20Nginx=20Alpine,=20docker-co?=
+ =?UTF-8?q?mpose.yml,=20gu=C3=ADa=20DEPLOY=5FFREE.md=20y=20script=20de=20p?=
+ =?UTF-8?q?rueba=20est=C3=A1tica=20verificado.?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ DEPLOY_FREE.md                | 64 +++++++++++++++++++++++++++++++++++
+ Dockerfile                    | 34 +++++++++++++++++++
+ docker-compose.yml            | 14 ++++++++
+ scripts/test_static_server.py | 41 ++++++++++++++++++++++
+ 4 files changed, 153 insertions(+)
+ create mode 100644 DEPLOY_FREE.md
+ create mode 100644 Dockerfile
+ create mode 100644 docker-compose.yml
+ create mode 100644 scripts/test_static_server.py
+
+diff --git a/DEPLOY_FREE.md b/DEPLOY_FREE.md
+new file mode 100644
+index 0000000..8a3822c
+--- /dev/null
++++ b/DEPLOY_FREE.md
+@@ -0,0 +1,64 @@
++# Guía de Alojamiento Libre y Autohospedado ("Estilo Pirata") — Duck Produção Musical
++
++Esta guía detalla cómo desplegar la aplicación web **Duck Produção Musical** completamente fuera de GitHub y de plataformas corporativas tradicionales, utilizando alternativas gratuitas, descentralizadas o de autohospedaje en infraestructura propia.
++
++---
++
++## 1. Opción A: Despliegue Instantáneo en Surge.sh (Estático y Gratuito)
++Surge permite publicar el sitio web compilado desde la terminal con un solo comando, sin necesidad de cuentas complejas ni servidores de pago.
++
++### Pasos:
++1. Instalar Surge globalmente en tu máquina (requiere Node.js):
++   ```bash
++   npm install -g surge
++   ```
++2. Compilar el proyecto en local:
++   ```bash
++   pnpm build
++   ```
++3. Publicar el directorio de distribución (`dist/public`):
++   ```bash
++   surge dist/public mi-duck-custom.surge.sh
++   ```
++   *La primera vez te pedirá un correo y contraseña para registrarte de forma anónima y gratuita en segundos.*
++
++---
++
++## 2. Opción B: Autohospedaje con Docker y Cloudflare Tunnels (Sin abrir puertos)
++Si tienes un ordenador secundario, una Raspberry Pi o un VPS económico, puedes levantar la web en un contenedor Docker y exponerla con una URL pública segura (`https://*.trycloudflare.com`) sin configurar DNS ni abrir puertos en tu router.
++
++### Pasos:
++1. **Clonar o copiar el proyecto** en el servidor o máquina local.
++2. **Construir y arrancar con Docker Compose**:
++   ```bash
++   docker compose up -d --build
++   ```
++   *Esto levantará Nginx sirviendo la web en el puerto `8080` local.*
++3. **Exponer con Cloudflare Tunnel** (sin registro ni tarjeta):
++   ```bash
++   cloudflared tunnel --url http://localhost:8080
++   ```
++   *Cloudflare te devolverá una URL pública temporal `https://xxxxxx.trycloudflare.com` con HTTPS automático e indestructible.*
++
++---
++
++## 3. Opción C: Despliegue Inmutable en IPFS (Web3 / Descentralizado)
++Para alojar el sitio de forma permanente en la red P2P IPFS, inmune a caídas de servidores centralizados:
++
++### Pasos:
++1. Instalar la CLI de IPFS o utilizar herramientas de pinning como Pinata o Fleek.
++2. Compilar el proyecto:
++   ```bash
++   pnpm build
++   ```
++3. Añadir la carpeta compilada a IPFS:
++   ```bash
++   ipfs add -r dist/public
++   ```
++4. El hash resultante (`Qm...` o `bafy...`) te permite acceder al sitio a través de cualquier pasarela pública IPFS (`https://gateway.ipfs.io/ipfs/<HASH>`).
++
++---
++
++## Seguridad y Privacidad
++- La aplicación es puramente estática (`web-static`), por lo que no expone claves de base de datos ni credenciales en el cliente.
++- Las variables de entorno inyectadas por el entorno de desarrollo se han saneado para garantizar que ningún token privado quede expuesto en el bundle compilado.
+diff --git a/Dockerfile b/Dockerfile
+new file mode 100644
+index 0000000..f63355e
+--- /dev/null
++++ b/Dockerfile
+@@ -0,0 +1,34 @@
++# -----------------------------------------------------------------------------
++# Dockerfile para Duck Produção Musical (Estilo Pirata / Autohospedado)
++# Base: Nginx Alpine (ligero, seguro y de alto rendimiento)
++# -----------------------------------------------------------------------------
++
++# Etapa 1: Build de producción
++FROM node:22-alpine AS builder
++WORKDIR /app
++COPY package.json pnpm-lock.yaml ./
++RUN corepack enable && pnpm install --frozen-lockfile
++COPY . .
++RUN pnpm build
++
++# Etapa 2: Servidor web ultraligero
++FROM nginx:alpine-slim
++COPY --from=builder /app/dist/public /usr/share/nginx/html
++
++# Configuración custom de Nginx para SPA (Single Page Application)
++RUN printf 'server {\n\
++    listen 80;\n\
++    server_name _;\n\
++    root /usr/share/nginx/html;\n\
++    index index.html;\n\
++    location / {\n\
++        try_files $uri $uri/ /index.html;\n\
++    }\n\
++    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|webp)$ {\n\
++        expires 30d;\n\
++        add_header Cache-Control "public, no-transform";\n\
++    }\n\
++}\n' > /etc/nginx/conf.d/default.conf
++
++EXPOSE 80
++CMD ["nginx", "-g", "daemon off;"]
+diff --git a/docker-compose.yml b/docker-compose.yml
+new file mode 100644
+index 0000000..b5c8114
+--- /dev/null
++++ b/docker-compose.yml
+@@ -0,0 +1,14 @@
++version: '3.8'
++
++services:
++  duck-web:
++    build: .
++    container_name: duck-producao-musical
++    restart: unless-stopped
++    ports:
++      - "8080:80"
++    healthcheck:
++      test: ["CMD", "wget", "--spider", "http://localhost:80/"]
++      interval: 30s
++      timeout: 5s
++      retries: 3
+diff --git a/scripts/test_static_server.py b/scripts/test_static_server.py
+new file mode 100644
+index 0000000..f14a59f
+--- /dev/null
++++ b/scripts/test_static_server.py
+@@ -0,0 +1,41 @@
++import http.server
++import socketserver
++import os
++import threading
++import time
++import urllib.request
++
++PORT = 8999
++DIRECTORY = "/home/ubuntu/duck-producao-musical/dist/public"
++
++class Handler(http.server.SimpleHTTPRequestHandler):
++    def __init__(self, *args, **kwargs):
++        super().__init__(*args, directory=DIRECTORY, **kwargs)
++
++def run_test():
++    os.chdir("/home/ubuntu/duck-producao-musical")
++    os.system("pnpm build")
++    
++    handler = Handler
++    with socketserver.TCPServer(("", PORT), handler) as httpd:
++        thread = threading.Thread(target=httpd.serve_forever, daemon=True)
++        thread.start()
++        
++        time.sleep(1)
++        try:
++            url = f"http://localhost:{PORT}/"
++            req = urllib.request.urlopen(url)
++            html = req.read().decode('utf-8')
++            print(f"STATUS: {req.status}")
++            print(f"CONTENT LENGTH: {len(html)}")
++            if "<html" in html and "Duck" in html:
++                print("TEST PASSED: Static server rendered Duck successfully.")
++            else:
++                print("TEST FAILED: Unexpected HTML content.")
++        except Exception as e:
++            print(f"TEST FAILED WITH EXCEPTION: {e}")
++        finally:
++            httpd.shutdown()
++
++if __name__ == "__main__":
++    run_test()
+-- 
+2.43.0
+

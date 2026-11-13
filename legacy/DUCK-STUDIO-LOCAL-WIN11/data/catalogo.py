@@ -1,0 +1,2 @@
+REPO = "DUCK-STUDIO-LOCAL-WIN11"
+FAMILIA = "educación"

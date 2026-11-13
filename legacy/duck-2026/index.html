@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07110b">
+  <meta name="description" content="DUCK unifica catálogo, previews, estúdio, licenças e contato em uma experiência musical contínua.">
+  <title>DUCK — Unified Studio Portfolio</title>
+  <link rel="icon" href="images/logo-duck.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.8/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.8/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.8/dist/CustomEase.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script defer src="data.js?v=20260808"></script>
+  <script defer src="app.js?v=20260808"></script>
+  <style id="bfx-overflow">html,body{overflow-x:hidden!important;max-width:100vw!important}img,video{max-width:100%!important;height:auto!important}</style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="DUCK — início">
+      <img src="images/logo-768x768.png" alt="DUCK">
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#lancamentos">Lançamentos</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#licencas">Licenças</a>
+      <a href="#estudio">Estúdio</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">
+      <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="sound-label">Ativar previews</span>
+    </button>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="heroTitle">
+      <div class="hero-backdrop" aria-hidden="true">
+        <span class="hero-blob blob-a"></span>
+        <span class="hero-blob blob-b"></span>
+        <span class="hero-grid"></span>
+      </div>
+      <div class="hero-orbit" id="heroOrbit" aria-hidden="true">
+        <span class="orbit orbit-a"></span>
+        <span class="orbit orbit-b"></span>
+        <div class="logo-object">
+          <img src="images/logo-768x768.png" alt="">
+        </div>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Produtor musical · Aracaju · 36M+ streams</p>
+        <h1 id="heroTitle">
+          <span>DUCK</span>
+          <span>UNIFICA</span>
+          <span class="accent">TODO O SOM.</span>
+        </h1>
+        <p class="hero-lead">Uma versão única do projeto: previews, singles, licenças, estúdio e contato numa narrativa limpa, sem fotos que desviem do foco e sem intro gratuita.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lancamentos">Ouvir previews</a>
+          <a class="button ghost" href="#catalogo">Ver catálogo</a>
+        </div>
+      </div>
+      <div class="hero-meta" id="heroMeta" aria-label="Indicadores do projeto"></div>
+      <a class="scroll-cue" href="#lancamentos"><span>Scroll</span><i></i></a>
+    </section>
+
+    <section class="releases" id="lancamentos" aria-labelledby="releaseTitle">
+      <div class="section-intro">
+        <p class="eyebrow">Discografia selecionada</p>
+        <h2 id="releaseTitle">Singles grandes,<br><em>como apps de bolso.</em></h2>
+        <p>Passe o cursor ou deslize o dedo sobre cada card. O preview entra sem abrir outra página e o foco salta de um single ao seguinte.</p>
+      </div>
+      <div class="release-stack" id="releaseStack" aria-live="polite"></div>
+      <div class="preview-status" id="previewStatus" role="status" aria-live="polite">Som desativado</div>
+    </section>
+
+    <section class="catalog" id="catalogo" aria-labelledby="catalogTitle">
+      <div class="section-intro section-intro--dark">
+        <p class="eyebrow">Catálogo completo</p>
+        <h2 id="catalogTitle">Tudo o que existe<br><em>num só fluxo.</em></h2>
+        <p>O arquivo completo vive aqui. Os itens com preview tocam no hover e no toque; os demais mantêm o acesso direto ao lançamento.</p>
+      </div>
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </section>
+
+    <section class="licenses" id="licencas" aria-labelledby="licenseTitle">
+      <div class="section-intro section-intro--paper">
+        <p class="eyebrow">Beat store</p>
+        <h2 id="licenseTitle">Licenças em foco,<br><em>sem ruído visual.</em></h2>
+        <p>Pacotes do catálogo atual organizados como produto real, com preço, uso e entrega claros.</p>
+      </div>
+      <div class="license-grid" id="licenseGrid"></div>
+    </section>
+
+    <section class="manifesto" id="processo" aria-labelledby="processTitle">
+      <div class="section-intro section-intro--paper">
+        <p class="eyebrow">Direção musical completa</p>
+        <h2 id="processTitle">Do primeiro gesto<br><em>ao master final.</em></h2>
+      </div>
+      <div class="manifesto-grid">
+        <p class="manifesto-lead">Duck trabalha como uma cadeia única: ideia, arranjo, captação, mix, master e leitura estratégica do catálogo. O objetivo é manter a assinatura sonora estável em qualquer formato.</p>
+        <div class="service-list" id="serviceList"></div>
+      </div>
+      <div class="stats-band" id="statsBand" aria-label="Indicadores principais"></div>
+    </section>
+
+    <section class="studio" id="estudio" aria-labelledby="studioTitle">
+      <div class="section-intro section-intro--dark">
+        <p class="eyebrow">Estúdio e sistema</p>
+        <h2 id="studioTitle">Ambiente real,<br><em>execução precisa.</em></h2>
+        <p>Setup, mix, gravação e master como uma linha contínua. Sem moldura artificial, sem foto aleatória, sem excesso de ornamento.</p>
+      </div>
+      <div class="studio-cards" id="studioCards"></div>
+    </section>
+
+    <section class="ecosystem" id="ecosistema" aria-labelledby="ecoTitle">
+      <div class="section-intro section-intro--dark">
+        <p class="eyebrow">Ferramentas e provas</p>
+        <h2 id="ecoTitle">Ecosistema técnico,<br><em>lado a lado.</em></h2>
+        <p>Recursos do estúdio e referências públicas do trabalho reunidos sem páginas soltas.</p>
+      </div>
+      <div class="ecosystem-grid">
+        <div class="gear-grid" id="gearGrid"></div>
+        <div class="testimonial-stack" id="testimonialStack"></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato" aria-labelledby="contactTitle">
+      <img class="contact-logo" src="images/logo-768x768.png" alt="Logo oficial DUCK">
+      <p class="eyebrow">Contato oficial</p>
+      <h2 id="contactTitle">Seu próximo som<br><em>começa aqui.</em></h2>
+      <p>Baseado em Aracaju, Duck atende projetos remotos com direção, produção e entrega profissional. Escreve com a referência, o prazo e o objetivo.</p>
+      <div class="contact-links" aria-label="Canais oficiais">
+        <a class="contact-link" href="mailto:duck-beats@hotmail.com">E-mail <span>duck-beats@hotmail.com</span></a>
+        <a class="contact-link" href="tel:+5579996026590">Telefone <span>+55 79 99602-6590</span></a>
+        <a class="contact-link" href="https://www.instagram.com/duck4s/" target="_blank" rel="noopener noreferrer">Instagram <span>@duck4s</span></a>
+        <a class="contact-link" href="https://www.youtube.com/channel/UCx7_hepVm10ulxHGWuvjjBg" target="_blank" rel="noopener noreferrer">YouTube <span>Canal oficial</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>DUCK · PRODUÇÃO MUSICAL</span>
+    <span>ARACAJU · 2026</span>
+    <span>© Todos os direitos reservados</span>
+  </footer>
+
+  <noscript>Ative JavaScript para acessar os previews e a experiência animada.</noscript>
+<!-- FRONT-UPGRADE: Vanta fog -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r170/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+<script>(function(){try{
+document.body.style.position='relative';
+VANTA.FOG({el:document.body,backgroundAlpha:0,highlightColor:0xb7ff45,midtoneColor:0x77b95c,baseColor:0x07110b,speed:0.6});
+}catch(e){}})();
+</script>
+</body>
+</html>

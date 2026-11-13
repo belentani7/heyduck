@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DUCK — Produção Musical | Definitive Edition</title>
+    <meta
+      name="description"
+      content="Produção musical de alta performance. Trap, Pop, MPB. 36M+ streams."
+    />
+    <meta
+      name="keywords"
+      content="Duck, Duck4x, produtor musical, beatmaker, Aracaju, Sergipe, Trap, Pop, MPB"
+    />
+    <meta property="og:title" content="DUCK — Produção Musical" />
+    <meta
+      property="og:description"
+      content="Produção musical de alta performance. Trap, Pop, MPB. 36M+ streams."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="images/logo-256x256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preload" as="image" href="images/capa-1920x1080.jpg" />
+    <link rel="preload" as="image" href="images/logo-768x768.png" />
+  </head>
+  <body>
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+      <img
+        src="images/logo-768x768.png"
+        alt="DUCK Produção Musical"
+        class="preloader-logo"
+        id="preloaderLogo"
+      />
+      <div class="preloader-bar">
+        <div class="preloader-fill" id="preloaderFill"></div>
+      </div>
+    </div>
+
+    <!-- OVERLAYS -->
+    <div class="grain-overlay"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- TICKER -->
+    <div class="ticker"><div class="ticker-inner" id="ticker"></div></div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="mainNav">
+      <a href="#" class="nav-logo"
+        ><img src="images/logo-768x768.png" alt="DUCK"
+      /></a>
+      <ul class="nav-links">
+        <li><a href="#about" data-k="n1">Sobre</a></li>
+        <li><a href="#gallery" data-k="n2">Estúdio</a></li>
+        <li><a href="#portfolio" data-k="n4">Portfolio</a></li>
+        <li><a href="#services" data-k="n5">Serviços</a></li>
+        <li><a href="#contact" data-k="n6">Contato</a></li>
+      </ul>
+      <div class="langs">
+        <button class="active" data-lang="pt" onclick="setDuckLang('pt')">
+          PT
+        </button>
+        <button data-lang="es" onclick="setDuckLang('es')">ES</button>
+        <button data-lang="en" onclick="setDuckLang('en')">EN</button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div
+        class="hero-bg"
+        id="heroBg"
+        style="background-image: url(&quot;images/capa-1920x1080.jpg&quot;)"
+      ></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-grain"></div>
+      <div class="hero-content">
+        <div class="hero-tag" id="heroTag">
+          Produção Musical · Aracaju · Sergipe · Brasil
+        </div>
+        <h1 class="hero-title"><span>DUCK</span></h1>
+        <p class="hero-sub" id="heroSub">Beatmaker · Mixagem · Masterização</p>
+        <div class="hero-btns" id="heroBtns">
+          <a href="#contact" class="btn-primary"
+            ><span data-k="cta1">Contratar</span></a
+          >
+          <a href="#portfolio" class="btn-secondary" data-k="cta2"
+            >Ver Projetos →</a
+          >
+        </div>
+      </div>
+      <div class="hero-waveform" id="waveform"></div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>scroll</span>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat rv">
+        <div class="stat-number" data-c="36">0</div>
+        <div class="stat-label">MILLION+ STREAMS</div>
+      </div>
+      <div class="stat rv">
+        <div class="stat-number" data-c="40">0</div>
+        <div class="stat-label">LANÇAMENTOS</div>
+      </div>
+      <div class="stat rv">
+        <div class="stat-number" data-c="1400">0</div>
+        <div class="stat-label">SEGUIDORES</div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div>
+            <p class="section-label rv">// 001 — Sobre</p>
+            <h2 class="section-heading rv">
+              Sons que<br />carregam<br /><em>história</em>
+            </h2>
+            <div class="about-text rv">
+              <p data-k="sp1"></p>
+              <p data-k="sp2"></p>
+            </div>
+            <div class="timeline rv">
+              <div class="timeline-item">
+                <div class="timeline-year">12</div>
+                <div class="timeline-desc" data-k="t1"></div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">14–16</div>
+                <div class="timeline-desc" data-k="t2"></div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">17</div>
+                <div class="timeline-desc" data-k="t3"></div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-desc" data-k="t4"></div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">Hoje</div>
+                <div class="timeline-desc" data-k="t5"></div>
+              </div>
+            </div>
+          </div>
+          <div class="about-image rv">
+            <img
+              src="images/studio/setup-2-1920x1280.jpg"
+              alt="Estúdio"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section gallery-section" id="gallery">
+      <div class="section-inner">
+        <p class="section-label rv">// 002 — Estúdio</p>
+        <h2 class="section-heading rv" data-k="gh"></h2>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- SINGLES -->
+    <section class="section singles-section" id="singles">
+      <div class="section-inner">
+        <p class="section-label rv">// 003 — Singles</p>
+        <h2 class="section-heading rv" data-k="sh"></h2>
+        <div class="singles-grid" id="singlesGrid"></div>
+        <div class="singles-cta rv">
+          <a
+            href="https://music.apple.com/us/artist/duck4x/1744132409"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+            ><span data-k="sct">Ouvir no Apple Music</span></a
+          >
+          <a
+            href="https://open.spotify.com/artist/duck4x"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary"
+            data-k="ssp"
+            >Ouvir no Spotify →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <div class="quote-section">
+      <div
+        class="quote-bg"
+        id="quoteBg"
+        style="background-image: url(&quot;images/capa-4-1920x1080.jpg&quot;)"
+      ></div>
+      <div class="quote-overlay"></div>
+      <p class="quote-text rv">
+        "Duck que beat é esse?" — <span>@check_match</span>
+      </p>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <section class="section portfolio-section" id="portfolio">
+      <div class="section-inner">
+        <p class="section-label rv">// 004 — Trabalhos</p>
+        <h2 class="section-heading rv" data-k="ph"></h2>
+        <div class="filters rv">
+          <button class="filter-btn active" data-f="all" data-k="fa">
+            Todos
+          </button>
+          <button class="filter-btn" data-f="pop">POP / POP BR</button>
+          <button class="filter-btn" data-f="trap">TRAP / HIPHOP</button>
+          <button class="filter-btn" data-f="mpb">MPB</button>
+        </div>
+        <div class="tracks-grid" id="tracksGrid"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <div class="section-inner">
+        <p class="section-label rv">// 005 — Serviços</p>
+        <h2 class="section-heading rv" data-k="sh2"></h2>
+        <div class="services-grid">
+          <div class="service-card rv">
+            <span class="service-num">01</span>
+            <div>
+              <div class="service-name" data-k="sn1"></div>
+              <p class="service-desc" data-k="sd1"></p>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <span class="service-num">02</span>
+            <div>
+              <div class="service-name" data-k="sn2"></div>
+              <p class="service-desc" data-k="sd2"></p>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <span class="service-num">03</span>
+            <div>
+              <div class="service-name" data-k="sn3"></div>
+              <p class="service-desc" data-k="sd3"></p>
+            </div>
+          </div>
+          <div class="service-card rv">
+            <span class="service-num">04</span>
+            <div>
+              <div class="service-name" data-k="sn4"></div>
+              <p class="service-desc" data-k="sd4"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process-section" id="process">
+      <div class="section-inner">
+        <p class="section-label rv">// 006 — Processo</p>
+        <h2 class="section-heading rv" data-k="prh"></h2>
+        <div class="process-grid">
+          <div class="process-step rv">
+            <div class="process-dot"></div>
+            <div class="process-num">01</div>
+            <div class="process-title" data-k="p1t"></div>
+            <p class="process-desc" data-k="p1d"></p>
+          </div>
+          <div class="process-step rv">
+            <div class="process-dot"></div>
+            <div class="process-num">02</div>
+            <div class="process-title" data-k="p2t"></div>
+            <p class="process-desc" data-k="p2d"></p>
+          </div>
+          <div class="process-step rv">
+            <div class="process-dot"></div>
+            <div class="process-num">03</div>
+            <div class="process-title" data-k="p3t"></div>
+            <p class="process-desc" data-k="p3d"></p>
+          </div>
+          <div class="process-step rv">
+            <div class="process-dot"></div>
+            <div class="process-num">04</div>
+            <div class="process-title" data-k="p4t"></div>
+            <p class="process-desc" data-k="p4d"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+      <div class="contact-inner">
+        <p class="section-label rv" style="justify-content: center">
+          // 007 — Contato
+        </p>
+        <h2 class="section-heading rv" data-k="ch"></h2>
+        <p
+          class="rv"
+          style="
+            font-size: 0.84rem;
+            line-height: 1.8;
+            color: rgba(239, 231, 208, 0.35);
+            margin-top: 1rem;
+          "
+          data-k="cs"
+        ></p>
+        <div class="contact-links rv" id="contactLinks"></div>
+        <p class="contact-location rv" data-k="loc"></p>
+      </div>
+    </section>
+
+    <!-- AUDIO PAD -->
+    <section class="section audio-section" id="audioPad">
+      <div class="section-inner">
+        <p class="section-label rv" style="justify-content: center">
+          // 008 — Duck Sound
+        </p>
+        <h2 class="section-heading rv" style="text-align: center">
+          Sonido<br /><em>Duck</em>
+        </h2>
+        <div class="audio-pads">
+          <button id="duckPad1" class="audio-pad">
+            <span style="font-size: 2rem">🦆</span>
+            <span>DUCK</span>
+          </button>
+          <button id="duckPad2" class="audio-pad">
+            <span style="font-size: 2rem">🔊</span>
+            <span>PLAY</span>
+          </button>
+          <button id="duckPad3" class="audio-pad">
+            <span style="font-size: 2rem">⏹</span>
+            <span>STOP</span>
+          </button>
+        </div>
+        <p class="audio-hint">Haz clic en DUCK para reproducir</p>
+      </div>
+    </section>
+
+    <!-- SINGLES -->
+    <section class="section singles-section" id="singles">
+      <div class="section-inner">
+        <p class="section-label rv">// 003 — Singles</p>
+        <h2 class="section-heading rv" data-k="slh"></h2>
+        <div class="singles-grid" id="singlesGrid"></div>
+      </div>
+    </section>
+
+    <!-- INSTRUMENTS -->
+    <section class="section instruments-section" id="instruments">
+      <div class="section-inner">
+        <p class="section-label rv">// 009 — Estúdio Interativo</p>
+        <h2 class="section-heading rv"><em>Instrumentos</em> Interativos</h2>
+        <p
+          class="rv"
+          style="
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(239, 231, 208, 0.3);
+            margin-bottom: 3rem;
+          "
+        >
+          Experimenta el estudio desde tu navegador
+        </p>
+        <div class="inst-grid">
+          <!-- PIANO -->
+          <div class="inst-card rv">
+            <div class="inst-header">
+              <span class="inst-icon" aria-hidden="true">🎹</span
+              ><span class="inst-name">PIANO</span>
+            </div>
+            <div class="piano-keys" id="pianoKeys"></div>
+            <select id="pianoSound" class="inst-select">
+              <option value="sine">Sine</option>
+              <option value="triangle">Triangle</option>
+              <option value="square">Square</option>
+              <option value="voice">Voz</option>
+            </select>
+          </div>
+          <!-- XYLOPHONE -->
+          <div class="inst-card rv">
+            <div class="inst-header">
+              <span class="inst-icon" aria-hidden="true">🎵</span
+              ><span class="inst-name">XILÓFONO</span>
+            </div>
+            <div class="xylo-keys" id="xyloKeys"></div>
+          </div>
+          <!-- DRUMS -->
+          <div class="inst-card rv">
+            <div class="inst-header">
+              <span class="inst-icon" aria-hidden="true">🥁</span
+              ><span class="inst-name">BATERÍA</span>
+            </div>
+            <div class="drum-pads">
+              <button class="drum-pad" data-sound="kick" aria-label="Bombo">
+                <span>KICK</span>
+              </button>
+              <button class="drum-pad" data-sound="snare" aria-label="Caja">
+                <span>SNARE</span>
+              </button>
+              <button class="drum-pad" data-sound="hihat" aria-label="Hi-hat">
+                <span>HIHAT</span>
+              </button>
+              <button class="drum-pad" data-sound="clap" aria-label="Palmas">
+                <span>CLAP</span>
+              </button>
+              <button class="drum-pad" data-sound="tom1" aria-label="Tom">
+                <span>TOM</span>
+              </button>
+              <button class="drum-pad" data-sound="rim" aria-label="Rim">
+                <span>RIM</span>
+              </button>
+            </div>
+          </div>
+          <!-- RECORDER -->
+          <div class="inst-card rv">
+            <div class="inst-header">
+              <span class="inst-icon" aria-hidden="true">🎤</span
+              ><span class="inst-name">GRAVAR VOZ</span>
+            </div>
+            <div class="rec-controls">
+              <button id="recStartBtn" class="rec-btn">GRABAR</button>
+              <button id="recStopBtn" class="rec-btn" disabled>PARAR</button>
+              <button id="recPlayBtn" class="rec-btn" disabled>
+                REPRODUCIR
+              </button>
+              <button id="recDownloadBtn" class="rec-btn" disabled>
+                DESCARGAR
+              </button>
+            </div>
+            <canvas
+              id="recCanvas"
+              width="300"
+              height="60"
+              style="
+                width: 100%;
+                height: 60px;
+                background: var(--gd);
+                border-radius: 4px;
+                margin-top: 0.5rem;
+              "
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDIO -->
+    <section class="section studio-section" id="studio">
+      <div class="section-inner">
+        <p class="section-label rv">// 010 — Estúdio</p>
+        <h2 class="section-heading rv">6 <em>Estaciones</em> de Trabajo</h2>
+        <div class="stations-grid" id="stationsGrid"></div>
+      </div>
+    </section>
+
+    <!-- CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel-track" id="carouselTrack"></div>
+    </section>
+
+    <!-- SYNTHESIZER -->
+    <section class="section synth-section" id="synth">
+      <div class="section-inner">
+        <p class="section-label rv" style="justify-content: center">
+          // 011 — Synth Lab
+        </p>
+        <h2 class="section-heading rv" style="text-align: center">
+          <em>Synth</em> Lab
+        </h2>
+        <div class="synth-box">
+          <div class="synth-keys" id="synthKeys"></div>
+          <div class="synth-controls">
+            <div class="synth-ctrl">
+              <label>ONDA</label
+              ><select id="synthWave">
+                <option value="sine">Sine</option>
+                <option value="sawtooth">Saw</option>
+                <option value="square">Square</option>
+                <option value="triangle">Triangle</option>
+              </select>
+            </div>
+            <div class="synth-ctrl">
+              <label>VOL</label
+              ><input type="range" id="synthVol" min="0" max="100" value="50" />
+            </div>
+          </div>
+          <canvas
+            id="synthViz"
+            width="400"
+            height="60"
+            style="
+              width: 100%;
+              height: 60px;
+              background: var(--gd);
+              border-radius: 4px;
+              margin-top: 1rem;
+            "
+          ></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRONOME -->
+    <section class="section metro-section" id="metronome">
+      <div class="section-inner">
+        <p class="section-label rv" style="justify-content: center">
+          // 012 — Metrónomo
+        </p>
+        <h2 class="section-heading rv" style="text-align: center">
+          <em>Metrónomo</em>
+        </h2>
+        <div class="metro-box">
+          <div class="metro-bpm" id="metroBpm">120</div>
+          <div class="metro-dots" id="metroDots"></div>
+          <div class="metro-controls">
+            <button id="metroStart" class="metro-btn">▶ INICIAR</button>
+            <button id="metroStop" class="metro-btn">■ PARAR</button>
+          </div>
+          <input
+            type="range"
+            id="metroSlider"
+            min="40"
+            max="240"
+            value="120"
+            class="metro-slider"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- LYRICS -->
+    <section class="section lyrics-section" id="lyrics">
+      <div class="section-inner">
+        <p class="section-label rv" style="justify-content: center">
+          // 013 — Lyrics Gen
+        </p>
+        <h2 class="section-heading rv" style="text-align: center">
+          <em>Generador</em> de Letras
+        </h2>
+        <div class="lyrics-box">
+          <div class="lyrics-btns" id="lyricsBtns"></div>
+          <div class="lyrics-output" id="lyricsOutput">
+            Selecciona un género para generar letras...
+          </div>
+          <button class="lyrics-generate" id="lyricsGenerate">GENERAR</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EASTER EGG -->
+    <section class="easter-egg" id="easterEgg">
+      <div class="ee-bg"></div>
+      <div class="ee-content">
+        <div class="ee-waves" id="eeWaves"></div>
+        <h2 class="ee-title">DUCK</h2>
+        <p class="ee-sub">Configuração Neurocognitiva</p>
+        <div class="ee-freq">
+          <span>432Hz</span>
+          <div class="ee-bar"></div>
+          <span>HARMONIC RESONANCE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-brand">DUCK Produção Musical</div>
+      <div class="footer-copy">© 2026 — Todos os direitos reservados</div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/instruments.js"></script>
+    <script src="js/easter-egg.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

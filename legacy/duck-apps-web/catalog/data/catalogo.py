@@ -1,0 +1,2 @@
+REPO = "catalog"
+FAMILIA = "creativo"

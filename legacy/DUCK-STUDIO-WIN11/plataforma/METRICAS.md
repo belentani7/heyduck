@@ -1,0 +1,1 @@
+# Métricas — DUCK-STUDIO-WIN11

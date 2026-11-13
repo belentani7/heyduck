@@ -1,0 +1,91 @@
+<section class="duck04-lab" data-duck-module="04" aria-labelledby="duck04-title">
+  <div class="duck04-signal" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <header class="duck04-header">
+    <p class="duck04-kicker"><span>04</span> Laboratorio sonoro</p>
+    <div class="duck04-heading-grid">
+      <h2 id="duck04-title">Toca el criterio<br>de Duck.</h2>
+      <div class="duck04-intro">
+        <p>No eliges un preset. Construyes una intención: pulso, materia, aire y movimiento.</p>
+        <button class="duck04-power" type="button" data-duck04-action="power" aria-pressed="false">
+          <span class="duck04-power-mark" aria-hidden="true"></span>
+          <span data-duck04-power-label>Activar laboratorio</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="duck04-machine" data-duck04-machine data-state="sleeping">
+    <div class="duck04-visual" aria-label="Visualización de la señal sonora">
+      <canvas data-duck04-scope width="960" height="360"></canvas>
+      <div class="duck04-orbit duck04-orbit-a" aria-hidden="true"></div>
+      <div class="duck04-orbit duck04-orbit-b" aria-hidden="true"></div>
+      <div class="duck04-core" aria-hidden="true">
+        <span data-duck04-core-value>OFF</span>
+      </div>
+      <p class="duck04-scope-caption" data-duck04-scope-caption>Audio en espera de un gesto</p>
+    </div>
+
+    <form class="duck04-controls" data-duck04-controls>
+      <fieldset class="duck04-patterns">
+        <legend>Patrón inicial</legend>
+        <div class="duck04-choice-row">
+          <label><input type="radio" name="duck04-pattern" value="drift" checked><span>Deriva</span></label>
+          <label><input type="radio" name="duck04-pattern" value="bounce"><span>Salto</span></label>
+          <label><input type="radio" name="duck04-pattern" value="drive"><span>Impulso</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="duck04-layers">
+        <legend>Capas activas</legend>
+        <div class="duck04-layer-grid">
+          <label><input type="checkbox" value="pulse" checked><span><b>01</b>Pulso<small>base rítmica</small></span></label>
+          <label><input type="checkbox" value="body" checked><span><b>02</b>Cuerpo<small>peso tonal</small></span></label>
+          <label><input type="checkbox" value="air"><span><b>03</b>Aire<small>detalle alto</small></span></label>
+          <label><input type="checkbox" value="glitch"><span><b>04</b>Gesto<small>acento digital</small></span></label>
+        </div>
+      </fieldset>
+
+      <div class="duck04-dials">
+        <label>
+          <span><b>Presión</b><output data-duck04-output="pressure">42</output></span>
+          <input type="range" name="pressure" min="0" max="100" value="42">
+        </label>
+        <label>
+          <span><b>Apertura</b><output data-duck04-output="openness">64</output></span>
+          <input type="range" name="openness" min="0" max="100" value="64">
+        </label>
+        <label>
+          <span><b>Espacio</b><output data-duck04-output="space">38</output></span>
+          <input type="range" name="space" min="0" max="100" value="38">
+        </label>
+        <label>
+          <span><b>Volumen</b><output data-duck04-output="volume">56</output></span>
+          <input type="range" name="volume" min="0" max="72" value="56">
+        </label>
+      </div>
+
+      <div class="duck04-transport" role="group" aria-label="Transporte del laboratorio">
+        <button type="button" data-duck04-action="mute" aria-pressed="false">Silenciar</button>
+        <button type="button" data-duck04-action="reset">Reiniciar</button>
+        <p><span data-duck04-tempo>96</span> BPM <i aria-hidden="true"></i> <span data-duck04-stage>CONSTRUIR</span></p>
+      </div>
+    </form>
+  </div>
+
+  <aside class="duck04-result" aria-labelledby="duck04-result-title">
+    <p class="duck04-kicker">Resultado traducido</p>
+    <h3 id="duck04-result-title" data-duck04-phrase>Un pulso preciso con cuerpo cálido y espacio para respirar.</h3>
+    <div class="duck04-fingerprint">
+      <span>Huella sonora</span>
+      <code data-duck04-fingerprint>DRF-PB-426438</code>
+    </div>
+    <p class="duck04-live" aria-live="polite" data-duck04-live>Laboratorio preparado. Actívalo para escuchar.</p>
+  </aside>
+
+  <div class="duck04-failure" role="alert" hidden data-duck04-failure>
+    El laboratorio no pudo iniciar el audio. Puedes seguir explorando los controles y obtener una huella silenciosa.
+  </div>
+</section>

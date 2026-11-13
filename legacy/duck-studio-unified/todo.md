@@ -1,0 +1,33 @@
+# Backlog do Duck Studio Unified
+
+- [x] Preservar a aplicação Duck Studio auditada como base canônica, sem executar código legado nem substituir funcionalidades validadas.
+- [x] Extrair em área isolada e inventariar com hashes o arquivo `DUCKULTIMO.zip`, o pacote de fontes unificado, `Duck Control` e `Client Materials`.
+- [x] Registrar a procedência de arquivos, módulos, documentos, licenças declaradas, dependências e ativos sem copiar segredos, arquivos de ambiente ou dados de produção.
+- [x] Consolidar o inventário de repositórios Duck acessíveis no GitHub e relacioná-lo às cópias preservadas no pacote recebido.
+- [x] Concluir a procedência consolidada de arquivos, módulos, documentos, licenças, dependências e ativos sem copiar segredos ou dados de produção.
+- [x] Inventariar explicitamente dependências e ativos relevantes da base canônica e dos legados candidatos à avaliação.
+- [x] Identificar duplicidades, versões canônicas e módulos candidatos à evolução sem mesclagem automática de fontes legadas.
+- [x] Classificar cada módulo candidato por compatibilidade técnica, segurança, licença, qualidade, testes, dados e risco operacional.
+- [x] Isolar módulos sem licença verificável, sem compatibilidade comprovada, com segredos potenciais ou sem testes mínimos.
+- [x] Manter a identidade visual esmeralda, glassmorfismo espesso, contraste acessível e preferência de movimento reduzido.
+- [x] Evidenciar e validar no código o contraste acessível e o respeito explícito a `prefers-reduced-motion` nas rotas principais.
+- [x] Preservar e validar rotas públicas em português brasileiro, espanhol e inglês.
+- [x] Evoluir o site público do artista com estados transparentes para portfólio, beats, produtos, preços, previews e licenças ainda não autorizados.
+- [x] Evoluir o portal autenticado de clientes para briefs, projetos, feedback, aprovações, licenças e entregas com controle de acesso.
+- [x] Evoluir o Beat Lab como ferramenta assistiva de direção musical e organização de briefs, sem afirmar geração de áudio inexistente.
+- [x] Implementar uma prova de conceito de sessão curta no Beat Lab, acionada por interação explícita, sem alegar compatibilidade de DAW ou geração de stems.
+- [x] Definir arquitetura segura para acervo digital privado, metadados, versões, permissões e links temporários de entrega.
+- [x] Implementar o núcleo de CRM e governança com três nós, pausa global, aprovações humanas, trilha de auditoria e estados de bloqueio.
+- [x] Evidenciar em documentação e testes os três nós de governança, incluindo os estados `paused`, `blocked` e `awaiting_approval`.
+- [x] Definir integrações de IA assistiva com limites, revisão humana, transparência de uso e proteção de dados.
+- [x] Implementar orientação de briefing por IA, com saída estruturada, sem persistência automática, sem ação externa e com escopo restrito ao contexto informado.
+- [x] Avaliar automações supervisionadas para notificações de briefs, feedback, aprovações, privacidade e bloqueios críticos.
+- [x] Notificar o proprietário sobre novo interesse, brief, feedback, aprovação e solicitação de privacidade, sem incluir conteúdo sensível no alerta.
+- [x] Manter pagamentos, checkout, e-mails operacionais, Shopify, preços e emissão de licenças desativados até credenciais, termos e autorizações válidas.
+- [x] Elaborar o Plano Mestre de Evolução Duck Studio em português brasileiro, com fases, critérios de aceite, riscos e dependências.
+- [x] Validar a base canônica com build, TypeScript, Vitest e auditoria de dependências antes de qualquer publicação.
+- [x] Validar módulos aprovados adicionais com build, TypeScript, Vitest, auditoria de dependências, rotas e acessibilidade básica antes de qualquer publicação; nenhum módulo adicional foi aprovado nesta consolidação.
+- [x] Documentar decisões de consolidação, módulos recusados, bloqueios externos, resultados de teste e próximos passos.
+
+- [x] Criar ou atualizar um repositório privado de GitHub com a versão atual do projeto, excluindo segredos e artefatos sensíveis.
+- [x] Comprimir e subir uma cópia de distribuição ao Google Drive do usuário, confirmando o arquivo e sua localização.

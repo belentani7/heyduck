@@ -1,0 +1,4 @@
+[33m6d895a2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Checkpoint: Checkpoint final con soporte de alojamiento externo / autohospedado ("estilo pirata"): Dockerfile con Nginx Alpine, docker-compose.yml, guía DEPLOY_FREE.md y script de prueba estática verificado.
+[33m81bf59b[m Enhance accessibility, form UX and mobile navigation in Duck landing
+[33m7508832[m[33m ([m[1;31mgithub/main[m[33m)[m Complete Duck Produção Musical landing and audit
+[33m08d6d86[m Initial project bootstrap

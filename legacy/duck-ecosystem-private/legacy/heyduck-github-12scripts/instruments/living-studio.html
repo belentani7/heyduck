@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DUCK — Living Studio | Instrumentos Interactivos</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#080e08;--g:#39582f;--gd:#15210f;--a:#9acb6b;--c:#efe7d0;--ms:#1e3018;--f:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;}
+html{background:var(--bg);}
+body{font-family:var(--fb);background:var(--bg);color:var(--c);overflow-x:hidden;line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* HERO */
+.living-hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.living-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(154,203,107,.08) 0%,transparent 70%);animation:bgPulse 8s ease-in-out infinite;}
+@keyframes bgPulse{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.1);}}
+.living-hero-content{position:relative;z-index:2;text-align:center;}
+.living-hero h1{font-family:var(--f);font-size:clamp(4rem,15vw,12rem);font-weight:800;color:var(--a);letter-spacing:-.05em;line-height:.85;text-shadow:0 0 80px rgba(154,203,107,.4),0 0 160px rgba(154,203,107,.2);animation:titleGlow 3s ease-in-out infinite;}
+@keyframes titleGlow{0%,100%{text-shadow:0 0 80px rgba(154,203,107,.4),0 0 160px rgba(154,203,107,.2);}50%{text-shadow:0 0 120px rgba(154,203,107,.6),0 0 240px rgba(154,203,107,.3);}}
+.living-hero .subtitle{font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(239,231,208,.3);margin-top:1.5rem;}
+.living-hero .scroll-hint{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);font-size:.45rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,231,208,.15);animation:scrollBounce 2s ease-in-out infinite;}
+@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(10px);}}
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;width:4px;height:4px;background:var(--a);border-radius:50%;opacity:.3;animation:particleFloat 15s linear infinite;}
+@keyframes particleFloat{0%{transform:translateY(100vh) rotate(0deg);opacity:0;}10%{opacity:.3;}90%{opacity:.3;}100%{transform:translateY(-100vh) rotate(720deg);opacity:0;}}
+
+/* SECTIONS */
+.instruments-section{padding:8rem 5%;position:relative;}
+.instruments-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--a),transparent);opacity:.3;}
+.section-header{text-align:center;margin-bottom:6rem;}
+.section-header h2{font-family:var(--f);font-size:clamp(2.5rem,5vw,5rem);font-weight:800;text-transform:uppercase;line-height:.9;}
+.section-header h2 em{font-style:normal;color:var(--a);}
+.section-header p{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,231,208,.3);margin-top:1.5rem;}
+
+/* PIANO */
+.piano-container{max-width:1000px;margin:0 auto 8rem;position:relative;}
+.piano-title{font-family:var(--f);font-size:1.8rem;font-weight:800;text-transform:uppercase;margin-bottom:2rem;text-align:center;}
+.piano-title span{color:var(--a);}
+.piano{display:flex;justify-content:center;gap:2px;perspective:1000px;transform-style:preserve-3d;}
+.key{position:relative;cursor:pointer;transition:all .1s ease;transform-style:preserve-3d;}
+.key-white{width:60px;height:200px;background:linear-gradient(180deg,#f8f8f8 0%,#e8e8e8 100%);border:1px solid rgba(0,0,0,.1);border-radius:0 0 6px 6px;box-shadow:0 8px 20px rgba(0,0,0,.3),inset 0 -5px 15px rgba(0,0,0,.05);transform:translateZ(0);}
+.key-white:hover{background:linear-gradient(180deg,#fff 0%,#f0f0f0 100%);box-shadow:0 12px 30px rgba(0,0,0,.4),inset 0 -5px 15px rgba(0,0,0,.05);}
+.key-white:active,.key-white.active{transform:translateZ(-10px) translateY(3px);box-shadow:0 4px 10px rgba(0,0,0,.3),inset 0 -2px 10px rgba(0,0,0,.1);background:linear-gradient(180deg,#e0e0e0 0%,#d0d0d0 100%);}
+.key-black{position:absolute;width:38px;height:120px;background:linear-gradient(180deg,#2a2a2a 0%,#1a1a1a 100%);border:1px solid rgba(0,0,0,.3);border-radius:0 0 4px 4px;box-shadow:0 6px 15px rgba(0,0,0,.5),inset 0 -3px 10px rgba(0,0,0,.2);z-index:2;transform:translateZ(10px);}
+.key-black:hover{background:linear-gradient(180deg,#3a3a3a 0%,#2a2a2a 100%);}
+.key-black:active,.key-black.active{transform:translateZ(0) translateY(2px);box-shadow:0 3px 8px rgba(0,0,0,.4),inset 0 -2px 8px rgba(0,0,0,.3);background:linear-gradient(180deg,#1a1a1a 0%,#0a0a0a 100%);}
+.key-label{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);font-size:.5rem;letter-spacing:.1em;color:rgba(0,0,0,.3);font-family:var(--f);pointer-events:none;}
+.key-black .key-label{color:rgba(255,255,255,.3);}
+.piano-visualizer{display:flex;justify-content:center;gap:3px;height:80px;margin-top:2rem;align-items:flex-end;}
+.viz-bar{width:8px;background:var(--a);border-radius:2px 2px 0 0;transition:height .1s ease;opacity:.7;}
+@keyframes vizPulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+.viz-bar.active{animation:vizPulse .3s ease;}
+
+/* RHYTHM */
+.rhythm-container{max-width:800px;margin:0 auto 8rem;position:relative;}
+.rhythm-title{font-family:var(--f);font-size:1.8rem;font-weight:800;text-transform:uppercase;margin-bottom:2rem;text-align:center;}
+.rhythm-title span{color:var(--a);}
+.rhythm-grid{display:grid;grid-template-columns:repeat(16,1fr);gap:4px;margin-bottom:2rem;}
+.rhythm-cell{aspect-ratio:1;background:var(--gd);border:1px solid rgba(154,203,107,.1);cursor:pointer;transition:all .15s ease;position:relative;}
+.rhythm-cell:hover{border-color:var(--a);transform:scale(1.05);}
+.rhythm-cell.active{background:var(--a);border-color:var(--a);box-shadow:0 0 20px rgba(154,203,107,.4);}
+.rhythm-cell.playing{animation:cellPulse .2s ease;}
+@keyframes cellPulse{0%{transform:scale(1);}50%{transform:scale(1.2);}100%{transform:scale(1);}}
+.rhythm-label{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(239,231,208,.3);margin-bottom:.5rem;font-family:var(--f);}
+.rhythm-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.rhythm-btn{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;background:none;border:1px solid rgba(154,203,107,.2);color:rgba(239,231,208,.4);padding:.6rem 1.5rem;cursor:pointer;transition:all .3s;font-family:var(--f);border-radius:2px;}
+.rhythm-btn:hover,.rhythm-btn.active{border-color:var(--a);color:var(--a);background:rgba(154,203,107,.05);}
+.rhythm-btn.play{border-color:var(--a);color:var(--a);background:rgba(154,203,107,.1);}
+
+/* VOICE SYNTH */
+.voice-container{max-width:900px;margin:0 auto 8rem;position:relative;}
+.voice-title{font-family:var(--f);font-size:1.8rem;font-weight:800;text-transform:uppercase;margin-bottom:2rem;text-align:center;}
+.voice-title span{color:var(--a);}
+.voice-visualizer{height:200px;background:var(--gd);border:1px solid rgba(154,203,107,.1);border-radius:8px;position:relative;overflow:hidden;margin-bottom:2rem;}
+.voice-wave{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.voice-wave-bar{width:4px;background:var(--a);margin:0 2px;border-radius:2px;transition:height .1s ease;opacity:.6;}
+.voice-controls{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.voice-btn{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;background:none;border:1px solid rgba(154,203,107,.2);color:rgba(239,231,208,.4);padding:.8rem 2rem;cursor:pointer;transition:all .3s;font-family:var(--f);border-radius:2px;position:relative;overflow:hidden;}
+.voice-btn::before{content:'';position:absolute;inset:0;background:var(--a);transform:translateX(-101%);transition:transform .4s cubic-bezier(.23,1,.32,1);}
+.voice-btn:hover::before{transform:translateX(0);}
+.voice-btn span{position:relative;z-index:1;}
+.voice-btn.active{border-color:var(--a);color:var(--a);}
+
+/* DIY SECTION */
+.diy-section{padding:8rem 5%;background:var(--ms);position:relative;overflow:hidden;}
+.diy-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--a),transparent);opacity:.3;}
+.diy-header{text-align:center;margin-bottom:4rem;}
+.diy-header h2{font-family:var(--f);font-size:clamp(2rem,4vw,4rem);font-weight:800;text-transform:uppercase;line-height:.9;}
+.diy-header h2 em{font-style:normal;color:var(--a);}
+.diy-header p{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,231,208,.3);margin-top:1.5rem;max-width:600px;margin-left:auto;margin-right:auto;}
+.diy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto;}
+.diy-card{background:var(--gd);border:1px solid rgba(154,203,107,.06);padding:2.5rem;text-align:center;transition:all .4s cubic-bezier(.23,1,.32,1);position:relative;overflow:hidden;}
+.diy-card:hover{border-color:var(--a);transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.4);}
+.diy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--a);transform:scaleX(0);transition:transform .4s cubic-bezier(.23,1,.32,1);transform-origin:left;}
+.diy-card:hover::before{transform:scaleX(1);}
+.diy-icon{font-size:3rem;margin-bottom:1.5rem;display:block;}
+.diy-title{font-family:var(--f);font-size:1.2rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem;color:var(--a);}
+.diy-desc{font-size:.75rem;line-height:1.8;color:rgba(239,231,208,.4);}
+.diy-result{margin-top:1.5rem;padding:1rem;background:rgba(154,203,107,.05);border:1px dashed rgba(154,203,107,.15);font-size:.65rem;color:rgba(239,231,208,.3);font-style:italic;}
+.diy-cta{text-align:center;margin-top:4rem;}
+.diy-cta h3{font-family:var(--f);font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;color:var(--a);}
+.diy-cta p{font-size:.8rem;color:rgba(239,231,208,.4);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;}
+.diy-btn{display:inline-block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;background:var(--a);color:var(--bg);border:none;padding:1rem 3rem;cursor:pointer;font-weight:700;font-family:var(--f);transition:all .35s cubic-bezier(.23,1,.32,1);text-decoration:none;}
+.diy-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(154,203,107,.3);}
+
+/* RECORDER */
+.recorder-container{max-width:900px;margin:0 auto;position:relative;}
+.recorder-title{font-family:var(--f);font-size:1.8rem;font-weight:800;text-transform:uppercase;margin-bottom:2rem;text-align:center;}
+.recorder-title span{color:var(--a);}
+.recorder-visualizer{background:var(--gd);border:1px solid rgba(154,203,107,.1);border-radius:8px;overflow:hidden;margin-bottom:2rem;height:200px;}
+.recorder-visualizer canvas{width:100%;height:100%;}
+.recorder-status{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;font-family:var(--f);}
+.status-dot{width:12px;height:12px;border-radius:50%;background:rgba(239,231,208,.2);transition:all .3s;}
+.status-dot.recording{background:#ff4444;animation:statusPulse 1s ease-in-out infinite;}
+@keyframes statusPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.2);}}
+#statusText{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,231,208,.4);}
+#recordingTime{font-size:1.2rem;font-weight:700;color:var(--a);font-variant-numeric:tabular-nums;}
+.recorder-controls{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.rec-btn{display:flex;align-items:center;gap:.5rem;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;background:none;border:1px solid rgba(154,203,107,.2);color:rgba(239,231,208,.4);padding:.8rem 2rem;cursor:pointer;transition:all .3s;font-family:var(--f);border-radius:2px;}
+.rec-btn:hover:not(:disabled){border-color:var(--a);color:var(--a);}
+.rec-btn:disabled{opacity:.3;cursor:not-allowed;}
+.rec-btn.record{border-color:#ff4444;color:#ff4444;}
+.rec-btn.record:hover{background:rgba(255,68,68,.1);}
+.rec-btn.record.recording{background:rgba(255,68,68,.2);animation:recPulse 1s ease-in-out infinite;}
+@keyframes recPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,68,68,.4);}50%{box-shadow:0 0 0 10px rgba(255,68,68,0);}}
+.rec-btn.stop{border-color:#ffaa00;color:#ffaa00;}
+.rec-btn.play{border-color:var(--a);color:var(--a);}
+.rec-btn.download{border-color:#44aaff;color:#44aaff;}
+
+/* EFFECTS PANEL */
+.effects-panel{background:var(--gd);border:1px solid rgba(154,203,107,.06);padding:3rem;border-radius:8px;}
+.effects-title{font-family:var(--f);font-size:1rem;font-weight:800;text-transform:uppercase;text-align:center;margin-bottom:2rem;letter-spacing:.1em;}
+.effects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem;}
+.effect-card{background:var(--bg);border:1px solid rgba(154,203,107,.08);padding:1.5rem;text-align:center;transition:all .3s;border-radius:4px;}
+.effect-card:hover{border-color:var(--a);}
+.effect-card.active{border-color:var(--a);background:rgba(154,203,107,.03);}
+.effect-icon{font-size:2rem;margin-bottom:.5rem;}
+.effect-name{font-family:var(--f);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;}
+.effect-desc{font-size:.6rem;color:rgba(239,231,208,.3);margin-bottom:1rem;}
+.effect-slider{width:100%;height:4px;-webkit-appearance:none;background:rgba(154,203,107,.15);border-radius:2px;outline:none;margin-bottom:.5rem;}
+.effect-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--a);border-radius:50%;cursor:pointer;}
+.effect-value{font-size:.6rem;color:var(--a);margin-bottom:.8rem;font-family:var(--f);}
+.effect-toggle{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;background:none;border:1px solid rgba(154,203,107,.2);color:rgba(239,231,208,.3);padding:.4rem 1rem;cursor:pointer;transition:all .3s;font-family:var(--f);border-radius:2px;}
+.effect-toggle:hover,.effect-toggle.active{border-color:var(--a);color:var(--a);background:rgba(154,203,107,.05);}
+.presets-panel{border-top:1px solid rgba(154,203,107,.06);padding-top:2rem;text-align:center;}
+.presets-panel h4{font-family:var(--f);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;margin-bottom:1rem;color:rgba(239,231,208,.4);}
+.presets-grid{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;}
+.preset-btn{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;background:none;border:1px solid rgba(154,203,107,.15);color:rgba(239,231,208,.3);padding:.5rem 1.2rem;cursor:pointer;transition:all .3s;font-family:var(--f);border-radius:2px;}
+.preset-btn:hover,.preset-btn.active{border-color:var(--a);color:var(--a);background:rgba(154,203,107,.05);}
+
+/* STUDIO SECTION */
+.studio-section{position:relative;}
+.studio-hero{position:relative;height:100vh;overflow:hidden;}
+.studio-hero-bg{position:absolute;inset:0;}
+.studio-hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.3) saturate(.6) hue-rotate(60deg);}
+.studio-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,8,.4) 0%,rgba(8,14,8,.8) 100%);}
+.studio-hero-content{position:absolute;bottom:15%;left:5%;z-index:2;}
+.studio-hero-label{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--g);margin-bottom:1rem;font-family:var(--f);}
+.studio-hero-title{font-family:var(--f);font-size:clamp(3rem,8vw,8rem);font-weight:800;line-height:.85;text-transform:uppercase;}
+.studio-hero-title em{font-style:normal;color:var(--a);}
+.studio-hero-sub{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(239,231,208,.3);margin-top:1.5rem;}
+.studio-hero-stats{display:flex;gap:4rem;margin-top:3rem;}
+.studio-stat{text-align:center;}
+.studio-stat-num{display:block;font-family:var(--f);font-size:2.5rem;font-weight:800;color:var(--a);line-height:1;}
+.studio-stat-label{font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,231,208,.25);}
+.studio-scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;}
+.studio-scroll-indicator span{font-size:.4rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,231,208,.2);}
+.studio-scroll-indicator .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--a),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+
+/* STATIONS */
+.studio-stations{padding:8rem 5%;background:var(--gd);}
+.studio-stations-header,.studio-gear-header,.studio-process-header,.studio-testimonials-header{text-align:center;margin-bottom:4rem;}
+.studio-stations-header h3,.studio-gear-header h3,.studio-process-header h3,.studio-testimonials-header h3{font-family:var(--f);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;text-transform:uppercase;margin-bottom:1rem;}
+.studio-stations-header p,.studio-gear-header p,.studio-process-header p,.studio-testimonials-header p{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,231,208,.3);}
+.stations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1400px;margin:0 auto;}
+.station-card{background:var(--bg);border:1px solid rgba(154,203,107,.06);overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1);}
+.station-card:hover{border-color:var(--a);transform:translateY(-10px);box-shadow:0 30px 60px rgba(0,0,0,.5);}
+.station-img{position:relative;aspect-ratio:16/10;overflow:hidden;}
+.station-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.5) hue-rotate(60deg);transition:all .6s cubic-bezier(.23,1,.32,1);}
+.station-card:hover .station-img img{filter:brightness(.8) saturate(.7) hue-rotate(60deg);transform:scale(1.08);}
+.station-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,14,8,.9) 0%,transparent 50%);display:flex;align-items:flex-end;padding:1.5rem;}
+.station-number{font-family:var(--f);font-size:3rem;font-weight:800;color:var(--a);opacity:.3;line-height:1;}
+.station-info{padding:2rem;}
+.station-info h4{font-family:var(--f);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;color:var(--a);}
+.station-info p{font-size:.75rem;line-height:1.8;color:rgba(239,231,208,.4);margin-bottom:1.5rem;}
+.station-specs{display:flex;flex-wrap:wrap;gap:.5rem;}
+.station-specs span{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;border:1px solid rgba(154,203,107,.1);color:rgba(239,231,208,.3);}
+
+/* GEAR */
+.studio-gear{padding:8rem 5%;}
+.gear-categories{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1400px;margin:0 auto;}
+.gear-category{background:var(--gd);border:1px solid rgba(154,203,107,.06);padding:2rem;transition:all .4s;}
+.gear-category:hover{border-color:var(--a);transform:translateY(-5px);}
+.gear-icon{font-size:2.5rem;margin-bottom:1rem;}
+.gear-category h4{font-family:var(--f);font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.5rem;color:var(--a);}
+.gear-list{list-style:none;}
+.gear-list li{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(154,203,107,.05);}
+.gear-list li:last-child{border-bottom:none;}
+.gear-name{font-size:.7rem;color:rgba(239,231,208,.6);}
+.gear-type{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(239,231,208,.25);}
+
+/* PROCESS TIMELINE */
+.studio-process{padding:8rem 5%;background:var(--gd);}
+.process-timeline{max-width:800px;margin:0 auto;position:relative;}
+.process-timeline::before{content:'';position:absolute;top:0;left:30px;bottom:0;width:1px;background:rgba(154,203,107,.1);}
+.process-step{display:flex;gap:2rem;margin-bottom:3rem;position:relative;}
+.process-dot{width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--g);flex-shrink:0;position:relative;z-index:1;transition:all .3s;}
+.process-step:hover .process-dot{border-color:var(--a);background:var(--a);box-shadow:0 0 20px rgba(154,203,107,.3);}
+.process-content{flex:1;}
+.process-num{font-family:var(--f);font-size:.5rem;letter-spacing:.2em;color:var(--g);display:block;margin-bottom:.5rem;}
+.process-content h4{font-family:var(--f);font-size:1rem;font-weight:800;text-transform:uppercase;margin-bottom:.8rem;transition:color .3s;}
+.process-step:hover .process-content h4{color:var(--a);}
+.process-content p{font-size:.75rem;line-height:1.8;color:rgba(239,231,208,.4);margin-bottom:1rem;}
+.process-time{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--a);font-family:var(--f);}
+
+/* TESTIMONIALS */
+.studio-testimonials{padding:8rem 5%;}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto;}
+.testimonial-card{background:var(--gd);border:1px solid rgba(154,203,107,.06);padding:2.5rem;transition:all .4s;position:relative;}
+.testimonial-card::before{content:'"';position:absolute;top:1rem;right:1.5rem;font-family:var(--f);font-size:5rem;font-weight:800;color:rgba(154,203,107,.05);line-height:1;}
+.testimonial-card:hover{border-color:var(--a);transform:translateY(-5px);}
+.testimonial-quote{font-size:.85rem;line-height:1.8;color:rgba(239,231,208,.5);font-style:italic;margin-bottom:2rem;position:relative;z-index:1;}
+.testimonial-author{border-top:1px solid rgba(154,203,107,.06);padding-top:1.5rem;}
+.testimonial-name{display:block;font-family:var(--f);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--a);}
+.testimonial-track{font-size:.6rem;color:rgba(239,231,208,.3);}
+
+/* STUDIO CTA */
+.studio-cta{padding:8rem 5%;background:var(--ms);text-align:center;}
+.studio-cta-content{max-width:600px;margin:0 auto;}
+.studio-cta h3{font-family:var(--f);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;text-transform:uppercase;margin-bottom:1.5rem;}
+.studio-cta p{font-size:.8rem;line-height:1.8;color:rgba(239,231,208,.4);margin-bottom:2.5rem;}
+.studio-cta-buttons{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.studio-btn{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;padding:1rem 2.5rem;font-family:var(--f);font-weight:700;transition:all .4s cubic-bezier(.23,1,.32,1);text-decoration:none;}
+.studio-btn.primary{background:var(--a);color:var(--bg);border:none;}
+.studio-btn.primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(154,203,107,.3);}
+.studio-btn.secondary{background:none;border:1px solid rgba(154,203,107,.3);color:var(--a);}
+.studio-btn.secondary:hover{border-color:var(--a);background:rgba(154,203,107,.05);}
+
+/* DISASSEMBLY */
+.disassembly-section{padding:8rem 5%;position:relative;overflow:hidden;}
+.disassembly-title{font-family:var(--f);font-size:clamp(2rem,4vw,4rem);font-weight:800;text-transform:uppercase;text-align:center;margin-bottom:4rem;}
+.disassembly-title span{color:var(--a);}
+.disassembly-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1200px;margin:0 auto;}
+.disassembly-item{position:relative;aspect-ratio:1;background:var(--gd);border:1px solid rgba(154,203,107,.1);overflow:hidden;cursor:pointer;transition:all .5s cubic-bezier(.23,1,.32,1);}
+.disassembly-item:hover{border-color:var(--a);transform:translateY(-10px);}
+.disassembly-item img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(.5) hue-rotate(60deg);transition:all .5s;}
+.disassembly-item:hover img{filter:brightness(.8) saturate(.8) hue-rotate(60deg);transform:scale(1.05);}
+.disassembly-label{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(8,14,8,.9),transparent);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--a);}
+.disassembly-item .explode-pieces{position:absolute;inset:0;pointer-events:none;}
+.explode-piece{position:absolute;width:20px;height:20px;background:var(--a);opacity:0;transition:all .8s cubic-bezier(.23,1,.32,1);}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid rgba(154,203,107,.04);padding:2rem;text-align:center;}
+.footer p{font-size:.5rem;letter-spacing:.2em;color:rgba(239,231,208,.2);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .piano{transform:scale(.7);transform-origin:center;}
+  .rhythm-grid{grid-template-columns:repeat(8,1fr);}
+  .disassembly-grid,.diy-grid,.effects-grid,.stations-grid,.gear-categories,.testimonials-grid{grid-template-columns:1fr;}
+  .voice-visualizer{height:120px;}
+  .studio-hero-stats{flex-direction:column;gap:1.5rem;}
+  .studio-hero-content{left:5%;right:5%;}
+  .gear-categories{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .gear-categories{grid-template-columns:1fr;}
+}
+
+/* CURSOR */
+.custom-cursor{width:20px;height:20px;border:2px solid var(--a);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;mix-blend-mode:difference;transition:width .2s,height .2s,border-color .2s;}
+.custom-cursor.active{width:50px;height:50px;border-color:var(--c);margin-top:-15px;margin-left:-15px;}
+@media(max-width:768px){.custom-cursor{display:none;}}
+.scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;background:var(--a);z-index:1000;transition:width .1s linear;}
+</style>
+</head>
+<body>
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- HERO -->
+<section class="living-hero" id="hero">
+  <div class="living-hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="living-hero-content">
+    <h1>DUCK</h1>
+    <p class="subtitle">Living Studio · Instrumentos Interactivos</p>
+  </div>
+  <div class="scroll-hint">scroll to explore ↓</div>
+</section>
+
+<!-- PIANO -->
+<section class="instruments-section" id="piano-section">
+  <div class="section-header">
+    <h2><em>Piano</em> Interactivo</h2>
+    <p>Haz clic en las teclas para escuchar notas</p>
+  </div>
+  <div class="piano-container">
+    <div class="piano" id="piano">
+      <div class="key key-white" data-note="C4"><span class="key-label">C</span></div>
+      <div class="key key-white" data-note="D4"><span class="key-label">D</span></div>
+      <div class="key key-white" data-note="E4"><span class="key-label">E</span></div>
+      <div class="key key-white" data-note="F4"><span class="key-label">F</span></div>
+      <div class="key key-white" data-note="G4"><span class="key-label">G</span></div>
+      <div class="key key-white" data-note="A4"><span class="key-label">A</span></div>
+      <div class="key key-white" data-note="B4"><span class="key-label">B</span></div>
+      <div class="key key-white" data-note="C5"><span class="key-label">C</span></div>
+      <div class="key key-black" data-note="C#4" style="left:42px;"><span class="key-label">C#</span></div>
+      <div class="key key-black" data-note="D#4" style="left:102px;"><span class="key-label">D#</span></div>
+      <div class="key key-black" data-note="F#4" style="left:222px;"><span class="key-label">F#</span></div>
+      <div class="key key-black" data-note="G#4" style="left:282px;"><span class="key-label">G#</span></div>
+      <div class="key key-black" data-note="A#4" style="left:342px;"><span class="key-label">A#</span></div>
+    </div>
+    <div class="piano-visualizer" id="pianoVisualizer"></div>
+  </div>
+</section>
+
+<!-- RHYTHM BOX -->
+<section class="instruments-section" id="rhythm-section">
+  <div class="section-header">
+    <h2><em>Rhythm</em> Box</h2>
+    <p>Crea tus propios ritmos</p>
+  </div>
+  <div class="rhythm-container">
+    <div class="rhythm-title"><span>Drum Machine</span></div>
+    <div class="rhythm-label">KICK</div>
+    <div class="rhythm-grid" id="kickGrid"></div>
+    <div class="rhythm-label">SNARE</div>
+    <div class="rhythm-grid" id="snareGrid"></div>
+    <div class="rhythm-label">HI-HAT</div>
+    <div class="rhythm-grid" id="hihatGrid"></div>
+    <div class="rhythm-controls">
+      <button class="rhythm-btn" id="clearRhythm">LIMPIAR</button>
+      <button class="rhythm-btn" id="randomRhythm">ALEATORIO</button>
+      <button class="rhythm-btn play" id="playRhythm">▶ PLAY</button>
+      <button class="rhythm-btn" id="stopRhythm">■ STOP</button>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE SYNTH -->
+<section class="instruments-section" id="voice-section">
+  <div class="section-header">
+    <h2><em>Voz</em> Sintetizada</h2>
+    <p>Voz cantada con y sin arreglo musical</p>
+  </div>
+  <div class="voice-container">
+    <div class="voice-title"><span>Voice Synthesizer</span></div>
+    <div class="voice-visualizer" id="voiceVisualizer">
+      <div class="voice-wave" id="voiceWave"></div>
+    </div>
+    <div class="voice-controls">
+      <button class="voice-btn" id="voiceRaw"><span>VOZ RAW</span></button>
+      <button class="voice-btn" id="voiceWithMusic"><span>VOZ + ARREGLO</span></button>
+      <button class="voice-btn" id="voiceMelody"><span>MELODÍA</span></button>
+      <button class="voice-btn" id="stopVoice"><span>STOP</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- DIY SECTION - "HAZ TU CANCION" -->
+<section class="diy-section" id="diy-section">
+  <div class="diy-header">
+    <h2>Haz tu <em>canción</em> tú mismo</h2>
+    <p>Si aún no estás seguro de contratarme, intenta hacer tu propia versión. ¡Buena suerte! XD</p>
+  </div>
+  
+  <div class="diy-grid">
+    <div class="diy-card">
+      <span class="diy-icon">🎹</span>
+      <div class="diy-title">Paso 1: El Beat</div>
+      <div class="diy-desc">Intenta crear un beat en el piano de arriba. Suena fácil, ¿no? Solo necesitas saber qué acordes van juntos, cuándo cambiar y cómo crear tensión.</div>
+      <div class="diy-result">Resultado probable: un sonido que parece un iPhone viejo sonando en un tunel</div>
+    </div>
+    
+    <div class="diy-card">
+      <span class="diy-icon">🥁</span>
+      <div class="diy-title">Paso 2: La Batería</div>
+      <div class="diy-desc">Ahora agrega un ritmo en el drum machine. Kick, snare, hi-hat. Parece un juego de niños... hasta que suena como una lavadora con problemas.</div>
+      <div class="diy-result">Resultado probable: tu vecino llamando a la policía por ruido</div>
+    </div>
+    
+    <div class="diy-card">
+      <span class="diy-icon">🎤</span>
+      <div class="diy-title">Paso 3: La Voz</div>
+      <div class="diy-desc">Graba tu voz con autotune. Porque claro, todos podemos cantar como T-Pain después de ver un tutorial de 5 minutos en YouTube.</div>
+      <div class="diy-result">Resultado probable: un autotune que suena más a robot malfunction que a hit</div>
+    </div>
+    
+    <div class="diy-card">
+      <span class="diy-icon">🎚️</span>
+      <div class="diy-title">Paso 4: La Mezcla</div>
+      <div class="diy-desc">Ahora mezcla todo. EQ, compresión, reverb, delay... No, no es solo "subir el volumen". Cada frecuencia tiene su lugar exacto.</div>
+      <div class="diy-result">Resultado probable: un sonido tan plano que da envidia una llamada de teléfono</div>
+    </div>
+    
+    <div class="diy-card">
+      <span class="diy-icon">🎛️</span>
+      <div class="diy-title">Paso 5: Masterización</div>
+      <div class="diy-desc">El toque final. Haz que suene bien en Spotify, Apple Music, tu parlante Bluetooth y hasta en el teléfono de tu abuela.</div>
+      <div class="diy-result">Resultado probable: suena bien en tu casa pero en el auto se escucha como si estuvieras bajo el agua</div>
+    </div>
+    
+    <div class="diy-card">
+      <span class="diy-icon">🤷</span>
+      <div class="diy-title">Paso 6: Rendirse</div>
+      <div class="diy-desc">Después de 47 intentos, 3 crisis existenciales y 2 canciones que suenan a ruido blanco, finalmente entiendes por qué los productores existen.</div>
+      <div class="diy-result">Resultado probable: llamas a Duck y dices "tienes razón, no puedo hacer esto solo"</div>
+    </div>
+  </div>
+  
+  <div class="diy-cta">
+    <h3>¿Ya intentaste? ¿Y ahora?</h3>
+    <p>Mientras tanto, Duck ha producido más de 40 tracks con 36 millones de streams. Tal vez... solo tal vez... sabemos lo que hacemos.</p>
+    <a href="#contact" class="diy-btn">CONTRATAR A DUCK →</a>
+  </div>
+</section>
+
+<!-- STUDIO SECTION -->
+<section class="studio-section" id="studio">
+  <!-- Studio Hero -->
+  <div class="studio-hero">
+    <div class="studio-hero-bg">
+      <img src="../images/studio/setup-2-1920x1280.jpg" alt="Estudio" loading="lazy">
+    </div>
+    <div class="studio-hero-overlay"></div>
+    <div class="studio-hero-content">
+      <p class="studio-hero-label">// 008 — ESTUDIO</p>
+      <h2 class="studio-hero-title">DONDE LA<br><em>MÁGICA</em><br>SUCCEDE</h2>
+      <p class="studio-hero-sub">Home Studio · Mix Station · Production · Recording · Mixing · Mastering</p>
+      <div class="studio-hero-stats">
+        <div class="studio-stat">
+          <span class="studio-stat-num" data-count="6">0</span>
+          <span class="studio-stat-label">ESTACIONES</span>
+        </div>
+        <div class="studio-stat">
+          <span class="studio-stat-num" data-count="48">0</span>
+          <span class="studio-stat-label">VÍAS DE AUDIO</span>
+        </div>
+        <div class="studio-stat">
+          <span class="studio-stat-num" data-count="96">0</span>
+          <span class="studio-stat-label">KHZ / 24-BIT</span>
+        </div>
+      </div>
+    </div>
+    <div class="studio-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>EXPLORA EL ESTUDIO</span>
+    </div>
+  </div>
+
+  <!-- Studio Stations -->
+  <div class="studio-stations">
+    <div class="studio-stations-header">
+      <h3>ESTACIONES DE TRABAJO</h3>
+      <p>Cada estación tiene un propósito específico. No es solo "un computador con audífono".</p>
+    </div>
+    
+    <div class="stations-grid">
+      <div class="station-card" data-station="1">
+        <div class="station-img">
+          <img src="../images/studio/setup-2-1440x960.jpg" alt="Home Studio" loading="lazy">
+          <div class="station-overlay">
+            <span class="station-number">01</span>
+          </div>
+        </div>
+        <div class="station-info">
+          <h4>HOME STUDIO</h4>
+          <p>El corazón de la creación. Aquí nacen los beats, los arreglos y las primeras ideas. Monitores de referencia, interfaz de audio profesional y tratamiento acústico que permite escuchar cada frecuencia con precisión quirúrgica.</p>
+          <div class="station-specs">
+            <span>Genelec 8040B</span>
+            <span>Universal Audio Apollo</span>
+            <span>Acoustic Treatment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="station-card" data-station="2">
+        <div class="station-img">
+          <img src="../images/studio/setup-3-1440x960.jpg" alt="Mix Station" loading="lazy">
+          <div class="station-overlay">
+            <span class="station-number">02</span>
+          </div>
+        </div>
+        <div class="station-info">
+          <h4>MIX STATION</h4>
+          <p>Donde la ingeniería de sonido se convierte en arte. EQ dinámico, compresión paralela, automatización de panning y reverberación espacial. Cada instrumento ocupa exactamente el espacio que merece.</p>
+          <div class="station-specs">
+            <span>Yamaha HS8</span>
+            <span>Focusrite Scarlett</span>
+            <span>Waves Mercury</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="station-card" data-station="3">
+        <div class="station-img">
+          <img src="../images/studio/setup-4-1440x960.jpg" alt="Production" loading="lazy">
+          <div class="station-overlay">
+            <span class="station-number">03</span>
+          </div>
+        </div>
+        <div class="station-info">
+          <h4>PRODUCTION</h4>
+          <p>Sintetizadores analógicos, cajas de ritmos y controladores MIDI. El laboratorio donde los sonidos se diseñan desde cero. Cada textura, cada groove, cada atmósfera se construye aquí.</p>
+          <div class="station-specs">
+            <span>Moog Sub 37</span>
+            <span>Elektron Digitakt</span>
+            <span>AKAI MPK</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="station-card" data-station="4">
+        <div class="station-img">
+          <img src="../images/studio/setup-5-1440x960.jpg" alt="Recording" loading="lazy">
+          <div class="station-overlay">
+            <span class="station-number">04</span>
+          </div>
+        </div>
+        <div class="station-info">
+          <h4>RECORDING</h4>
+          <p>Cabina de grabación con tratamiento acústico profesional. Micrófonos de condensador y dinámicos para capturar cada matiz de la voz. Dirección creativa en cada take, del inicio al fin.</p>
+          <div class="station-specs">
+            <span>Neumann U87</span>
+            <span>Shure SM7B</span>
+            <span>Avalon VT-737</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="station-card" data-station="5">
+        <div class="station-img">
+          <img src="../images/studio/mix-3-1440x960.jpg" alt="Mixing" loading="lazy">
+          <div class="station-overlay">
+            <span class="station-number">05</span>
+          </div>
+        </div>
+        <div class="station-info">
+          <h4>MIXING</h4>
+          <p>El refinamiento final. Ecualización, compresión, efectos y automación. Cada decisión aquí define la diferencia entre un sonido amateur y una producción profesional de élite.</p>
+          <div class="station-specs">
+            <span>Slate VTM</span>
+            <span>Soundtoys 5</span>
+            <spanFabFilter Pro-Q 3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="station-card" data-station="6">
+        <div class="station-img">
+          <img src="../images/studio/mix-6-1440x960.jpg" alt="Mastering" loading="lazy">
+          <div class="station-overlay">
+            <span class="station-number">06</span>
+          </div>
+        </div>
+        <div class="station-info">
+          <h4>MASTERING</h4>
+          <p>El sellado de calidad. Loudness competitivo para Spotify, Apple Music y todas las plataformas. Stereo imaging, harmonic excitement y limitado multibanda. El toque final que separa lo bueno de lo épico.</p>
+          <div class="station-specs">
+            <span>iZotope Ozone 11</span>
+            <span>Weiss DS1-MK3</span>
+            <span>Passthrough</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Studio Gear -->
+  <div class="studio-gear">
+    <div class="studio-gear-header">
+      <h3>EL EQUIPO</h3>
+      <p>Herramientas de nivel profesional. No es solo tener el equipo, es saber cómo usarlo.</p>
+    </div>
+    
+    <div class="gear-categories">
+      <div class="gear-category">
+        <div class="gear-icon">🎤</div>
+        <h4>MICRÓFONOS</h4>
+        <ul class="gear-list">
+          <li><span class="gear-name">Neumann U87 Ai</span><span class="gear-type">Condensador</span></li>
+          <li><span class="gear-name">Shure SM7B</span><span class="gear-type">Dinámico</span></li>
+          <li><span class="gear-name">AKG C414 XLII</span><span class="gear-type">Condensador</span></li>
+          <li><span class="gear-name">Rode NT1-A</span><span class="gear-type">Condensador</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-category">
+        <div class="gear-icon">🎧</div>
+        <h4>MONITORES</h4>
+        <ul class="gear-list">
+          <li><span class="gear-name">Genelec 8040B</span><span class="gear-type">Referencia</span></li>
+          <li><span class="gear-name">Yamaha HS8</span><span class="gear-type">Referencia</span></li>
+          <li><span class="gear-name">Audio-Technica ATH-M50x</span><span class="gear-type">Audífonos</span></li>
+          <li><span class="gear-name">Beyerdynamic DT 990</span><span class="gear-type">Audífonos</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-category">
+        <div class="gear-icon">🎛️</div>
+        <h4>INTERFACES</h4>
+        <ul class="gear-list">
+          <li><span class="gear-name">Universal Audio Apollo x6</span><span class="gear-type">Thunderbolt</span></li>
+          <li><span class="gear-name">Focusrite Scarlett 18i20</span><span class="gear-type">USB</span></li>
+          <li><span class="gear-name">RME Fireface UCX II</span><span class="gear-type">USB</span></li>
+          <li><span class="gear-name">PreSonus Studio 1824c</span><span class="gear-type">USB-C</span></li>
+        </ul>
+      </div>
+
+      <div class="gear-category">
+        <div class="gear-icon">🎹</div>
+        <h4>CONTROLADORES</h4>
+        <ul class="gear-list">
+          <li><span class="gear-name">AKAI MPK261</span><span class="gear-type">MIDI Controller</span></li>
+          <li><span class="gear-name">Novation Launchpad X</span><span class="gear-type">Grid Controller</span></li>
+          <li><span class="gear-name">Arturia KeyLab 61</span><span class="gear-type">MIDI Keyboard</span></li>
+          <li><span class="gear-name">Korg nanoKONTROL2</span><span class="gear-type">Fader Controller</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Studio Process -->
+  <div class="studio-process">
+    <div class="studio-process-header">
+      <h3>MI PROCESO</h3>
+      <p>Cada proyecto sigue un flujo estructurado. No hay atajos, solo excelencia.</p>
+    </div>
+    
+    <div class="process-timeline">
+      <div class="process-step" data-step="1">
+        <div class="process-dot"></div>
+        <div class="process-content">
+          <span class="process-num">01</span>
+          <h4>BRIEFING & DIAGNÓSTICO</h4>
+          <p>Reunión inicial para entender la visión del artista. Referencias sonoras,情绪, y objetivos. Mapeo mental de frecuencias dominantes, dinámica ideal y texturas que van a casar con la voz.</p>
+          <span class="process-time">1-2 DÍAS</span>
+        </div>
+      </div>
+
+      <div class="process-step" data-step="2">
+        <div class="process-dot"></div>
+        <div class="process-content">
+          <span class="process-num">02</span>
+          <h4>PRODUCCIÓN & ARREGLO</h4>
+          <p>Creación del beat, arreglos instrumentales y estructura de la canción. Cada capa tiene función: kick que encaja en el peito, sintetizador que crea atmósfera, bajo que mueve el cuerpo.</p>
+          <span class="process-time">3-5 DÍAS</span>
+        </div>
+      </div>
+
+      <div class="process-step" data-step="3">
+        <div class="process-dot"></div>
+        <div class="process-content">
+          <span class="process-num">03</span>
+          <h4>GRABACIÓN</h4>
+          <p>Sesiones en cabina con tratamiento acústico profesional. Dirección creativa en cada take. Hasta 3 rondas de grabación para capturar la performance más auténtica y visceral.</p>
+          <span class="process-time">1-3 DÍAS</span>
+        </div>
+      </div>
+
+      <div class="process-step" data-step="4">
+        <div class="process-dot"></div>
+        <div class="process-content">
+          <span class="process-num">04</span>
+          <h4>MIXAJE</h4>
+          <p>Refinamiento de ingeniería de sonido. EQ dinámico, compresión paralela, espacialización y automación. Cada instrumento ocupa exactamente el espacio que "veo" que merece.</p>
+          <span class="process-time">2-4 DÍAS</span>
+        </div>
+      </div>
+
+      <div class="process-step" data-step="5">
+        <div class="process-dot"></div>
+        <div class="process-content">
+          <span class="process-num">05</span>
+          <h4>MASTERIZACIÓN</h4>
+          <p>El sellado de calidad. Loudness competitivo para todas las plataformas. Stereo imaging, harmonic excitement y limitado multibanda. El toque final que separa lo bueno de lo épico.</p>
+          <span class="process-time">1-2 DÍAS</span>
+        </div>
+      </div>
+
+      <div class="process-step" data-step="6">
+        <div class="process-dot"></div>
+        <div class="process-content">
+          <span class="process-num">06</span>
+          <h4>ENTREGA</h4>
+          <p>Archivos finales en múltiples formatos: WAV 24-bit, MP3 320kbps, stems separados. Todo organizado, nominal y listo para distribución en Spotify, Apple Music y plataformas.</p>
+          <span class="process-time">1 DÍA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Studio Testimonials -->
+  <div class="studio-testimonials">
+    <div class="studio-testimonials-header">
+      <h3>LO QUE DICEN</h3>
+      <p>Artistas que confiaron en el proceso.</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"Duck no solo produce beats, construye universos sonoros. Cada frecuencia tiene un propósito, cada textura cuenta una historia."</div>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Luiz Cinnamon</span>
+          <span class="testimonial-track">Posturadona</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"La capacidad de Duck para interpretar lo que quiero comunicar y transformarlo en sonido es algo que no he encontrado en ningún otro productor."</div>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Leones</span>
+          <span class="testimonial-track">Tititi / De Fininho</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">"Profesionalismo de otro nivel. Desde la primera reunión supe que estaba en buenas manos. El resultado habla por sí solo."</div>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Belentani</span>
+          <span class="testimonial-track">I Wrote a Song / Lento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Studio CTA -->
+  <div class="studio-cta">
+    <div class="studio-cta-content">
+      <h3>¿LISTO PARA CREAR?</h3>
+      <p>Cada gran canción empieza con una conversación. Cuéntame tu visión y transformémosla en realidad.</p>
+      <div class="studio-cta-buttons">
+        <a href="#contact" class="studio-btn primary">AGENDAR SESIÓN</a>
+        <a href="https://instagram.com/duck4s" target="_blank" class="studio-btn secondary">VER MÁS EN INSTAGRAM</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE RECORDER -->
+<section class="instruments-section" id="recorder-section">
+  <div class="section-header">
+    <h2><em>Graba</em> tu voz</h2>
+    <p>Prueba los efectos: autotune, reverb, voz de ardilla, voz gruesa</p>
+  </div>
+  <div class="recorder-container">
+    <div class="recorder-title"><span>Voice Recorder</span></div>
+    <div class="recorder-visualizer"><canvas id="recorderCanvas" width="800" height="200"></canvas></div>
+    <div class="recorder-status">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">LISTO PARA GRABAR</span>
+      <span id="recordingTime">00:00</span>
+    </div>
+    <div class="recorder-controls">
+      <button class="rec-btn record" id="recordBtn"><span>●</span> GRABAR</button>
+      <button class="rec-btn stop" id="stopRecBtn" disabled><span>■</span> STOP</button>
+      <button class="rec-btn play" id="playRecBtn" disabled><span>▶</span> PLAY</button>
+    </div>
+    <div class="effects-panel">
+      <h3 class="effects-title">EFECTOS DE VOZ</h3>
+      <div class="effects-grid">
+        <div class="effect-card" data-effect="autotune">
+          <div class="effect-icon">🎤</div>
+          <div class="effect-name">AUTOTUNE</div>
+          <div class="effect-desc">Corrección de tono</div>
+          <input type="range" class="effect-slider" min="0" max="100" value="50">
+          <div class="effect-value">50%</div>
+          <button class="effect-toggle">OFF</button>
+        </div>
+        <div class="effect-card" data-effect="reverb">
+          <div class="effect-icon">🎵</div>
+          <div class="effect-name">REVERB</div>
+          <div class="effect-desc">Reverberación</div>
+          <input type="range" class="effect-slider" min="0" max="100" value="30">
+          <div class="effect-value">30%</div>
+          <button class="effect-toggle">OFF</button>
+        </div>
+        <div class="effect-card" data-effect="chipmunk">
+          <div class="effect-icon">🐿️</div>
+          <div class="effect-name">VOZ DE ARDILLA</div>
+          <div class="effect-desc">Tono alto y rápido</div>
+          <input type="range" class="effect-slider" min="100" max="300" value="180">
+          <div class="effect-value">180%</div>
+          <button class="effect-toggle">OFF</button>
+        </div>
+        <div class="effect-card" data-effect="deep">
+          <div class="effect-icon">🔊</div>
+          <div class="effect-name">VOZ GRUESA</div>
+          <div class="effect-desc">Tono bajo y profundo</div>
+          <input type="range" class="effect-slider" min="30" max="100" value="70">
+          <div class="effect-value">70%</div>
+          <button class="effect-toggle">OFF</button>
+        </div>
+        <div class="effect-card" data-effect="echo">
+          <div class="effect-icon">🔁</div>
+          <div class="effect-name">ECHO</div>
+          <div class="effect-desc">Repetición con decaimiento</div>
+          <input type="range" class="effect-slider" min="0" max="100" value="40">
+          <div class="effect-value">40%</div>
+          <button class="effect-toggle">OFF</button>
+        </div>
+        <div class="effect-card" data-effect="robot">
+          <div class="effect-icon">🤖</div>
+          <div class="effect-name">ROBOT</div>
+          <div class="effect-desc">Voz metálica</div>
+          <input type="range" class="effect-slider" min="0" max="100" value="60">
+          <div class="effect-value">60%</div>
+          <button class="effect-toggle">OFF</button>
+        </div>
+      </div>
+      <div class="presets-panel">
+        <h4>PRESETS</h4>
+        <div class="presets-grid">
+          <button class="preset-btn" data-preset="normal">NORMAL</button>
+          <button class="preset-btn" data-preset="singer">CANTANTE</button>
+          <button class="preset-btn" data-preset="chipmunk">ARDILLA</button>
+          <button class="preset-btn" data-preset="deep">MONSTRUO</button>
+          <button class="preset-btn" data-preset="robot">ROBOT</button>
+          <button class="preset-btn" data-preset="concert">CONCIERTO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISASSEMBLY -->
+<section class="disassembly-section" id="disassembly-section">
+  <div class="disassembly-title"><span>Desmontaje</span> en Scroll</div>
+  <div class="disassembly-grid" id="disassemblyGrid">
+    <div class="disassembly-item" data-piece="1">
+      <img src="../images/covers/cold-feat-duck4x.jpg" alt="Cold" loading="lazy">
+      <div class="disassembly-label">COLD feat. Big Murdda</div>
+      <div class="explode-pieces"></div>
+    </div>
+    <div class="disassembly-item" data-piece="2">
+      <img src="../images/covers/for-reapers-only-ep.jpg" alt="For Reaper's Only" loading="lazy">
+      <div class="disassembly-label">FOR REAPER'S ONLY EP</div>
+      <div class="explode-pieces"></div>
+    </div>
+    <div class="disassembly-item" data-piece="3">
+      <img src="../images/covers/slip-n-slide.jpg" alt="Slip N Slide" loading="lazy">
+      <div class="disassembly-label">SLIP N SLIDE</div>
+      <div class="explode-pieces"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 DUCK PRODUÇÃO MUSICAL — LIVING STUDIO</p>
+</footer>
+
+<script>
+// ==================== AUDIO CONTEXT ====================
+let audioCtx = null;
+function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
+
+// ==================== PIANO ====================
+const noteFrequencies={'C4':261.63,'C#4':277.18,'D4':293.66,'D#4':311.13,'E4':329.63,'F4':349.23,'F#4':369.99,'G4':392.00,'G#4':415.30,'A4':440.00,'A#4':466.16,'B4':493.88,'C5':523.25};
+const pianoVisualizer=document.getElementById('pianoVisualizer');
+for(let i=0;i<20;i++){const bar=document.createElement('div');bar.className='viz-bar';bar.style.height='5px';pianoVisualizer.appendChild(bar);}
+function playNote(note,duration=0.5){const ctx=initAudio();const osc=ctx.createOscillator();const gain=ctx.createGain();const filter=ctx.createBiquadFilter();osc.type='sine';osc.frequency.setValueAtTime(noteFrequencies[note],ctx.currentTime);filter.type='lowpass';filter.frequency.setValueAtTime(2000,ctx.currentTime);gain.gain.setValueAtTime(0.3,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+duration);osc.connect(filter);filter.connect(gain);gain.connect(ctx.destination);osc.start(ctx.currentTime);osc.stop(ctx.currentTime+duration);const vizBars=pianoVisualizer.querySelectorAll('.viz-bar');vizBars.forEach((bar)=>{bar.style.height=(Math.random()*60+10)+'px';bar.classList.add('active');setTimeout(()=>bar.classList.remove('active'),300);});}
+document.querySelectorAll('.key').forEach(key=>{key.addEventListener('click',()=>{playNote(key.dataset.note);key.classList.add('active');setTimeout(()=>key.classList.remove('active'),200);});});
+const keyMap={'a':'C4','w':'C#4','s':'D4','e':'D#4','d':'E4','f':'F4','t':'F#4','g':'G4','y':'G#4','h':'A4','u':'A#4','j':'B4','k':'C5'};
+document.addEventListener('keydown',(e)=>{if(keyMap[e.key]){playNote(keyMap[e.key]);const k=document.querySelector(`[data-note="${keyMap[e.key]}"]`);if(k){k.classList.add('active');setTimeout(()=>k.classList.remove('active'),200);}}});
+
+// ==================== RHYTHM BOX ====================
+let rhythmState={kick:new Array(16).fill(false),snare:new Array(16).fill(false),hihat:new Array(16).fill(false)};
+let rhythmInterval=null,currentStep=0;
+function createGrid(c,inst){for(let i=0;i<16;i++){const cell=document.createElement('div');cell.className='rhythm-cell';cell.dataset.step=i;cell.addEventListener('click',()=>{rhythmState[inst][i]=!rhythmState[inst][i];cell.classList.toggle('active');if(rhythmState[inst][i])playDrum(inst);});c.appendChild(cell);}}
+createGrid(document.getElementById('kickGrid'),'kick');
+createGrid(document.getElementById('snareGrid'),'snare');
+createGrid(document.getElementById('hihatGrid'),'hihat');
+function playDrum(type){const ctx=initAudio();if(type==='kick'){const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.setValueAtTime(150,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.5);g.gain.setValueAtTime(1,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.5);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.5);}else if(type==='snare'){const n=ctx.createBufferSource(),b=ctx.createBuffer(1,ctx.sampleRate*0.2,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;n.buffer=b;const g=ctx.createGain();g.gain.setValueAtTime(0.8,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.2);n.connect(g);g.connect(ctx.destination);n.start(ctx.currentTime);}else{const o=ctx.createOscillator(),g=ctx.createGain();o.type='square';o.frequency.setValueAtTime(8000,ctx.currentTime);g.gain.setValueAtTime(0.3,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.05);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.05);}}
+function playStep(){document.querySelectorAll('.rhythm-cell').forEach(c=>c.classList.remove('playing'));const s=currentStep%16;if(rhythmState.kick[s]){playDrum('kick');document.querySelector(`#kickGrid [data-step="${s}"]`).classList.add('playing');}if(rhythmState.snare[s]){playDrum('snare');document.querySelector(`#snareGrid [data-step="${s}"]`).classList.add('playing');}if(rhythmState.hihat[s]){playDrum('hihat');document.querySelector(`#hihatGrid [data-step="${s}"]`).classList.add('playing');}currentStep++;}
+document.getElementById('playRhythm').addEventListener('click',()=>{if(!rhythmInterval)rhythmInterval=setInterval(playStep,125);});
+document.getElementById('stopRhythm').addEventListener('click',()=>{clearInterval(rhythmInterval);rhythmInterval=null;currentStep=0;document.querySelectorAll('.rhythm-cell').forEach(c=>c.classList.remove('playing'));});
+document.getElementById('clearRhythm').addEventListener('click',()=>{rhythmState={kick:new Array(16).fill(false),snare:new Array(16).fill(false),hihat:new Array(16).fill(false)};document.querySelectorAll('.rhythm-cell').forEach(c=>c.classList.remove('active'));});
+document.getElementById('randomRhythm').addEventListener('click',()=>{rhythmState.kick=Array.from({length:16},()=>Math.random()>0.7);rhythmState.snare=Array.from({length:16},()=>Math.random()>0.8);rhythmState.hihat=Array.from({length:16},()=>Math.random()>0.6);document.querySelectorAll('.rhythm-cell').forEach(c=>{const s=parseInt(c.dataset.step),g=c.parentElement.id.replace('Grid','');c.classList.toggle('active',rhythmState[g][s]);});});
+
+// ==================== VOICE SYNTH ====================
+const voiceWave=document.getElementById('voiceWave');
+for(let i=0;i<50;i++){const b=document.createElement('div');b.className='voice-wave-bar';b.style.height='5px';voiceWave.appendChild(b);}
+let voiceInterval=null;
+function animateVoice(){voiceWave.querySelectorAll('.voice-wave-bar').forEach(b=>{const h=Math.random()*150+10;b.style.height=h+'px';b.style.opacity=h/200+0.2;});}
+function playVoice(type){const ctx=initAudio();if(voiceInterval)clearInterval(voiceInterval);voiceInterval=setInterval(animateVoice,50);if(type==='raw'){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sawtooth';o.frequency.setValueAtTime(200,ctx.currentTime);o.frequency.linearRampToValueAtTime(300,ctx.currentTime+0.5);o.frequency.linearRampToValueAtTime(250,ctx.currentTime+1);g.gain.setValueAtTime(0.2,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+1.5);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+1.5);}else if(type==='withMusic'){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sawtooth';o.frequency.setValueAtTime(200,ctx.currentTime);o.frequency.linearRampToValueAtTime(400,ctx.currentTime+0.3);o.frequency.linearRampToValueAtTime(300,ctx.currentTime+0.8);g.gain.setValueAtTime(0.15,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+1.2);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+1.2);[261.63,329.63,392.00].forEach(f=>{const co=ctx.createOscillator(),cg=ctx.createGain();co.type='sine';co.frequency.setValueAtTime(f,ctx.currentTime);cg.gain.setValueAtTime(0.08,ctx.currentTime);cg.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+1.5);co.connect(cg);cg.connect(ctx.destination);co.start(ctx.currentTime);co.stop(ctx.currentTime+1.5);});}else{[261.63,293.66,329.63,349.23,392.00,440.00,493.88,523.25].forEach((f,i)=>{setTimeout(()=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(f,ctx.currentTime);g.gain.setValueAtTime(0.2,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.3);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.3);},i*150);});}}
+document.getElementById('voiceRaw').addEventListener('click',()=>{playVoice('raw');document.querySelectorAll('.voice-btn').forEach(b=>b.classList.remove('active'));document.getElementById('voiceRaw').classList.add('active');});
+document.getElementById('voiceWithMusic').addEventListener('click',()=>{playVoice('withMusic');document.querySelectorAll('.voice-btn').forEach(b=>b.classList.remove('active'));document.getElementById('voiceWithMusic').classList.add('active');});
+document.getElementById('voiceMelody').addEventListener('click',()=>{playVoice('melody');document.querySelectorAll('.voice-btn').forEach(b=>b.classList.remove('active'));document.getElementById('voiceMelody').classList.add('active');});
+document.getElementById('stopVoice').addEventListener('click',()=>{if(voiceInterval){clearInterval(voiceInterval);voiceInterval=null;}voiceWave.querySelectorAll('.voice-wave-bar').forEach(b=>{b.style.height='5px';b.style.opacity='0.6';});document.querySelectorAll('.voice-btn').forEach(b=>b.classList.remove('active'));});
+
+// ==================== VOICE RECORDER ====================
+let mediaRecorder=null,recordedChunks=[],audioBlob=null,audioUrl=null,audioElement=null;
+let analyser=null,canvasCtx=null,canvasAnimation=null;
+const canvas=document.getElementById('recorderCanvas');
+canvasCtx=canvas.getContext('2d');
+const recordBtn=document.getElementById('recordBtn');
+const stopRecBtn=document.getElementById('stopRecBtn');
+const playRecBtn=document.getElementById('playRecBtn');
+const statusDot=document.getElementById('statusDot');
+const statusText=document.getElementById('statusText');
+const recordingTime=document.getElementById('recordingTime');
+let recordingInterval=null,seconds=0;
+const effects={autotune:false,reverb:false,chipmunk:false,deep:false,echo:false,robot:false};
+const effectValues={autotune:50,reverb:30,chipmunk:180,deep:70,echo:40,robot:60};
+
+function drawWaveform(){if(!analyser)return;const bufferLength=analyser.frequencyBinCount;const dataArray=new Uint8Array(bufferLength);function draw(){canvasAnimation=requestAnimationFrame(draw);analyser.getByteTimeDomainData(dataArray);canvasCtx.fillStyle='rgba(21,33,15,1)';canvasCtx.fillRect(0,0,canvas.width,canvas.height);canvasCtx.lineWidth=2;canvasCtx.strokeStyle='#9acb6b';canvasCtx.beginPath();const sliceWidth=canvas.width/bufferLength;let x=0;for(let i=0;i<bufferLength;i++){const v=dataArray[i]/128.0;const y=v*canvas.height/2;if(i===0)canvasCtx.moveTo(x,y);else canvasCtx.lineTo(x,y);x+=sliceWidth;}canvasCtx.lineTo(canvas.width,canvas.height/2);canvasCtx.stroke();}draw();}
+
+recordBtn.addEventListener('click',async()=>{try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});mediaRecorder=new MediaRecorder(stream);analyser=initAudio().createAnalyser();analyser.fftSize=2048;const source=initAudio().createMediaStreamSource(stream);source.connect(analyser);drawWaveform();recordedChunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size>0)recordedChunks.push(e.data);};mediaRecorder.onstop=()=>{audioBlob=new Blob(recordedChunks,{type:'audio/webm'});audioUrl=URL.createObjectURL(audioBlob);playRecBtn.disabled=false;stream.getTracks().forEach(t=>t.stop());};mediaRecorder.start();recordBtn.classList.add('recording');recordBtn.disabled=true;stopRecBtn.disabled=false;statusDot.classList.add('recording');statusText.textContent='GRABANDO...';seconds=0;recordingInterval=setInterval(()=>{seconds++;const m=Math.floor(seconds/60).toString().padStart(2,'0');const s=(seconds%60).toString().padStart(2,'0');recordingTime.textContent=m+':'+s;},1000);}catch(err){statusText.textContent='ERROR: No se pudo acceder al micrófono';}});
+
+stopRecBtn.addEventListener('click',()=>{if(mediaRecorder&&mediaRecorder.state!=='inactive'){mediaRecorder.stop();recordBtn.classList.remove('recording');recordBtn.disabled=false;stopRecBtn.disabled=true;statusDot.classList.remove('recording');statusText.textContent='GRABACIÓN COMPLETADA';clearInterval(recordingInterval);if(canvasAnimation)cancelAnimationFrame(canvasAnimation);}});
+
+playRecBtn.addEventListener('click',()=>{if(!audioUrl)return;if(audioElement){audioElement.pause();audioElement=null;}audioElement=new Audio(audioUrl);const ctx=initAudio();const source=ctx.createMediaElementSource(audioElement);let lastNode=source;Object.keys(effects).forEach(effect=>{if(effects[effect]){const wet=effectValues[effect]/100;switch(effect){case'chipmunk':{const node=ctx.createBiquadFilter();node.type='peaking';node.frequency.setValueAtTime(2000,ctx.currentTime);node.gain.setValueAtTime(wet*30,ctx.currentTime);node.Q.setValueAtTime(1,ctx.currentTime);lastNode.connect(node);lastNode=node;break;}case'deep':{const node=ctx.createBiquadFilter();node.type='peaking';node.frequency.setValueAtTime(200,ctx.currentTime);node.gain.setValueAtTime(wet*20,ctx.currentTime);node.Q.setValueAtTime(1,ctx.currentTime);lastNode.connect(node);lastNode=node;break;}case'reverb':{const convolver=ctx.createConvolver();const rate=ctx.sampleRate;const length=rate*2;const impulse=ctx.createBuffer(2,length,rate);for(let ch=0;ch<2;ch++){const data=impulse.getChannelData(ch);for(let i=0;i<length;i++){data[i]=(Math.random()*2-1)*Math.pow(1-i/length,2);}}convolver.buffer=impulse;const wetGain=ctx.createGain();wetGain.gain.setValueAtTime(wet,ctx.currentTime);const dryGain=ctx.createGain();dryGain.gain.setValueAtTime(1-wet*0.5,ctx.currentTime);lastNode.connect(dryGain);dryGain.connect(ctx.destination);lastNode.connect(convolver);convolver.connect(wetGain);wetGain.connect(ctx.destination);lastNode=null;break;}case'echo':{const delay=ctx.createDelay();delay.delayTime.setValueAtTime(0.3,ctx.currentTime);const feedback=ctx.createGain();feedback.gain.setValueAtTime(wet*0.5,ctx.currentTime);lastNode.connect(delay);delay.connect(feedback);feedback.connect(delay);feedback.connect(ctx.destination);lastNode=delay;break;}case'robot':{const osc=ctx.createOscillator();const oscGain=ctx.createGain();osc.type='sawtooth';osc.frequency.setValueAtTime(50,ctx.currentTime);oscGain.gain.setValueAtTime(wet*0.1,ctx.currentTime);osc.connect(oscGain);oscGain.connect(ctx.destination);osc.start();setTimeout(()=>osc.stop(),5000);break;}}}});if(lastNode)lastNode.connect(ctx.destination);audioElement.play();statusText.textContent='REPRODUCIENDO...';audioElement.onended=()=>{statusText.textContent='REPRODUCCIÓN COMPLETADA';};});
+
+// Effect toggles
+document.querySelectorAll('.effect-card').forEach(card=>{const effect=card.dataset.effect;const toggle=card.querySelector('.effect-toggle');const slider=card.querySelector('.effect-slider');const value=card.querySelector('.effect-value');toggle.addEventListener('click',()=>{effects[effect]=!effects[effect];toggle.textContent=effects[effect]?'ON':'OFF';toggle.classList.toggle('active',effects[effect]);card.classList.toggle('active',effects[effect]);});slider.addEventListener('input',()=>{effectValues[effect]=parseInt(slider.value);value.textContent=slider.value+'%';});});
+
+// Presets
+document.querySelectorAll('.preset-btn').forEach(btn=>{btn.addEventListener('click',()=>{const preset=btn.dataset.preset;Object.keys(effects).forEach(k=>{effects[k]=false;});document.querySelectorAll('.effect-toggle').forEach(t=>{t.textContent='OFF';t.classList.remove('active');});document.querySelectorAll('.effect-card').forEach(c=>c.classList.remove('active'));switch(preset){case'singer':effects.autotune=true;effects.reverb=true;document.querySelector('[data-effect="autotune"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="reverb"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="autotune"]').classList.add('active');document.querySelector('[data-effect="reverb"]').classList.add('active');break;case'chipmunk':effects.chipmunk=true;document.querySelector('[data-effect="chipmunk"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="chipmunk"]').classList.add('active');break;case'deep':effects.deep=true;document.querySelector('[data-effect="deep"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="deep"]').classList.add('active');break;case'robot':effects.robot=true;document.querySelector('[data-effect="robot"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="robot"]').classList.add('active');break;case'concert':effects.reverb=true;effects.echo=true;document.querySelector('[data-effect="reverb"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="echo"] .effect-toggle').textContent='ON';document.querySelector('[data-effect="reverb"]').classList.add('active');document.querySelector('[data-effect="echo"]').classList.add('active');break;}});});
+
+// ==================== STUDIO ANIMATIONS ====================
+// Studio stats counter
+document.querySelectorAll('.studio-stat-num').forEach(el=>{
+  const t=parseInt(el.dataset.count);if(isNaN(t))return;
+  ScrollTrigger.create({trigger:el,start:'top 85%',once:true,onEnter:()=>{
+    gsap.to({v:0},{v:t,duration:2,ease:'power2.out',onUpdate:function(){el.textContent=Math.round(this.targets()[0].v);}});
+  }});
+});
+
+// Station cards stagger
+document.querySelectorAll('.station-card').forEach((c,i)=>{
+  gsap.from(c,{scrollTrigger:{trigger:c,start:'top 85%',toggleActions:'play none none reverse'},opacity:0,y:80,duration:.8,delay:i*.1,ease:'power3.out'});
+});
+
+// Gear categories stagger
+document.querySelectorAll('.gear-category').forEach((g,i)=>{
+  gsap.from(g,{scrollTrigger:{trigger:g,start:'top 85%',toggleActions:'play none none reverse'},opacity:0,y:60,duration:.7,delay:i*.1,ease:'power3.out'});
+});
+
+// Process steps
+document.querySelectorAll('.process-step').forEach((s,i)=>{
+  gsap.from(s,{scrollTrigger:{trigger:s,start:'top 85%',toggleActions:'play none none reverse'},opacity:0,x:-50,duration:.8,delay:i*.15,ease:'power3.out'});
+});
+
+// Testimonial cards
+document.querySelectorAll('.testimonial-card').forEach((t,i)=>{
+  gsap.from(t,{scrollTrigger:{trigger:t,start:'top 85%',toggleActions:'play none none reverse'},opacity:0,y:50,duration:.7,delay:i*.15,ease:'power3.out'});
+});
+
+// Studio hero parallax
+gsap.to('.studio-hero-bg img',{yPercent:20,ease:'none',scrollTrigger:{trigger:'.studio-hero',scrub:true}});
+
+// ==================== DISASSEMBLY ====================
+document.querySelectorAll('.disassembly-item').forEach(item=>{const pc=item.querySelector('.explode-pieces');for(let i=0;i<12;i++){const p=document.createElement('div');p.className='explode-piece';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';pc.appendChild(p);}gsap.registerPlugin(ScrollTrigger);gsap.from(item,{scrollTrigger:{trigger:item,start:'top 80%',end:'bottom 20%',scrub:1,onEnter:()=>{item.querySelectorAll('.explode-piece').forEach((p,i)=>{gsap.to(p,{x:(Math.random()-0.5)*200,y:(Math.random()-0.5)*200,rotation:Math.random()*360,opacity:0.8,duration:0.5,delay:i*0.05,ease:'power2.out'});});},onLeaveBack:()=>{item.querySelectorAll('.explode-piece').forEach(p=>{gsap.to(p,{x:0,y:0,rotation:0,opacity:0,duration:0.3});});}},y:100,opacity:0,duration:1});});
+
+// ==================== PARTICLES ====================
+const pc=document.getElementById('particles');for(let i=0;i<30;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*15+'s';p.style.animationDuration=(10+Math.random()*10)+'s';pc.appendChild(p);}
+
+// ==================== CURSOR ====================
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX-10+'px';cursor.style.top=e.clientY-10+'px';});
+document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.key,.rhythm-cell,.voice-btn,.diy-card,.effect-card,.preset-btn,.disassembly-item'))cursor.classList.add('active');});
+document.addEventListener('mouseout',e=>{if(e.target.closest('a,button,.key,.rhythm-cell,.voice-btn,.diy-card,.effect-card,.preset-btn,.disassembly-item'))cursor.classList.remove('active');});
+
+// ==================== SCROLL PROGRESS ====================
+window.addEventListener('scroll',()=>{const s=document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('scrollProgress').style.width=(s/h*100)+'%';});
+
+// ==================== GSAP ANIMATIONS ====================
+gsap.registerPlugin(ScrollTrigger);
+gsap.from('.living-hero-content h1',{opacity:0,scale:0.8,duration:1.5,ease:'power3.out'});
+gsap.from('.living-hero-content .subtitle',{opacity:0,y:30,duration:1,delay:0.5,ease:'power3.out'});
+document.querySelectorAll('.section-header').forEach(h=>{gsap.from(h,{scrollTrigger:{trigger:h,start:'top 80%',toggleActions:'play none none reverse'},opacity:0,y:50,duration:1,ease:'power3.out'});});
+gsap.from('.piano-container',{scrollTrigger:{trigger:'.piano-container',start:'top 80%',toggleActions:'play none none reverse'},opacity:0,y:80,duration:1.2,ease:'power3.out'});
+gsap.from('.rhythm-container',{scrollTrigger:{trigger:'.rhythm-container',start:'top 80%',toggleActions:'play none none reverse'},opacity:0,y:80,duration:1.2,ease:'power3.out'});
+gsap.from('.voice-container',{scrollTrigger:{trigger:'.voice-container',start:'top 80%',toggleActions:'play none none reverse'},opacity:0,y:80,duration:1.2,ease:'power3.out'});
+gsap.from('.diy-grid .diy-card',{scrollTrigger:{trigger:'.diy-grid',start:'top 80%',toggleActions:'play none none reverse'},opacity:0,y:60,duration:0.8,stagger:0.15,ease:'power3.out'});
+gsap.from('.recorder-container',{scrollTrigger:{trigger:'.recorder-container',start:'top 80%',toggleActions:'play none none reverse'},opacity:0,y:80,duration:1.2,ease:'power3.out'});
+console.log('🎵 DUCK Living Studio loaded!');
+</script>
+</body>
+</html>

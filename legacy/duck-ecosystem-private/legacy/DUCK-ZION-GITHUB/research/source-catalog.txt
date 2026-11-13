@@ -1,0 +1,471 @@
+=== TOP_LEVEL ===
+./01-STUDIO-OS
+./01-STUDIO-OS/docs
+./01-STUDIO-OS/evidence
+./01-STUDIO-OS/experience-assets
+./01-STUDIO-OS/manual-assets
+./01-STUDIO-OS/source
+./02-ECOSYSTEM
+./02-ECOSYSTEM/client
+./02-ECOSYSTEM/drizzle
+./02-ECOSYSTEM/patches
+./02-ECOSYSTEM/server
+./02-ECOSYSTEM/shared
+./03-TOOLKIT-GEMA-1
+./04-STUDIO-LOCAL
+./04-STUDIO-LOCAL/github-clones
+./04-STUDIO-LOCAL/html-offline
+./04-STUDIO-LOCAL/scripts
+./05-HERRAMIENTAS-PREMIUM
+./05-HERRAMIENTAS-PREMIUM/DOCS
+./05-HERRAMIENTAS-PREMIUM/ENTREGABLES
+./05-HERRAMIENTAS-PREMIUM/FUENTE
+./05-HERRAMIENTAS-PREMIUM/QA
+./05-HERRAMIENTAS-PREMIUM/SCRIPTS
+./06-EXPERIENCIA-INMERSIVA
+./06-EXPERIENCIA-INMERSIVA/scripts
+./06-EXPERIENCIA-INMERSIVA/web
+./07-GEMA-LAB
+./07-GEMA-LAB/assets
+./07-GEMA-LAB/docs
+./08-ENVIO-GEMA-01
+./09-MANUALES
+./10-ZIPS
+./11-PORTAL-CLIENTES
+./11-PORTAL-CLIENTES/.zscripts
+./11-PORTAL-CLIENTES/agent-ctx
+./11-PORTAL-CLIENTES/android
+./11-PORTAL-CLIENTES/db
+./11-PORTAL-CLIENTES/desktop
+./11-PORTAL-CLIENTES/desktop-app
+./11-PORTAL-CLIENTES/download
+./11-PORTAL-CLIENTES/examples
+./11-PORTAL-CLIENTES/mini-services
+./11-PORTAL-CLIENTES/mobile-shell
+./11-PORTAL-CLIENTES/prisma
+./11-PORTAL-CLIENTES/public
+./11-PORTAL-CLIENTES/release
+./11-PORTAL-CLIENTES/scripts
+./11-PORTAL-CLIENTES/src
+./11-PORTAL-CLIENTES/tests
+./11-PORTAL-CLIENTES/tool-results
+./11-PORTAL-CLIENTES/upload
+./12-REFERENCIAS-VISUALES
+./AUDITADO_FINAL
+./AUDITADO_FINAL/01-STUDIO-OS
+./AUDITADO_FINAL/02-ECOSYSTEM
+./AUDITADO_FINAL/03-TOOLKIT-GEMA-1
+./AUDITADO_FINAL/04-STUDIO-LOCAL
+./AUDITADO_FINAL/05-HERRAMIENTAS-PREMIUM
+./AUDITADO_FINAL/06-EXPERIENCIA-INMERSIVA
+./AUDITADO_FINAL/07-GEMA-LAB
+./AUDITADO_FINAL/08-ENVIO-GEMA-01
+./AUDITADO_FINAL/09-MANUALES
+./AUDITADO_FINAL/10-ZIPS
+./AUDITADO_FINAL/11-PORTAL-CLIENTES
+./AUDITADO_FINAL/12-REFERENCIAS-VISUAIS
+./AUDITADO_FINAL/12-REFERENCIAS-VISUALES
+./AUDITADO_FINAL/IMAGENES
+./AUDITADO_FINAL/MANUAL
+./AUDITADO_FINAL/PROMPTS
+./CONTENIDO
+./DUCK-EXPERIENCIA-INMERSIVA-PACK-2026-08-13
+./DUCK-EXPERIENCIA-INMERSIVA-PACK-2026-08-13/.git
+./DUCK-EXPERIENCIA-INMERSIVA-PACK-2026-08-13/scripts
+./DUCK-EXPERIENCIA-INMERSIVA-PACK-2026-08-13/web
+./DUCK-HERRAMIENTAS-2026-08
+./DUCK-HERRAMIENTAS-2026-08/.git
+./DUCK-HERRAMIENTAS-2026-08/DOCS
+./DUCK-HERRAMIENTAS-2026-08/ENTREGABLES
+./DUCK-HERRAMIENTAS-2026-08/FUENTE
+./DUCK-HERRAMIENTAS-2026-08/QA
+./DUCK-HERRAMIENTAS-2026-08/SCRIPTS
+./IMAGENES
+./INVENTARIO
+./MANUAL
+./MANUAL/media
+./PROMPTS
+./temp1
+./temp1/duck-delivery
+./temp_final
+./temp_final/01-STUDIO-OS
+./temp_final/02-ECOSYSTEM
+./temp_final/03-TOOLKIT-GEMA-1
+./temp_final/04-STUDIO-LOCAL
+./temp_final/05-HERRAMIENTAS-PREMIUM
+./temp_final/06-EXPERIENCIA-INMERSIVA
+./temp_final/07-GEMA-LAB
+./temp_final/08-ENVIO-GEMA-01
+./temp_final/09-MANUALES
+./temp_final/10-ZIPS
+./temp_final/11-PORTAL-CLIENTES
+./temp_final/12-REFERENCIAS-VISUAIS
+./temp_final/12-REFERENCIAS-VISUALES
+./temp_final/IMAGENES
+./temp_final/MANUAL
+./temp_final/PROMPTS
+=== MANIFESTS ===
+./01-STUDIO-OS/source/package.json
+./02-ECOSYSTEM/package.json
+./04-STUDIO-LOCAL/github-clones/neural-amp-modeler/.devcontainer/Dockerfile
+./04-STUDIO-LOCAL/github-clones/neural-amp-modeler/NeuralAmpModeler/NeuralAmpModeler.sln
+./04-STUDIO-LOCAL/github-clones/neural-amp-modeler/TemplateProject/TemplateProject.sln
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/examples/api/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/examples/api/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/autostart/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/autostart/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/barcode-scanner/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/barcode-scanner/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/biometric/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/biometric/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/cli/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/cli/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/clipboard-manager/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/clipboard-manager/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/examples/app/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/examples/app/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/dialog/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/dialog/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/fs/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/fs/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/geolocation/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/geolocation/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/global-shortcut/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/global-shortcut/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/haptics/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/haptics/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/http/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/http/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/localhost/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/log/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/log/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/nfc/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/nfc/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/notification/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/notification/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/opener/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/opener/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/os/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/os/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/persisted-scope/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/positioner/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/positioner/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/process/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/process/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/shell/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/shell/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/single-instance/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/single-instance/examples/vanilla/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/single-instance/examples/vanilla/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/sql/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/sql/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/examples/AppSettingsManager/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/examples/AppSettingsManager/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/stronghold/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/stronghold/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/app-updater/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/v1-app/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/v1-app/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/v2-app/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/upload/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/upload/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/examples/tauri-app/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/examples/tauri-app/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/window-state/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/window-state/package.json
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/shared/template/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/shared/template/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/.devcontainer/Dockerfile
+./04-STUDIO-LOCAL/github-clones/tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/bench/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/bench/tests/cpu_intensive/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/bench/tests/files_transfer/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/bench/tests/helloworld/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-build/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-bundler/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/templates/plugin/__example-api/tauri-app/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/templates/plugin/__example-basic/vanilla/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/templates/plugin/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-codegen/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-driver/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-macos-sign/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-macros/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-plugin/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-runtime-wry/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-runtime/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-schema-generator/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-schema-worker/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-schema-worker/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-utils/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tests/acl/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/crates/tests/restart/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/examples/api/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/examples/api/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/examples/api/src-tauri/tauri-plugin-sample/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/examples/file-associations/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/examples/file-associations/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/examples/resources/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/examples/resources/src-tauri/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/api/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/Cargo.toml
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/__tests__/fixtures/empty/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/darwin-arm64/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/darwin-x64/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-arm-gnueabihf/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-arm64-gnu/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-arm64-musl/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-riscv64-gnu/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-x64-gnu/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-x64-musl/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/win32-arm64-msvc/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/win32-ia32-msvc/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/win32-x64-msvc/package.json
+./04-STUDIO-LOCAL/github-clones/tauri/packages/cli/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs-midi/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/test/integration/node/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/test/integration/rollup/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/test/integration/typescript/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/test/integration/unpkg/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/test/integration/vite/package.json
+./04-STUDIO-LOCAL/github-clones/tonejs/test/integration/webpack/package.json
+./04-STUDIO-LOCAL/github-clones/wavesurfer-js/package.json
+./11-PORTAL-CLIENTES/desktop-app/package.json
+./11-PORTAL-CLIENTES/mini-services/chat-service/package.json
+./11-PORTAL-CLIENTES/package.json
+./11-PORTAL-CLIENTES/release/web/ClientPortal-Web/app/package.json
+./11-PORTAL-CLIENTES/release/windows/win-unpacked/resources/web/package.json
+./AUDITADO_FINAL/01-STUDIO-OS/source/package.json
+./AUDITADO_FINAL/02-ECOSYSTEM/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/neural-amp-modeler/.devcontainer/Dockerfile
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/neural-amp-modeler/NeuralAmpModeler/NeuralAmpModeler.sln
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/neural-amp-modeler/TemplateProject/TemplateProject.sln
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/examples/api/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/examples/api/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/autostart/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/autostart/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/barcode-scanner/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/barcode-scanner/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/biometric/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/biometric/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/cli/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/cli/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/clipboard-manager/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/clipboard-manager/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/examples/app/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/examples/app/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/deep-link/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/dialog/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/dialog/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/fs/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/fs/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/geolocation/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/geolocation/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/global-shortcut/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/global-shortcut/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/haptics/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/haptics/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/http/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/http/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/localhost/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/log/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/log/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/nfc/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/nfc/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/notification/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/notification/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/opener/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/opener/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/os/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/os/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/persisted-scope/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/positioner/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/positioner/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/process/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/process/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/shell/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/shell/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/single-instance/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/single-instance/examples/vanilla/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/single-instance/examples/vanilla/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/sql/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/sql/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/examples/AppSettingsManager/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/examples/AppSettingsManager/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/store/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/stronghold/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/stronghold/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/app-updater/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/v1-app/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/v1-app/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/updater/tests/updater-migration/v2-app/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/upload/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/upload/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/examples/tauri-app/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/examples/tauri-app/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/websocket/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/window-state/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/window-state/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/shared/template/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/shared/template/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/.devcontainer/Dockerfile
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/bench/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/bench/tests/cpu_intensive/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/bench/tests/files_transfer/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/bench/tests/helloworld/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-build/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-bundler/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/templates/plugin/__example-api/tauri-app/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/templates/plugin/__example-basic/vanilla/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-cli/templates/plugin/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-codegen/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-driver/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-macos-sign/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-macros/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-plugin/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-runtime-wry/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-runtime/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-schema-generator/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-schema-worker/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-schema-worker/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri-utils/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tests/acl/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/crates/tests/restart/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/api/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/api/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/api/src-tauri/tauri-plugin-sample/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/file-associations/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/file-associations/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/resources/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/examples/resources/src-tauri/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/api/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/Cargo.toml
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/__tests__/fixtures/empty/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/darwin-arm64/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/darwin-x64/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-arm-gnueabihf/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-arm64-gnu/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-arm64-musl/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-riscv64-gnu/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-x64-gnu/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/linux-x64-musl/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/win32-arm64-msvc/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/win32-ia32-msvc/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/npm/win32-x64-msvc/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tauri/packages/cli/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs-midi/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/test/integration/node/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/test/integration/rollup/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/test/integration/typescript/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/test/integration/unpkg/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/test/integration/vite/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/tonejs/test/integration/webpack/package.json
+./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/wavesurfer-js/package.json
+./AUDITADO_FINAL/11-PORTAL-CLIENTES/desktop-app/package.json
+./AUDITADO_FINAL/11-PORTAL-CLIENTES/mini-services/chat-service/package.json
+./AUDITADO_FINAL/11-PORTAL-CLIENTES/package.json
+./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/web/ClientPortal-Web/app/package.json
+./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/win-unpacked/resources/web/package.json
+./temp1/duck-delivery/duck-hub/package.json
+./temp_final/01-STUDIO-OS/source/package.json
+./temp_final/02-ECOSYSTEM/package.json
+./temp_final/04-STUDIO-LOCAL/github-clones/neural-amp-modeler/.devcontainer/Dockerfile
+./temp_final/04-STUDIO-LOCAL/github-clones/neural-amp-modeler/NeuralAmpModeler/NeuralAmpModeler.sln
+./temp_final/04-STUDIO-LOCAL/github-clones/neural-amp-modeler/TemplateProject/TemplateProject.sln
+./temp_final/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/Cargo.toml
+./temp_final/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/examples/api/package.json
+./temp_final/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/examples/api/src-tauri/Cargo.toml
+./temp_final/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/package.json
+./temp_final/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/autostart/Cargo.toml
+./temp_final/04-STUDIO-LOCAL/github-clones/tauri-plugins-workspace/plugins/autostart/package.json
+=== GIT_DIRS ===
+./DUCK-EXPERIENCIA-INMERSIVA-PACK-2026-08-13/.git
+./DUCK-HERRAMIENTAS-2026-08/.git
+=== LARGE_FILES ===
+703824503 ./DUCK-ZION-PREMIUM.zip
+684509554 ./DUCK-ZION-ENVIO-FINAL.zip
+658018269 ./10-ZIPS.zip
+225533440 ./temp_final/11-PORTAL-CLIENTES/release/windows/win-unpacked/ClientPortal-Pro.exe
+225533440 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/win-unpacked/ClientPortal-Pro.exe
+225533440 ./11-PORTAL-CLIENTES/release/windows/win-unpacked/ClientPortal-Pro.exe
+121691487 ./temp_final/11-PORTAL-CLIENTES/release/windows/ClientPortal-Pro-Setup-0.2.0-x64.exe
+121691487 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/ClientPortal-Pro-Setup-0.2.0-x64.exe
+121691487 ./11-PORTAL-CLIENTES/release/windows/ClientPortal-Pro-Setup-0.2.0-x64.exe
+121461570 ./temp_final/11-PORTAL-CLIENTES/release/windows/ClientPortal-Pro-Portable-0.2.0-x64.exe
+121461570 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/ClientPortal-Pro-Portable-0.2.0-x64.exe
+121461570 ./11-PORTAL-CLIENTES/release/windows/ClientPortal-Pro-Portable-0.2.0-x64.exe
+92825416 ./temp_final/11-PORTAL-CLIENTES/release/web/ClientPortal-Web/node.exe
+92825416 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/web/ClientPortal-Web/node.exe
+92825416 ./11-PORTAL-CLIENTES/release/web/ClientPortal-Web/node.exe
+25616384 ./temp_final/11-PORTAL-CLIENTES/release/windows/win-unpacked/dxcompiler.dll
+25616384 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/win-unpacked/dxcompiler.dll
+25616384 ./11-PORTAL-CLIENTES/release/windows/win-unpacked/dxcompiler.dll
+22427024 ./temp_final/DUCK-ZION-PREMIUM-MANUAL-MAESTRO.pdf
+22427024 ./MANUAL/DUCK-ZION-PREMIUM-MANUAL-MAESTRO.pdf
+22427024 ./DUCK-ZION-PREMIUM-MANUAL-MAESTRO.pdf
+22427024 ./AUDITADO_FINAL/DUCK-ZION-PREMIUM-MANUAL-MAESTRO.pdf
+22427024 ./09-MANUALES/DUCK-ZION-PREMIUM-MANUAL-MAESTRO.pdf
+20313957 ./temp_final/11-PORTAL-CLIENTES/release/windows/win-unpacked/LICENSES.chromium.html
+20313957 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/win-unpacked/LICENSES.chromium.html
+20313957 ./11-PORTAL-CLIENTES/release/windows/win-unpacked/LICENSES.chromium.html
+18351250 ./temp_final/05-HERRAMIENTAS-PREMIUM/MANUAL-FERRAMENTAS-DUCK-PREMIUM-2026-08-14.pdf
+18351250 ./DUCK-HERRAMIENTAS-2026-08/MANUAL-FERRAMENTAS-DUCK-PREMIUM-2026-08-14.pdf
+18351250 ./AUDITADO_FINAL/05-HERRAMIENTAS-PREMIUM/MANUAL-FERRAMENTAS-DUCK-PREMIUM-2026-08-14.pdf
+18351250 ./05-HERRAMIENTAS-PREMIUM/MANUAL-FERRAMENTAS-DUCK-PREMIUM-2026-08-14.pdf
+15019070 ./DUCK-HERRAMIENTAS-2026-08/.git/objects/06/47deb9a921f06958629a1725874f7cad9aeb7a
+12615228 ./temp_final/04-STUDIO-LOCAL/github-clones/dexed/assets/ui/source/Global.skin
+12615228 ./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/dexed/assets/ui/source/Global.skin
+12615228 ./04-STUDIO-LOCAL/github-clones/dexed/assets/ui/source/Global.skin
+11966521 ./temp_final/10-ZIPS/duck-studio-delivery.zip
+11966521 ./AUDITADO_FINAL/10-ZIPS/duck-studio-delivery.zip
+11966521 ./10-ZIPS/duck-studio-delivery.zip
+10876560 ./temp_final/11-PORTAL-CLIENTES/release/windows/win-unpacked/icudtl.dat
+10876560 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/win-unpacked/icudtl.dat
+10876560 ./11-PORTAL-CLIENTES/release/windows/win-unpacked/icudtl.dat
+10592324 ./temp_final/04-STUDIO-LOCAL/github-clones/dexed/assets/ui/source/Operator.skin
+10592324 ./AUDITADO_FINAL/04-STUDIO-LOCAL/github-clones/dexed/assets/ui/source/Operator.skin
+10592324 ./04-STUDIO-LOCAL/github-clones/dexed/assets/ui/source/Operator.skin
+10013083 ./temp_final/08-ENVIO-GEMA-01/EMAIL-DUCK-GEMA-01.eml
+10013083 ./AUDITADO_FINAL/08-ENVIO-GEMA-01/EMAIL-DUCK-GEMA-01.eml
+10013083 ./08-ENVIO-GEMA-01/EMAIL-DUCK-GEMA-01.eml
+8033792 ./temp_final/11-PORTAL-CLIENTES/release/windows/win-unpacked/libGLESv2.dll
+8033792 ./AUDITADO_FINAL/11-PORTAL-CLIENTES/release/windows/win-unpacked/libGLESv2.dll
+8033792 ./11-PORTAL-CLIENTES/release/windows/win-unpacked/libGLESv2.dll
+8011965 ./temp_final/IMAGENES/Gemini_Generated_Image_h043unh043unh043.png
+8011965 ./IMAGENES/Gemini_Generated_Image_h043unh043unh043.png
+8011965 ./Gemini_Generated_Image_h043unh043unh043.png
+8011965 ./AUDITADO_FINAL/IMAGENES/Gemini_Generated_Image_h043unh043unh043.png
+7918207 ./temp_final/IMAGENES/Gemini_Generated_Image_aaqdgbaaqdgbaaqd.png
+7918207 ./IMAGENES/Gemini_Generated_Image_aaqdgbaaqdgbaaqd.png
+7918207 ./AUDITADO_FINAL/IMAGENES/Gemini_Generated_Image_aaqdgbaaqdgbaaqd.png
+7625079 ./temp_final/IMAGENES/Gemini_Generated_Image_qgubceqgubceqgub.png
+7625079 ./IMAGENES/Gemini_Generated_Image_qgubceqgubceqgub.png
+7625079 ./Gemini_Generated_Image_qgubceqgubceqgub.png
+7625079 ./AUDITADO_FINAL/IMAGENES/Gemini_Generated_Image_qgubceqgubceqgub.png

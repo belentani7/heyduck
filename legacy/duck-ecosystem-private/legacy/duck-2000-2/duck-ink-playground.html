@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#24113f">
+  <meta name="description" content="DUCK Produção Musical — uma experiência interativa entre ritmo, textura e catálogo.">
+  <title>DUCK — Ink Playground</title>
+  <link rel="icon" href="images/duck-logo-desktop.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="duck-ink-playground.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script defer src="duck-ink-playground.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#story">Ir para a experiência</a>
+  <canvas id="inkCanvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="DUCK, início">
+      <img src="images/duck-logo-desktop.png" alt="DUCK Produção Musical">
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#story">História</a>
+      <a href="#playground">Jogar</a>
+      <a href="#singles">Singles</a>
+      <a href="#contact">Contato</a>
+    </nav>
+    <button class="sound-state" id="soundState" type="button" aria-pressed="false">
+      <span class="sound-dot"></span><span>Som desligado</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero purple-zone" id="hero" aria-labelledby="heroTitle">
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="kicker">Lucas “Duck” Belentani · Aracaju</p>
+        <h1 id="heroTitle"><span>O SOM</span><span>ANTES DA</span><em>FORMA.</em></h1>
+        <p class="hero-lead">Produção musical como matéria viva: ritmo, textura e intenção. Desce. A primeira batida muda tudo.</p>
+        <a class="scroll-invite" href="#inkShift"><span>Primeiro scroll</span><i></i></a>
+      </div>
+      <figure class="hero-mark">
+        <img src="images/duck-logo-desktop.png" alt="">
+        <figcaption>Produção · mix · master</figcaption>
+      </figure>
+    </section>
+
+    <section class="ink-shift purple-zone" id="inkShift" aria-label="A tinta transforma a experiência">
+      <div class="shift-copy shift-copy--before">
+        <p>01 · O gesto</p>
+        <h2>UMA COR<br>AINDA NÃO É<br>UMA IDENTIDADE.</h2>
+      </div>
+      <div class="kick-scene" aria-hidden="true">
+        <svg class="duck-kicker" viewBox="0 0 360 260" role="img">
+          <g class="duck-body">
+            <ellipse cx="150" cy="138" rx="84" ry="59" fill="#f2e4c5"/>
+            <circle cx="218" cy="84" r="48" fill="#f2e4c5"/>
+            <path d="M255 84h70l-49 30-28-13z" fill="#f29945"/>
+            <circle cx="232" cy="72" r="6" fill="#24113f"/>
+            <path d="M88 120 40 91l25 59z" fill="#f2e4c5"/>
+          </g>
+          <g class="duck-leg duck-leg--back"><path d="M124 181v44"/><path d="M124 225h-31"/></g>
+          <g class="duck-leg duck-leg--kick"><path d="M185 181v44"/><path d="M185 225h38"/></g>
+        </svg>
+        <div class="paint-bucket">
+          <span class="bucket-handle"></span><span class="bucket-body">DUCK<br>GREEN</span>
+        </div>
+        <div class="impact-word">CHUTA.</div>
+      </div>
+      <div class="shift-copy shift-copy--after">
+        <p>02 · A decisão</p>
+        <h2>A TINTA<br>ENTRA NO<br>SISTEMA.</h2>
+      </div>
+    </section>
+
+    <section class="story green-zone" id="story" aria-labelledby="storyTitle">
+      <div class="section-index">02 / MANIFESTO</div>
+      <div class="story-heading">
+        <p class="kicker">Não é decoração. É processo.</p>
+        <h2 id="storyTitle">DA IDEIA BRUTA<br>À <em>ASSINATURA.</em></h2>
+      </div>
+      <div class="story-steps">
+        <article><span>01</span><h3>Escutar</h3><p>A intenção chega antes do arranjo. Duck identifica tensão, espaço e movimento antes de escolher o primeiro timbre.</p></article>
+        <article><span>02</span><h3>Construir</h3><p>Ritmo, harmonia e textura deixam de competir. Cada camada recebe uma função dentro da narrativa da faixa.</p></article>
+        <article><span>03</span><h3>Imprimir</h3><p>Mix e master não apagam o gesto. A produção termina quando a música mantém identidade em qualquer sistema.</p></article>
+      </div>
+      <a class="text-link" href="#playground">Agora constrói uma batida <span>↘</span></a>
+    </section>
+
+    <section class="playground green-zone" id="playground" aria-labelledby="playTitle">
+      <div class="section-index">03 / PLAYGROUND</div>
+      <header class="play-heading">
+        <div><p class="kicker">O estúdio responde ao toque</p><h2 id="playTitle">NÃO OLHA.<br><em>JOGA.</em></h2></div>
+        <p>Ativa o som, desenha um ritmo, toca as teclas e equilibra a mistura. Cada ferramenta explica o que muda enquanto jogas.</p>
+      </header>
+
+      <div class="studio-console">
+        <section class="instrument drum-machine" aria-labelledby="drumTitle">
+          <header><div><span>01</span><h3 id="drumTitle">Ritmo</h3></div><p>Escolhe passos. A linha percorre 16 tempos.</p></header>
+          <div class="transport">
+            <button id="playBeat" type="button">▶ Iniciar</button>
+            <label>BPM <input id="bpm" type="range" min="70" max="160" value="104"><output id="bpmValue">104</output></label>
+            <button id="clearBeat" class="quiet" type="button">Limpar</button>
+          </div>
+          <div class="sequencer" id="sequencer" aria-label="Sequenciador de quatro pistas"></div>
+          <p class="instrument-feedback" id="rhythmFeedback">Começa pelo kick. Deixa espaço antes de adicionar textura.</p>
+        </section>
+
+        <section class="instrument synth" aria-labelledby="synthTitle">
+          <header><div><span>02</span><h3 id="synthTitle">Cor</h3></div><p>O timbre ocupa o espaço que o ritmo deixou.</p></header>
+          <div class="synth-controls">
+            <label>Textura<select id="waveform"><option value="sine">Suave</option><option value="triangle">Quente</option><option value="sawtooth">Áspera</option><option value="square">Digital</option></select></label>
+            <label>Abertura<input id="filter" type="range" min="300" max="6000" value="2200"></label>
+            <label>Cauda<input id="release" type="range" min="5" max="120" value="35"></label>
+          </div>
+          <div class="keyboard" id="keyboard" aria-label="Teclado musical interativo"></div>
+          <p class="instrument-feedback" id="synthFeedback">Teclas A–K também funcionam. Toca devagar e ouve a cauda.</p>
+        </section>
+
+        <section class="instrument mixer" aria-labelledby="mixTitle">
+          <header><div><span>03</span><h3 id="mixTitle">Espaço</h3></div><p>Uma boa mix não é mais volume. É hierarquia.</p></header>
+          <div class="mixer-channels" id="mixerChannels"></div>
+          <div class="master-meter"><span id="masterMeter"></span></div>
+          <p class="instrument-feedback" id="mixFeedback">Mantém o master longe do vermelho. Dá protagonismo a uma camada.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="singles green-zone" id="singles" aria-labelledby="singlesTitle">
+      <div class="singles-intro">
+        <div class="section-index">04 / SINGLES</div>
+        <p class="kicker">A experiência vira catálogo</p>
+        <h2 id="singlesTitle">SEIS FAIXAS.<br><em>SEIS MUNDOS.</em></h2>
+        <p>Desliza lateralmente com o scroll. O movimento atravessa o catálogo sem perder o fio da história.</p>
+      </div>
+      <div class="singles-viewport">
+        <div class="singles-track">
+          <article class="single-card" data-tone="#e85d3f"><img src="images/covers/posturadona-256x255.png" alt="Capa de Posturadona"><div><span>Produção · MPB / Afrobeat</span><h3>Posturadona</h3><p>Luiz Cinnamon</p><button class="preview" data-preview="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/51/ec/0f/51ec0fe7-5005-20f3-a5a8-5464b5012d55/mzaf_17221706753898266906.plus.aac.p.m4a">Ouvir preview</button></div></article>
+          <article class="single-card" data-tone="#efb93d"><img src="images/covers/tititi-254x256.png" alt="Capa de Tititi"><div><span>Produção · Pop Funk</span><h3>Tititi</h3><p>Leones</p><span class="no-preview">Ficha de produção</span></div></article>
+          <article class="single-card" data-tone="#67af76"><img src="images/covers/leones-254x256.png" alt="Capa de De Fininho"><div><span>Produção · Pop Urban</span><h3>De Fininho</h3><p>Leones</p><span class="no-preview">Ficha de produção</span></div></article>
+          <article class="single-card" data-tone="#80a9ce"><img src="images/covers/whrote-256x255.png" alt="Capa de I Wrote a Song"><div><span>Produção · R&amp;B / Soul</span><h3>I Wrote a Song</h3><p>Belentani</p><button class="preview" data-preview="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/88/26/05/88260571-4ef9-4b67-72c8-7d1897ffcbdf/mzaf_1256712519533651878.plus.aac.p.m4a">Ouvir preview</button></div></article>
+          <article class="single-card" data-tone="#b8c4a1"><img src="images/covers/lento-256x256.jpg" alt="Capa de Lento"><div><span>Produção · R&amp;B</span><h3>Lento</h3><p>Belentani</p><span class="no-preview">Ficha de produção</span></div></article>
+          <article class="single-card" data-tone="#b184bc"><img src="images/covers/heart-256x255.png" alt="Capa de Mon Amour"><div><span>Produção · R&amp;B / Pop</span><h3>Mon Amour</h3><p>Belentani</p><span class="no-preview">Ficha de produção</span></div></article>
+          <div class="singles-end"><p>O catálogo continua.</p><a href="#contact">Criar a próxima faixa</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="finale" id="finale" aria-labelledby="finaleTitle">
+      <canvas id="shaderCanvas" aria-hidden="true"></canvas>
+      <div class="finale-noise" aria-hidden="true"></div>
+      <div class="purple-remains purple-remains--a" aria-hidden="true"></div>
+      <div class="purple-remains purple-remains--b" aria-hidden="true"></div>
+      <div class="finale-copy">
+        <p class="kicker">A tinta seca. O gesto permanece.</p>
+        <h2 id="finaleTitle">NÃO PROCURES<br>UM BEAT.<br><em>CONSTRÓI UM SOM.</em></h2>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contactTitle">
+      <img src="images/duck-logo-desktop.png" alt="DUCK Produção Musical">
+      <div><p class="kicker">Aracaju · disponível para projetos</p><h2 id="contactTitle">TENS UMA IDEIA<br>QUE AINDA NÃO<br>TEM FORMA?</h2></div>
+      <div class="contact-links"><a href="https://www.instagram.com/duck4s/">Instagram</a><a href="mailto:duck@producao.com">Email</a><a href="#hero">Voltar ao início</a></div>
+    </section>
+  </main>
+  <audio id="previewAudio" preload="none"></audio>
+</body>
+</html>

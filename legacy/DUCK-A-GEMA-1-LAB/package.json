@@ -1,0 +1,16 @@
+{
+  "name": "duck-a-gema-1-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "lint": "node --check server.js && node --check js/audio-engine.js && node --check js/main.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

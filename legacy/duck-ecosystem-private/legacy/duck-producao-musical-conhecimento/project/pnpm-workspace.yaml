@@ -1,0 +1,12 @@
+packages:
+  - .
+
+# Dependencias de runtime fijadas por auditoría de seguridad.
+overrides:
+  qs: ">=6.15.2"
+  path-to-regexp: ">=0.1.13"
+  body-parser: ">=1.20.6"
+
+# Solo es necesario permitir el build nativo de esbuild.
+onlyBuiltDependencies:
+  - esbuild

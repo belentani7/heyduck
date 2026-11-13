@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">DUCK — Slip N Slide</title>
+  <desc id="desc">Placeholder editorial de la discografía de DUCK: carátula original no disponible en este repositorio.</desc>
+  <defs>
+    <linearGradient id="void" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080d0a"/><stop offset="1" stop-color="#151d14"/></linearGradient>
+    <linearGradient id="field" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#506d35"/><stop offset=".48" stop-color="#9acb6b"/><stop offset="1" stop-color="#e3ffbd"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#a6ff74" stop-opacity=".42"/><stop offset="1" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#void)"/>
+  <circle cx="350" cy="255" r="265" fill="url(#halo)"/>
+  <g fill="none" stroke="url(#field)" stroke-width="1.7">
+    <path d="M-60 420 Q180 90 565 35"/><path d="M-60 438 Q180 110 565 53"/><path d="M-60 456 Q180 128 565 71"/><path d="M-60 474 Q180 146 565 89"/>
+    <path d="M36 635 Q130 350 570 122"/><path d="M54 635 Q150 362 588 140"/><path d="M72 635 Q170 374 606 158"/>
+  </g>
+  <path d="M70 65 H530" stroke="#a5ca7c" stroke-opacity=".5"/>
+  <path d="M70 538 H530" stroke="#a5ca7c" stroke-opacity=".5"/>
+  <text x="72" y="112" fill="#ddfbc9" font-family="system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="12">DUCK</text>
+  <text x="68" y="304" fill="#ffffff" font-family="system-ui,sans-serif" font-size="70" font-weight="800" letter-spacing="-4">SLIP</text>
+  <text x="68" y="377" fill="#a8d884" font-family="system-ui,sans-serif" font-size="70" font-weight="800" letter-spacing="-4">N SLIDE</text>
+  <text x="72" y="525" fill="#9fa997" font-family="monospace" font-size="14" letter-spacing="2">EDITORIAL PLACEHOLDER · ARTWORK PENDING</text>
+</svg>

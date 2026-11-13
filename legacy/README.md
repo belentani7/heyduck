@@ -1,0 +1,1 @@
+- [2026-10-31] familia **proyecto-heyduck** — carpetas absorbedas con su `.ORIGEN.json` de procedencia

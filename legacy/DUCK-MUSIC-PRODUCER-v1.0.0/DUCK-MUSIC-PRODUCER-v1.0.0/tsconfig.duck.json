@@ -1,0 +1,28 @@
+{
+  "include": [
+    "server/duck/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist-duck",
+    "**/*.test.ts"
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo.duck",
+    "noEmit": true,
+    "module": "ESNext",
+    "strict": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler",
+    "types": [
+      "node"
+    ]
+  }
+}

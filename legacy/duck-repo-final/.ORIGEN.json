@@ -1,0 +1,16 @@
+{
+  "path_original": "https://github.com/belentani7/duck-repo-final.git",
+  "remote": "https://github.com/belentani7/duck-repo-final.git",
+  "branch": "codex/duck-phase-1",
+  "head": "7a20b2bc9d1e28902987413823519c44e5225a54",
+  "commits": 6,
+  "ultimo_commit": "2026-10-16T08:48:25+02:00",
+  "consolidado": "2026-11-01T02:55:33+00:00",
+  "proyecto": "consolidación online 2026-10-31 — 425 repos",
+  "origen": "github-online-archivado",
+  "bundle": "C:\\Users\\USER\\Documents\\09_ARCHIVO\\GITHUB_CONSOLIDACION\\_bundles_online_2026-10-31\\duck-repo-final.bundle",
+  "bundle_sha256": "38c5dd021c5de2fad563b7ca46046ecec24d8d9c67993da33444630755960f27",
+  "archivos": 198,
+  "bytes": 84825340,
+  "reparado": true
+}

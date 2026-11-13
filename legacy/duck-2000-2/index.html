@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07110b">
+  <meta name="description" content="Portfolio de Duck, produtor musical, beatmaker e engenheiro de som em Aracaju. Discografia, estúdio, serviços, press kit e contato.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DUCK | Lucas Belentani — Produtor Musical">
+  <meta property="og:description" content="Produção, beatmaking, mixagem e masterização com identidade. Conheça o trabalho, o estúdio e o processo de Duck.">
+  <meta property="og:image" content="images/capa-1920x1080.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DUCK | Lucas Belentani — Produtor Musical">
+  <meta name="twitter:description" content="Produção, beatmaking, mixagem e masterização com identidade.">
+  <meta name="twitter:image" content="images/capa-1920x1080.jpg">
+  <link rel="canonical" href="https://heyduck.netlify.app/">
+  <title>DUCK | Lucas Belentani — Produtor Musical</title>
+  <link rel="icon" href="images/logo-duck.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script defer src="data.js?v=20260812-2"></script>
+  <script defer src="app.js?v=20260812-4"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Lucas Belentani",
+      "alternateName": "Duck",
+      "jobTitle": "Produtor musical, beatmaker e engenheiro de som",
+      "image": "https://heyduck.netlify.app/images/capa-1920x1080.jpg",
+      "url": "https://heyduck.netlify.app/",
+      "address": { "@type": "PostalAddress", "addressLocality": "Aracaju", "addressRegion": "Sergipe", "addressCountry": "BR" },
+      "sameAs": [
+        "https://www.instagram.com/duck4s/",
+        "https://www.youtube.com/channel/UCx7_hepVm10ulxHGWuvjjBg"
+      ]
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="DUCK — início">
+      <img src="images/logo-768x768.png" alt="DUCK">
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#sobre">Sobre Duck</a>
+      <a href="#lancamentos">Lançamentos</a>
+      <a href="#trabalhar">Trabalhar</a>
+      <a href="#laboratorio">DUCK Lab</a>
+      <a href="#presskit">Press kit</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">
+      <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="sound-label">Ativar previews</span>
+    </button>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="heroTitle">
+      <div class="hero-backdrop" aria-hidden="true">
+        <picture class="hero-portrait">
+          <source media="(max-width: 680px)" srcset="images/capa-3-768x432.jpg">
+          <source media="(max-width: 1280px)" srcset="images/capa-3-1440x810.jpg">
+          <img src="images/capa-3-1920x1080.jpg" alt="">
+        </picture>
+        <span class="hero-blob blob-a"></span>
+        <span class="hero-blob blob-b"></span>
+        <span class="hero-grid"></span>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Lucas Belentani · produtor musical · Aracaju</p>
+        <h1 id="heroTitle">
+          <span>LUCAS</span>
+          <span>DUCK</span>
+          <span class="accent">PRODUZ.</span>
+        </h1>
+        <p class="hero-lead">Produtor musical, beatmaker e engenheiro de som com mais de 12 anos de estrada. Uma visão sinestésica transformada em 36 milhões de streams, 40+ lançamentos e uma assinatura que atravessa Trap, Boom Bap, MPB, Pop e R&amp;B.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#sobre">Conhecer Duck</a>
+          <a class="button ghost" href="#lancamentos">Ouvir o trabalho</a>
+        </div>
+      </div>
+      <div class="hero-meta" id="heroMeta" aria-label="Indicadores do projeto"></div>
+      <a class="scroll-cue" href="#sobre"><span>Sobre</span><i></i></a>
+    </section>
+
+    <section class="artist-story" id="sobre" aria-labelledby="aboutTitle">
+      <div class="artist-story__intro">
+        <p class="eyebrow">Quem está por trás do som</p>
+        <h2 id="aboutTitle">DUCK É<br><em>LUCAS.</em></h2>
+        <p class="artist-story__lead">Não é uma marca sem rosto. É um produtor de Aracaju construindo universos sonoros, faixa por faixa.</p>
+      </div>
+
+      <div class="artist-story__grid">
+        <div class="artist-copy">
+          <p class="artist-copy__opening">Sou Duck, produtor musical, beatmaker e engenheiro de som. Transformo ideias brutas, vozes guia e referências em produções completas com identidade própria.</p>
+          <p>Meu processo combina tecnologia, escuta crítica e sensibilidade artística. Cada frequência tem um propósito; cada textura precisa contar uma história. A produção passa por arranjo, captação, sound design, mixagem e masterização como uma única direção criativa.</p>
+          <p>Com mais de 12 anos de estrada, 36 milhões de streams e mais de 40 lançamentos oficiais, trabalho entre Trap, Boom Bap, MPB, Pop e R&amp;B sem reduzir o artista a uma fórmula. O objetivo é reconhecer a intenção da música e fazê-la chegar inteira ao público.</p>
+
+          <dl class="artist-facts">
+            <div><dt>Nome</dt><dd>Lucas Belentani</dd></div>
+            <div><dt>Assinatura</dt><dd>Duck · @duck4s</dd></div>
+            <div><dt>Base</dt><dd>Aracaju, Sergipe</dd></div>
+            <div><dt>Atuação</dt><dd>Produção · Mix · Master · Direção</dd></div>
+          </dl>
+        </div>
+
+        <div class="artist-portraits" aria-label="Retratos de Duck">
+          <figure class="artist-portrait artist-portrait--main">
+            <img src="images/capa-1920x1080.jpg" alt="Retrato de Duck olhando para a câmera" loading="lazy" width="1920" height="1080">
+            <figcaption>Duck · Lucas Belentani</figcaption>
+          </figure>
+          <figure class="artist-portrait artist-portrait--side">
+            <img src="images/capa-4-1440x810.jpg" alt="Duck em retrato lateral" loading="lazy" width="1440" height="810">
+            <figcaption>Aracaju · Brasil</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <ol class="artist-timeline" aria-label="Trajetória de Duck">
+        <li><span>2012</span><strong>Começo da trajetória</strong><p>Primeiros anos de prática, criação e construção de linguagem própria.</p></li>
+        <li><span>2020</span><strong>Primeiro milhão</strong><p>O catálogo cruza o primeiro milhão de streams e amplia o alcance do trabalho.</p></li>
+        <li><span>Hoje</span><strong>36M+ streams</strong><p>Mais de 40 lançamentos e produção para artistas em diferentes gêneros.</p></li>
+      </ol>
+    </section>
+
+    <section class="releases" id="lancamentos" aria-labelledby="releaseTitle">
+      <div class="section-intro">
+        <p class="eyebrow">Discografia selecionada</p>
+        <h2 id="releaseTitle">Singles grandes,<br><em>como apps de bolso.</em></h2>
+        <p>Passe o cursor ou deslize o dedo sobre cada card. O preview entra sem abrir outra página e o foco salta de um single ao seguinte.</p>
+      </div>
+      <div class="release-stack" id="releaseStack" aria-live="polite"></div>
+      <div class="preview-status" id="previewStatus" role="status" aria-live="polite">Som desativado</div>
+    </section>
+
+    <section class="catalog" id="catalogo" aria-labelledby="catalogTitle">
+      <div class="section-intro section-intro--paper">
+        <p class="eyebrow">Catálogo completo</p>
+        <h2 id="catalogTitle">Tudo o que existe<br><em>num só fluxo.</em></h2>
+        <p>O arquivo completo vive aqui. Os itens com preview tocam no hover e no toque; os demais mantêm o acesso direto ao lançamento.</p>
+      </div>
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </section>
+
+    <section class="licenses" id="licencas" aria-labelledby="licenseTitle">
+      <div class="section-intro section-intro--paper">
+        <p class="eyebrow">Beat store</p>
+        <h2 id="licenseTitle">Licenças em foco,<br><em>sem ruído visual.</em></h2>
+        <p>Pacotes do catálogo atual organizados como produto real, com preço, uso e entrega claros.</p>
+      </div>
+      <div class="license-grid" id="licenseGrid"></div>
+    </section>
+
+    <section class="manifesto" id="processo" aria-labelledby="processTitle">
+      <div class="section-intro section-intro--paper">
+        <p class="eyebrow">Direção musical completa</p>
+        <h2 id="processTitle">Do primeiro gesto<br><em>ao master final.</em></h2>
+      </div>
+      <div class="manifesto-grid">
+        <p class="manifesto-lead">Duck trabalha como uma cadeia única: ideia, arranjo, captação, mix, master e leitura estratégica do catálogo. O objetivo é manter a assinatura sonora estável em qualquer formato.</p>
+        <div class="service-list" id="serviceList"></div>
+      </div>
+      <div class="stats-band" id="statsBand" role="list" aria-label="Indicadores principais"></div>
+    </section>
+
+    <section class="work-with" id="trabalhar" aria-labelledby="workTitle">
+      <div class="work-heading">
+        <div>
+          <p class="eyebrow">Trabalhar com Duck</p>
+          <h2 id="workTitle">ENTRA COM<br><em>A IDEIA.</em></h2>
+        </div>
+        <p>Escolhe o ponto de entrada. Duck organiza a direção, o processo e a entrega até a música chegar ao formato certo.</p>
+      </div>
+
+      <div class="work-routes">
+        <article class="work-route work-route--acid">
+          <span class="work-route__number">01 / PRODUÇÃO</span>
+          <h3>Da referência ao master</h3>
+          <p>Para artistas com ideia, demo ou voz guia que precisam de produção completa e uma direção musical única.</p>
+          <ul>
+            <li>Beat e arranjo sob medida</li>
+            <li>Direção vocal e sound design</li>
+            <li>Mixagem e masterização</li>
+          </ul>
+          <a href="mailto:duck-beats@hotmail.com?subject=Projeto%20de%20produ%C3%A7%C3%A3o%20com%20Duck&body=Nome%3A%0ARefer%C3%AAncia%3A%0AFase%20do%20projeto%3A%0APrazo%3A" class="work-cta">Iniciar produção <span>↗</span></a>
+        </article>
+
+        <article class="work-route work-route--blue">
+          <span class="work-route__number">02 / MIX + MASTER</span>
+          <h3>Clareza, peso e tradução</h3>
+          <p>Para produções prontas que precisam de equilíbrio, impacto e consistência em diferentes sistemas.</p>
+          <ul>
+            <li>Diagnóstico técnico</li>
+            <li>Mix estéreo ou stems</li>
+            <li>Master para distribuição</li>
+          </ul>
+          <a href="mailto:duck-beats@hotmail.com?subject=Mixagem%20e%20masteriza%C3%A7%C3%A3o%20com%20Duck&body=Nome%3A%0ALink%20da%20demo%3A%0AN%C3%BAmero%20de%20stems%3A%0APrazo%3A" class="work-cta">Enviar demo <span>↗</span></a>
+        </article>
+
+        <article class="work-route work-route--paper">
+          <span class="work-route__number">03 / BEAT + LICENÇA</span>
+          <h3>Base pronta para gravar</h3>
+          <p>Para quem procura um beat do catálogo ou uma criação exclusiva alinhada à própria identidade.</p>
+          <ul>
+            <li>Seleção por referência</li>
+            <li>Licença clara e stems</li>
+            <li>Opção de produção adicional</li>
+          </ul>
+          <a href="#licencas" class="work-cta">Ver licenças <span>↓</span></a>
+        </article>
+      </div>
+
+      <ol class="brief-flow" aria-label="Fluxo de um projeto com Duck">
+        <li><span>01</span><strong>Brief</strong><p>Referência, objetivo, fase e prazo.</p></li>
+        <li><span>02</span><strong>Direção</strong><p>Escopo, caminho criativo e proposta.</p></li>
+        <li><span>03</span><strong>Construção</strong><p>Produção, revisão e acabamento.</p></li>
+        <li><span>04</span><strong>Entrega</strong><p>Masters, stems e arquivos combinados.</p></li>
+      </ol>
+    </section>
+
+    <section class="studio" id="estudio" aria-labelledby="studioTitle">
+      <div class="section-intro section-intro--dark">
+        <p class="eyebrow">Estúdio e sistema</p>
+        <h2 id="studioTitle">Ambiente real,<br><em>execução precisa.</em></h2>
+        <p>Setup, mix, gravação e master como uma linha contínua. Sem moldura artificial, sem foto aleatória, sem excesso de ornamento.</p>
+      </div>
+      <div class="studio-cards" id="studioCards"></div>
+    </section>
+
+    <section class="duck-lab" id="laboratorio" aria-labelledby="labTitle">
+      <div class="lab-heading">
+        <div>
+          <p class="eyebrow">Instrumento aberto · Web Audio</p>
+          <h2 id="labTitle">ENTRA NO<br><em>PROCESSO.</em></h2>
+        </div>
+        <p>Uma versão concentrada das experiências das edições Legacy e Mega: constrói um ritmo, toca o sintetizador e grava uma ideia sem sair do portfólio.</p>
+      </div>
+
+      <div class="lab-console">
+        <div class="lab-topline" aria-hidden="true">
+          <span>DUCK_OS / LIVE LAB</span>
+          <span>8 STEP ENGINE</span>
+          <span id="labClock">00:00:00</span>
+        </div>
+
+        <div class="lab-grid">
+          <section class="lab-module lab-sequencer" aria-labelledby="sequenceTitle">
+            <div class="module-head">
+              <div><span>01</span><h3 id="sequenceTitle">Rhythm matrix</h3></div>
+              <output id="bpmValue" for="bpmControl">112 BPM</output>
+            </div>
+            <div class="sequence-grid" id="sequenceGrid" aria-label="Sequenciador de oito passos"></div>
+            <div class="transport">
+              <button class="lab-button lab-button--primary" id="sequenceToggle" type="button" aria-pressed="false">Iniciar sequência</button>
+              <button class="lab-button" id="sequenceRandom" type="button">Gerar ritmo</button>
+              <button class="lab-button" id="sequenceClear" type="button">Limpar</button>
+              <label class="bpm-control" for="bpmControl">
+                <span>Tempo</span>
+                <input id="bpmControl" type="range" min="70" max="160" value="112" step="1">
+              </label>
+            </div>
+          </section>
+
+          <section class="lab-module lab-synth" aria-labelledby="synthTitle">
+            <div class="module-head">
+              <div><span>02</span><h3 id="synthTitle">Pocket synth</h3></div>
+              <label class="wave-control" for="waveControl">
+                <span>Wave</span>
+                <select id="waveControl">
+                  <option value="triangle">Triangle</option>
+                  <option value="sine">Sine</option>
+                  <option value="square">Square</option>
+                  <option value="sawtooth">Saw</option>
+                </select>
+              </label>
+            </div>
+            <canvas class="lab-scope" id="labScope" width="900" height="240" aria-label="Visualizador da saída de áudio"></canvas>
+            <div class="synth-keys" id="synthKeys" aria-label="Teclado musical"></div>
+            <p class="key-hint">Teclas A S D F G H J K · toque ou teclado físico</p>
+          </section>
+
+          <section class="lab-module lab-recorder" aria-labelledby="recorderTitle">
+            <div class="module-head">
+              <div><span>03</span><h3 id="recorderTitle">Voice memo</h3></div>
+              <span class="record-state" id="recordState">PRONTO</span>
+            </div>
+            <p>Captura uma voz guia no navegador. A gravação fica apenas nesta sessão e não é enviada.</p>
+            <div class="recorder-actions">
+              <button class="lab-button lab-button--record" id="recordToggle" type="button" aria-pressed="false">Gravar ideia</button>
+              <button class="lab-button" id="recordDiscard" type="button" disabled>Descartar</button>
+            </div>
+            <audio id="recordPlayback" controls hidden></audio>
+          </section>
+        </div>
+        <div class="lab-status" id="labStatus" role="status" aria-live="polite">Sistema pronto. Ativa um pad ou uma tecla para iniciar o áudio.</div>
+      </div>
+    </section>
+
+    <section class="ecosystem" id="ecosistema" aria-labelledby="ecoTitle">
+      <div class="section-intro section-intro--dark">
+        <p class="eyebrow">Ferramentas e provas</p>
+        <h2 id="ecoTitle">Ecosistema técnico,<br><em>lado a lado.</em></h2>
+        <p>Recursos do estúdio e referências públicas do trabalho reunidos sem páginas soltas.</p>
+      </div>
+      <div class="ecosystem-grid">
+        <div class="gear-grid" id="gearGrid"></div>
+        <div class="testimonial-stack" id="testimonialStack"></div>
+      </div>
+    </section>
+
+    <section class="press-kit" id="presskit" aria-labelledby="pressTitle">
+      <div class="press-heading">
+        <p class="eyebrow">Electronic press kit</p>
+        <h2 id="pressTitle">DUCK,<br><em>PRONTO PARA PUBLICAR.</em></h2>
+        <p>Bio, fotografias, identidade, dados do portfólio e contatos reunidos para imprensa, parceiros, artistas e equipes.</p>
+      </div>
+
+      <div class="press-grid">
+        <article class="press-bio">
+          <div class="press-label">Bio curta · PT-BR</div>
+          <p id="pressBioShort">Duck é Lucas Belentani, produtor musical, beatmaker e engenheiro de som de Aracaju. Com mais de 12 anos de trajetória, constrói produções completas entre Trap, Boom Bap, MPB, Pop e R&amp;B, conectando direção artística, sound design, mixagem e masterização.</p>
+          <div class="press-actions">
+            <button id="copyBio" type="button">Copiar bio</button>
+            <button id="printPressKit" type="button">Imprimir EPK</button>
+          </div>
+          <div class="press-status" id="pressStatus" role="status" aria-live="polite"></div>
+        </article>
+
+        <article class="press-facts">
+          <div class="press-label">Dados do portfólio</div>
+          <dl>
+            <div><dt>Nome artístico</dt><dd>Duck</dd></div>
+            <div><dt>Nome</dt><dd>Lucas Belentani</dd></div>
+            <div><dt>Base</dt><dd>Aracaju · Sergipe · Brasil</dd></div>
+            <div><dt>Catálogo declarado</dt><dd>40+ lançamentos</dd></div>
+            <div><dt>Alcance declarado</dt><dd>36M+ streams</dd></div>
+            <div><dt>Contato</dt><dd>duck-beats@hotmail.com</dd></div>
+          </dl>
+          <small>Indicadores fornecidos pelo portfólio do artista. Créditos e exports de plataforma disponíveis sob solicitação.</small>
+        </article>
+      </div>
+
+      <div class="press-assets">
+        <div class="press-photo press-photo--wide">
+          <img src="images/capa-3-1440x810.jpg" alt="Duck em retrato para imprensa" loading="lazy" width="1440" height="810">
+          <a href="images/capa-3-1920x1080.jpg" download>Baixar horizontal · JPG</a>
+        </div>
+        <div class="press-photo">
+          <img src="images/capa-1920x1080.jpg" alt="Retrato frontal de Duck para imprensa" loading="lazy" width="1920" height="1080">
+          <a href="images/capa-1920x1080.jpg" download>Baixar retrato · JPG</a>
+        </div>
+        <div class="press-photo">
+          <img src="images/logo-768x768.png" alt="Logo oficial Duck" loading="lazy" width="768" height="768">
+          <a href="images/logo-2560x2560.png" download>Baixar logo · PNG</a>
+        </div>
+      </div>
+
+      <div class="brand-palette" aria-labelledby="paletteTitle">
+        <div class="palette-copy">
+          <span class="press-label">Sistema cromático</span>
+          <h3 id="paletteTitle">A cor também produz ritmo.</h3>
+          <p>Obsidiana e hueso constroem o palco; verde assina; azul monitor e vermelho REC sinalizam tecnologia e ação.</p>
+        </div>
+        <div class="palette-swatches">
+          <div style="--swatch:#07110B"><span>Obsidiana</span><code>#07110B</code></div>
+          <div style="--swatch:#F0EBDD"><span>Osso</span><code>#F0EBDD</code></div>
+          <div style="--swatch:#B7FF45"><span>Verde firma</span><code>#B7FF45</code></div>
+          <div style="--swatch:#39A9C9"><span>Azul monitor</span><code>#39A9C9</code></div>
+          <div style="--swatch:#FF594F"><span>Vermelho REC</span><code>#FF594F</code></div>
+        </div>
+      </div>
+
+      <div class="press-platforms" aria-label="Canais declarados de Duck">
+        <a href="https://www.instagram.com/duck4s/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@duck4s</strong></a>
+        <a href="https://www.youtube.com/channel/UCx7_hepVm10ulxHGWuvjjBg" target="_blank" rel="noopener noreferrer"><span>YouTube</span><strong>Canal declarado</strong></a>
+        <a href="https://music.apple.com/us/album/slip-n-slide/1747165417" target="_blank" rel="noopener noreferrer"><span>Apple Music</span><strong>Slip N Slide</strong></a>
+        <a href="mailto:duck-beats@hotmail.com"><span>Booking</span><strong>duck-beats@hotmail.com</strong></a>
+      </div>
+    </section>
+
+    <section class="contact" id="contato" aria-labelledby="contactTitle">
+      <img class="contact-logo" src="images/logo-768x768.png" alt="Logo oficial DUCK">
+      <p class="eyebrow">Contato oficial</p>
+      <h2 id="contactTitle">Seu próximo som<br><em>começa aqui.</em></h2>
+      <p>Baseado em Aracaju, Duck atende projetos remotos com direção, produção e entrega profissional. Escreve com a referência, o prazo e o objetivo.</p>
+      <div class="contact-links" aria-label="Canais oficiais">
+        <a class="contact-link" href="mailto:duck-beats@hotmail.com">E-mail <span>duck-beats@hotmail.com</span></a>
+        <a class="contact-link" href="tel:+5579996026590">Telefone <span>+55 79 99602-6590</span></a>
+        <a class="contact-link" href="https://www.instagram.com/duck4s/" target="_blank" rel="noopener noreferrer">Instagram <span>@duck4s</span></a>
+        <a class="contact-link" href="https://www.youtube.com/channel/UCx7_hepVm10ulxHGWuvjjBg" target="_blank" rel="noopener noreferrer">YouTube <span>Canal oficial</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>DUCK · PRODUÇÃO MUSICAL</span>
+    <span>ARACAJU · 2026</span>
+    <span>© Todos os direitos reservados</span>
+  </footer>
+
+  <noscript>Ative JavaScript para acessar os previews e a experiência animada.</noscript>
+</body>
+</html>

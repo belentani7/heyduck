@@ -1,0 +1,121 @@
+# Project TODO
+
+- [x] Auditar integralmente arquitetura, arquivos, banco, rotas, UI, automações, scraping, segurança e testes — escopo e achados documentados em AUDITORIA-ESCOPO-E-ACHADOS.md
+- [x] Mapear gaps entre o estado atual e um padrão de produção 10/10
+- [x] Produzir plano mestre de aproximadamente 2000 palavras com fases, prioridades, critérios e riscos
+
+- [x] Painel inicial em português para Duck/Lucas, com foco em Recife, Aracaju e colaboração internacional
+- [x] Dashboard operacional com projetos ativos, próximos passos, receita prevista e pendências
+- [x] Gestão de projetos musicais com estados de produção e responsáveis
+- [x] Upload e organização de stems/renders por versão, com metadados de arquivo e integridade
+- [x] Player de áudio com waveform visual e comparação A/B
+- [x] Comentários e marcadores temporais vinculados à waveform
+- [x] Área de cliente separada do painel interno, inspirada no Duck Studio OS existente
+- [x] Catálogo de serviços e formulário de briefing para transformar produção em oportunidades comerciais
+- [x] Motor de orçamento inicial baseado em serviço, duração, número de faixas e prazo
+- [x] Registro de pagamentos, royalties, créditos e status de entrega
+- [x] Central de notificações e eventos automatizáveis, preparada para Telegram e outros canais
+- [x] Análise local de áudio no navegador para pico, RMS, duração e waveform
+- [x] Estrutura de integração futura com DAW Bridge para renders exportados
+- [x] Press kit e ficha de lançamento com ISRC, créditos e links
+- [x] Identidade visual dark com verde neon contido, painéis translúcidos e ação direta
+- [x] Testes Vitest para regras de negócio, autenticação, orçamento e permissões
+- [x] Verificação visual responsiva em desktop e mobile
+- [x] Documentação de operação e próximos passos de integrações externas
+- [x] Conectar o dashboard a dados persistidos de projetos, eventos, métricas e pendências, removendo arrays mock do Home.tsx
+- [x] Implementar briefing completo com cliente, serviço, duração, número de faixas, prazo e submissão persistida
+- [x] Expandir o motor de orçamento para considerar serviço, duração, número de faixas e prazo
+- [x] Adicionar testes detectáveis para briefing, orçamento expandido, permissões e fluxos essenciais de autenticação
+- [x] Confirmar que o Vitest executa todas as suítes novas e existentes
+- [x] Conectar tempo recuperado, saúde de automações e próximos passos a dados ou cálculos reais, removendo os valores estáticos restantes
+- [x] Adicionar testes Vitest para a mutation de briefing e para autorização de rotas protegidas/admin
+- [x] Adicionar teste Vitest da mutation workspace.createOpportunity, cobrindo sucesso, evento criado e erro sem autenticação
+- [x] Adicionar testes de autorização tRPC protegida/admin validando os erros reais dos procedimentos
+- [x] Testar workspace.createOpportunity rejeitando chamada sem ctx.user com erro UNAUTHORIZED
+- [x] Criar workbench de áudio persistente com ativos, versões, waveform e anotações temporais
+- [x] Implementar upload real e criação persistente de audioAssets com storage e metadados
+- [x] Conectar waveform ao waveformJson/análise real do asset, removendo barras simuladas
+- [x] Corrigir filtro de assets por projectId e testar versionamento/comentários
+- [x] Ligar enviar render, nova versão e reprodução/download a ações reais
+- [x] Renderizar marcadores persistidos na waveform com posição baseada em timestamp/duração
+- [x] Calcular o cursor usando durationSeconds real do asset
+- [x] Carregar comentários do asset ativo automaticamente
+- [x] Testar comentários temporais vinculados ao asset correto
+- [x] Persistir checksum de integridade no upload de áudio e validar o arquivo enviado
+- [x] Implementar comparação A/B entre duas versões ou referência
+- [x] Testar filtro real por projectId e versionamento de assets
+- [x] Adicionar download explícito do asset na interface
+- [x] Testar criação de waveformComment vinculada ao asset
+- [x] Validar o checksum do upload no backend antes de concluir o registro do asset
+- [x] Fazer A/B trocar waveform, metadados, duração e comentários junto com a referência
+- [x] Testar efetivamente o filtro por projeto e a numeração de versões
+- [x] Criar rota/área de cliente isolada com acesso protegido e ações reais de aprovação, download e comentário
+- [x] Persistir ISRC, créditos, links e datas do press kit via backend
+- [x] Implementar exportação/compartilhamento funcional do press kit
+- [x] Calcular e persistir pico do áudio junto ao asset
+- [x] Persistir RMS/pico ou recalcular ao carregar versões existentes
+- [x] Testar análise local de duração, waveform, RMS e pico
+- [x] Testar duração extraída do áudio no fluxo de upload/registro
+- [x] Testar integração do registro persistido com waveform, RMS, pico e duração
+- [x] Testar filtro efetivo de audioAssets por projectId e versionamento sucessivo
+- [x] Testar upload com duração extraída do áudio antes do registro
+- [x] Testar ponta a ponta análise real até payload persistido do asset
+- [x] Criar teste de browser do upload com decodeAudioData mockado e duração extraída
+- [x] Criar teste de browser do fluxo upload–análise–payload–registro com waveform, RMS, pico e duração
+- [x] Implementar edição real de créditos, links e status de entrega
+- [x] Carregar releaseKits persistidos na UI para edição contínua
+- [x] Criar compartilhamento funcional ou limitar explicitamente o escopo a exportação
+- [x] Implementar status de entrega explícito por projeto/versão via banco e tRPC
+- [x] Testar persistência conjunta de créditos, links e status de entrega
+- [x] Vincular deliveryStatus explicitamente a projectId e assetId/versionId
+- [x] Adicionar teste Vitest de saveReleaseKit com créditos, links, status, ISRC e data
+- [x] Adicionar assetId persistente ao releaseKit e seletor de versão entregue no Press Kit
+- [x] Fortalecer teste de saveReleaseKit verificando releaseDate convertida e assetId
+- [x] Proteger explicitamente /cliente com guard de autenticação no frontend
+- [x] Testar comportamento de /cliente sem autenticação
+- [x] Adicionar teste de frontend de ClientPage sem autenticação validando que o ClientPortal não é carregado
+- [x] Implementar mutation persistente para editar status, progresso e responsável de projetos
+- [x] Adicionar teste do CRUD de projeto e atualização de estado/responsável
+- [x] Criar tabela/configuração persistente de canais de notificação e central de preferências
+- [x] Adicionar endpoint/contrato explícito DAW Bridge para ingestão de renders
+- [x] Adicionar teste do contrato DAW Bridge e registro de evento de render
+- [x] Clarificar cobertura de projeto: listagem e atualização persistentes; criação/arquivamento ficam para o próximo ciclo
+- [x] Implementar UI de central de preferências de notificação via tRPC
+- [x] Testar o fluxo frontend de salvar preferência de canal e eventos
+- [x] Tornar tipos de evento selecionáveis na central de notificações
+- [x] Testar o fluxo frontend de salvar preferência e payload enviado ao tRPC
+- [x] Reorientar o produto para uma máquina de prospecção automatizada por nicho e área, com música como preset inicial
+- [x] Definir fontes públicas e APIs autorizadas, limites de coleta e regras de conformidade para datos de contacto
+- [x] Criar configurador de nicho, área geográfica e variables de búsqueda
+- [x] Criar modelo persistente de leads con nombre, empresa, email, teléfono, web, fuente y señales
+- [x] Implementar colectores, normalización, validación de contacto y deduplicación
+- [x] Implementar scoring de potencial y estados de pipeline comercial
+- [x] Implementar panel de búsqueda, triage, exportación CSV y filtros avanzados
+- [x] Adicionar automações de actualización y notificaciones sin spam o envío automático no autorizado
+- [x] Integrar notificações automáticas de leads às preferências e eventTypes configurados
+- [x] Restringir e documentar o canal de notificação lead suportado no backend, respeitando preferência habilitada e eventType
+- [x] Documentar na UI e na operação que alertas automáticos de leads usam atualmente apenas o feed interno
+- [x] Adicionar teste de copy/UI para o limite de canal interno dos alertas de leads
+- [x] Adicionar testes HTTP do callback refreshLeads para cron-only, sucesso, falha e taskUid
+- [x] Adicionar cooldown persistente por busca para suprimir alertas repetidos
+- [x] Adicionar testes do endpoint cron-only e do fluxo de notificação anti-spam
+- [x] Cobrir em teste o gate de preferência lead e o cooldown persistente de notificação
+- [x] Adicionar KPI explícito e persistente de leads duplicados na Home
+- [x] Substituir os KPIs centrais musicais por KPIs de leads, buscas, duplicados e conversões
+- [x] Completar testes de createLeadSearch para fonte, evento, erro, no-contact e retorno agregado
+- [x] Tornar a Home realmente lead-first, rebaixando blocos musicais e recalculando métricas por leads e buscas
+- [x] Implementar normalização forte de email e telefone com testes para formatos inválidos
+- [x] Adicionar filtros dedicados por nicho e por fonte
+- [x] Adicionar testes de deduplicação, persistência e fluxo completo de createLeadSearch
+- [x] Reorientar Home e métricas principais para uma experiência lead-first
+- [x] Corrigir o scraper para não criar lead sem contato ou sinal real e tornar no-contact alcançável
+- [x] Fortalecer validação de email e telefone
+- [x] Adicionar filtros avançados por texto, nicho, área, score, fonte e disponibilidade de contato
+- [x] Adicionar testes Vitest para rotas de prospecção, autorização, deduplicação, persistência e status
+- [x] Escribir pruebas de datos, permissões, conformidade y documentación de operación
+
+- [x] Auditar profundamente código, banco, integrações, automações, segurança, testes, build e documentação
+- [x] Verificar que nenhum segredo ou arquivo sensível será incluído no pacote de preservação
+- [x] Gerar relatório de auditoria e inventário de versão
+- [x] Salvar código e relatório no GitHub
+- [x] Salvar pacote de auditoria no Google Drive

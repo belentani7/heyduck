@@ -1,0 +1,5 @@
+apps/studio-os/bun.lock
+apps/studio-os/package-lock.json
+apps/studio-os/package.json
+packages/ecosystem/package.json
+packages/ecosystem/pnpm-lock.yaml

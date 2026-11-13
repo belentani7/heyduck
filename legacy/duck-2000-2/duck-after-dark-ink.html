@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Duck — produção musical com rosto, processo e identidade.">
+  <title>DUCK — After Dark / Ink Cut</title>
+  <link rel="icon" href="images/duck-logo-desktop.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="duck-after-dark-ink.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+  <canvas id="inkCanvas" aria-hidden="true"></canvas>
+  <div class="ink-residue ink-residue--one" aria-hidden="true"></div>
+  <div class="ink-residue ink-residue--two" aria-hidden="true"></div>
+  <div class="continuity-rail" aria-hidden="true"><span class="continuity-rail__line"></span><span class="continuity-rail__cursor"></span><b>DUCK / SINAL</b></div>
+
+  <header class="nav" id="siteNav">
+    <a class="brand" href="#home" aria-label="DUCK — voltar ao início"><img src="images/duck-logo-desktop.png" alt=""></a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#sobre">Duck</a><a href="#processo">Processo</a><a href="#play">Jogar</a><a href="#trabalhos">Trabalhos</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false">Pausar movimento</button>
+      <a class="nav-cta" href="#contato">Falar com Duck</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+      <figure class="hero-photo"><img src="images/capa-3-1920x1080.jpg" alt="Duck, produtor musical em estúdio" fetchpriority="high"></figure>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="showcase-frame" aria-hidden="true"><i></i><i></i><i></i><i></i><span>OBJETO 01 · SOM COM ROSTO</span></div>
+      <div class="gestalt-mark" aria-hidden="true"><span class="gestalt-mark__head"></span><span class="gestalt-mark__body"></span><span class="gestalt-mark__beak"></span><span class="gestalt-mark__eye"></span></div>
+      <div class="hero-content">
+        <div class="hero-title-wrap">
+          <p class="eyebrow reveal-line">Lucas “Duck” Belentani · produção musical</p>
+          <h1 id="heroTitle"><span class="reveal-line">DUCK FAZ</span><span class="reveal-line">O SOM</span><span class="reveal-line accent">TER CARA.</span></h1>
+        </div>
+        <div class="hero-intro reveal-line">
+          <p>Beat, arranjo, mix e master guiados por uma só direção criativa. Primeiro vem a conversa. Depois, a música ganha rosto.</p>
+          <a class="hero-scroll" href="#inkShift"><span>Vê a tinta entrar</span><i aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="hero-index" aria-hidden="true">AFTER DARK · INK CUT · 01</div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>BRASILEIRO · JOVEM · TECNOLÓGICO · DIVERTIDO · PROFISSIONAL · SOM COM ROSTO · </span><span>BRASILEIRO · JOVEM · TECNOLÓGICO · DIVERTIDO · PROFISSIONAL · SOM COM ROSTO · </span></div></div>
+
+    <section class="ink-shift" id="inkShift" aria-labelledby="inkTitle">
+      <div class="ink-stage">
+        <div class="display-plinth" aria-hidden="true"><span>FORMA</span><span>GESTO</span><span>IDENTIDADE</span></div>
+        <div class="shift-copy shift-copy--before">
+          <p>01 / O acidente</p>
+          <h2 id="inkTitle">A NOITE<br>AINDA NÃO<br>TEM COR.</h2>
+          <span>Continua. O primeiro gesto muda o sistema.</span>
+        </div>
+
+        <div class="duck-scene" aria-hidden="true">
+          <svg class="duck-kicker" viewBox="0 0 420 300">
+            <g class="duck-shadow"><ellipse cx="188" cy="267" rx="132" ry="17"></ellipse></g>
+            <g class="duck-character">
+              <g class="duck-tail"><path d="M84 150 35 122l20 48-29 24 67 4z"></path></g>
+              <ellipse class="duck-body" cx="175" cy="162" rx="100" ry="70"></ellipse>
+              <circle class="duck-head" cx="252" cy="90" r="57"></circle>
+              <path class="duck-beak" d="M292 80h78l-40 34h-39z"></path>
+              <circle class="duck-eye" cx="270" cy="75" r="8"></circle>
+              <circle class="duck-eye-glint" cx="273" cy="72" r="2.4"></circle>
+              <path class="duck-wing" d="M105 144c38-32 91-20 103 14-22 39-75 46-110 13z"></path>
+              <g class="duck-leg duck-leg--ground"><path d="M147 215v45"></path><path d="M147 260h45"></path></g>
+              <g class="duck-leg duck-leg--kick"><path d="M214 213v47"></path><path d="M214 260h48"></path></g>
+            </g>
+          </svg>
+          <div class="bucket-shadow"></div>
+          <div class="paint-bucket">
+            <span class="bucket-handle"></span><span class="bucket-rim"></span><span class="bucket-body">DUCK<br>GREEN</span><span class="bucket-drip"></span>
+          </div>
+          <div class="impact-ring impact-ring--one"></div><div class="impact-ring impact-ring--two"></div>
+          <div class="impact-word">CHUTA.</div>
+        </div>
+
+        <div class="green-wash" aria-hidden="true"></div>
+        <div class="shift-copy shift-copy--after">
+          <p>02 / A decisão</p>
+          <h2>A TINTA<br>ENTRA NO<br>SISTEMA.</h2>
+          <span>O verde deixa de ser decoração. Passa a conduzir.</span>
+        </div>
+        <div class="ink-progress" aria-hidden="true"><span></span></div>
+      </div>
+    </section>
+
+    <section class="manifesto green-world" id="sobre">
+      <div class="manifesto-grid">
+        <p class="section-tag">02 / Quem é</p>
+        <h2 class="motion-heading">NÃO É<br>UMA MÁQUINA.<br>É <em>DUCK.</em></h2>
+        <div class="manifesto-copy"><p><strong>A técnica só importa quando entrega personalidade.</strong></p><p>Duck parte da conversa, encontra o gesto central da música e constrói tudo ao redor dele. A faixa não procura uma fórmula. Procura uma assinatura.</p></div>
+      </div>
+      <div class="identity-strip" aria-label="Identidade Duck"><span>JOVEM</span><span>BRASILEIRO</span><span>TECNOLÓGICO</span><span>HUMANO</span></div>
+      <div class="photo-run">
+        <figure class="parallax-photo parallax-photo--wide"><img src="images/capa-1920x1080.jpg" alt="Retrato frontal de Duck" loading="lazy"><figcaption>Duck · direção e produção</figcaption></figure>
+        <figure class="parallax-photo parallax-photo--tall"><img src="images/capa-4-1920x1080.jpg" alt="Duck em Aracaju" loading="lazy"><figcaption>Aracaju · Sergipe</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="process" id="processo">
+      <header class="process-head"><p class="section-tag">03 / Como funciona</p><h2 class="motion-heading">DA CONVERSA<br>À FAIXA.</h2><p>Quatro movimentos. Uma direção contínua. Cada escolha precisa justificar o espaço que ocupa.</p></header>
+      <svg class="process-continuity" viewBox="0 0 1000 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 92 C170 12 280 172 444 92 S730 18 1000 92"></path></svg>
+      <div class="process-list">
+        <article class="process-item"><span>01</span><h3>Entender</h3><p>Referências, contexto e intenção viram uma pergunta musical concreta.</p><i aria-hidden="true"></i></article>
+        <article class="process-item"><span>02</span><h3>Encontrar</h3><p>Ritmo, harmonia e timbre procuram a assinatura antes do volume.</p><i aria-hidden="true"></i></article>
+        <article class="process-item"><span>03</span><h3>Construir</h3><p>Beat, arranjo, captação e edição avançam como uma única matéria.</p><i aria-hidden="true"></i></article>
+        <article class="process-item"><span>04</span><h3>Entregar</h3><p>Mix e master fazem a faixa sobreviver fora do estúdio sem apagar sua identidade.</p><i aria-hidden="true"></i></article>
+      </div>
+    </section>
+
+    <section class="lab" id="play">
+      <header class="lab-head"><div><p class="section-tag">04 / Experimenta</p><h2 class="motion-heading">TOCA NO<br>SINAL.</h2></div><p>Abre o som, move o ponteiro e combina camadas. A resposta visual mostra pressão, espaço e contraste.</p></header>
+      <div class="play-panel">
+        <div class="scope" id="scopeSurface">
+          <canvas id="scope" aria-hidden="true"></canvas>
+          <div class="scope-copy"><p class="section-tag">Duck signal toy</p><h3>O som responde.</h3><p>O movimento segue frequência, textura e pulso.</p></div>
+          <button class="scope-toggle" id="scopeToggle" type="button" aria-pressed="false">Ligar sinal</button>
+        </div>
+        <div class="controls"><h3>Constrói a textura</h3>
+          <div class="control"><label for="tone">Abertura <output id="toneOut" for="tone">52</output></label><input id="tone" type="range" min="0" max="100" value="52"></div>
+          <div class="control"><label for="pressure">Pressão <output id="pressureOut" for="pressure">24</output></label><input id="pressure" type="range" min="0" max="100" value="24"></div>
+          <div class="pads" id="pads" aria-label="Camadas sonoras"></div>
+          <p class="feedback" id="feedback" aria-live="polite">Começa com um pad. A identidade aparece por contraste, não por excesso.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="records" id="trabalhos">
+      <header class="records-head"><div><p class="section-tag">05 / Seleção</p><h2 class="motion-heading">TRABALHOS<br>COM ROSTO.</h2></div><p>Arrasta a história pelo catálogo.</p></header>
+      <div class="record-window-label" aria-hidden="true"><span>DUCK DISPLAY</span><span>SELEÇÃO 01—06</span><span>OUVE A DIFERENÇA</span></div>
+      <div class="records-viewport"><div class="records-track">
+        <article class="record" style="--tone:#6bf178"><img src="images/covers/posturadona-256x255.png" alt="Capa de Posturadona" loading="lazy"><div><span>MPB / Afrobeat</span><h3>Posturadona</h3><p>Luiz Cinnamon</p></div></article>
+        <article class="record" style="--tone:#e3ff66"><img src="images/covers/tititi-254x256.png" alt="Capa de Tititi" loading="lazy"><div><span>Pop Funk</span><h3>Tititi</h3><p>Leones</p></div></article>
+        <article class="record" style="--tone:#b383ff"><img src="images/covers/leones-254x256.png" alt="Capa de De Fininho" loading="lazy"><div><span>Pop Urban</span><h3>De Fininho</h3><p>Leones</p></div></article>
+        <article class="record" style="--tone:#ff866b"><img src="images/covers/whrote-256x255.png" alt="Capa de I Wrote a Song" loading="lazy"><div><span>R&amp;B / Soul</span><h3>I Wrote a Song</h3><p>Belentani</p></div></article>
+        <article class="record" style="--tone:#7fb5ff"><img src="images/covers/lento-256x256.jpg" alt="Capa de Lento" loading="lazy"><div><span>R&amp;B</span><h3>Lento</h3><p>Belentani</p></div></article>
+        <article class="record" style="--tone:#ff77ab"><img src="images/covers/heart-256x255.png" alt="Capa de Mon Amour" loading="lazy"><div><span>R&amp;B / Pop</span><h3>Mon Amour</h3><p>Belentani</p></div></article>
+        <div class="records-end"><p>UMA FAIXA<br>NÃO TERMINA.<br>ELA FICA.</p><a href="#contato">Criar a próxima</a></div>
+      </div></div>
+    </section>
+
+    <section class="finale" aria-labelledby="finaleTitle">
+      <canvas id="shaderCanvas" aria-hidden="true"></canvas>
+      <div class="closure-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="finale-copy"><p class="section-tag">06 / Depois da tinta</p><h2 id="finaleTitle">A COR MUDA.<br>A ASSINATURA FICA.</h2><p>Move o ponteiro. O roxo ainda respinga por baixo do verde.</p></div>
+    </section>
+
+    <section class="contact" id="contato">
+      <img class="contact-bg" src="images/capa-1920x1080.jpg" alt="Duck olhando para a câmera" loading="lazy">
+      <div class="contact-content"><p class="section-tag">07 / Próxima faixa</p><h2>TUA IDEIA.<em>NOSSO SOM.</em></h2><p>Conta o que existe agora: uma ideia, uma demo ou uma faixa pronta para ganhar direção.</p><div class="contact-links"><a href="https://www.instagram.com/duck4s/">Instagram @duck4s</a><a href="mailto:duck@producao.com">Enviar briefing</a></div></div>
+      <img class="contact-logo" src="images/duck-logo-desktop.png" alt="DUCK Produção Musical" loading="lazy">
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+  <script src="duck-after-dark-ink.js"></script>
+</body>
+</html>

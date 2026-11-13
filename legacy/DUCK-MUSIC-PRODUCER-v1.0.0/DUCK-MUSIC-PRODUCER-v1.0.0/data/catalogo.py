@@ -1,0 +1,2 @@
+REPO = "DUCK-MUSIC-PRODUCER-v1.0.0"
+FAMILIA = "creativo"

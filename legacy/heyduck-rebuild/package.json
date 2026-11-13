@@ -1,0 +1,26 @@
+{
+  "name": "heyduck-rebuild",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "DUCK - Musical Producer Website",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "duck",
+    "music",
+    "producer",
+    "website"
+  ],
+  "author": "DUCK Studio",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  }
+}

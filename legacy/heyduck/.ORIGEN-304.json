@@ -1,0 +1,15 @@
+{
+  "repo_id": 304,
+  "path_original": "C:\\_auditoria-github\\clones\\heyduck",
+  "remote": "https://github.com/belentani7/heyduck.git",
+  "branch": "main",
+  "head": "0d192ac3a28fa31962422df1a4e9ced02dac6749",
+  "commits": 1,
+  "ultimo_commit": "2026-10-26T07:16:51+01:00",
+  "ultimo_mensaje": "docs(readme): quitar funciones fantasma (gerador de letras AI, Formspree)",
+  "bytes": 27206301,
+  "archivos": 239,
+  "bundle": "C:\\Users\\USER\\Documents\\09_ARCHIVO\\GITHUB_CONSOLIDACION\\_bundles_2026-10-31\\heyduck.bundle",
+  "consolidado": "2026-10-31T02:13:51+00:00",
+  "proyecto": "consolidación local 2026-10-31 — belentani7"
+}

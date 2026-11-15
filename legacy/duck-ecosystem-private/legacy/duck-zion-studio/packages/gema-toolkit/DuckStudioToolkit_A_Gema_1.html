@@ -1,19 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta name="superpowers" content="mcp-hub=belentani-hub,tools=24,groups=4"><meta name="omega-max" content="senior-agent-enabled">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Duck Studio Toolkit — A Gema #1 | Masterização Belentani</title>
-<meta name="description" content="Duck Studio Toolkit - A Gema #1. Suíte DSP profissional com afinador cromático, equalizador paramétrico, rack de masterização, player de beats e gerador de logos para Duck Zion.">
+<title>Duck Studio Toolkit â€” A Gema #1 | MasterizaÃ§Ã£o Belentani</title>
+<meta name="description" content="Duck Studio Toolkit - A Gema #1. SuÃ­te DSP profissional com afinador cromÃ¡tico, equalizador paramÃ©trico, rack de masterizaÃ§Ã£o, player de beats e gerador de logos para Duck Zion.">
 <meta name="author" content="DUCK / Belentani">
 <meta name="designer" content="Pedro Belentani">
-<meta name="copyright" content="Duck Zion · Belentani 2026">
+<meta name="copyright" content="Duck Zion Â· Belentani 2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   DUCK STUDIO TOOLKIT — A GEMA #1
+   DUCK STUDIO TOOLKIT â€” A GEMA #1
    Design System: Google UX/UI Emerald & Jade Palette
    Architecture, DSP & Master Processing by belentani
    ========================================================================== */
@@ -962,21 +963,21 @@ html, body {
 <div id="loader">
   <div class="loader-badge">D</div>
   <div class="loader-title">DUCK STUDIO</div>
-  <div class="loader-subtitle">A GEMA #1 · GOOGLE UI VERDE</div>
+  <div class="loader-subtitle">A GEMA #1 Â· GOOGLE UI VERDE</div>
   <div class="loader-bar-bg"><div class="loader-bar-fill" id="loader-bar"></div></div>
-  <div class="loader-status" id="loader-text">Inicializando motores de áudio DSP...</div>
-  <div class="loader-credit">Sound Architecture & Mastering by belentani · 2026</div>
+  <div class="loader-status" id="loader-text">Inicializando motores de Ã¡udio DSP...</div>
+  <div class="loader-credit">Sound Architecture & Mastering by belentani Â· 2026</div>
 </div>
 
 <!-- Secret Drawer -->
 <div id="secret-panel">
-  <button class="secret-close" onclick="toggleSecret()">✕</button>
-  <div style="font-size: 1.1rem; font-weight: 700; color: var(--emerald-400); margin-bottom: 16px;">ACESSO SECRETO · CANAL ZION</div>
+  <button class="secret-close" onclick="toggleSecret()">âœ•</button>
+  <div style="font-size: 1.1rem; font-weight: 700; color: var(--emerald-400); margin-bottom: 16px;">ACESSO SECRETO Â· CANAL ZION</div>
   <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">
-    <p><strong style="color: var(--text-primary);">A Gema #1</strong> representa a frequência sonora fundamental.</p><br>
-    <p>Cada cadeia de mixagem e masterização foi calibrada com precisão de estúdio de alta fidelidade para o catálogo de Duck.</p><br>
-    <p style="color: var(--emerald-400); font-style: italic;">"A masterização perfeita não se nota. Se notar, falhou."</p>
-    <p style="color: var(--text-tertiary); font-size: 0.75rem; margin-top: 4px;">— Pedro Belentani</p><br>
+    <p><strong style="color: var(--text-primary);">A Gema #1</strong> representa a frequÃªncia sonora fundamental.</p><br>
+    <p>Cada cadeia de mixagem e masterizaÃ§Ã£o foi calibrada com precisÃ£o de estÃºdio de alta fidelidade para o catÃ¡logo de Duck.</p><br>
+    <p style="color: var(--emerald-400); font-style: italic;">"A masterizaÃ§Ã£o perfeita nÃ£o se nota. Se notar, falhou."</p>
+    <p style="color: var(--text-tertiary); font-size: 0.75rem; margin-top: 4px;">â€” Pedro Belentani</p><br>
     <div style="padding: 14px; background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-md); border: 1px solid var(--border-active); margin-top: 16px;">
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--emerald-400);">SECRET KEYS UNLOCKED:</div>
       <div style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-primary); margin-top: 4px;">DUCK-DSP-PRO-2026</div>
@@ -994,41 +995,41 @@ html, body {
     <div class="brand-icon" id="brand-logo" onclick="onBrandClick()">D</div>
     <nav class="nav-menu">
       <div class="nav-item active" data-page="dashboard" onclick="navigateTo('dashboard')">
-        <div class="nav-icon">⌂</div>
+        <div class="nav-icon">âŒ‚</div>
         <span class="nav-label">Command Center</span>
       </div>
       <div class="nav-item" data-page="tuner" onclick="navigateTo('tuner')">
-        <div class="nav-icon">♪</div>
+        <div class="nav-icon">â™ª</div>
         <span class="nav-label">Afinador DSP</span>
       </div>
       <div class="nav-item" data-page="eq" onclick="navigateTo('eq')">
-        <div class="nav-icon">≡</div>
-        <span class="nav-label">EQ Paramétrico</span>
+        <div class="nav-icon">â‰¡</div>
+        <span class="nav-label">EQ ParamÃ©trico</span>
       </div>
       <div class="nav-item" data-page="mastering" onclick="navigateTo('mastering')">
-        <div class="nav-icon">⚡</div>
+        <div class="nav-icon">âš¡</div>
         <span class="nav-label">Mastering Rack</span>
       </div>
       <div class="nav-item" data-page="player" onclick="navigateTo('player')">
-        <div class="nav-icon">▶</div>
+        <div class="nav-icon">â–¶</div>
         <span class="nav-label">Duck Player</span>
       </div>
       <div class="nav-item" data-page="plugins" onclick="navigateTo('plugins')">
-        <div class="nav-icon">⚙</div>
+        <div class="nav-icon">âš™</div>
         <span class="nav-label">Arsenal Plugins</span>
       </div>
       <div class="nav-item" data-page="logo" onclick="navigateTo('logo')">
-        <div class="nav-icon">◆</div>
+        <div class="nav-icon">â—†</div>
         <span class="nav-label">Gerador Logos</span>
       </div>
       <div class="nav-item" data-page="portfolio" onclick="navigateTo('portfolio')">
-        <div class="nav-icon">☰</div>
+        <div class="nav-icon">â˜°</div>
         <span class="nav-label">Discografia</span>
       </div>
     </nav>
     <div class="sidebar-bottom">
       <div class="nav-item" onclick="triggerSecretLab()">
-        <div class="nav-icon">◈</div>
+        <div class="nav-icon">â—ˆ</div>
         <span class="nav-label">Belentani Lab</span>
       </div>
     </div>
@@ -1040,7 +1041,7 @@ html, body {
     <header class="app-header">
       <div class="header-title-area">
         <span class="header-title" id="page-heading">Command Center</span>
-        <span class="header-badge">GEMA #1 · OPERACIONAL</span>
+        <span class="header-badge">GEMA #1 Â· OPERACIONAL</span>
       </div>
       <div class="header-right">
         <div class="audio-state-chip">
@@ -1056,9 +1057,9 @@ html, body {
       <!-- 1. DASHBOARD -->
       <section class="view-panel active" id="view-dashboard">
         <div class="hero-banner">
-          <span class="hero-tag">FRAG-01 · A ONDA GRAVE</span>
-          <h1 class="hero-title">Duck Studio OS & Masterização</h1>
-          <p class="hero-desc">Ambiente de engenharia sonora, sintetizadores Web Audio, afinação cromática cirúrgica e cadeia de masterização masterizada por Belentani para Duck Zion.</p>
+          <span class="hero-tag">FRAG-01 Â· A ONDA GRAVE</span>
+          <h1 class="hero-title">Duck Studio OS & MasterizaÃ§Ã£o</h1>
+          <p class="hero-desc">Ambiente de engenharia sonora, sintetizadores Web Audio, afinaÃ§Ã£o cromÃ¡tica cirÃºrgica e cadeia de masterizaÃ§Ã£o masterizada por Belentani para Duck Zion.</p>
         </div>
 
         <div class="metrics-grid">
@@ -1076,7 +1077,7 @@ html, body {
           </div>
           <div class="metric-card">
             <div class="metric-value" data-counter="99">0</div>
-            <div class="metric-label">Acurácia DSP (%)</div>
+            <div class="metric-label">AcurÃ¡cia DSP (%)</div>
           </div>
         </div>
 
@@ -1084,8 +1085,8 @@ html, body {
           <div class="g-card">
             <div class="g-card-header">
               <div>
-                <div class="g-card-title">Osciloscópio de Frequência ao Vivo</div>
-                <div class="g-card-subtitle">Análise espectral em tempo real (FFT 2048)</div>
+                <div class="g-card-title">OsciloscÃ³pio de FrequÃªncia ao Vivo</div>
+                <div class="g-card-subtitle">AnÃ¡lise espectral em tempo real (FFT 2048)</div>
               </div>
               <button class="btn btn-sm" onclick="triggerSynthTone(440, 'sine')">Testar Tom A4</button>
             </div>
@@ -1097,8 +1098,8 @@ html, body {
           <div class="g-card">
             <div class="g-card-header">
               <div>
-                <div class="g-card-title">Medidores de Nível Multibanda</div>
-                <div class="g-card-subtitle">Sub · Bass · Low-Mid · High-Mid · Air</div>
+                <div class="g-card-title">Medidores de NÃ­vel Multibanda</div>
+                <div class="g-card-subtitle">Sub Â· Bass Â· Low-Mid Â· High-Mid Â· Air</div>
               </div>
               <span class="header-badge" id="meter-lufs-badge">-14.2 LUFS</span>
             </div>
@@ -1112,7 +1113,7 @@ html, body {
         <div class="g-card">
           <div class="g-card-header">
             <div>
-              <div class="g-card-title">Catálogo de Produções Recentes</div>
+              <div class="g-card-title">CatÃ¡logo de ProduÃ§Ãµes Recentes</div>
               <div class="g-card-subtitle">Mix & Master finalizadas no ecossistema Duck / Belentani</div>
             </div>
             <button class="btn btn-sm btn-primary" onclick="navigateTo('player')">Abrir Player</button>
@@ -1126,8 +1127,8 @@ html, body {
         <div class="g-card">
           <div class="g-card-header">
             <div>
-              <div class="g-card-title">Afinador Cromático DSP</div>
-              <div class="g-card-subtitle">Detecção por autocorrelação em tempo real (Microfone ou Oscilador)</div>
+              <div class="g-card-title">Afinador CromÃ¡tico DSP</div>
+              <div class="g-card-subtitle">DetecÃ§Ã£o por autocorrelaÃ§Ã£o em tempo real (Microfone ou Oscilador)</div>
             </div>
             <button class="btn btn-primary" id="tuner-mic-toggle" onclick="toggleTunerMic()">Ativar Microfone</button>
           </div>
@@ -1144,16 +1145,16 @@ html, body {
 
           <div class="grid-2">
             <div>
-              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 8px;">CALIBRAÇÃO A4</label>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 8px;">CALIBRAÃ‡ÃƒO A4</label>
               <select class="input-control" id="tuner-ref-pitch" onchange="updateTunerRef()">
-                <option value="440">A4 = 440 Hz (Padrão Internacional)</option>
+                <option value="440">A4 = 440 Hz (PadrÃ£o Internacional)</option>
                 <option value="442">A4 = 442 Hz (Orquestral)</option>
-                <option value="432">A4 = 432 Hz (Frequência Harmônica)</option>
+                <option value="432">A4 = 432 Hz (FrequÃªncia HarmÃ´nica)</option>
                 <option value="445">A4 = 445 Hz (Bright)</option>
               </select>
             </div>
             <div>
-              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 8px;">GERADOR DE NOTAS DE REFERÊNCIA</label>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 8px;">GERADOR DE NOTAS DE REFERÃŠNCIA</label>
               <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                 <button class="btn btn-sm" onclick="triggerSynthTone(261.63, 'sine')">C4</button>
                 <button class="btn btn-sm" onclick="triggerSynthTone(293.66, 'sine')">D4</button>
@@ -1174,8 +1175,8 @@ html, body {
         <div class="g-card">
           <div class="g-card-header">
             <div>
-              <div class="g-card-title">Equalizador Paramétrico de 4 Bandas</div>
-              <div class="g-card-subtitle">Curva de resposta em magnitude com filtros Biquad analógicos</div>
+              <div class="g-card-title">Equalizador ParamÃ©trico de 4 Bandas</div>
+              <div class="g-card-subtitle">Curva de resposta em magnitude com filtros Biquad analÃ³gicos</div>
             </div>
             <button class="btn btn-sm" onclick="resetEqParams()">Resetar Curva</button>
           </div>
@@ -1186,7 +1187,7 @@ html, body {
 
           <div class="grid-2">
             <div class="g-card" style="margin-bottom: 0; background: var(--bg-surface-raised);">
-              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 1 · LOW SHELF (80 Hz)</div>
+              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 1 Â· LOW SHELF (80 Hz)</div>
               <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
                 <span>Ganho:</span><span id="eq-g1-val" style="color: var(--emerald-400); font-family: var(--font-mono);">+2.0 dB</span>
               </div>
@@ -1194,7 +1195,7 @@ html, body {
             </div>
 
             <div class="g-card" style="margin-bottom: 0; background: var(--bg-surface-raised);">
-              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 2 · LOW-MID PEAK (450 Hz)</div>
+              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 2 Â· LOW-MID PEAK (450 Hz)</div>
               <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
                 <span>Ganho:</span><span id="eq-g2-val" style="color: var(--emerald-400); font-family: var(--font-mono);">-1.5 dB</span>
               </div>
@@ -1202,7 +1203,7 @@ html, body {
             </div>
 
             <div class="g-card" style="margin-bottom: 0; background: var(--bg-surface-raised);">
-              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 3 · HIGH-MID PEAK (2.8 kHz)</div>
+              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 3 Â· HIGH-MID PEAK (2.8 kHz)</div>
               <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
                 <span>Ganho:</span><span id="eq-g3-val" style="color: var(--emerald-400); font-family: var(--font-mono);">+1.0 dB</span>
               </div>
@@ -1210,7 +1211,7 @@ html, body {
             </div>
 
             <div class="g-card" style="margin-bottom: 0; background: var(--bg-surface-raised);">
-              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 4 · HIGH SHELF (11 kHz)</div>
+              <div style="font-weight: 700; font-size: 0.88rem; color: var(--emerald-400); margin-bottom: 12px;">BANDA 4 Â· HIGH SHELF (11 kHz)</div>
               <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
                 <span>Ganho:</span><span id="eq-g4-val" style="color: var(--emerald-400); font-family: var(--font-mono);">+2.5 dB</span>
               </div>
@@ -1223,15 +1224,15 @@ html, body {
       <!-- 4. MASTERING RACK -->
       <section class="view-panel" id="view-mastering">
         <div class="hero-banner" style="padding: 24px 30px; margin-bottom: 20px;">
-          <span class="hero-tag">A GEMA #1 · MASTERIZAÇÃO</span>
+          <span class="hero-tag">A GEMA #1 Â· MASTERIZAÃ‡ÃƒO</span>
           <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">Processamento Belentani para Duck</h2>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px;">Cadeia de masterização com compressão multibanda, compensação de transientes e limitação brickwall para streaming (Spotify, Apple Music, Tidal).</p>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px;">Cadeia de masterizaÃ§Ã£o com compressÃ£o multibanda, compensaÃ§Ã£o de transientes e limitaÃ§Ã£o brickwall para streaming (Spotify, Apple Music, Tidal).</p>
         </div>
 
         <div class="grid-2">
           <div class="g-card">
             <div class="g-card-header">
-              <div class="g-card-title">Parâmetros de Loudness & Ceiling</div>
+              <div class="g-card-title">ParÃ¢metros de Loudness & Ceiling</div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 18px;">
               <div>
@@ -1266,18 +1267,18 @@ html, body {
             </div>
             <div style="display: flex; flex-direction: column; gap: 10px;">
               <div class="track-row" onclick="notifyToast('WAV 24bit/48kHz Master Ativo')">
-                <div class="nav-icon">◈</div>
-                <div class="track-meta"><h4>WAV 24-bit / 48 kHz</h4><span>Master Lossless para Distribuição Oficial</span></div>
+                <div class="nav-icon">â—ˆ</div>
+                <div class="track-meta"><h4>WAV 24-bit / 48 kHz</h4><span>Master Lossless para DistribuiÃ§Ã£o Oficial</span></div>
                 <span class="genre-badge">STUDIO</span>
               </div>
               <div class="track-row" onclick="notifyToast('Apple Digital Masters Configurado')">
-                <div class="nav-icon"></div>
-                <div class="track-meta"><h4>Apple Digital Masters</h4><span>Calibração certificada -16 LUFS</span></div>
+                <div class="nav-icon">ï£¿</div>
+                <div class="track-meta"><h4>Apple Digital Masters</h4><span>CalibraÃ§Ã£o certificada -16 LUFS</span></div>
                 <span class="genre-badge">ADM</span>
               </div>
               <div class="track-row" onclick="notifyToast('MP3 320kbps Pre-listen Exportado')">
-                <div class="nav-icon">♪</div>
-                <div class="track-meta"><h4>MP3 320 kbps CBR</h4><span>Aprovação rápida e prévia para clientes</span></div>
+                <div class="nav-icon">â™ª</div>
+                <div class="track-meta"><h4>MP3 320 kbps CBR</h4><span>AprovaÃ§Ã£o rÃ¡pida e prÃ©via para clientes</span></div>
                 <span class="genre-badge">PREVIEW</span>
               </div>
             </div>
@@ -1290,23 +1291,23 @@ html, body {
         <div class="g-card" style="text-align: center; padding: 32px 24px;">
           <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, var(--g-green-700), #06110a); border: 2px solid var(--border-active); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; font-weight: 800; color: var(--emerald-400); box-shadow: 0 0 40px rgba(16, 185, 129, 0.35);" id="player-vinyl-disc">D</div>
           <h2 style="font-size: 1.4rem; font-weight: 800;" id="player-active-title">Noite Eterna</h2>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;" id="player-active-meta">Duck ft. Luna · TRAP · 140 BPM</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;" id="player-active-meta">Duck ft. Luna Â· TRAP Â· 140 BPM</p>
 
           <div style="max-width: 480px; margin: 24px auto 20px;">
             <div class="eq-canvas-container" style="height: 90px; margin-bottom: 12px; cursor: pointer;" onclick="toggleAudioPlayback()">
               <canvas id="player-waveform-canvas"></canvas>
             </div>
             <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
-              <button class="btn btn-icon" onclick="playerStep(-1)">◀◀</button>
-              <button class="btn btn-primary btn-icon" style="width: 52px; height: 52px; font-size: 1.3rem;" id="player-play-btn" onclick="toggleAudioPlayback()">▶</button>
-              <button class="btn btn-icon" onclick="playerStep(1)">▶▶</button>
+              <button class="btn btn-icon" onclick="playerStep(-1)">â—€â—€</button>
+              <button class="btn btn-primary btn-icon" style="width: 52px; height: 52px; font-size: 1.3rem;" id="player-play-btn" onclick="toggleAudioPlayback()">â–¶</button>
+              <button class="btn btn-icon" onclick="playerStep(1)">â–¶â–¶</button>
             </div>
           </div>
         </div>
 
         <div class="g-card">
           <div class="g-card-header">
-            <div class="g-card-title">Fila de Beats & Produções Duck</div>
+            <div class="g-card-title">Fila de Beats & ProduÃ§Ãµes Duck</div>
             <span class="header-badge" id="player-queue-count">16 Faixas Catalogadas</span>
           </div>
           <div id="player-full-queue"></div>
@@ -1332,8 +1333,8 @@ html, body {
         <div class="g-card">
           <div class="g-card-header">
             <div>
-              <div class="g-card-title">Gerador de Logos & Insígnias Duck</div>
-              <div class="g-card-subtitle">Renderizador canvas de alta resolução com estética Emerald Google</div>
+              <div class="g-card-title">Gerador de Logos & InsÃ­gnias Duck</div>
+              <div class="g-card-subtitle">Renderizador canvas de alta resoluÃ§Ã£o com estÃ©tica Emerald Google</div>
             </div>
             <button class="btn btn-primary" onclick="exportLogoPng()">Exportar PNG HD</button>
           </div>
@@ -1363,8 +1364,8 @@ html, body {
         <div class="g-card">
           <div class="g-card-header">
             <div>
-              <div class="g-card-title">Discografia & Portfólio de Produção</div>
-              <div class="g-card-subtitle">Catálogo de faixas, singles e EPs finalizados</div>
+              <div class="g-card-title">Discografia & PortfÃ³lio de ProduÃ§Ã£o</div>
+              <div class="g-card-subtitle">CatÃ¡logo de faixas, singles e EPs finalizados</div>
             </div>
             <div style="display: flex; gap: 8px;">
               <button class="btn btn-sm" onclick="filterGenre('ALL')">Todos</button>
@@ -1381,16 +1382,16 @@ html, body {
 
     <!-- App Footer -->
     <footer class="app-footer">
-      <div>DUCK STUDIO TOOLKIT · A GEMA #1 (v3.2.0)</div>
-      <div>Arquitetura de Som & Masterização por <strong style="color: var(--emerald-400);">belentani</strong></div>
-      <div>CANAL ZION · 2026</div>
+      <div>DUCK STUDIO TOOLKIT Â· A GEMA #1 (v3.2.0)</div>
+      <div>Arquitetura de Som & MasterizaÃ§Ã£o por <strong style="color: var(--emerald-400);">belentani</strong></div>
+      <div>CANAL ZION Â· 2026</div>
     </footer>
   </div>
 </div>
 
 <script>
 /* ==========================================================================
-   DUCK STUDIO TOOLKIT — CORE DSP & AUDIO SYNTHESIS ENGINE
+   DUCK STUDIO TOOLKIT â€” CORE DSP & AUDIO SYNTHESIS ENGINE
    Developed & Architected by belentani
    Google Material Emerald UX/UI Engine
    ========================================================================== */
@@ -1403,15 +1404,15 @@ html, body {
     { n: 'Noite Eterna', a: 'Duck ft. Luna', g: 'TRAP', bpm: 140, baseFreq: 55 },
     { n: 'Fogo Interior', a: 'Duck', g: 'HIPHOP', bpm: 90, baseFreq: 65 },
     { n: 'Neon Dreams', a: 'Duck & Zay', g: 'POP', bpm: 128, baseFreq: 73 },
-    { n: 'Código Verde', a: 'Duck', g: 'TRAP', bpm: 145, baseFreq: 49 },
+    { n: 'CÃ³digo Verde', a: 'Duck', g: 'TRAP', bpm: 145, baseFreq: 49 },
     { n: 'Pulso Urbano', a: 'Duck ft. MC Flow', g: 'HIPHOP', bpm: 95, baseFreq: 61 },
-    { n: 'Cristal Líquido', a: 'Duck & Nina', g: 'R&B', bpm: 85, baseFreq: 69 },
+    { n: 'Cristal LÃ­quido', a: 'Duck & Nina', g: 'R&B', bpm: 85, baseFreq: 69 },
     { n: 'Som da Rua', a: 'Duck', g: 'TRAP', bpm: 150, baseFreq: 52 },
     { n: 'Aurora Boreal', a: 'Duck', g: 'POP', bpm: 120, baseFreq: 65 },
     { n: 'Terreno Sagrado', a: 'Duck ft. Zay', g: 'HIPHOP', bpm: 88, baseFreq: 58 },
     { n: 'Gema Bruta', a: 'Duck', g: 'TRAP', bpm: 135, baseFreq: 55 },
     { n: 'Eclipse', a: 'Duck & Luna', g: 'R&B', bpm: 92, baseFreq: 73 },
-    { n: 'Frequência Máxima', a: 'Duck', g: 'POP', bpm: 132, baseFreq: 65 },
+    { n: 'FrequÃªncia MÃ¡xima', a: 'Duck', g: 'POP', bpm: 132, baseFreq: 65 },
     { n: 'Bassa Profunda', a: 'Duck', g: 'TRAP', bpm: 155, baseFreq: 43 },
     { n: 'Reflexos', a: 'Duck ft. Nina', g: 'R&B', bpm: 80, baseFreq: 61 },
     { n: 'Cinco Estrelas', a: 'Duck', g: 'HIPHOP', bpm: 100, baseFreq: 58 },
@@ -1419,22 +1420,22 @@ html, body {
   ];
 
   const PLUGINS = [
-    { n: 'FabFilter Pro-Q 3', cat: 'Equalizador Cirúrgico', tag: 'ESSENCIAL' },
+    { n: 'FabFilter Pro-Q 3', cat: 'Equalizador CirÃºrgico', tag: 'ESSENCIAL' },
     { n: 'Waves SSL G-Master', cat: 'Compressor de Barramento', tag: 'PRO' },
-    { n: 'iZotope Ozone 11 Advanced', cat: 'Suíte de Masterização', tag: 'ESSENCIAL' },
+    { n: 'iZotope Ozone 11 Advanced', cat: 'SuÃ­te de MasterizaÃ§Ã£o', tag: 'ESSENCIAL' },
     { n: 'FabFilter Pro-L 2', cat: 'Limitador True Peak', tag: 'ESSENCIAL' },
-    { n: 'Soundtoys Decapitator', cat: 'Saturação Analógica', tag: 'PRO' },
-    { n: 'UAD Neve 1073 Preamp', cat: 'Pré-Amplificador Vintage', tag: 'PRO' },
+    { n: 'Soundtoys Decapitator', cat: 'SaturaÃ§Ã£o AnalÃ³gica', tag: 'PRO' },
+    { n: 'UAD Neve 1073 Preamp', cat: 'PrÃ©-Amplificador Vintage', tag: 'PRO' },
     { n: 'Valhalla VintageVerb', cat: 'Reverb Espacial', tag: 'ESSENCIAL' },
-    { n: 'Soundtoys EchoBoy', cat: 'Delay de Fita Analógico', tag: 'PRO' },
-    { n: 'FabFilter Saturn 2', cat: 'Distorção Multibanda', tag: 'PRO' },
-    { n: 'UAD 1176LN Peak Limiter', cat: 'Compressor FET Rápido', tag: 'ESSENCIAL' },
-    { n: 'Waves CLA-76', cat: 'Compressor Vocal Clássico', tag: 'PRO' },
-    { n: 'Auto-Tune Pro X', cat: 'Afinação Vocal em Tempo Real', tag: 'ESSENCIAL' },
+    { n: 'Soundtoys EchoBoy', cat: 'Delay de Fita AnalÃ³gico', tag: 'PRO' },
+    { n: 'FabFilter Saturn 2', cat: 'DistorÃ§Ã£o Multibanda', tag: 'PRO' },
+    { n: 'UAD 1176LN Peak Limiter', cat: 'Compressor FET RÃ¡pido', tag: 'ESSENCIAL' },
+    { n: 'Waves CLA-76', cat: 'Compressor Vocal ClÃ¡ssico', tag: 'PRO' },
+    { n: 'Auto-Tune Pro X', cat: 'AfinaÃ§Ã£o Vocal em Tempo Real', tag: 'ESSENCIAL' },
     { n: 'Spectrasonics Omnisphere 2', cat: 'Sintetizador Flagship', tag: 'VST' },
     { n: 'Xfer Serum', cat: 'Sintetizador Wavetable', tag: 'VST' },
     { n: 'Native Instruments Kontakt 7', cat: 'Sampler de Alta Fidelidade', tag: 'VST' },
-    { n: 'XLN Audio RC-20 Retro Color', cat: 'Textura & Ruído Vintage', tag: 'PRO' }
+    { n: 'XLN Audio RC-20 Retro Color', cat: 'Textura & RuÃ­do Vintage', tag: 'PRO' }
   ];
 
   // --- AUDIO CONTEXT & NODES ---
@@ -1478,7 +1479,7 @@ html, body {
       masterGain.connect(masterAnalyser);
       masterAnalyser.connect(audioCtx.destination);
 
-      console.log('%c[DUCK ZION]%c Web Audio Engine Inicializado · Masterização por belentani', 'color:#10b981;font-weight:bold;', 'color:#9cb8a7;');
+      console.log('%c[DUCK ZION]%c Web Audio Engine Inicializado Â· MasterizaÃ§Ã£o por belentani', 'color:#10b981;font-weight:bold;', 'color:#9cb8a7;');
     }
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
@@ -1568,7 +1569,7 @@ html, body {
     const vinyl = document.getElementById('player-vinyl-disc');
 
     if (isPlayingBeat) {
-      playBtn.textContent = '❚❚';
+      playBtn.textContent = 'âšâš';
       vinyl.style.animation = 'pulse-gem 1.2s infinite ease-in-out';
       notifyToast(`Reproduzindo Beat: ${TRACKS[currentTrackIdx].n}`);
       let currentStep = 0;
@@ -1580,10 +1581,10 @@ html, body {
         currentStep = (currentStep + 1) % 16;
       }, stepIntervalMs);
     } else {
-      playBtn.textContent = '▶';
+      playBtn.textContent = 'â–¶';
       vinyl.style.animation = 'none';
       if (beatTimer) clearInterval(beatTimer);
-      notifyToast('Reprodução pausada');
+      notifyToast('ReproduÃ§Ã£o pausada');
     }
     renderTrackLists();
   };
@@ -1601,7 +1602,7 @@ html, body {
   function updateActivePlayerTrackUI() {
     const t = TRACKS[currentTrackIdx];
     document.getElementById('player-active-title').textContent = t.n;
-    document.getElementById('player-active-meta').textContent = `${t.a} · ${t.g} · ${t.bpm} BPM`;
+    document.getElementById('player-active-meta').textContent = `${t.a} Â· ${t.g} Â· ${t.bpm} BPM`;
     renderTrackLists();
   }
 
@@ -1694,10 +1695,10 @@ html, body {
         isTunerListening = true;
         btn.textContent = 'Desativar Microfone';
         btn.classList.add('btn-primary');
-        notifyToast('Microfone ativo: analisando afinação cromática...');
+        notifyToast('Microfone ativo: analisando afinaÃ§Ã£o cromÃ¡tica...');
         listenTunerPitch();
       } catch (err) {
-        notifyToast('Permissão de microfone negada ou indisponível.');
+        notifyToast('PermissÃ£o de microfone negada ou indisponÃ­vel.');
       }
     } else {
       if (tunerStream) tunerStream.getTracks().forEach(t => t.stop());
@@ -1748,13 +1749,13 @@ html, body {
   // --- NAVIGATION ROUTING ---
   const PAGE_TITLES = {
     dashboard: 'Command Center',
-    tuner: 'Afinador Cromático DSP',
-    eq: 'Equalizador Paramétrico 4-Band',
+    tuner: 'Afinador CromÃ¡tico DSP',
+    eq: 'Equalizador ParamÃ©trico 4-Band',
     mastering: 'Mastering Rack Belentani',
     player: 'Duck Beats Player',
     plugins: 'Arsenal de Plugins & VSTs',
     logo: 'Gerador de Logos & Identidade',
-    portfolio: 'Discografia & Catálogo'
+    portfolio: 'Discografia & CatÃ¡logo'
   };
 
   window.navigateTo = function(pageId) {
@@ -1775,7 +1776,7 @@ html, body {
     const root = document.getElementById('toast-root');
     const toast = document.createElement('div');
     toast.className = 'toast-msg';
-    toast.innerHTML = `<span style="color:var(--emerald-400);font-size:1.1rem;">◈</span> <span>${msg}</span>`;
+    toast.innerHTML = `<span style="color:var(--emerald-400);font-size:1.1rem;">â—ˆ</span> <span>${msg}</span>`;
     root.appendChild(toast);
     setTimeout(() => {
       toast.style.opacity = '0';
@@ -1853,7 +1854,7 @@ html, body {
     ctx.shadowBlur = 0;
     ctx.font = '600 22px "JetBrains Mono", monospace';
     ctx.fillStyle = '#9cb8a7';
-    ctx.fillText('DUCK ZION · BELENTANI 2026', 400, 490);
+    ctx.fillText('DUCK ZION Â· BELENTANI 2026', 400, 490);
 
     const link = document.createElement('a');
     link.download = `duck-logo-${text.toLowerCase()}.png`;
@@ -1875,7 +1876,7 @@ html, body {
           <div class="track-meta"><h4>${t.n}</h4><span>${t.a}</span></div>
           <div class="genre-badge">${t.g}</div>
           <div class="track-bpm">${t.bpm} BPM</div>
-          <button class="btn btn-sm btn-icon">${idx === currentTrackIdx && isPlayingBeat ? '❚❚' : '▶'}</button>
+          <button class="btn btn-sm btn-icon">${idx === currentTrackIdx && isPlayingBeat ? 'âšâš' : 'â–¶'}</button>
         </div>
       `).join('');
     }
@@ -1887,7 +1888,7 @@ html, body {
           <div class="track-meta"><h4>${t.n}</h4><span>${t.a}</span></div>
           <div class="genre-badge">${t.g}</div>
           <div class="track-bpm">${t.bpm} BPM</div>
-          <button class="btn btn-sm btn-icon">${idx === currentTrackIdx && isPlayingBeat ? '❚❚' : '▶'}</button>
+          <button class="btn btn-sm btn-icon">${idx === currentTrackIdx && isPlayingBeat ? 'âšâš' : 'â–¶'}</button>
         </div>
       `).join('');
     }
@@ -1899,7 +1900,7 @@ html, body {
           <div class="track-meta"><h4>${t.n}</h4><span>${t.a}</span></div>
           <div class="genre-badge">${t.g}</div>
           <div class="track-bpm">${t.bpm} BPM</div>
-          <button class="btn btn-sm btn-icon">▶</button>
+          <button class="btn btn-sm btn-icon">â–¶</button>
         </div>
       `).join('');
     }
@@ -1926,10 +1927,10 @@ html, body {
         <div class="track-meta"><h4>${t.n}</h4><span>${t.a}</span></div>
         <div class="genre-badge">${t.g}</div>
         <div class="track-bpm">${t.bpm} BPM</div>
-        <button class="btn btn-sm btn-icon">▶</button>
+        <button class="btn btn-sm btn-icon">â–¶</button>
       </div>
     `).join('');
-    notifyToast(`Filtrado por gênero: ${genre}`);
+    notifyToast(`Filtrado por gÃªnero: ${genre}`);
   };
 
   // --- PLUGINS GRID ---
@@ -1940,7 +1941,7 @@ html, body {
       <div class="g-card" style="margin-bottom:0;background:var(--bg-surface-raised);cursor:pointer;" onclick="notifyToast('Preset carregado: ${p.n}')">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
           <span class="genre-badge">${p.tag}</span>
-          <span style="color:var(--emerald-400);font-size:0.9rem;">⚙</span>
+          <span style="color:var(--emerald-400);font-size:0.9rem;">âš™</span>
         </div>
         <div style="font-weight:700;font-size:0.92rem;color:var(--text-primary);">${p.n}</div>
         <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">${p.cat}</div>
@@ -1956,7 +1957,7 @@ html, body {
       <div class="g-card" style="margin-bottom:0;background:var(--bg-surface-raised);cursor:pointer;" onclick="notifyToast('Preset carregado: ${p.n}')">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
           <span class="genre-badge">${p.tag}</span>
-          <span style="color:var(--emerald-400);font-size:0.9rem;">⚙</span>
+          <span style="color:var(--emerald-400);font-size:0.9rem;">âš™</span>
         </div>
         <div style="font-weight:700;font-size:0.92rem;color:var(--text-primary);">${p.n}</div>
         <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">${p.cat}</div>
@@ -2209,7 +2210,7 @@ html, body {
       toggleSecret();
       brandClickCounter = 0;
     } else {
-      notifyToast(`Duck Zion Engine · Masterização Belentani (${brandClickCounter}/3)`);
+      notifyToast(`Duck Zion Engine Â· MasterizaÃ§Ã£o Belentani (${brandClickCounter}/3)`);
     }
   };
 
@@ -2225,12 +2226,12 @@ html, body {
 
   // --- LOADER TICK ---
   const loaderMsgs = [
-    'Carregando motores de áudio DSP...',
-    'Calibrando afinador cromático YIN...',
-    'Inicializando equalizador paramétrico...',
-    'Carregando catálogo de produções...',
+    'Carregando motores de Ã¡udio DSP...',
+    'Calibrando afinador cromÃ¡tico YIN...',
+    'Inicializando equalizador paramÃ©trico...',
+    'Carregando catÃ¡logo de produÃ§Ãµes...',
     'Aplicando design Google Emerald Verde...',
-    'Duck Studio Toolkit Pronto · Belentani 2026'
+    'Duck Studio Toolkit Pronto Â· Belentani 2026'
   ];
   let loadStep = 0;
   function tickLoader() {
@@ -2261,5 +2262,9 @@ html, body {
 
 })();
 </script>
-</body>
+
+  <section class="superpowers-mcp" style="margin:2rem 0;padding:1.5rem;border:1px solid #FF2B2B;border-radius:12px;background:#FF2B2B08;"><h2 style="margin:0 0 1rem 0;font-family:sans-serif;color:#FF2B2B;">Superpowers MCP - belentani-hub</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.8rem;"><div><strong>Google:</strong> Drive, Gmail, Gemini, Cloud, Colab</div><div><strong>GitHub:</strong> Codespaces, Repos, Issues, PRs</div><div><strong>IA:</strong> OpenAI ChatGPT, Gemini, Suno</div><div><strong>Social:</strong> LinkedIn, DistroKid</div></div><p style="margin-top:0.8rem;font-size:0.85rem;color:#666;">MCP Hub: belentani-hub | 24 herramientas | 4 grupos</p></section>
+  <script src="C:\Users\USER\workspace\repositorios\heyduck\legacy\omega-superpowers-client.js"></script>
+  </body>
 </html>
+

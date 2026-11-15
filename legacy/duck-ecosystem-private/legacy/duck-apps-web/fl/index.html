@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta name="superpowers" content="mcp-hub=belentani-hub,tools=24,groups=4"><meta name="omega-max" content="senior-agent-enabled">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DUCK FL STUDIO · DAW Web</title>
+<title>DUCK FL STUDIO Â· DAW Web</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; user-select:none; -webkit-user-select:none; }
 :root {
@@ -115,8 +116,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 <div id="app">
   <div id="top">
     <div class="logo">DUCK<span> FL STUDIO</span></div>
-    <div class="btn play" id="playBtn" onclick="togglePlay()">▶</div>
-    <div class="btn stop" onclick="togglePlay(false)">■</div>
+    <div class="btn play" id="playBtn" onclick="togglePlay()">â–¶</div>
+    <div class="btn stop" onclick="togglePlay(false)">â– </div>
     <div class="bpm-box"><input id="bpmInput" type="number" value="120" min="40" max="240" onchange="setBPM(+this.value)"><span>BPM</span></div>
     <div class="mode-seg" id="modeSeg">
       <div class="on" data-mode="pattern" onclick="setMode('pattern')">PATTERN</div>
@@ -124,9 +125,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     </div>
     <div id="timeLbl">1:1.000</div>
     <div class="spacer"></div>
-    <div class="icon-btn" onclick="saveProject()">💾 Save</div>
-    <div class="icon-btn" onclick="loadProject()">📂 Load</div>
-    <div class="icon-btn" onclick="exportWAV()">🎧 Export WAV</div>
+    <div class="icon-btn" onclick="saveProject()">ðŸ’¾ Save</div>
+    <div class="icon-btn" onclick="loadProject()">ðŸ“‚ Load</div>
+    <div class="icon-btn" onclick="exportWAV()">ðŸŽ§ Export WAV</div>
   </div>
 
   <div id="rack">
@@ -136,9 +137,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
   <div id="work">
     <div id="tabs">
-      <div class="on" onclick="goTab('pianoroll',this)">🎹 PIANO ROLL</div>
-      <div onclick="goTab('playlist',this)">🎵 PLAYLIST</div>
-      <div onclick="goTab('recorder',this)">🎙 REC</div>
+      <div class="on" onclick="goTab('pianoroll',this)">ðŸŽ¹ PIANO ROLL</div>
+      <div onclick="goTab('playlist',this)">ðŸŽµ PLAYLIST</div>
+      <div onclick="goTab('recorder',this)">ðŸŽ™ REC</div>
     </div>
     <div id="view">
       <div class="view-panel on" id="p-pianoroll">
@@ -149,9 +150,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
             <div class="btn" onclick="prOctave(-1)">-</div><b id="prOctaveLbl">2</b><div class="btn" onclick="prOctave(1)">+</div>
             <span class="lbl">Nota</span><b id="prNoteLbl">1/16</b>
             <div class="btn" onclick="prNoteLen(-1)">-</div><div class="btn" onclick="prNoteLen(1)">+</div>
-            <div class="btn" onclick="prClear()">🗑 Limpar</div>
+            <div class="btn" onclick="prClear()">ðŸ—‘ Limpar</div>
             <div class="spacer" style="flex:1"></div>
-            <span class="lbl">Dica: clique p/ colocar nota · botão direito p/ apagar</span>
+            <span class="lbl">Dica: clique p/ colocar nota Â· botÃ£o direito p/ apagar</span>
           </div>
           <div id="prWrap"><canvas id="prCanvas"></canvas></div>
           <div id="pr-status"></div>
@@ -160,9 +161,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="view-panel" id="p-playlist">
           <div id="playlist">
             <div id="pl-toolbar">
-              <span class="lbl">Playlist de arranjo — clique numa linha p/ adicionar bloco do pattern</span>
+              <span class="lbl">Playlist de arranjo â€” clique numa linha p/ adicionar bloco do pattern</span>
               <div class="spacer" style="flex:1"></div>
-              <div class="btn" onclick="plClear()">🗑 Limpar</div>
+              <div class="btn" onclick="plClear()">ðŸ—‘ Limpar</div>
             </div>
             <div id="plWrap"><canvas id="plCanvas"></canvas></div>
           </div>
@@ -172,16 +173,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="view-panel" id="p-recorder">
           <div id="recorder">
             <div id="rec-toolbar" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-bottom:1px solid var(--line)">
-              <span class="lbl">🎙 Micrófono:</span>
+              <span class="lbl">ðŸŽ™ MicrÃ³fono:</span>
               <select id="micSelect" style="flex:1;background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:4px 6px;border-radius:4px;font-size:11px;outline:none"></select>
-              <button class="btn" onclick="refreshMics()" style="font-size:10px;padding:4px 10px">↻</button>
+              <button class="btn" onclick="refreshMics()" style="font-size:10px;padding:4px 10px">â†»</button>
               <div style="flex:1"></div>
-              <button class="btn" id="btnRec" onclick="toggleRec()" style="background:var(--bg);color:var(--red);font-weight:700">● GRAVAR</button>
+              <button class="btn" id="btnRec" onclick="toggleRec()" style="background:var(--bg);color:var(--red);font-weight:700">â— GRAVAR</button>
             </div>
             <div style="padding:6px 10px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px">
               <span class="lbl">Tempo: </span>
               <span id="recTime" style="font-family:Consolas,monospace;font-size:18px;color:var(--accent2)">00:00.0</span>
-              <span class="lbl">Nível:</span>
+              <span class="lbl">NÃ­vel:</span>
               <div id="recLevel" style="flex:1;height:8px;background:var(--panel2);border:1px solid var(--line);	border-radius:4px;overflow:hidden">
                 <div id="recLevelFill" style="width:20%;height:100%;background:var(--accent2);transition:width .1s"></div>
               </div>
@@ -212,12 +213,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   </div>
 
   <div id="status">
-    <span>⚡ <b id="stState">STOPPED</b></span>
-    <span>🎼 <b id="stNotes">0</b> notas</span>
-    <span>🎛 <b id="stChannels">8</b> canais</span>
-    <span>🎹 toque teclado A–L p/ preview</span>
+    <span>âš¡ <b id="stState">STOPPED</b></span>
+    <span>ðŸŽ¼ <b id="stNotes">0</b> notas</span>
+    <span>ðŸŽ› <b id="stChannels">8</b> canais</span>
+    <span>ðŸŽ¹ toque teclado Aâ€“L p/ preview</span>
     <span class="spacer" style="flex:1"></span>
-    <span id="stHint">DUCK FL STUDIO · Web Audio DAW</span>
+    <span id="stHint">DUCK FL STUDIO Â· Web Audio DAW</span>
   </div>
 </div>
 
@@ -259,7 +260,7 @@ function defaultChannels(){
     notes:[], steps:new Array(MAXSTEPS).fill(0),
     clips:[] // playlist: {bar, len}
   }));
-  // padrão inicial de bateria no Kick
+  // padrÃ£o inicial de bateria no Kick
   channels[0].notes=[{s:0,m:36,d:2,v:1},{s:8,m:36,d:2,v:1},{s:12,m:36,d:2,v:1},{s:14,m:36,d:1,v:0.7}];
   channels[0].steps[0]=channels[0].steps[8]=channels[0].steps[12]=channels[0].steps[14]=1;
   channels[1].notes=[{s:4,m:38,d:2,v:1},{s:12,m:38,d:2,v:0.9}];
@@ -464,7 +465,7 @@ function togglePlay(force){
   if(playing){ stopPlay(); return; }
   playing=true; curStep=0; nextTick=0; nextTickTime=AC.currentTime+0.06;
   spb=spbCalc(bpm);
-  document.getElementById('playBtn').textContent='⏸';
+  document.getElementById('playBtn').textContent='â¸';
   document.getElementById('playBtn').classList.add('stop');
   document.getElementById('stState').textContent='PLAYING';
   schedulerTimer=setInterval(scheduler,25);
@@ -472,7 +473,7 @@ function togglePlay(force){
 }
 function stopPlay(){
   playing=false; clearInterval(schedulerTimer);
-  document.getElementById('playBtn').textContent='▶';
+  document.getElementById('playBtn').textContent='â–¶';
   document.getElementById('playBtn').classList.remove('stop');
   document.getElementById('stState').textContent='STOPPED';
   document.getElementById('timeLbl').textContent='1:1.000';
@@ -808,7 +809,7 @@ function renderMixer(){
         <label>Rev <input type="range" min="0" max="1" step="0.05" value="${inst.reverb||0}" oninput="setSend(${ci},'reverb',+this.value)"></label>
         <label>Cho <input type="range" min="0" max="1" step="0.05" value="${inst.chorus||0}" oninput="setSend(${ci},'chorus',+this.value)"></label>
       </div>
-      <div class="st-btns"><div class="${inst.mute?'on':''}" onclick="toggleMute(${ci})">M</div><div class="${inst.solo?'on':''}" onclick="toggleSolo(${ci})">S</div><div onclick="removeChannel(${ci})">✕</div></div>`;
+      <div class="st-btns"><div class="${inst.mute?'on':''}" onclick="toggleMute(${ci})">M</div><div class="${inst.solo?'on':''}" onclick="toggleSolo(${ci})">S</div><div onclick="removeChannel(${ci})">âœ•</div></div>`;
     box.appendChild(el);
   });
   renderMasterFX();
@@ -869,7 +870,7 @@ function saveProject(){
   a.href=URL.createObjectURL(blob);
   a.download='duck-fl-project.json';
   a.click();
-  document.getElementById('stHint').textContent='💾 Projeto salvo!';
+  document.getElementById('stHint').textContent='ðŸ’¾ Projeto salvo!';
 }
 function loadProject(){
   const inp=document.createElement('input');
@@ -884,8 +885,8 @@ function loadProject(){
         curOct=d.curOct||2; curNoteLen=d.curNoteLen||16;
         document.getElementById('bpmInput').value=bpm;
         renderAll();
-        document.getElementById('stHint').textContent='📂 Projeto carregado!';
-      }catch(err){ alert('Arquivo inválido'); }
+        document.getElementById('stHint').textContent='ðŸ“‚ Projeto carregado!';
+      }catch(err){ alert('Arquivo invÃ¡lido'); }
     };
     rd.readAsText(f);
   };
@@ -897,7 +898,7 @@ function exportWAV(){
   if(!AC){ initAudio(); }
   const seconds=(loopLength()/16)*(4*(60/bpm));
   if(seconds<=0){ alert('Nada para exportar'); return; }
-  document.getElementById('stHint').textContent='⏳ Renderizando... aguarde';
+  document.getElementById('stHint').textContent='â³ Renderizando... aguarde';
   const offline=new OfflineAudioContext(2, Math.ceil(seconds*44100), 44100);
   const oldAC=AC;
   AC=offline;
@@ -946,10 +947,10 @@ function exportWAV(){
     a.href=URL.createObjectURL(blob);
     a.download='duck-fl-export.wav';
     a.click();
-    document.getElementById('stHint').textContent='🎧 WAV exportado!';
+    document.getElementById('stHint').textContent='ðŸŽ§ WAV exportado!';
   }).catch(err=>{
     AC=oldAC;
-    document.getElementById('stHint').textContent='⚠️ Erro no export';
+    document.getElementById('stHint').textContent='âš ï¸ Erro no export';
     console.error(err);
   });
 }
@@ -995,19 +996,19 @@ async function refreshMics(){
     const mics = devices.filter(d=>d.kind==='audioinput');
     if(mics.length===0){
       sel.innerHTML='<option>Sem microfone detectado</option>';
-      document.getElementById('stHint').textContent='⚠️ Nenhum microfone encontrado';
+      document.getElementById('stHint').textContent='âš ï¸ Nenhum microfone encontrado';
       return;
     }
     const defOpt=document.createElement('option');
-    defOpt.value='default'; defOpt.textContent='🎤 Padrão do sistema';
+    defOpt.value='default'; defOpt.textContent='ðŸŽ¤ PadrÃ£o do sistema';
     sel.appendChild(defOpt);
     mics.forEach((m,i)=>{
       const opt=document.createElement('option');
       opt.value=m.deviceId;
-      opt.textContent=(m.label||`Mic ${i+1}`)+' · '+m.deviceId.slice(0,8);
+      opt.textContent=(m.label||`Mic ${i+1}`)+' Â· '+m.deviceId.slice(0,8);
       sel.appendChild(opt);
     });
-    document.getElementById('stHint').textContent='✅ Microfones listados';
+    document.getElementById('stHint').textContent='âœ… Microfones listados';
   }catch(e){
     sel.innerHTML='<option>Erro ao acessar microfones</option>';
     console.error('enumerateDevices',e);
@@ -1042,7 +1043,7 @@ async function startRecorder(){
       recAnalyzer = AC.createAnalyser();
       recAnalyzer.fftSize = 256;
       recSource.connect(recAnalyzer);
-      recSource.connect(masterOut); // route mic to mix bus → hear recording
+      recSource.connect(masterOut); // route mic to mix bus â†’ hear recording
     }
     // MediaRecorder for capture
     mediaRecorder = new MediaRecorder(mediaStream, { mimeType: 'audio/webm;codecs=opus' });
@@ -1052,14 +1053,14 @@ async function startRecorder(){
     mediaRecorder.start(50); // 50ms timeslice
     recStartTime = performance.now();
     recTimerId = setInterval(updateRecTimer, 100);
-    btn.textContent = '■ PARAR'; btn.style.background = 'var(--red)'; btn.style.color='#fff';
+    btn.textContent = 'â–  PARAR'; btn.style.background = 'var(--red)'; btn.style.color='#fff';
     document.getElementById('recStatus').textContent='Gravando...';
-    document.getElementById('stHint').textContent='🎙 Gravando áudio';
+    document.getElementById('stHint').textContent='ðŸŽ™ Gravando Ã¡udio';
     recAnimationFrameId = requestAnimationFrame(drawRecWave);
   }catch(e){
     console.error('getUserMedia',e);
-    document.getElementById('stHint').textContent='⚠️ Micrófono negado ou indisponível';
-    alert('Não foi possível acessar o microfone.\\nPermita o acesso e selecione outro dispositivo.');
+    document.getElementById('stHint').textContent='âš ï¸ MicrÃ³fono negado ou indisponÃ­vel';
+    alert('NÃ£o foi possÃ­vel acessar o microfone.\\nPermita o acesso e selecione outro dispositivo.');
   }
 }
 
@@ -1125,17 +1126,17 @@ function handleRecStop(){
   if(recAnimationFrameId) cancelAnimationFrame(recAnimationFrameId);
   recAnimationFrameId=null;
   const btn=document.getElementById('btnRec');
-  btn.textContent='● GRAVAR'; btn.style.background='var(--bg)'; btn.style.color='var(--red)';
+  btn.textContent='â— GRAVAR'; btn.style.background='var(--bg)'; btn.style.color='var(--red)';
   document.getElementById('recStatus').textContent='Parado';
-  document.getElementById('stHint').textContent='✅ Gravação concluída';
+  document.getElementById('stHint').textContent='âœ… GravaÃ§Ã£o concluÃ­da';
   if(recChunks.length===0){ return; }
-  // Convert recorded webm/opus chunks → WAV via Web Audio
+  // Convert recorded webm/opus chunks â†’ WAV via Web Audio
   const blob = new Blob(recChunks, { type: 'audio/webm;codecs=opus' });
   const fileObj = { blob, ts: new Date(), duration: document.getElementById('recTime').textContent, id: recordedTakes.length };
   recordedTakes.push(fileObj);
   // Update takes list
   const list=document.getElementById('takesList');
-  list.innerHTML = recordedTakes.map(t=>`<div>Take ${t.id+1} · ${t.duration} · <a href="#" onclick="exportRecTake(${t.id});return false">💾 WAV</a></div>`).join('');
+  list.innerHTML = recordedTakes.map(t=>`<div>Take ${t.id+1} Â· ${t.duration} Â· <a href="#" onclick="exportRecTake(${t.id});return false">ðŸ’¾ WAV</a></div>`).join('');
   // Clear chunks
   recChunks = [];
 }
@@ -1144,7 +1145,7 @@ async function exportRecTake(takeId){
   const take=recordedTakes[takeId];
   if(!take){ return; }
   try{
-    // Decode recorded webm → AudioBuffer → re-encode to WAV
+    // Decode recorded webm â†’ AudioBuffer â†’ re-encode to WAV
     const arrayBuf = await take.blob.arrayBuffer();
     const audioBuf = await AC.decodeAudioData(arrayBuf);
     const wav=encodeWAV(audioBuf, AC.sampleRate);
@@ -1153,7 +1154,7 @@ async function exportRecTake(takeId){
     a.href=URL.createObjectURL(wavBlob);
     a.download=`duck-rec-take-${takeId+1}.wav`;
     a.click();
-    document.getElementById('stHint').textContent=`🎧 Take ${takeId+1} exportado!`;
+    document.getElementById('stHint').textContent=`ðŸŽ§ Take ${takeId+1} exportado!`;
   }catch(e){
     console.error('exportRecTake',e);
     // Fallback: just download the recorded blob directly
@@ -1161,7 +1162,7 @@ async function exportRecTake(takeId){
     a.href=URL.createObjectURL(take.blob);
     a.download=`duck-rec-take-${takeId+1}.webm`;
     a.click();
-    document.getElementById('stHint').textContent=`⚠️ Exportado como WEBM (fallback)`;
+    document.getElementById('stHint').textContent=`âš ï¸ Exportado como WEBM (fallback)`;
   }
 }
 
@@ -1173,5 +1174,9 @@ setupPlaylist();
 prNoteLen(0); // set default label
 renderAll();
 </script>
-</body>
+
+  <section class="superpowers-mcp" style="margin:2rem 0;padding:1.5rem;border:1px solid #FF2B2B;border-radius:12px;background:#FF2B2B08;"><h2 style="margin:0 0 1rem 0;font-family:sans-serif;color:#FF2B2B;">Superpowers MCP - belentani-hub</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.8rem;"><div><strong>Google:</strong> Drive, Gmail, Gemini, Cloud, Colab</div><div><strong>GitHub:</strong> Codespaces, Repos, Issues, PRs</div><div><strong>IA:</strong> OpenAI ChatGPT, Gemini, Suno</div><div><strong>Social:</strong> LinkedIn, DistroKid</div></div><p style="margin-top:0.8rem;font-size:0.85rem;color:#666;">MCP Hub: belentani-hub | 24 herramientas | 4 grupos</p></section>
+  <script src="C:\Users\USER\workspace\repositorios\heyduck\legacy\omega-superpowers-client.js"></script>
+  </body>
 </html>
+

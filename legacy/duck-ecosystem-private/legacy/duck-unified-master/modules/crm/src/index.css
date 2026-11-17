@@ -43,3 +43,19 @@
 .belentani-easter-egg{position:fixed;z-index:25;right:18px;bottom:15px}.belentani-seal{display:grid;place-items:center;width:22px;height:22px;padding:0;border:1px solid rgba(124,255,178,.08);border-radius:50%;color:rgba(124,255,178,.28);background:rgba(8,12,11,.28);opacity:.42;transition:opacity .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}.belentani-seal:hover,.belentani-seal:focus-visible{opacity:1;color:var(--lime);border-color:rgba(124,255,178,.42);transform:scale(1.06);outline:none;box-shadow:0 0 18px rgba(124,255,178,.14)}.belentani-card{position:absolute;right:0;bottom:33px;width:248px;padding:16px 16px 14px;border:1px solid rgba(124,255,178,.25);border-radius:11px;background:rgba(8,15,12,.97);box-shadow:0 14px 38px rgba(0,0,0,.45),0 0 24px rgba(124,255,178,.08);backdrop-filter:blur(18px);animation:float-in .18s ease}.belentani-close{position:absolute;top:9px;right:9px;display:grid;place-items:center;width:22px;height:22px;padding:0;border:0;background:transparent;color:#71867a}.belentani-close:hover{color:var(--lime)}.belentani-kicker{display:block;max-width:190px;color:var(--lime);font:8px 'Space Mono';letter-spacing:.12em;line-height:1.5}.belentani-card strong{display:block;margin-top:9px;color:#e9faee;font:600 14px 'Unbounded';letter-spacing:-.04em}.belentani-card p{margin:8px 0;color:#9caf9f;font-size:10px;line-height:1.45}.belentani-card blockquote{margin:12px 0;padding-left:10px;border-left:1px solid var(--lime);color:#d8ebdd;font-size:11px;line-height:1.5}.belentani-card small{display:block;color:#60766a;font:8px 'Space Mono';line-height:1.45}@media (max-width:820px){.belentani-easter-egg{right:10px;bottom:10px}.belentani-card{right:-5px;width:230px}}
 
 .form-error,.form-status{margin:0.65rem 0;color:#ff9fb3;font-size:0.78rem;line-height:1.45}.form-status{color:#9dffc0}.inline-form input[aria-invalid="true"]{border-color:#ff5274;box-shadow:0 0 0 2px rgba(255,82,116,.12)}
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

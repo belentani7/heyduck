@@ -77,3 +77,19 @@
 @keyframes recPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,68,68,.4);}50%{box-shadow:0 0 0 10px rgba(255,68,68,0);}}
 .rec-btn.stop{border-color:#ffaa00;color:#ffaa00;}
 .rec-btn.play{border-color:var(--a);color:var(--a);}
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

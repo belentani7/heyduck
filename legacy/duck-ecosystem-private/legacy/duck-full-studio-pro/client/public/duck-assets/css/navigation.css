@@ -36,3 +36,19 @@ nav.stuck{background:rgba(8,14,8,.92);backdrop-filter:blur(24px);border-bottom:1
   .nav-links a{font-size:.8rem;color:var(--c);}
   .lang-switcher{top:30px;right:60px;}
 }
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

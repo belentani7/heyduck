@@ -46,3 +46,19 @@
 .hero-scroll span{font-size:.4rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(239,231,208,.2);font-family:var(--f);}
 .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--a),transparent);animation:scrollPulse 2s ease-in-out infinite;}
 @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:.8;transform:scaleY(1.2);}}
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

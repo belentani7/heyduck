@@ -272,3 +272,19 @@ main {
 @media (max-width: 1100px) {
   #app { grid-template-areas: "top" "main" "side"; grid-template-columns: 1fr; }
 }
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

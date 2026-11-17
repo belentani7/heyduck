@@ -15,3 +15,19 @@ img{max-width:100%;display:block;}
 
 /* Scroll Progress */
 .scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;background:var(--a);z-index:1000;transition:width .1s linear;}
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

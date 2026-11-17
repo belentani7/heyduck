@@ -198,3 +198,19 @@ button:active {
 .btn-sweep::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--a);transform:translateX(-101%);transition:transform .4s cubic-bezier(.23,1,.32,1);z-index:0;}
 .btn-sweep:hover::before{transform:translateX(0);}
 .btn-sweep span{position:relative;z-index:1;}
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

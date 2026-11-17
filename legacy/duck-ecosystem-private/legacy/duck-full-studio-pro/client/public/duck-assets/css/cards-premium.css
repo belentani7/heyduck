@@ -116,3 +116,19 @@
 .tc-shine{position:relative;overflow:hidden;}
 .tc-shine::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.08) 0%,transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none;}
 .tc-shine:hover::after{opacity:1;}
+
+/* --- mejora universal: movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- mejora universal: foco visible --- */
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}

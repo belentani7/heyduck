@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -30,27 +30,32 @@ footer{text-align:center;color:#48695e;font-size:10px;margin-top:30px;letter-spa
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="iDuck — que fone é esse?">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 <div id="boot"><div class="bootbox"><div class="duck">🦆</div><h1>iDUCK // INITIALIZING ECOSYSTEM</h1><div class="bar"><i></i></div></div></div>
 <main class="shell">
 <header class="top"><div class="brand"><div class="mark">🦆</div><div><strong>iDuck</strong><small>que fone é esse?</small></div></div><div class="status"><i class="dot"></i> DUCK OS ONLINE</div></header>
-<section class="hero"><div class="eyebrow">Duck ecosystem / personal web OS</div><h1>iDuck <span>verde esmeralda.</span></h1><p>Um mini sistema operativo web que junta os sites do ecossistema Duck num só lugar — com Beat, biblioteca, dock, laboratório e portais como apps.</p><div class="hero-actions"><button class="pill primary" onclick="openApp('YouDuck')">Abrir YouDuck ↗</button><button class="pill" onclick="openApp('Duck Beat')">▶ Duck Beat</button><button class="pill" onclick="openApp('Sites')">Ver sites</button></div></section>
+<section class="hero"><div class="eyebrow">Duck ecosystem / personal web OS</div><h1>iDuck <span>verde esmeralda.</span></h1><p>Um mini sistema operativo web que junta os sites do ecossistema Duck num só lugar — com Beat, biblioteca, dock, laboratório e portais como apps.</p><div class="hero-actions"><button class="pill primary" onclick="openApp('YouDuck')" type="button">Abrir YouDuck ↗</button><button class="pill" onclick="openApp('Duck Beat')" type="button">▶ Duck Beat</button><button class="pill" onclick="openApp('Sites')" type="button">Ver sites</button></div></section>
 <section class="section"><div class="sectionhead"><h2>Apps Duck</h2><span>touch / click para abrir</span></div><div class="apps">
-<button class="app" onclick="openApp('YouDuck')"><div class="ico">🦆</div><b>YouDuck</b><small>portal principal do ecossistema</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('DuckBook')"><div class="ico">📗</div><b>DuckBook</b><small>biblioteca, notas e conhecimento</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('DickDock')"><div class="ico">🟣</div><b>DickDock</b><small>dock social / utilidades</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('Duck Beat')"><div class="ico">🥁</div><b>Duck Beat</b><small>mini groovebox no navegador</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('Duck Studio')"><div class="ico">🎛️</div><b>Duck Studio</b><small>produção e ferramentas criativas</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('Gema Lab')"><div class="ico">💎</div><b>Gema Lab</b><small>laboratório de experiências Duck</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('Portal')"><div class="ico">🌀</div><b>Portal</b><small>entrada para o universo completo</small><div class="spark"></div></button>
-<button class="app" onclick="openApp('Sites')"><div class="ico">🌐</div><b>Duck Web</b><small>todos os sites num painel</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('YouDuck')" type="button"><div class="ico">🦆</div><b>YouDuck</b><small>portal principal do ecossistema</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('DuckBook')" type="button"><div class="ico">📗</div><b>DuckBook</b><small>biblioteca, notas e conhecimento</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('DickDock')" type="button"><div class="ico">🟣</div><b>DickDock</b><small>dock social / utilidades</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('Duck Beat')" type="button"><div class="ico">🥁</div><b>Duck Beat</b><small>mini groovebox no navegador</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('Duck Studio')" type="button"><div class="ico">🎛️</div><b>Duck Studio</b><small>produção e ferramentas criativas</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('Gema Lab')" type="button"><div class="ico">💎</div><b>Gema Lab</b><small>laboratório de experiências Duck</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('Portal')" type="button"><div class="ico">🌀</div><b>Portal</b><small>entrada para o universo completo</small><div class="spark"></div></button>
+<button class="app" onclick="openApp('Sites')" type="button"><div class="ico">🌐</div><b>Duck Web</b><small>todos os sites num painel</small><div class="spark"></div></button>
 </div></section>
 <section class="section feature"><div class="card beat"><h3>Duck Beat <span class="purple">●</span></h3><p>8-step groovebox — toca no pad e cria o teu loop.</p><div class="meters" id="meters"></div><div class="pads" id="pads"></div></div><div class="card"><div class="sectionhead"><h2>Sites conectados</h2><span>links web, não repos</span></div><div class="links" id="sites"></div></div></section>
 <footer>iDUCK // DUCK ECOSYSTEM // EMERALD BUILD // 2026</footer>
 </main>
-<div class="dock"><button class="home" onclick="window.scrollTo({top:0,behavior:'smooth'})">🦆</button><button onclick="openApp('YouDuck')">◉</button><button onclick="openApp('Duck Beat')">♫</button><button onclick="openApp('DuckBook')">▣</button><button onclick="openApp('Sites')">◎</button></div>
-<div class="window" id="window"><div class="winhead"><b id="winTitle">iDuck</b><button class="close" onclick="closeApp()">×</button></div><div class="winbody" id="winBody"></div></div>
+<div class="dock"><button class="home" onclick="window.scrollTo({top:0,behavior:'smooth'})" type="button">🦆</button><button onclick="openApp('YouDuck')" type="button">◉</button><button onclick="openApp('Duck Beat')" type="button">♫</button><button onclick="openApp('DuckBook')" type="button">▣</button><button onclick="openApp('Sites')" type="button">◎</button></div>
+<div class="window" id="window"><div class="winhead"><b id="winTitle">iDuck</b><button class="close" onclick="closeApp()" type="button">×</button></div><div class="winbody" id="winBody"></div></div>
 <script>
 // SITE ROUTES: URLs are intentionally web destinations, not Git repositories.
 // Replace/add deployed URLs here as each Duck site goes live.

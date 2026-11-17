@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +40,11 @@
 <meta name="robots" content="index,follow">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="DUCK — Produtor musical e laboratório de som">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
   <a class="skip-link" href="#main">Ir para o conteúdo</a>
@@ -67,7 +72,7 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-grid" aria-hidden="true"></div>
       <figure class="hero-artifact" aria-hidden="true">
-        <img src="assets/duck-green-artifact.png" width="1536" height="2304" alt="">
+        <img src="assets/duck-green-artifact.png" width="1536" height="2304" alt="" loading="lazy" decoding="async">
       </figure>
       <div class="hero-orbit" aria-hidden="true">
         <span class="orbit orbit-a"></span>
@@ -293,10 +298,10 @@
     <a href="#top">Voltar ao topo</a>
   </footer>
 
-  <script src="vendor/gsap.min.js"></script>
-  <script src="vendor/ScrollTrigger.min.js"></script>
-  <script src="vendor/CustomEase.min.js"></script>
-  <script src="vendor/lenis.min.js"></script>
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/CustomEase.min.js" defer></script>
+  <script src="vendor/lenis.min.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

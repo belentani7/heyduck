@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html dir="ltr" lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -160,21 +160,27 @@ footer b{color:var(--text2);font-weight:500}
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="DUCK — Produção Musical">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
 </head>
 <body>
 
-<nav>
+<nav aria-label="Principal">
   <div class="nav-logo"><span>DUCK</span></div>
-  <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu" type="button">☰</button>
   <div class="nav-links" id="navLinks">
     <a href="#music" data-i18n="nav.music">Música</a>
     <a href="#studio" data-i18n="nav.studio">Estúdio</a>
     <a href="#about" data-i18n="nav.about">Sobre</a>
     <a href="#contact" data-i18n="nav.contact">Contacto</a>
     <div class="lang-switch">
-      <button data-lang="pt" class="active">PT</button>
-      <button data-lang="es">ES</button>
-      <button data-lang="en">EN</button>
+      <button data-lang="pt" class="active" type="button">PT</button>
+      <button data-lang="es" type="button">ES</button>
+      <button data-lang="en" type="button">EN</button>
     </div>
   </div>
 </nav>

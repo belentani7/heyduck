@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,11 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="DUCK SEQUENCER — Estúdio">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
   <div id="app">
@@ -27,8 +32,8 @@
         </div>
       </div>
       <div class="transport">
-        <button id="btnPlay" class="btn btn-primary" title="Espaço">▶ PLAY</button>
-        <button id="btnStop" class="btn" title="Esc">■ STOP</button>
+        <button id="btnPlay" class="btn btn-primary" title="Espaço" type="button">▶ PLAY</button>
+        <button id="btnStop" class="btn" title="Esc" type="button">■ STOP</button>
         <label class="tempo-box">
           BPM
           <input id="tempo" type="number" min="40" max="240" value="120">
@@ -48,8 +53,8 @@
         <span id="midiStatus" class="midi-status">🎹 MIDI: ...</span>
       </div>
       <div class="actions">
-        <button id="btnN8n" class="btn">⚡ n8n</button>
-        <button id="btnOllama" class="btn btn-ai">🤖 Ollama IA</button>
+        <button id="btnN8n" class="btn" type="button">⚡ n8n</button>
+        <button id="btnOllama" class="btn btn-ai" type="button">🤖 Ollama IA</button>
         <label class="tempo-box ai-box">
           Modelo
           <select id="ollamaModel"></select>
@@ -62,9 +67,9 @@
           Variação
           <input id="ollamaVariation" type="range" min="10" max="90" value="40">
         </label>
-        <button id="btnSave" class="btn">💾 Salvar padrão</button>
-        <button id="btnExport" class="btn">⬇ Exportar JSON</button>
-        <button id="btnImport" class="btn">⬆ Importar</button>
+        <button id="btnSave" class="btn" type="button">💾 Salvar padrão</button>
+        <button id="btnExport" class="btn" type="button">⬇ Exportar JSON</button>
+        <button id="btnImport" class="btn" type="button">⬆ Importar</button>
         <input type="file" id="fileImport" accept=".json" hidden>
         <span id="status" class="status"></span>
       </div>
@@ -103,7 +108,7 @@
     <div id="toast"></div>
   </div>
 
-  <script src="js/audio.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/audio.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>

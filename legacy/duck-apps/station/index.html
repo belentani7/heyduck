@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -124,6 +124,11 @@ body {
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="DUCK STATION — MIDI Mobile Studio">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 
@@ -174,8 +179,8 @@ body {
   <div class="panel" id="p-seq">
     <div class="section-title">Sequencer — 16 passos</div>
     <div class="seq-head">
-      <div class="bpm"><button onclick="chBpm(-5)">−</button><b id="bpmVal">120</b><button onclick="chBpm(5)">+</button></div>
-      <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+      <div class="bpm"><button onclick="chBpm(-5)" type="button">−</button><b id="bpmVal">120</b><button onclick="chBpm(5)" type="button">+</button></div>
+      <button class="play-btn" id="playBtn" onclick="togglePlay()" type="button">▶</button>
     </div>
     <div class="instr-row"><div class="lbl">KICK</div><div class="seq-cells" id="cells-kick"></div></div>
     <div class="instr-row"><div class="lbl">SNARE</div><div class="seq-cells" id="cells-snare"></div></div>

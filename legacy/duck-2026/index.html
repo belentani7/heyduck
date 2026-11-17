@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -25,6 +25,12 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="DUCK — Unified Studio Portfolio">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -33,7 +39,7 @@
 
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="DUCK — início">
-      <img src="images/logo-768x768.png" alt="DUCK">
+      <img src="images/logo-768x768.png" alt="DUCK" loading="lazy" decoding="async">
     </a>
     <nav aria-label="Navegação principal">
       <a href="#lancamentos">Lançamentos</a>
@@ -59,7 +65,7 @@
         <span class="orbit orbit-a"></span>
         <span class="orbit orbit-b"></span>
         <div class="logo-object">
-          <img src="images/logo-768x768.png" alt="">
+          <img src="images/logo-768x768.png" alt="" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="hero-copy">
@@ -141,7 +147,7 @@
     </section>
 
     <section class="contact" id="contato" aria-labelledby="contactTitle">
-      <img class="contact-logo" src="images/logo-768x768.png" alt="Logo oficial DUCK">
+      <img class="contact-logo" src="images/logo-768x768.png" alt="Logo oficial DUCK" loading="lazy" decoding="async">
       <p class="eyebrow">Contato oficial</p>
       <h2 id="contactTitle">Seu próximo som<br><em>começa aqui.</em></h2>
       <p>Baseado em Aracaju, Duck atende projetos remotos com direção, produção e entrega profissional. Escreve com a referência, o prazo e o objetivo.</p>
@@ -162,8 +168,8 @@
 
   <noscript>Ative JavaScript para acessar os previews e a experiência animada.</noscript>
 <!-- FRONT-UPGRADE: Vanta fog -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r170/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r170/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
 <script>(function(){try{
 document.body.style.position='relative';
 VANTA.FOG({el:document.body,backgroundAlpha:0,highlightColor:0xb7ff45,midtoneColor:0x77b95c,baseColor:0x07110b,speed:0.6});

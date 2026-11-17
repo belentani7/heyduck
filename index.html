@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html dir="ltr" lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,6 +79,11 @@ footer.site{border-top:1px solid var(--line);padding:28px 0 44px;color:var(--dim
 <meta name="color-scheme" content="light dark">
 <meta name="robots" content="index,follow">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="Heyduck · Producción musical y sonido procedural">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -102,7 +107,7 @@ footer.site{border-top:1px solid var(--line);padding:28px 0 44px;color:var(--dim
   <div class="player">
     <canvas id="audio-vis" class="visualizer" aria-label="Visualizador de espectro de audio"></canvas>
     <div class="controls">
-      <button class="btn-play" id="btn-play">▶ Reproducir</button>
+      <button class="btn-play" id="btn-play" type="button">▶ Reproducir</button>
       <input type="range" class="range" id="volumen" min="0" max="1" step="0.01" value="0.85" aria-label="Volumen">
     </div>
   </div>

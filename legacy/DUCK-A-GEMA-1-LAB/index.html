@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,13 +142,18 @@
 <meta name="robots" content="index,follow">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="DUCK - Produtor Musical Profissional">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
   <div class="app-shell">
     <!-- TopBar -->
     <div class="topbar">
       <a href="/" class="brand">
-        <img src="./assets/duck-logo.png" alt="DUCK Logo">
+        <img src="./assets/duck-logo.png" alt="DUCK Logo" loading="lazy" decoding="async">
         <div class="brand-copy">
           <strong>DUCK</strong>
           <span>v0.1.0 Beta</span>
@@ -269,8 +274,8 @@
 
         <!-- Transport Controls -->
         <div class="transport-bar">
-          <button class="btn" id="play-btn">▶ Play</button>
-          <button class="btn" id="stop-btn">⏹ Stop</button>
+          <button class="btn" id="play-btn" type="button">▶ Play</button>
+          <button class="btn" id="stop-btn" type="button">⏹ Stop</button>
 
           <div class="tempo-control">
             <label for="tempo">BPM:</label>
@@ -282,7 +287,7 @@
             <span id="position">0:1</span> / <span id="total-bars">8</span> Compassos
           </div>
 
-          <button class="btn" id="export-btn" style="margin-left: auto;">📥 Exportar</button>
+          <button class="btn" id="export-btn" style="margin-left: auto;" type="button">📥 Exportar</button>
         </div>
       </div>
 
@@ -340,9 +345,9 @@
   </div>
 
   <!-- Scripts em ordem de dependência -->
-  <script src="./assets/gsap.min.js"></script>
-  <script src="./js/audio-engine.js"></script>
-  <script src="./js/main.js"></script>
+  <script src="./assets/gsap.min.js" defer></script>
+  <script src="./js/audio-engine.js" defer></script>
+  <script src="./js/main.js" defer></script>
 
   <script>
     // Info de inicialização no console

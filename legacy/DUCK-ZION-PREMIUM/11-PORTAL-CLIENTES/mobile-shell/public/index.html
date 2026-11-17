@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html dir="ltr" lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -20,10 +20,15 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="ClientPortal Pro">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
   <header class="bar"><span class="brand">ClientPortal Pro</span><span class="status" id="status">Configurar servidor</span><button id="settings" type="button">Servidor</button></header>
-  <iframe id="portal" title="Portal de clientes" allow="microphone; autoplay; clipboard-read; clipboard-write"></iframe>
+  <iframe id="portal" title="Portal de clientes" allow="microphone; autoplay; clipboard-read; clipboard-write" loading="lazy"></iframe>
   <section class="setup" id="setup" aria-labelledby="setup-title">
     <form class="card" id="form">
       <h1 id="setup-title">Conectar con el portal</h1>

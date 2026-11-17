@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html dir="ltr" lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -203,6 +203,11 @@ body {
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:title" content="iDuck — que fone é esse?">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
 
@@ -360,7 +365,7 @@ car.addEventListener('mouseleave', () => { md = false; });
 function openD(name) {
   const r = REPOS.find(x => x.name === name);
   detail.innerHTML = `
-    <button class="back" onclick="closeD()">← voltar</button>
+    <button class="back" onclick="closeD()" type="button">← voltar</button>
     <div class="d-emoji">${r.emoji}</div>
     <div class="d-title">${r.name}</div>
     <div class="d-oque">${r.oque}</div>

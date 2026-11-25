@@ -46,32 +46,82 @@ export function collectPages(root) {
   return pages.sort();
 }
 
-/**
- * Bloque completo de script o estilo, con cierre correspondiente al mismo
- * nombre (`\1`) y tolerante a `</script >`. El cierre con espacio y el
- * anidamiento son los dos casos que una expresión regular ingenua no cubre.
- */
-const EMBEDDED_BLOCK = /<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi;
+/** Etiquetas cuyo contenido no forma parte del documento que se audita. */
+const EMBEDDED = ["script", "style"];
 
-/** Cualquier etiqueta de apertura o cierre de script/estilo que quede suelta. */
-const STRAY_TAG = /<\/?(?:script|style)\b[^>]*>/gi;
+/** Carácter que puede seguir al nombre de una etiqueta: `<script>`, `<script >`… */
+function endsTagName(lower, index) {
+  const char = lower[index];
+  return char === undefined || char === ">" || char === "/" || /\s/.test(char);
+}
 
 /**
- * Devuelve solo el cuerpo del documento (sin `<head>`) y sin script ni estilo.
+ * Posición del cierre válido de `name` a partir de `from`, o `-1`.
  *
- * Se aplica en bucle hasta que no cambia nada (un bloque anidado puede dejar
- * otro al descubierto) y, al final, se eliminan las etiquetas sueltas que hayan
- * sobrevivido —un `<script>` sin cerrar, por ejemplo— para que el texto que se
- * analiza no pueda contener ni una etiqueta de script.
+ * Un cierre válido es `</script>` o `</script   >`; un `</scriptx>` no lo es.
+ */
+function closingTagAt(lower, name, from) {
+  const needle = "</" + name;
+  let search = from;
+  for (;;) {
+    const found = lower.indexOf(needle, search);
+    if (found === -1) return -1;
+    let cursor = found + needle.length;
+    while (cursor < lower.length && /\s/.test(lower[cursor])) cursor += 1;
+    if (lower[cursor] === ">") return cursor + 1;
+    search = found + needle.length;
+  }
+}
+
+/**
+ * Devuelve solo el cuerpo del documento (sin `<head>`) y sin `<script>` ni
+ * `<style>`.
+ *
+ * Se recorre el marcado buscando etiquetas en lugar de aplicar expresiones
+ * regulares al documento entero: así un cierre con espacios (`</script >`), un
+ * bloque anidado o una etiqueta sin cerrar no dejan código dentro del texto que
+ * después se audita. Si un bloque no se cierra, se descarta su etiqueta de
+ * apertura y se sigue leyendo, para no perder el resto de la página.
  */
 export function bodyOf(html) {
-  let current = html.replace(/<head\b[\s\S]*?<\/head\s*>/i, "");
-  let previous;
-  do {
-    previous = current;
-    current = current.replace(EMBEDDED_BLOCK, "");
-  } while (current !== previous);
-  return current.replace(STRAY_TAG, "");
+  const source = html.replace(/<head\b[\s\S]*?<\/head\s*>/i, "");
+  const lower = source.toLowerCase();
+  let out = "";
+  let index = 0;
+
+  while (index < source.length) {
+    const open = lower.indexOf("<", index);
+    if (open === -1) {
+      out += source.slice(index);
+      break;
+    }
+    out += source.slice(index, open);
+
+    const name = EMBEDDED.find((candidate) => lower.startsWith("<" + candidate, open) && endsTagName(lower, open + candidate.length + 1));
+    if (name) {
+      const close = closingTagAt(lower, name, open + 1);
+      if (close === -1) {
+        // Bloque sin cerrar: se elimina solo la etiqueta de apertura.
+        const endOfTag = lower.indexOf(">", open);
+        index = endOfTag === -1 ? source.length : endOfTag + 1;
+      } else {
+        index = close;
+      }
+      continue;
+    }
+
+    const stray = EMBEDDED.find((candidate) => lower.startsWith("</" + candidate, open) && endsTagName(lower, open + candidate.length + 2));
+    if (stray) {
+      const endOfTag = lower.indexOf(">", open);
+      index = endOfTag === -1 ? source.length : endOfTag + 1;
+      continue;
+    }
+
+    out += "<";
+    index = open + 1;
+  }
+
+  return out;
 }
 
 /** Atributos de una etiqueta de apertura en forma de objeto. */

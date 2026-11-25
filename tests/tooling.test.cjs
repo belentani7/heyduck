@@ -96,6 +96,8 @@ test("bodyOf elimina script y estilo incluso con cierres irregulares", async () 
     "<script>outer <script>inner</script> restante </script>",
     "<STYLE>p{color:red}</STYLE>",
     '<script src="js/suelto.js">',
+    "</scriptx>",                       // no es un cierre válido
+    "<p>final visible</p>",
     "</body>"
   ].join("\n");
 
@@ -104,6 +106,7 @@ test("bodyOf elimina script y estilo incluso con cierres irregulares", async () 
   assert.doesNotMatch(body, /<script/i, "no puede sobrevivir ninguna etiqueta script");
   assert.doesNotMatch(body, /<style/i, "no puede sobrevivir ninguna etiqueta style");
   assert.doesNotMatch(body, /alert\(/, "el código de los scripts se elimina con su bloque");
+  assert.match(body, /final visible/, "un script sin cerrar no se come el resto de la página");
 });
 
 test("audit-html acepta un documento correcto y señala clases sin CSS", async () => {

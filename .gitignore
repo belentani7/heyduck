@@ -47,3 +47,10 @@ REPO.md
 # Nota: CONTRIBUTING.md y CODE_OF_CONDUCT.md SÍ se versionan.
 # Estuvieron en esta lista por error y `scripts/doctor.py` los exigía: el
 # repositorio se contradecía a sí mismo.
+
+# Browser QA profiles are runtime data, never source
+**/.duck-qa/edge-profile*/
+**/.browser_data_dir/
+**/terminal_full_output/
+**/.gdrive-rclone.ini
+**/.secrets/

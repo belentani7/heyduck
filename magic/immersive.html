@@ -69,8 +69,21 @@ border-radius:var(--radius);margin:24px 0;display:block}
 .superpowers-badge{display:inline-block;font-family:var(--mono);font-size:.65rem;
 letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--accent2);
 color:var(--accent2);padding:4px 10px;border-radius:999px;margin:10px 0}
+
+/* Ajustes de auditoría: componentes que se usaban sin regla propia. */
+.box{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin:2rem 0}
+.box button{min-height:44px;padding:.6rem 1rem;border-radius:999px;border:1px solid var(--line);
+background:var(--bg2,var(--bg-2));color:var(--ink);font:inherit;cursor:pointer}
+.box button:hover,.btn:hover{border-color:var(--accent)}
+.btn{min-height:44px;padding:.5rem 1rem;border-radius:999px;border:1px solid var(--line);
+background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.ui{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center;margin-top:1rem}
+.cta{display:inline-block;padding:.7rem 1.3rem;border-radius:999px;background:var(--accent);
+color:#0b0a09;font-weight:600;text-decoration:none}
+.sign{margin-top:2.5rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
+text-transform:uppercase;color:var(--dim);text-align:center}
+.sig{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 </style>
-<meta name="description" content="BELENTANI the DUCK / NOIACORE universe.. Información, recursos y contacto en un solo sitio, sin registro.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="BELENTANI · DUCK · sitio de estudio de producción musical">
 <meta property="og:description" content="BELENTANI the DUCK / NOIACORE universe.. Información, recursos y contacto en un solo sitio, sin registro.">
@@ -82,7 +95,7 @@ color:var(--accent2);padding:4px 10px;border-radius:999px;margin:10px 0}
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site"><div class="wrap" style="display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap">
-<div class="brand">magic <span>· ecosistema Belentani · WebGL online</span></div>
+<div class="brand">magic <span>· ecosistema Belentani</span></div>
 <nav class="site" aria-label="Navegación principal"><a href="../index.html">Inicio</a><a href="../docs.html">Documentación</a><a href="../accesibilidad.html">Accesibilidad</a><a href="../privacidad.html">Privacidad</a><a href="../404.html">404</a></nav>
 </div></header>
 <main id="contenido"><div class="wrap">
@@ -106,10 +119,10 @@ color:var(--accent2);padding:4px 10px;border-radius:999px;margin:10px 0}
   <p id="lore"></p>
 
   <h2>Sound</h2>
-  <button class="btn" data-s="ambient">Ambient</button>
-  <button class="btn" data-s="chime">Chime</button>
-  <button class="btn" data-s="whoosh">Whoosh</button>
-  <button class="btn" data-s="power">Power</button>
+  <button type="button" class="btn" data-s="ambient">Ambient</button>
+  <button type="button" class="btn" data-s="chime">Chime</button>
+  <button type="button" class="btn" data-s="whoosh">Whoosh</button>
+  <button type="button" class="btn" data-s="power">Power</button>
 
   <h2>Directions</h2>
   <blockquote>

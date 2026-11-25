@@ -1,10 +1,13 @@
+name: CodeQL
+
 permissions:
   contents: read
+  actions: read
+  security-events: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-name: CodeQL
 
 on:
   push:
@@ -14,11 +17,6 @@ on:
   schedule:
     - cron: '0 5 * * 1'
   workflow_dispatch:
-
-permissions:
-  contents: read
-  actions: read
-  security-events: write
 
 jobs:
   analyze:
@@ -31,5 +29,10 @@ jobs:
         uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
+          # `legacy/` son exportaciones archivadas, no código del producto:
+          # analizarlas multiplica el tiempo del job sin proteger nada vivo.
+          config: |
+            paths-ignore:
+              - legacy
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4

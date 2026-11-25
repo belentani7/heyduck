@@ -26,11 +26,11 @@ const DUCK_DATA = {
 
   // Hero Backgrounds
   heroBackgrounds: [
-    "images/studio/setup-2-1920x1280.jpg",
-    "images/studio/setup-3-1920x1280.jpg",
-    "images/studio/setup-4-1920x1280.jpg",
-    "images/studio/setup-2-1920x1280.jpg",
-    "images/VERDE/mix-3-1920x1280.jpg"
+    "images/studio/setup-2-1920x1280.webp",
+    "images/studio/setup-3-1920x1280.webp",
+    "images/studio/setup-4-1920x1280.webp",
+    "images/studio/setup-2-1920x1280.webp",
+    "images/VERDE/mix-3-1920x1280.webp"
   ],
 
   // Beat Store / License Packages
@@ -115,6 +115,7 @@ const DUCK_DATA = {
       artist: "feat. Big Murdda",
       type: "SINGLE",
       cover: "images/covers/cold-feat-duck4x.jpg",
+      coverWebp: "images/covers/cold-feat-duck4x.webp",
       link: "https://music.apple.com/us/album/cold-feat-duck4x/1895058889",
       genre: "Hip-Hop / Drill",
       streams: "850K",
@@ -127,6 +128,7 @@ const DUCK_DATA = {
       artist: "Luiz Cinnamon",
       type: "PRODUCTION",
       cover: "images/covers/posturadona-256x255.png",
+      coverWebp: "images/covers/posturadona-256x255.webp",
       link: "#",
       genre: "MPB / Afrobeat",
       streams: "2.4M",
@@ -139,6 +141,7 @@ const DUCK_DATA = {
       artist: "Leones",
       type: "PRODUCTION",
       cover: "images/covers/tititi-254x256.png",
+      coverWebp: "images/covers/tititi-254x256.webp",
       link: "#",
       genre: "Pop Funk",
       streams: "1.8M",
@@ -151,6 +154,7 @@ const DUCK_DATA = {
       artist: "Leones",
       type: "PRODUCTION",
       cover: "images/covers/leones-254x256.png",
+      coverWebp: "images/covers/leones-254x256.webp",
       link: "#",
       genre: "Pop Urban",
       streams: "950K",
@@ -163,6 +167,7 @@ const DUCK_DATA = {
       artist: "Belentani",
       type: "PRODUCTION",
       cover: "images/covers/whrote-256x255.png",
+      coverWebp: "images/covers/whrote-256x255.webp",
       link: "#",
       genre: "R&B / Soul",
       streams: "3.1M",
@@ -175,6 +180,7 @@ const DUCK_DATA = {
       artist: "Belentani",
       type: "PRODUCTION",
       cover: "images/covers/lento-256x256.jpg",
+      coverWebp: "images/covers/lento-256x256.webp",
       link: "#",
       genre: "R&B / Slow Trap",
       streams: "1.5M",
@@ -187,6 +193,7 @@ const DUCK_DATA = {
       artist: "Belentani",
       type: "PRODUCTION",
       cover: "images/covers/heart-256x255.png",
+      coverWebp: "images/covers/heart-256x255.webp",
       link: "#",
       genre: "R&B / Pop",
       streams: "4.2M",
@@ -297,6 +304,13 @@ const DUCK_DATA = {
   ]
 };
 
+// Exportaciones: CommonJS para los tests de contrato en Node, y global
+// explícito para el navegador (un `const` de nivel superior no crea propiedad
+// en `window`, así que `site.js` necesita esta asignación).
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = DUCK_DATA;
+}
+
+if (typeof window !== 'undefined') {
+  window.DUCK_DATA = DUCK_DATA;
 }

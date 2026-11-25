@@ -1,17 +1,18 @@
+name: Verify DUCK discovery
+
 permissions:
   contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-name: Verify DUCK discovery
 on:
   pull_request:
   push:
     branches: [main]
   workflow_dispatch:
-permissions:
-  contents: read
+
 jobs:
   seo-smoke:
     runs-on: ubuntu-24.04

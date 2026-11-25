@@ -122,6 +122,9 @@ export function auditPage(file, html, cssText) {
     if (found > 1) report("error", rule, found + " × " + label + " (debe ser único)");
   }
 
+  // --- ids (se recogen antes para validar saltos sin regex dinámica) ---
+  const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map((match) => match[1]);
+
   // --- Enlaces de salto ---
   const skipLinks = [...body.matchAll(/<a\b([^>]*class=["'][^"']*\bskip(?:-link)?\b[^"']*["'][^>]*)>/gi)];
   if (skipLinks.length > 1) {
@@ -134,13 +137,12 @@ export function auditPage(file, html, cssText) {
       continue;
     }
     const id = href.slice(1);
-    if (!new RegExp('id=["\\\']' + id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + '["\\\']').test(body)) {
-      report("error", "skip-link-target", 'el enlace de salto apunta a #' + id + ", que no existe");
+    if (!ids.includes(id)) {
+      report("error", "skip-link-target", "el enlace de salto apunta a #" + id + ", que no existe");
     }
   }
 
   // --- ids duplicados ---
-  const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map((m) => m[1]);
   const seen = new Map();
   for (const id of ids) seen.set(id, (seen.get(id) || 0) + 1);
   for (const [id, times] of seen) {

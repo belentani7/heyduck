@@ -104,7 +104,10 @@ function measure() {
       archivos_de_imagen: images.length,
       pruebas_node: tests.node,
       pruebas_python: tests.python,
-      bytes_desplegables: deployableBytes(),
+      // Se expresa en MB con un decimal: un total de bytes exactos se
+      // desactualizaría con cualquier edición de una coma y convertiría el
+      // gate en ruido. Un cambio real de 100 kB sí mueve la cifra.
+      megabytes_desplegables: Math.round(deployableBytes() / 1e5) / 10,
       paginas_publicas: pages.filter((page) => !page.includes("/")).length
     },
     generado: new Date().toISOString()

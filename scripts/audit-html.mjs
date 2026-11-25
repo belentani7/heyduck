@@ -46,12 +46,32 @@ export function collectPages(root) {
   return pages.sort();
 }
 
-/** Devuelve solo el cuerpo del documento (sin `<head>`) y sin script/style. */
+/**
+ * Bloque completo de script o estilo, con cierre correspondiente al mismo
+ * nombre (`\1`) y tolerante a `</script >`. El cierre con espacio y el
+ * anidamiento son los dos casos que una expresión regular ingenua no cubre.
+ */
+const EMBEDDED_BLOCK = /<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi;
+
+/** Cualquier etiqueta de apertura o cierre de script/estilo que quede suelta. */
+const STRAY_TAG = /<\/?(?:script|style)\b[^>]*>/gi;
+
+/**
+ * Devuelve solo el cuerpo del documento (sin `<head>`) y sin script ni estilo.
+ *
+ * Se aplica en bucle hasta que no cambia nada (un bloque anidado puede dejar
+ * otro al descubierto) y, al final, se eliminan las etiquetas sueltas que hayan
+ * sobrevivido —un `<script>` sin cerrar, por ejemplo— para que el texto que se
+ * analiza no pueda contener ni una etiqueta de script.
+ */
 export function bodyOf(html) {
-  const withoutHead = html.replace(/<head[\s\S]*?<\/head>/i, "");
-  return withoutHead
-    .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replace(/<style[\s\S]*?<\/style>/gi, "");
+  let current = html.replace(/<head\b[\s\S]*?<\/head\s*>/i, "");
+  let previous;
+  do {
+    previous = current;
+    current = current.replace(EMBEDDED_BLOCK, "");
+  } while (current !== previous);
+  return current.replace(STRAY_TAG, "");
 }
 
 /** Atributos de una etiqueta de apertura en forma de objeto. */

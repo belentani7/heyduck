@@ -21,6 +21,13 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CATALOG = join(ROOT, "data/catalogo.json");
 const IGNORED = new Set([".git", "legacy", "node_modules", ".vercel", "coverage", "dist", "build"]);
+/**
+ * Métricas que cambian al escribir código pero no describen el despliegue:
+ * añadir una prueba no debe invalidar el catálogo ni romper la CI. Se siguen
+ * escribiendo (son útiles en el informe) pero no bloquean `--check`.
+ */
+const VOLATILES = ["pruebas_node", "pruebas_python"];
+
 const DEPLOY_EXCLUDED = new Set(["legacy", "node_modules", ".git", ".github", "tests", "scripts", "docs", "data", "locales"]);
 
 function walk(directory, filter, accumulator = []) {
@@ -133,9 +140,9 @@ function main(argv) {
       return 1;
     }
     const current = JSON.parse(readFileSync(CATALOG, "utf8"));
-    const drift = Object.keys(metrics.medido).filter(
-      (key) => !current.medido || current.medido[key] !== metrics.medido[key]
-    );
+    const drift = Object.keys(metrics.medido)
+      .filter((key) => !VOLATILES.includes(key))
+      .filter((key) => !current.medido || current.medido[key] !== metrics.medido[key]);
     if (current.nombre !== metrics.nombre) {
       console.error("catalogo.json declara otro repositorio: " + current.nombre);
       return 1;
@@ -148,7 +155,13 @@ function main(argv) {
       console.error("Ejecuta: node scripts/measure.mjs");
       return 1;
     }
-    console.log("catalogo.json coincide con el repositorio (" + Object.keys(metrics.medido).length + " métricas)");
+    console.log(
+      "catalogo.json coincide con el repositorio (" +
+        (Object.keys(metrics.medido).length - VOLATILES.length) +
+        " métricas estructurales; " +
+        VOLATILES.join(" y ") +
+        " se refrescan al medir)"
+    );
     return 0;
   }
 

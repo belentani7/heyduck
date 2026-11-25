@@ -86,6 +86,26 @@ test("audit-html detecta los defectos que ha sufrido el repositorio", async () =
   }
 });
 
+test("bodyOf elimina script y estilo incluso con cierres irregulares", async () => {
+  const { bodyOf } = await import("../scripts/audit-html.mjs");
+  const page = [
+    "<head><script>const a = '<div>';</script><style>body{}</style></head>",
+    "<body>",
+    "<p>texto real</p>",
+    "<script >alert('con espacio')</script >",
+    "<script>outer <script>inner</script> restante </script>",
+    "<STYLE>p{color:red}</STYLE>",
+    '<script src="js/suelto.js">',
+    "</body>"
+  ].join("\n");
+
+  const body = bodyOf(page);
+  assert.match(body, /texto real/);
+  assert.doesNotMatch(body, /<script/i, "no puede sobrevivir ninguna etiqueta script");
+  assert.doesNotMatch(body, /<style/i, "no puede sobrevivir ninguna etiqueta style");
+  assert.doesNotMatch(body, /alert\(/, "el código de los scripts se elimina con su bloque");
+});
+
 test("audit-html acepta un documento correcto y señala clases sin CSS", async () => {
   const { auditPage } = await import("../scripts/audit-html.mjs");
   const good = `<!doctype html><html lang="es"><head><title>ok</title>

@@ -113,7 +113,7 @@ Herramientas internas (todas con `--help`):
 ## Pruebas
 
 ```bash
-node --check data.js && node --test tests/*.test.cjs   # 31 pruebas
+node --check data.js && node --test tests/*.test.cjs   # 43 pruebas
 python3 -m unittest discover -s tests -t . -v          # 25 pruebas
 ```
 

@@ -41,12 +41,14 @@ todo lo que se afirma está verificado por una prueba.
   analizador de 2048 puntos en bandas logarítmicas y afinación A4 440/432 Hz.
 - **Shader WebGL propio** (FBM con deformación de dominio), con degradación a
   CSS, pausa por visibilidad y frame estático con movimiento reducido.
-- **Suite de pruebas**: 40 en Node (matemática de audio, contratos de datos,
+- **Suite de pruebas**: 43 en Node (matemática de audio, contratos de datos,
   herramientas internas, DOM con jsdom) y 25 en Python (estructura de páginas,
   descubrimiento, medios, higiene). Antes: 5 pruebas Node y 0 ejecutadas en
   Python.
-- **Prueba end-to-end del camino feliz** con jsdom: hidratación del catálogo,
-  gráfico de audio tras el gesto, ARIA, estado honesto de los enlaces.
+- **Pruebas end-to-end del camino feliz** con jsdom cargando el `index.html`
+  real (`runScripts: "dangerously"`, `resources: "usable"`): hidratación del
+  catálogo, gráfico de audio tras el gesto, ARIA, afinación de 432 Hz y estado
+  honesto de los enlaces.
 - **Herramientas internas** (`scripts/`): `audit-html.mjs`, `audit-config.mjs`,
   `verify-discovery.mjs`, `measure.mjs`, `deploy-manifest.mjs`,
   `report-budget.mjs`. Todas con `--help`, todas en la CI.

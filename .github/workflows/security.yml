@@ -1,10 +1,15 @@
+name: Security configuration audit
+
+# Antes este workflow duplicaba el análisis CodeQL de codeql.yml y, además,
+# tenía dos bloques `permissions:` de primer nivel (YAML inválido: nunca se
+# ejecutaba). Ahora cubre lo que CodeQL no ve: la configuración de despliegue.
+
 permissions:
   contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-name: Security
 
 on:
   push:
@@ -15,21 +20,25 @@ on:
     - cron: '0 3 * * 1'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  actions: read
-  security-events: write
-
 jobs:
-  analyze:
-    name: CodeQL analysis (javascript-typescript)
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+  config:
+    name: Deploy headers, CSP and secret patterns
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+      - uses: actions/checkout@v4
         with:
-          languages: javascript-typescript
-      - name: Analyze
-        uses: github/codeql-action/analyze@v4
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Audit deployment configuration
+        run: node scripts/audit-config.mjs
+      - name: Fail if the deployable surface includes the legacy archive
+        run: |
+          set -euo pipefail
+          if grep -qx 'legacy/' .vercelignore; then
+            echo "legacy/ excluido del despliegue"
+          else
+            echo "::error::.vercelignore debe excluir legacy/"; exit 1
+          fi

@@ -1,20 +1,23 @@
+name: DUCK / Static product gates
+
+# Un único bloque `permissions:` (antes había dos: YAML inválido y el workflow
+# ni siquiera arrancaba, de ahí los fallos de 0 s).
 permissions:
   contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-name: DUCK / Static product gates
 on:
   push:
     branches: [main, "release/**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
-permissions:
-  contents: read
+
 jobs:
-  static:
+  contract:
     name: Media, data and website contract
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -23,18 +26,43 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: npm
+
+      - name: Install dev dependencies (jsdom for the DOM test only)
+        run: npm ci --omit=optional
+
       - name: Verify mandatory public entrypoints
         run: |
           test -s index.html
           test -s data.js
           test -s robots.txt
           test -s sitemap.xml
+
       - name: JavaScript syntax and media contracts
         run: |
-          node --check data.js
+          for file in data.js js/*.js; do node --check "$file"; done
           node --test tests/*.test.cjs
-      - name: Verify active HTML links and local assets
+
+      - name: Active links, anchors and local assets
         run: node .github/scripts/check-links.mjs
+
+      - name: HTML structure and accessibility audit
+        run: node scripts/audit-html.mjs --strict
+
+      - name: SEO discovery contract
+        run: node scripts/verify-discovery.mjs
+
+      - name: Deployment configuration and CSP
+        run: node scripts/audit-config.mjs
+
+      - name: Deploy manifest and measured catalogue are up to date
+        run: |
+          node scripts/deploy-manifest.mjs --check
+          node scripts/measure.mjs --check
+
+      - name: Critical-path weight budget
+        run: node scripts/report-budget.mjs
+
       - name: Parse all JSON
         shell: bash
         run: |
@@ -43,4 +71,37 @@ jobs:
             python3 -m json.tool "$file" >/dev/null || {
               echo "::error file=$file::Invalid JSON"; exit 1;
             }
-          done < <(find . -name '*.json' -not -path './.git/*' -not -path './node_modules/*')
+          done < <(find . -name '*.json' -not -path './.git/*' -not -path './node_modules/*' -not -path './legacy/*')
+
+  python:
+    name: Repository contract (unittest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dev dependencies
+        run: npm ci --omit=optional
+      - name: Run the real suite
+        run: python -m unittest discover -s tests -t . -v
+
+  doctor:
+    name: Repository doctor
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Doctor (solo lectura)
+        run: python scripts/doctor.py

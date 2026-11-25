@@ -1,10 +1,16 @@
 {
-  "repo": "heyduck",
-  "familia": "seguridad",
-  "ajustes_aplicados": 50,
-  "reglas_oficiales_ok": 48,
-  "estado": "estructurado",
-  "producto_completo": false,
-  "generado": "2026-11-10T18:58:55.120448+00:00",
-  "motor": "repo_forge.py"
+  "nombre": "heyduck",
+  "familia": "producto-musical",
+  "descripcion": "Sitio estático de portfolio y estación de audio en el navegador.",
+  "medido": {
+    "paginas_html": 16,
+    "modulos_js": 9,
+    "hojas_css": 10,
+    "archivos_de_imagen": 203,
+    "pruebas_node": 40,
+    "pruebas_python": 25,
+    "bytes_desplegables": 4182834,
+    "paginas_publicas": 10
+  },
+  "generado": "2026-11-25T06:07:39.153Z"
 }

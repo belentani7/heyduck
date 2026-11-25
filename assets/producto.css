@@ -1,0 +1,313 @@
+/* ==========================================================================
+   producto.css — Página comercial (producto.html)
+   Depende de assets/site.css para tokens, base tipográfica y foco visible.
+   ========================================================================== */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.top .nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+.top .brand {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.navlinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.navlinks a {
+  color: var(--dim);
+  text-decoration: none;
+}
+
+.navlinks a:hover {
+  color: var(--ink);
+}
+
+.hero {
+  padding-block: clamp(3rem, 10vh, 7rem) clamp(2rem, 6vh, 4rem);
+}
+
+.hero p {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--dim);
+  max-width: 60ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.button:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+  transform: translateY(-1px);
+}
+
+.button.secondary {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.button.secondary:hover {
+  border-color: var(--accent);
+  background: transparent;
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 2rem;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.proof span::before {
+  content: "✓ ";
+  color: var(--moss);
+}
+
+.modelo {
+  padding-block: var(--space);
+}
+
+.section-head {
+  max-width: 62ch;
+  margin-bottom: 2rem;
+}
+
+.section-head p {
+  color: var(--dim);
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.card.featured {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, rgba(77, 232, 224, 0.08), var(--bg-2) 42%);
+}
+
+.card .label {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: var(--serif);
+  font-weight: 500;
+}
+
+.price {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.price small {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--dim);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--dim);
+}
+
+.card ul {
+  margin: 0.5rem 0 1.25rem;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: var(--dim);
+}
+
+.card ul li {
+  margin-bottom: 0.3rem;
+}
+
+.card .button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.note {
+  margin-top: 2rem;
+  padding: 1rem 1.15rem;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.88rem;
+  color: var(--dim);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  counter-reset: paso;
+}
+
+.step {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  counter-increment: paso;
+}
+
+.step::before {
+  content: counter(paso, decimal-leading-zero);
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.step h3 {
+  margin-top: 0;
+}
+
+.step p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--dim);
+}
+
+.faq {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.faq article {
+  background: var(--bg-2);
+  padding: 1.35rem;
+}
+
+.faq h3 {
+  margin-top: 0;
+  font-size: 0.98rem;
+}
+
+.faq p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--dim);
+}
+
+.end {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.75rem, 5vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
+
+.end h2 {
+  margin-top: 0;
+}
+
+.end p {
+  margin: 0;
+  color: var(--dim);
+}
+
+.foot {
+  border-top: 1px solid var(--line);
+  padding-block: 2rem 3rem;
+  color: var(--dim);
+  font-size: 0.82rem;
+}
+
+.footrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+.footrow div:last-child {
+  display: flex;
+  gap: 1rem;
+}

@@ -3,4 +3,22 @@
   <url>
     <loc>https://heyduck.vercel.app/</loc>
   </url>
+  <url>
+    <loc>https://heyduck.vercel.app/producto</loc>
+  </url>
+  <url>
+    <loc>https://heyduck.vercel.app/ecosistema</loc>
+  </url>
+  <url>
+    <loc>https://heyduck.vercel.app/docs</loc>
+  </url>
+  <url>
+    <loc>https://heyduck.vercel.app/accesibilidad</loc>
+  </url>
+  <url>
+    <loc>https://heyduck.vercel.app/privacidad</loc>
+  </url>
+  <url>
+    <loc>https://heyduck.vercel.app/aviso-legal</loc>
+  </url>
 </urlset>
